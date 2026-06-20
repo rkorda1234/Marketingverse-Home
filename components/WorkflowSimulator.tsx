@@ -69,7 +69,7 @@ export const WorkflowSimulator: React.FC = () => {
         setTimeout(() => setLogs(prev => [...prev, 'Applying brand style guides...']), 1600);
         
         const response = await ai.models.generateContent({
-          model: 'gemini-1.5-flash',
+          model: 'gemini-1.5-flash-latest',
           contents: {
             parts: [{ text: `${selectedWorkflow.prompt}${input}` }]
           }
@@ -95,7 +95,7 @@ export const WorkflowSimulator: React.FC = () => {
         setTimeout(() => setLogs(prev => [...prev, 'Running heuristic models...']), 1600);
 
         const response = await ai.models.generateContent({
-          model: 'gemini-1.5-flash',
+          model: 'gemini-1.5-flash-latest',
           contents: `${selectedWorkflow.prompt}\n\nUser Input: ${input}`,
           config: {
             temperature: 0.7,
