@@ -1557,66 +1557,107 @@ const PLATFORM_SCREENSHOTS = [
   '1yujr3yBPgA9VmZuGUmI5AS3MCEEWEio2',
 ].map(id => `https://lh3.googleusercontent.com/d/${id}`);
 
+const SCREENSHOT_LABELS: Record<string, string> = {
+  '1xDZFHKKFD6OJbS5g_aYu7KVz5B2pYXC2': 'Agent Dashboard',
+  '17RdtScq3RnbPt_55LLEAtCJYLFyLrM-T': 'Lead Pipeline',
+  '1m0MuqRdFiuqBgaGsH_VBgHsEjXKVniPq': 'Marketing Automation',
+  '1TFESSPkSSNsS7kZbYsZMfSmfLHI5MCOB': 'CRM Overview',
+  '1a-Oam0bS5bMRX4xCxHMUJWJWomEwjd1q': 'Analytics Center',
+  '14LZ5IUFaqHfj-4E7fHYj-g3ZmMGz-K3O': 'Listing Manager',
+  '1RB_kz8_a-dMGUVwsmxDAJCpQMZSXNxCL': 'Agent Profiles',
+  '1LExu3FbF2d1E5YRWVF-vJA7xV6SdKJyH': 'Task Automation',
+  '1nIxqq9RDkfixFMVCM2fDw2BIQ-GWjdHO': 'Communication Hub',
+  '1aqJ3UYGefRG4sSZbLBmMFGv5qlz7s-Oo': 'Performance Reports',
+  '1N1muFMuWJ8DniPBFWfPLDlQvjzJYLd0N': 'Campaign Builder',
+  '1e9kRzUy_juwYpAJa8-5JZXSGgmZBRcj9': 'Property Alerts',
+  '1W8MK56AaU2mWfSmT5-5B2jL4pXzBHPLN': 'Client Portal',
+  '1ePXKu32jMk6JmVtZr7IkmQeONi4NXXZ5': 'Social Media Sync',
+  '1m_Hl9_6rXFVvPUgPMk8-GxIV6kLCsKEt': 'Email Sequences',
+  '11g-sR_-LkRU4i2t_fH4RFkLo7g_HUMBt': 'Transaction Tracker',
+  '1hU_yxF6Fg30Qv8hg_Fo0_KTD8pQ8k4ZQ': 'Revenue Dashboard',
+  '1_5Ber5JE_YH5Dme9R3a4T2ZjUPBV5kl7': 'Market Intelligence',
+  '1EuqnL6b5YIrNGS0kISe2t0QUmWUmInEW': 'Open House Tools',
+  '1yOTjkDLfLuRmk4P0JlvLi6Mv5X1hUJpP': 'Referral Network',
+  '1kGEFLQHyJpO5c8tQOxBHMUyOgEcfqJ4r': 'Document Center',
+  '1vM_k5m0-2aU8ygXNrp78j8L14HRkWqzb': 'Notification Center',
+  '1KXF4lf98Jvnp-AEeTrJLmXqJ0cJuRKaY': 'Settings & Roles',
+  '14qY-D1C-hfyqJGk9vxsJsPdz_tW-3Iw7': 'Integrations Hub',
+  '1t2J8vIoH_-a2fAn5J67e4YUCWsJRhVkF': 'Compliance Tools',
+  '1GxM0sZ_U3hjp-sYRukmZ2d1tMiEy9uBe': 'Buyer Journey',
+  '1wNpk_vxIDZ3lH9FwEU-3rGqC8LHv9pQN': 'Seller Tools',
+  '1FNnQXbHKXqZ4NTsYVb2IJeHAoTFBikAf': 'AI Recommendations',
+  '1B4mN5q8oW0JqyRrKVEUwT_RHmSIxzm2K': 'Mobile Access',
+  '18XwxVqPzHBLjEmC9G_0kQi6EbGjxDMZn': 'Workflow Designer',
+  '1A2y5ZkTQJl0kB4NcF3SLR4N9EeB3Mrll': 'Calendar & Scheduling',
+  '1s0vR7OBRhJzNpXQLYGNFnCVMcJDyoHnz': 'Contact Intelligence',
+  '1yujr3yBPgA9VmZuGUmI5AS3MCEEWEio2': 'Brokerage Command Center',
+};
+
 const PlatformCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const total = PLATFORM_SCREENSHOTS.length;
-
   const prev = () => setCurrent(p => (p - 1 + total) % total);
   const next = () => setCurrent(p => (p + 1) % total);
 
+  const fileId = PLATFORM_SCREENSHOTS[current].split('/d/')[1];
+  const label = SCREENSHOT_LABELS[fileId] ?? `Screen ${current + 1}`;
+
   return (
-    <div className="relative select-none py-8">
-      <div className="max-w-5xl mx-auto px-4">
-        {/* Lid / screen */}
-        <div className="relative bg-neutral-900 rounded-t-[18px] shadow-[0_30px_80px_rgba(0,0,0,0.35)]" style={{ padding: '12px 12px 0' }}>
-          {/* Camera */}
-          <div className="flex justify-center mb-2">
-            <div className="w-2 h-2 rounded-full bg-neutral-600 ring-1 ring-neutral-500" />
-          </div>
-          {/* Screen — exact image ratio 1636:1035 */}
-          <div className="relative overflow-hidden rounded-t-sm bg-black" style={{ aspectRatio: '1636/1035' }}>
-            {PLATFORM_SCREENSHOTS.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt={`Platform screenshot ${i + 1}`}
-                className={`absolute inset-0 w-full h-full object-fill transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
-              />
-            ))}
-            {/* Counter */}
-            <div className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
-              {current + 1} / {total}
-            </div>
-            {/* Arrows on screen */}
-            <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors">
-              <ChevronLeft size={18} />
-            </button>
-            <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors">
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </div>
-
-        {/* Hinge */}
-        <div className="bg-neutral-700 h-[3px] mx-1" />
-
-        {/* Base */}
-        <div className="relative bg-gradient-to-b from-neutral-600 to-neutral-700 rounded-b-2xl shadow-[0_20px_50px_rgba(0,0,0,0.4)]" style={{ height: '26px' }}>
-          <div className="absolute left-1/2 -translate-x-1/2 top-2.5 w-16 h-3 bg-neutral-500/60 rounded-sm" />
-        </div>
-        {/* Shadow under base */}
-        <div className="mx-8 h-3 bg-black/20 blur-md rounded-full" />
-      </div>
-
-      {/* Dots below laptop */}
-      <div className="flex justify-center gap-1.5 mt-10">
-        {PLATFORM_SCREENSHOTS.map((_, i) => (
-          <button
+    <div className="relative select-none">
+      {/* Main image area */}
+      <div className="relative overflow-hidden rounded-2xl bg-neutral-950 shadow-[0_32px_80px_rgba(0,0,0,0.28)] group" style={{ aspectRatio: '1636/1035' }}>
+        {PLATFORM_SCREENSHOTS.map((src, i) => (
+          <img
             key={i}
-            onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-black' : 'w-2 h-2 bg-neutral-300 hover:bg-neutral-400'}`}
+            src={src}
+            alt={label}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}
+
+        {/* Bottom gradient + label */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-5 left-6 z-20 flex items-center gap-3">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">Platform</span>
+          <span className="w-px h-3 bg-white/20" />
+          <span className="text-sm font-semibold text-white">{label}</span>
+        </div>
+        <div className="absolute bottom-5 right-6 z-20 text-[11px] font-bold text-white/40 tabular-nums">
+          {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </div>
+
+        {/* Arrow buttons */}
+        <button
+          onClick={prev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+
+      {/* Progress bar + dots */}
+      <div className="mt-6 flex flex-col gap-3">
+        <div className="w-full h-px bg-neutral-100 relative overflow-hidden rounded-full">
+          <div
+            className="absolute left-0 top-0 h-full bg-neutral-900 transition-all duration-500 rounded-full"
+            style={{ width: `${((current + 1) / total) * 100}%` }}
+          />
+        </div>
+        <div className="flex justify-center gap-1.5">
+          {PLATFORM_SCREENSHOTS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -1630,6 +1671,14 @@ const PHONE_SCREENSHOTS = [
   '1N11A_5KFcNuNQgznthOEcx9Yo4Y1KtYx',
 ].map(id => `https://lh3.googleusercontent.com/d/${id}`);
 
+const PHONE_LABELS = [
+  'Agent Overview',
+  'Lead Activity',
+  'Contact Details',
+  'Task Manager',
+  'Performance Stats',
+];
+
 const PhoneCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const total = PHONE_SCREENSHOTS.length;
@@ -1637,49 +1686,61 @@ const PhoneCarousel: React.FC = () => {
   const next = () => setCurrent(p => (p + 1) % total);
 
   return (
-    <div className="flex flex-col items-center select-none">
-      {/* Phone mockup */}
-      <div className="relative" style={{ width: '260px' }}>
-        {/* Outer shell */}
-        <div className="relative bg-neutral-900 rounded-[42px] shadow-[0_40px_80px_rgba(0,0,0,0.35)]" style={{ padding: '14px 10px' }}>
-          {/* Side button left */}
-          <div className="absolute -left-[3px] top-[90px] w-[3px] h-10 bg-neutral-700 rounded-l-full" />
-          <div className="absolute -left-[3px] top-[140px] w-[3px] h-10 bg-neutral-700 rounded-l-full" />
-          {/* Side button right (power) */}
-          <div className="absolute -right-[3px] top-[110px] w-[3px] h-14 bg-neutral-700 rounded-r-full" />
-          {/* Screen */}
-          <div className="relative overflow-hidden rounded-[32px] bg-black" style={{ aspectRatio: '9/19.5' }}>
-            {/* Dynamic island */}
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 w-24 h-6 bg-black rounded-full" />
-            {PHONE_SCREENSHOTS.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt={`Mobile screenshot ${i + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+    <div className="w-full max-w-2xl mx-auto select-none">
+      {/* Main image area — portrait ratio */}
+      <div className="relative overflow-hidden rounded-2xl bg-neutral-950 shadow-[0_32px_80px_rgba(0,0,0,0.28)] group" style={{ aspectRatio: '9/19.5' }}>
+        {PHONE_SCREENSHOTS.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={PHONE_LABELS[i]}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
 
-      {/* Controls */}
-      <div className="flex items-center gap-6 mt-8">
-        <button onClick={prev} className="w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 transition-colors">
+        {/* Bottom gradient + label */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-5 left-5 z-20 flex items-center gap-3">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">Mobile</span>
+          <span className="w-px h-3 bg-white/20" />
+          <span className="text-sm font-semibold text-white">{PHONE_LABELS[current]}</span>
+        </div>
+        <div className="absolute bottom-5 right-5 z-20 text-[11px] font-bold text-white/40 tabular-nums">
+          {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </div>
+
+        {/* Arrow buttons */}
+        <button
+          onClick={prev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
+        >
           <ChevronLeft size={18} />
         </button>
-        <div className="flex gap-2">
+        <button
+          onClick={next}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+
+      {/* Progress bar + dots */}
+      <div className="mt-6 flex flex-col gap-3">
+        <div className="w-full h-px bg-neutral-100 relative overflow-hidden rounded-full">
+          <div
+            className="absolute left-0 top-0 h-full bg-neutral-900 transition-all duration-500 rounded-full"
+            style={{ width: `${((current + 1) / total) * 100}%` }}
+          />
+        </div>
+        <div className="flex justify-center gap-1.5">
           {PHONE_SCREENSHOTS.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? 'w-5 h-2 bg-black' : 'w-2 h-2 bg-neutral-300 hover:bg-neutral-400'}`}
+              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
             />
           ))}
         </div>
-        <button onClick={next} className="w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 transition-colors">
-          <ChevronRight size={18} />
-        </button>
       </div>
     </div>
   );
@@ -1856,22 +1917,24 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
 
       {/* Platform Screenshot Carousel */}
       <RevealOnScroll>
-        <div className="mb-20">
-          <div className="text-center mb-12">
+        <div className="mb-20 -mx-4 md:-mx-8 lg:-mx-16 xl:-mx-24">
+          <div className="text-center mb-12 px-4">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Inside The Platform</span>
             <h2 className="text-4xl font-bold mb-4">See It In Action</h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">A look inside the Broker CRM engine — built for modern brokerages that refuse to be outpaced.</p>
           </div>
           <PlatformCarousel />
 
-          {/* Mobile mockup */}
-          <div className="mt-20 flex flex-col items-center">
-            <div className="text-center mb-10">
+          {/* Mobile screenshots */}
+          <div className="mt-24 px-4">
+            <div className="text-center mb-12">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Built Mobile-First</span>
               <h3 className="text-3xl font-bold mb-3">Manage Everything On The Go</h3>
               <p className="text-neutral-600 max-w-xl mx-auto">Your agents and brokers stay connected from anywhere — leads, tasks, and performance at their fingertips.</p>
             </div>
-            <PhoneCarousel />
+            <div className="max-w-sm mx-auto">
+              <PhoneCarousel />
+            </div>
           </div>
         </div>
       </RevealOnScroll>
