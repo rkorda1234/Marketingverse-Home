@@ -62,7 +62,7 @@ export const WorkflowSimulator: React.FC = () => {
     setLogs(['Initializing AI Agent...', 'Authenticating workflow...', 'Allocating VerseGPU resources...']);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
       
       if (selectedWorkflow.type === 'image') {
         setTimeout(() => setLogs(prev => [...prev, 'Synthesizing visual layers...']), 800);
