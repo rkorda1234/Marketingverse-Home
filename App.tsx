@@ -1622,6 +1622,69 @@ const PlatformCarousel: React.FC = () => {
   );
 };
 
+const PHONE_SCREENSHOTS = [
+  '1n78_3nyIxRJ7bRzUv-6xFfPJnD-jQCmL',
+  '1pss2l8EBl3EpYvmSkcQs1jyjEsQbEOeu',
+  '1trJY4vZP8aPkDPMo5PXL4weiqq_sG2M7',
+  '1N5kPJ7C9aWO57ggH_y7qfOm3q3Jvg-Gk',
+  '1N11A_5KFcNuNQgznthOEcx9Yo4Y1KtYx',
+].map(id => `https://lh3.googleusercontent.com/d/${id}`);
+
+const PhoneCarousel: React.FC = () => {
+  const [current, setCurrent] = useState(0);
+  const total = PHONE_SCREENSHOTS.length;
+  const prev = () => setCurrent(p => (p - 1 + total) % total);
+  const next = () => setCurrent(p => (p + 1) % total);
+
+  return (
+    <div className="flex flex-col items-center select-none">
+      {/* Phone mockup */}
+      <div className="relative" style={{ width: '260px' }}>
+        {/* Outer shell */}
+        <div className="relative bg-neutral-900 rounded-[42px] shadow-[0_40px_80px_rgba(0,0,0,0.35)]" style={{ padding: '14px 10px' }}>
+          {/* Side button left */}
+          <div className="absolute -left-[3px] top-[90px] w-[3px] h-10 bg-neutral-700 rounded-l-full" />
+          <div className="absolute -left-[3px] top-[140px] w-[3px] h-10 bg-neutral-700 rounded-l-full" />
+          {/* Side button right (power) */}
+          <div className="absolute -right-[3px] top-[110px] w-[3px] h-14 bg-neutral-700 rounded-r-full" />
+          {/* Screen */}
+          <div className="relative overflow-hidden rounded-[32px] bg-black" style={{ aspectRatio: '9/19.5' }}>
+            {/* Dynamic island */}
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 w-24 h-6 bg-black rounded-full" />
+            {PHONE_SCREENSHOTS.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Mobile screenshot ${i + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center gap-6 mt-8">
+        <button onClick={prev} className="w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 transition-colors">
+          <ChevronLeft size={18} />
+        </button>
+        <div className="flex gap-2">
+          {PHONE_SCREENSHOTS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`rounded-full transition-all duration-300 ${i === current ? 'w-5 h-2 bg-black' : 'w-2 h-2 bg-neutral-300 hover:bg-neutral-400'}`}
+            />
+          ))}
+        </div>
+        <button onClick={next} className="w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 transition-colors">
+          <ChevronRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onSubscribe, onBookConsultation }) => (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -1800,6 +1863,16 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">A look inside the Broker CRM engine — built for modern brokerages that refuse to be outpaced.</p>
           </div>
           <PlatformCarousel />
+
+          {/* Mobile mockup */}
+          <div className="mt-20 flex flex-col items-center">
+            <div className="text-center mb-10">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Built Mobile-First</span>
+              <h3 className="text-3xl font-bold mb-3">Manage Everything On The Go</h3>
+              <p className="text-neutral-600 max-w-xl mx-auto">Your agents and brokers stay connected from anywhere — leads, tasks, and performance at their fingertips.</p>
+            </div>
+            <PhoneCarousel />
+          </div>
         </div>
       </RevealOnScroll>
 
