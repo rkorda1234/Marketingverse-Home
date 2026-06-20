@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Play, Sparkles, Loader2, CheckCircle2, Terminal, RefreshCw, Zap, Image as ImageIcon } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
 import { RevealOnScroll } from './RevealOnScroll';
 
 interface DemoWorkflow {
@@ -62,49 +61,20 @@ export const WorkflowSimulator: React.FC = () => {
     setLogs(['Initializing AI Agent...', 'Authenticating workflow...', 'Allocating VerseGPU resources...']);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
-      
-      if (selectedWorkflow.type === 'image') {
-        setTimeout(() => setLogs(prev => [...prev, 'Synthesizing visual layers...']), 800);
-        setTimeout(() => setLogs(prev => [...prev, 'Applying brand style guides...']), 1600);
-        
-        const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash',
-          contents: {
-            parts: [{ text: `${selectedWorkflow.prompt}${input}` }]
-          }
-        });
+      setTimeout(() => setLogs(prev => [...prev, 'Analyzing input context...']), 800);
+      setTimeout(() => setLogs(prev => [...prev, 'Running heuristic models...']), 1600);
 
-        let foundImage = false;
-        if (response.candidates?.[0]?.content?.parts) {
-          for (const part of response.candidates[0].content.parts) {
-            if (part.inlineData) {
-              const base64EncodeString = part.inlineData.data;
-              setImageUrl(`data:image/png;base64,${base64EncodeString}`);
-              foundImage = true;
-            } else if (part.text) {
-              setOutput(part.text);
-            }
-          }
-        }
-        
-        if (!foundImage && !output) throw new Error("No output generated");
-        setLogs(prev => [...prev, 'Visual asset generated successfully.']);
-      } else {
-        setTimeout(() => setLogs(prev => [...prev, 'Analyzing input context...']), 800);
-        setTimeout(() => setLogs(prev => [...prev, 'Running heuristic models...']), 1600);
+      const res = await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: selectedWorkflow.prompt, input }),
+      });
 
-        const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash',
-          contents: `${selectedWorkflow.prompt}\n\nUser Input: ${input}`,
-          config: {
-            temperature: 0.7,
-          }
-        });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Server error');
 
-        setOutput(response.text || "Simulation complete with no output.");
-        setLogs(prev => [...prev, 'Workflow logic completed successfully.']);
-      }
+      setOutput(data.text || 'Simulation complete with no output.');
+      setLogs(prev => [...prev, 'Workflow logic completed successfully.']);
     } catch (error: any) {
       console.error(error);
       const msg = error?.message || error?.toString() || 'Unknown error';
