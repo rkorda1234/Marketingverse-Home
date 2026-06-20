@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
 import { AIBot } from './components/AIBot';
 import { CustomCursor } from './components/CustomCursor';
 import { RevealOnScroll } from './components/RevealOnScroll';
@@ -1521,6 +1521,75 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
   );
 };
 
+const PLATFORM_SCREENSHOTS = [
+  'https://lh3.googleusercontent.com/d/1gAuE8jWm_m-HcWKvc5mDHxq5kIC0oNzM=w1200',
+];
+
+const PlatformCarousel: React.FC = () => {
+  const [current, setCurrent] = useState(0);
+  const screenshots = PLATFORM_SCREENSHOTS;
+
+  return (
+    <div className="relative max-w-5xl mx-auto select-none">
+      {/* Laptop frame */}
+      <div className="relative mx-auto" style={{ maxWidth: '900px' }}>
+        {/* Screen bezel */}
+        <div className="bg-neutral-900 rounded-t-2xl pt-4 px-4 pb-0 shadow-2xl">
+          {/* Camera dot */}
+          <div className="flex justify-center mb-2">
+            <div className="w-2 h-2 rounded-full bg-neutral-600" />
+          </div>
+          {/* Screen */}
+          <div className="bg-white rounded-t-lg overflow-hidden" style={{ aspectRatio: '16/10' }}>
+            {screenshots.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Platform screenshot ${i + 1}`}
+                className={`w-full h-full object-cover object-top transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0 absolute inset-0'}`}
+              />
+            ))}
+          </div>
+        </div>
+        {/* Laptop base */}
+        <div className="bg-neutral-800 h-4 rounded-b-lg mx-4 shadow-xl" />
+        <div className="bg-neutral-700 h-1.5 rounded-b-2xl mx-0 shadow-xl" />
+      </div>
+
+      {/* Nav dots */}
+      {screenshots.length > 1 && (
+        <div className="flex justify-center gap-2 mt-8">
+          {screenshots.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${i === current ? 'bg-black scale-125' : 'bg-neutral-300 hover:bg-neutral-400'}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Prev/Next arrows */}
+      {screenshots.length > 1 && (
+        <>
+          <button
+            onClick={() => setCurrent(p => (p - 1 + screenshots.length) % screenshots.length)}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-neutral-100 transition-colors border border-neutral-200"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => setCurrent(p => (p + 1) % screenshots.length)}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-neutral-100 transition-colors border border-neutral-200"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
 const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onSubscribe, onBookConsultation }) => (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -1689,6 +1758,42 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
       </div>
       
       <CRMWorkflowVisualizer />
+
+      {/* Platform Screenshot Carousel */}
+      <RevealOnScroll>
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Inside The Platform</span>
+            <h2 className="text-4xl font-bold mb-4">See It In Action</h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">A look inside the Broker CRM engine — built for modern brokerages that refuse to be outpaced.</p>
+          </div>
+          <PlatformCarousel />
+        </div>
+      </RevealOnScroll>
+
+      {/* Sales Presentation CTA */}
+      <RevealOnScroll>
+        <div className="mb-20 rounded-[2.5rem] overflow-hidden bg-black text-white p-12 md:p-16 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#3b82f6_0%,_transparent_60%)] opacity-20 pointer-events-none" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="max-w-xl">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-4 block">Dig Deeper</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Understand The Full Opportunity</h2>
+              <p className="text-lg text-neutral-400 leading-relaxed">Ready to see exactly how this platform transforms your brokerage's revenue? Walk through our full sales deck — built specifically for broker-owners who want the whole picture.</p>
+            </div>
+            <a
+              href="https://presentations.the-marketingverse.com/decks/deck-broker.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="magic"
+              className="flex-shrink-0 flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-bold text-lg hover:bg-neutral-100 transition-all hover:scale-105 active:scale-95 shadow-2xl"
+            >
+              <FileText size={22} />
+              View Sales Presentation
+            </a>
+          </div>
+        </div>
+      </RevealOnScroll>
 
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
