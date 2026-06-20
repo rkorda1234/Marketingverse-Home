@@ -1566,61 +1566,46 @@ const PlatformCarousel: React.FC = () => {
 
   return (
     <div className="relative select-none py-8">
-      {/* 3D Laptop wrapper */}
-      <div style={{ perspective: '1200px' }} className="max-w-5xl mx-auto px-4">
-        <div style={{ transform: 'rotateX(6deg) rotateY(-4deg)', transformStyle: 'preserve-3d', transition: 'transform 0.6s ease' }}
-          className="relative"
-        >
-          {/* Lid / screen */}
-          <div className="relative bg-neutral-900 rounded-t-2xl rounded-b-sm shadow-[0_40px_100px_rgba(0,0,0,0.4)]"
-            style={{ padding: '14px 14px 6px' }}
-          >
-            {/* Camera notch */}
-            <div className="flex justify-center mb-2">
-              <div className="w-2 h-2 rounded-full bg-neutral-700 ring-2 ring-neutral-600" />
-            </div>
-
-            {/* Screen bezel inner glow */}
-            <div className="relative rounded-lg overflow-hidden bg-black" style={{ aspectRatio: '16/10' }}>
-              {/* Subtle screen glare */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent z-10 pointer-events-none rounded-lg" />
-
-              {PLATFORM_SCREENSHOTS.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Platform screenshot ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
-                />
-              ))}
-
-              {/* Counter */}
-              <div className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
-                {current + 1} / {total}
-              </div>
-
-              {/* Side arrow overlays on screen */}
-              <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors">
-                <ChevronLeft size={18} />
-              </button>
-              <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors">
-                <ChevronRight size={18} />
-              </button>
-            </div>
+      <div className="max-w-5xl mx-auto px-4">
+        {/* Lid / screen */}
+        <div className="relative bg-neutral-900 rounded-t-[18px] shadow-[0_30px_80px_rgba(0,0,0,0.35)]" style={{ padding: '12px 12px 0' }}>
+          {/* Camera */}
+          <div className="flex justify-center mb-2">
+            <div className="w-2 h-2 rounded-full bg-neutral-600 ring-1 ring-neutral-500" />
           </div>
-
-          {/* Hinge */}
-          <div className="bg-neutral-800 h-1.5 mx-2 shadow-sm" />
-
-          {/* Base / keyboard */}
-          <div className="relative bg-gradient-to-b from-neutral-700 to-neutral-800 rounded-b-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)]" style={{ height: '28px', padding: '0 20px' }}>
-            {/* Trackpad */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-3 w-20 h-3.5 bg-neutral-600 rounded-sm opacity-60" />
+          {/* Screen — exact image ratio 1636:1035 */}
+          <div className="relative overflow-hidden rounded-t-sm bg-black" style={{ aspectRatio: '1636/1035' }}>
+            {PLATFORM_SCREENSHOTS.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Platform screenshot ${i + 1}`}
+                className={`absolute inset-0 w-full h-full object-fill transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+              />
+            ))}
+            {/* Counter */}
+            <div className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
+              {current + 1} / {total}
+            </div>
+            {/* Arrows on screen */}
+            <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors">
+              <ChevronLeft size={18} />
+            </button>
+            <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors">
+              <ChevronRight size={18} />
+            </button>
           </div>
-
-          {/* Table surface reflection */}
-          <div className="absolute -bottom-6 left-4 right-4 h-6 bg-gradient-to-b from-black/20 to-transparent blur-sm rounded-full" />
         </div>
+
+        {/* Hinge */}
+        <div className="bg-neutral-700 h-[3px] mx-1" />
+
+        {/* Base */}
+        <div className="relative bg-gradient-to-b from-neutral-600 to-neutral-700 rounded-b-2xl shadow-[0_20px_50px_rgba(0,0,0,0.4)]" style={{ height: '26px' }}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-2.5 w-16 h-3 bg-neutral-500/60 rounded-sm" />
+        </div>
+        {/* Shadow under base */}
+        <div className="mx-8 h-3 bg-black/20 blur-md rounded-full" />
       </div>
 
       {/* Dots below laptop */}
