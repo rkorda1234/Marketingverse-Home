@@ -1305,27 +1305,70 @@ const CustomPlanBuilder: React.FC<{ onOrderNow: () => void }> = ({ onOrderNow })
   );
 };
 
-const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookConsultation: () => void }> = ({ active, setView, onBookConsultation }) => (
-  <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20 h-20 flex items-center shadow-sm">
-    <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-      <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('home')}>
-        <img src="https://the-marketingverse.com/wp-content/uploads/2023/11/Mverse_Logo_Transparent_1-copy.png" alt="Marketingverse Logo" className="h-5 w-auto object-contain" />
+const NAV_ITEMS = ['home', 'social', 'crm', 'integrations', 'blog', 'projects', 'contact'] as const;
+const navLabel = (id: string) =>
+  id === 'integrations' ? 'AI Integrations' : id === 'crm' ? 'Broker CRM' : id.charAt(0).toUpperCase() + id.slice(1);
+
+const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookConsultation: () => void }> = ({ active, setView, onBookConsultation }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = (id: string) => { setView(id); setMenuOpen(false); };
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('home')}>
+          <img src="https://the-marketingverse.com/wp-content/uploads/2023/11/Mverse_Logo_Transparent_1-copy.png" alt="Marketingverse Logo" className="h-5 w-auto object-contain" />
+        </div>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex gap-8 items-center">
+          {NAV_ITEMS.map(id => (
+            <button
+              key={id}
+              onClick={() => navigate(id)}
+              className={`text-sm font-medium transition-colors ${active === id ? 'text-black font-bold' : 'text-neutral-500 hover:text-black'}`}
+            >
+              {navLabel(id)}
+            </button>
+          ))}
+          <button onClick={onBookConsultation} className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors">Book a Call</button>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        </button>
       </div>
-      <div className="hidden md:flex gap-8 items-center">
-        {['home', 'social', 'crm', 'integrations', 'blog', 'projects', 'contact'].map(id => (
-          <button 
-            key={id} 
-            onClick={() => setView(id)} 
-            className={`text-sm font-medium ${active === id ? 'text-black font-bold' : 'text-neutral-500 hover:text-black'}`}
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-neutral-100 px-4 py-4 flex flex-col gap-1 shadow-lg">
+          {NAV_ITEMS.map(id => (
+            <button
+              key={id}
+              onClick={() => navigate(id)}
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors ${active === id ? 'bg-black text-white' : 'text-neutral-700 hover:bg-neutral-100'}`}
+            >
+              {navLabel(id)}
+            </button>
+          ))}
+          <button
+            onClick={() => { onBookConsultation(); setMenuOpen(false); }}
+            className="mt-2 w-full bg-black text-white px-5 py-3 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors"
           >
-            {id === 'integrations' ? 'AI Integrations' : id === 'crm' ? 'Broker CRM' : (id.charAt(0).toUpperCase() + id.slice(1))}
+            Book a Call
           </button>
-        ))}
-        <button onClick={onBookConsultation} className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors">Book a Call</button>
-      </div>
-    </div>
-  </nav>
-);
+        </div>
+      )}
+    </nav>
+  );
+};
 
 const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
   <footer className="bg-black text-white py-12 border-t border-white/5 relative z-10">
