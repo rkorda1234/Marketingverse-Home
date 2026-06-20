@@ -1604,19 +1604,19 @@ const PlatformCarousel: React.FC = () => {
 
   return (
     <div className="relative select-none">
-      {/* Main image area */}
-      <div className="relative overflow-hidden rounded-2xl bg-neutral-950 shadow-[0_32px_80px_rgba(0,0,0,0.28)] group" style={{ aspectRatio: '1636/1035' }}>
+      {/* Main image area — bg-white so any corner bleed is invisible */}
+      <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_32px_80px_rgba(0,0,0,0.18)]" style={{ aspectRatio: '1636/1035' }}>
         {PLATFORM_SCREENSHOTS.map((src, i) => (
           <img
             key={i}
             src={src}
             alt={label}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}
 
         {/* Bottom gradient + label */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent z-10 pointer-events-none rounded-b-2xl" />
         <div className="absolute bottom-5 left-6 z-20 flex items-center gap-3">
           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">Platform</span>
           <span className="w-px h-3 bg-white/20" />
@@ -1625,38 +1625,38 @@ const PlatformCarousel: React.FC = () => {
         <div className="absolute bottom-5 right-6 z-20 text-[11px] font-bold text-white/40 tabular-nums">
           {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
         </div>
-
-        {/* Arrow buttons */}
-        <button
-          onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
-        >
-          <ChevronRight size={18} />
-        </button>
       </div>
 
-      {/* Progress bar + dots */}
-      <div className="mt-6 flex flex-col gap-3">
+      {/* Controls: progress bar + dots + arrows together */}
+      <div className="mt-5 flex flex-col gap-3">
         <div className="w-full h-px bg-neutral-100 relative overflow-hidden rounded-full">
           <div
             className="absolute left-0 top-0 h-full bg-neutral-900 transition-all duration-500 rounded-full"
             style={{ width: `${((current + 1) / total) * 100}%` }}
           />
         </div>
-        <div className="flex justify-center gap-1.5">
-          {PLATFORM_SCREENSHOTS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
-            />
-          ))}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={prev}
+            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <div className="flex gap-1.5">
+            {PLATFORM_SCREENSHOTS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={next}
+            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </div>
     </div>
@@ -1687,19 +1687,19 @@ const PhoneCarousel: React.FC = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto select-none">
-      {/* Main image area — portrait ratio */}
-      <div className="relative overflow-hidden rounded-2xl bg-neutral-950 shadow-[0_32px_80px_rgba(0,0,0,0.28)] group" style={{ aspectRatio: '9/19.5' }}>
+      {/* Main image area — bg-white so corner bleed is invisible */}
+      <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_32px_80px_rgba(0,0,0,0.18)]" style={{ aspectRatio: '9/19.5' }}>
         {PHONE_SCREENSHOTS.map((src, i) => (
           <img
             key={i}
             src={src}
             alt={PHONE_LABELS[i]}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}
 
         {/* Bottom gradient + label */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/70 to-transparent z-10 pointer-events-none rounded-b-2xl" />
         <div className="absolute bottom-5 left-5 z-20 flex items-center gap-3">
           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">Mobile</span>
           <span className="w-px h-3 bg-white/20" />
@@ -1708,38 +1708,38 @@ const PhoneCarousel: React.FC = () => {
         <div className="absolute bottom-5 right-5 z-20 text-[11px] font-bold text-white/40 tabular-nums">
           {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
         </div>
-
-        {/* Arrow buttons */}
-        <button
-          onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
-        >
-          <ChevronRight size={18} />
-        </button>
       </div>
 
-      {/* Progress bar + dots */}
-      <div className="mt-6 flex flex-col gap-3">
+      {/* Controls: progress bar + dots + arrows together */}
+      <div className="mt-5 flex flex-col gap-3">
         <div className="w-full h-px bg-neutral-100 relative overflow-hidden rounded-full">
           <div
             className="absolute left-0 top-0 h-full bg-neutral-900 transition-all duration-500 rounded-full"
             style={{ width: `${((current + 1) / total) * 100}%` }}
           />
         </div>
-        <div className="flex justify-center gap-1.5">
-          {PHONE_SCREENSHOTS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
-            />
-          ))}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={prev}
+            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <div className="flex gap-1.5">
+            {PHONE_SCREENSHOTS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={next}
+            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </div>
     </div>
