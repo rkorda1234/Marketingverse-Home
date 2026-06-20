@@ -2249,7 +2249,13 @@ const ContactView: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const [view, setView] = useState('home');
+  const [view, setView] = useState(() => window.location.hash.replace('#', '') || 'home');
+
+  const navigate = (v: string) => {
+    window.location.hash = v;
+    setView(v);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
@@ -2279,7 +2285,7 @@ const App: React.FC = () => {
   const renderView = () => {
     switch (view) {
       case 'home':
-        return <HomeView changeView={setView} onBookConsultation={() => setIsBookingOpen(true)} />;
+        return <HomeView changeView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />;
       case 'contact':
         return <ContactView />;
       case 'social':
@@ -2382,7 +2388,7 @@ const App: React.FC = () => {
            </div>
         );
       default:
-        return <HomeView changeView={setView} onBookConsultation={() => setIsBookingOpen(true)} />;
+        return <HomeView changeView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />;
     }
   };
 
@@ -2390,7 +2396,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white overflow-x-hidden">
       <CustomCursor />
       <AbstractBackground />
-      <NavBar active={view} setView={setView} onBookConsultation={() => setIsBookingOpen(true)} />
+      <NavBar active={view} setView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />
       
       <main className="relative z-10 min-h-screen">
         {renderView()}
