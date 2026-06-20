@@ -242,13 +242,6 @@ const SERVICES: Service[] = [
 
 const SOCIAL_PLANS: Plan[] = [
   {
-    name: 'Presence',
-    price: '$85',
-    description: 'Essential management to keep your brand active and professional.',
-    features: ['12 FB/IG templatized cross-posts', '12 Templatized Stories', 'Automatic posting at best times'],
-    paymentLink: 'https://buy.stripe.com/test_presence'
-  },
-  {
     name: 'Growth',
     price: '$450',
     description: 'Aggressive growth strategy for brands ready to scale rapidly.',
@@ -1768,26 +1761,28 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
       </RevealOnScroll>
 
       <div className="text-center mb-16"><h2 className="text-4xl font-bold mb-4">Social Media Packages</h2></div>
-      <div className="grid md:grid-cols-3 gap-8 mb-20">
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
         {SOCIAL_PLANS.map((plan, i) => (
-          <div key={i} className={`rounded-3xl p-8 border flex flex-col transition-all duration-300 hover:shadow-2xl ${plan.recommended ? 'bg-black text-white border-black shadow-2xl scale-105' : 'bg-white/90 backdrop-blur-sm hover:-translate-y-2'}`}>
-            <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-            <div className="text-4xl font-bold mb-6">{plan.price}<span className="text-sm opacity-50">/mo</span></div>
-            <ul className="space-y-4 mb-8 flex-grow">
+          <div key={i} className={`rounded-3xl p-10 border flex flex-col transition-all duration-300 hover:shadow-2xl ${plan.recommended ? 'bg-black text-white border-black shadow-2xl' : 'bg-white/90 backdrop-blur-sm border-neutral-200 hover:-translate-y-2'}`}>
+            {plan.recommended && <span className="text-xs font-bold uppercase tracking-widest mb-4 opacity-60">Most Popular</span>}
+            <h3 className="text-3xl font-bold mb-2">{plan.name}</h3>
+            <p className={`text-sm mb-6 ${plan.recommended ? 'opacity-60' : 'text-neutral-500'}`}>{plan.description}</p>
+            <div className="text-5xl font-bold mb-8">{plan.price}<span className="text-base opacity-50">/mo</span></div>
+            <ul className="space-y-4 mb-10 flex-grow">
               {plan.features.map((f, idx) => <li key={idx} className="flex items-center gap-3"><Check size={14} /> <span className="text-sm">{f}</span></li>)}
             </ul>
-            <button 
+            <button
               onClick={() => {
                 if (plan.paymentLink && plan.paymentLink.startsWith('http')) {
                   openPaymentPopup(plan.paymentLink);
                 } else {
                   onInitiateGrowth(plan);
                 }
-              }} 
+              }}
               data-cursor="magic"
               className={`w-full py-4 rounded-xl font-bold transition-transform active:scale-95 ${plan.recommended ? 'bg-white text-black hover:bg-neutral-100' : 'bg-black text-white hover:bg-neutral-800'}`}
             >
-              Initiate Growth
+              Get Started
             </button>
           </div>
         ))}
