@@ -476,7 +476,7 @@ const ClientsSection: React.FC = () => {
         <RevealOnScroll>
           <div className="text-center mb-16">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Proven Performance</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Industry Leaders</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by <span className="font-serif italic font-normal">Industry Leaders</span></h2>
             <p className="text-neutral-500 max-w-2xl mx-auto">
               From global media giants to boutique luxury brands, we power the engines of tomorrow's market winners.
             </p>
@@ -600,7 +600,7 @@ const SocialAdvantageSection: React.FC = () => {
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6 block">The Modern Business Engine</span>
               <h2 className="text-5xl md:text-6xl font-bold leading-[1.1] mb-8">
                 Social Media is <br />
-                <span className="text-neutral-400">A Must.</span>
+                <span className="font-serif italic font-normal text-neutral-400">A Must.</span>
               </h2>
               <p className="text-lg text-neutral-500 mb-12 leading-relaxed max-w-lg">
                 In today's fast-paced market, social media isn't just a platform—it's your digital storefront, your prospecting engine, and your primary relationship nurture tool.
@@ -710,9 +710,9 @@ const LiveAvatarDemo: React.FC = () => (
             
             {/* Heading - Dark Text */}
             <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 leading-tight">
-              Meet Your New <br/>
+              Meet Your <span className="font-serif italic font-normal">New</span> <br/>
               {/* Gradient text needs to be darker to read on white */}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">AI Support Agent</span>
+              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">AI Support Agent</span>
             </h2>
             <p className="text-neutral-600 leading-relaxed mb-8">
               Experience the future of customer service. This autonomous interactive avatar can handle inquiries, book appointments, and provide 24/7 human-like support with zero latency.
@@ -1146,7 +1146,7 @@ const ConsultationCTA: React.FC<{ onBookConsultation: () => void }> = ({ onBookC
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-        <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-neutral-900">Ready To Take It Up A Notch?</h2>
+        <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-neutral-900">Ready To Take It <span className="font-serif italic font-normal">Up A Notch?</span></h2>
         <p className="text-xl text-neutral-600 mb-12 max-w-2xl mx-auto">
           Book a free consultation to discuss your specific needs and find the perfect strategy for you.
         </p>
@@ -1398,8 +1398,10 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
       <section className="relative py-20 lg:py-32 text-center overflow-hidden">
         {/* Removed opaque background for abstract background visibility */}
         <RevealOnScroll>
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm">Marketingverse</h1>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with AI storytelling and high-performance social workflows.</p>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm">
+            Marketing<span className="font-serif italic font-normal">verse</span>
+          </h1>
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
           
           <div className="flex flex-col md:flex-row flex-wrap justify-center gap-4 mt-8 px-4">
             <button 
@@ -1476,7 +1478,7 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
             <RevealOnScroll>
               <div>
                 <span className="text-sm font-bold uppercase tracking-widest text-neutral-500 mb-3 block">Next-Gen Consulting</span>
-                <h2 className="text-5xl font-bold mb-8 leading-tight">Identify Your Strategy. <br />Instant & Live.</h2>
+                <h2 className="text-5xl font-bold mb-8 leading-tight">Identify Your Strategy.<br /><span className="font-serif italic font-normal">Instant & Live.</span></h2>
                 <p className="text-xl text-neutral-600 mb-10 leading-relaxed">
                   Our advanced AI ecosystem is ready to analyze your challenges. Switch to <span className="font-bold text-black">Voice Mode</span> for a direct human-like conversation about your growth.
                 </p>
@@ -1751,7 +1753,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
     <div className="max-w-7xl mx-auto px-4">
       <RevealOnScroll>
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Broker CRM Suite</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Broker <span className="font-serif italic font-normal">CRM Suite</span></h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Empower your agents, automate your marketing, and dominate your local market with our all-in-one brokerage operating system.
           </p>
@@ -1917,10 +1919,10 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
 
       {/* Platform Screenshot Carousel */}
       <RevealOnScroll>
-        <div className="mb-20 -mx-4 md:-mx-8 lg:-mx-16 xl:-mx-24">
-          <div className="text-center mb-12 px-4">
+        <div className="mb-20 px-4 md:px-0 md:-mx-8 lg:-mx-16 xl:-mx-24">
+          <div className="text-center mb-12">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Inside The Platform</span>
-            <h2 className="text-4xl font-bold mb-4">See It In Action</h2>
+            <h2 className="text-4xl font-bold mb-4">See It <span className="font-serif italic font-normal">In Action</span></h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">A look inside the Broker CRM engine — built for modern brokerages that refuse to be outpaced.</p>
           </div>
           <PlatformCarousel />
@@ -1929,7 +1931,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <div className="mt-24 px-4">
             <div className="text-center mb-12">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Built Mobile-First</span>
-              <h3 className="text-3xl font-bold mb-3">Manage Everything On The Go</h3>
+              <h3 className="text-3xl font-bold mb-3">Manage Everything <span className="font-serif italic font-normal">On The Go</span></h3>
               <p className="text-neutral-600 max-w-xl mx-auto">Your agents and brokers stay connected from anywhere — leads, tasks, and performance at their fingertips.</p>
             </div>
             <div className="max-w-sm mx-auto">
@@ -1946,7 +1948,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
             <div className="max-w-xl">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-4 block">Dig Deeper</span>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Understand The Full Opportunity</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Understand The <span className="font-serif italic font-normal">Full Opportunity</span></h2>
               <p className="text-lg text-neutral-400 leading-relaxed">Ready to see exactly how this platform transforms your brokerage's revenue? Walk through our full sales deck — built specifically for broker-owners who want the whole picture.</p>
             </div>
             <a
@@ -1982,7 +1984,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-6 block">The Core Engine</span>
              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
                Your Digital Storefront <br/>
-               <span className="text-neutral-400">To The World.</span>
+               <span className="font-serif italic font-normal text-neutral-400">To The World.</span>
              </h2>
              <div className="space-y-6 text-lg text-neutral-600 leading-relaxed">
                <p>
@@ -2020,7 +2022,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         <div className="mb-32">
           <div className="text-center mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Cinematic Excellence</span>
-            <h2 className="text-4xl font-bold mb-4">Content That Stops The Scroll</h2>
+            <h2 className="text-4xl font-bold mb-4">Content That <span className="font-serif italic font-normal">Stops The Scroll</span></h2>
             <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
               See what we've done for our clients
             </p>
@@ -2070,7 +2072,7 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <div className="mb-16 text-center">
-          <h2 className="text-4xl font-bold mb-4">AI Integration Workflows</h2>
+          <h2 className="text-4xl font-bold mb-4">AI <span className="font-serif italic font-normal">Integration Workflows</span></h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">Revolutionize your operations with our comprehensive suite of AI-powered integrations.</p>
         </div>
       </RevealOnScroll>

@@ -96,7 +96,7 @@ export const WorkflowSimulator: React.FC = () => {
       <RevealOnScroll>
         <div className="text-center mb-16">
           <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3 block">Live Testing Ground</span>
-          <h2 className="text-4xl font-bold mb-4">AI Smart Lab</h2>
+          <h2 className="text-4xl font-bold mb-4">AI <span className="font-serif italic font-normal">Smart Lab</span></h2>
           <p className="text-neutral-600 max-w-2xl mx-auto">
             Test our AI and creative logic in real-time. Select a module and see how Marketingverse intelligence handles your vision.
           </p>
