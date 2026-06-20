@@ -1522,70 +1522,90 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
 };
 
 const PLATFORM_SCREENSHOTS = [
-  'https://lh3.googleusercontent.com/d/1gAuE8jWm_m-HcWKvc5mDHxq5kIC0oNzM=w1200',
-];
+  '1zua1KZ0kdOjyavKHk6T3PwiJAepMT_40',
+  '1PW62Vg-lnLYOJJLXqr7IzQOim2sdbqxP',
+  '1RMxRcXZaGDreI-XdXVY8VLUEeSBulccu',
+  '1Rbx6FrGyv5YwrjgrmotBFo12sGVm5ZKi',
+  '1SVCNivwN9Y7ZHBpfy4B4lVm9pWaHFmAB',
+  '1YhM8-jDRHZWh9FQcC-G49SEtOkSL80qH',
+  '1cpyUu5tYW9B7OKykt2py6Bf9EWxHE8l3',
+  '1lmuEHb5vq1oqKBO4KT8BZ8YfmkEshi_O',
+  '1p_S11_cufcMlkabH4_ggA7fHTNO3avJj',
+  '1PLdY2W-QtF-f1p8rt86RqxGij-AAbaAQ',
+  '1hPusT0hLpnzUWTpaUaSA0LeOdBFN3c0Z',
+  '1LZiytgpYzC2BgEGmodF4DhSZh-QARJOh',
+  '1gpsTE9yqWHk3WFlsmri_k86-oQTVG5TS',
+  '1CW9HnPMRozlmrTIBWgOit30bB50C8zwd',
+  '1Ce4iDMAkjnWz1qz44d2r-zmuiFiJk37F',
+  '1Dy-TqjZ5rxA94zyukuPNRJgZniU3Zvqj',
+  '1El6Lb9SWYC86Mz0iJOwZYERY2go1-jca',
+  '1FfEwLWdKpW5bWFNl47nhbBd02Vps2LEa',
+  '1HPvT-TJsWj_kOKqbHUW9_5NmVKOhtT2V',
+  '1G3hRFaWb4lsO-8DbjRJmc9e1rRjIJ3zY',
+  '1HVanPurQB3fYw64oeE1Zoat4gBTHzAcG',
+  '17c4HaLjF9NbnLja-wjUr-xsU7QfbWkhH',
+  '1JJHAppTLu96E37PIWDWBgdUTG37Efr3x',
+  '1f551uHPbSRE0piP6L5Tlkv18EE3N3rv_',
+  '1J-B8rVdMqP12dhaFF0a8Hxb-CdM_1qOX',
+  '1QM-4lkFhsgkHTnY4KD4E8pEij8VEQRnH',
+  '1bxnZBPVuwecatcM1oZqE8BMqDCGcAU8a',
+  '1ARbO8smohhoJijcrEnzIJWvK0Dn5TjIp',
+  '1EkC8inhMHjfw55V2elNEQ_t9ktVGw4O-',
+  '1N11A_5KFcNuNQgznthOEcx9Yo4Y1KtYx',
+  '1N5kPJ7C9aWO57ggH_y7qfOm3q3Jvg-Gk',
+  '1trJY4vZP8aPkDPMo5PXL4weiqq_sG2M7',
+  '1yujr3yBPgA9VmZuGUmI5AS3MCEEWEio2',
+].map(id => `https://drive.google.com/uc?export=view&id=${id}`);
 
 const PlatformCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
-  const screenshots = PLATFORM_SCREENSHOTS;
+  const total = PLATFORM_SCREENSHOTS.length;
+
+  const prev = () => setCurrent(p => (p - 1 + total) % total);
+  const next = () => setCurrent(p => (p + 1) % total);
 
   return (
-    <div className="relative max-w-5xl mx-auto select-none">
-      {/* Laptop frame */}
-      <div className="relative mx-auto" style={{ maxWidth: '900px' }}>
-        {/* Screen bezel */}
-        <div className="bg-neutral-900 rounded-t-2xl pt-4 px-4 pb-0 shadow-2xl">
-          {/* Camera dot */}
-          <div className="flex justify-center mb-2">
-            <div className="w-2 h-2 rounded-full bg-neutral-600" />
-          </div>
-          {/* Screen */}
-          <div className="bg-white rounded-t-lg overflow-hidden" style={{ aspectRatio: '16/10' }}>
-            {screenshots.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt={`Platform screenshot ${i + 1}`}
-                className={`w-full h-full object-cover object-top transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0 absolute inset-0'}`}
-              />
-            ))}
-          </div>
+    <div className="relative max-w-6xl mx-auto select-none px-12">
+      {/* Main image */}
+      <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-neutral-200 bg-neutral-100" style={{ aspectRatio: '16/9' }}>
+        {PLATFORM_SCREENSHOTS.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`Platform screenshot ${i + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
+        {/* Counter badge */}
+        <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full">
+          {current + 1} / {total}
         </div>
-        {/* Laptop base */}
-        <div className="bg-neutral-800 h-4 rounded-b-lg mx-4 shadow-xl" />
-        <div className="bg-neutral-700 h-1.5 rounded-b-2xl mx-0 shadow-xl" />
       </div>
 
-      {/* Nav dots */}
-      {screenshots.length > 1 && (
-        <div className="flex justify-center gap-2 mt-8">
-          {screenshots.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all ${i === current ? 'bg-black scale-125' : 'bg-neutral-300 hover:bg-neutral-400'}`}
-            />
-          ))}
-        </div>
-      )}
+      {/* Arrows */}
+      <button
+        onClick={prev}
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-neutral-100 transition-colors border border-neutral-200"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-neutral-100 transition-colors border border-neutral-200"
+      >
+        <ChevronRight size={20} />
+      </button>
 
-      {/* Prev/Next arrows */}
-      {screenshots.length > 1 && (
-        <>
+      {/* Dot strip — show max 10 dots centered on current */}
+      <div className="flex justify-center gap-1.5 mt-6">
+        {PLATFORM_SCREENSHOTS.map((_, i) => (
           <button
-            onClick={() => setCurrent(p => (p - 1 + screenshots.length) % screenshots.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-neutral-100 transition-colors border border-neutral-200"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={() => setCurrent(p => (p + 1) % screenshots.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-neutral-100 transition-colors border border-neutral-200"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </>
-      )}
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-black' : 'w-2 h-2 bg-neutral-300 hover:bg-neutral-400'}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
