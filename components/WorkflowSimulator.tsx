@@ -105,9 +105,10 @@ export const WorkflowSimulator: React.FC = () => {
         setOutput(response.text || "Simulation complete with no output.");
         setLogs(prev => [...prev, 'Workflow logic completed successfully.']);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      setLogs(prev => [...prev, 'ERROR: Simulation failed. Check API configuration.']);
+      const msg = error?.message || error?.toString() || 'Unknown error';
+      setLogs(prev => [...prev, `ERROR: ${msg}`]);
     } finally {
       setIsProcessing(false);
     }
