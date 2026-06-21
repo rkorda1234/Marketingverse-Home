@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, Heart, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
 import { AIBot } from './components/AIBot';
 import { CustomCursor } from './components/CustomCursor';
 import { RevealOnScroll } from './components/RevealOnScroll';
@@ -505,79 +505,119 @@ const ClientsSection: React.FC = () => {
 };
 
 const SocialEcosystem: React.FC = () => {
+  const feed = [
+    { type: 'video', bg: 'from-rose-400 to-pink-600', label: 'Reel' },
+    { type: 'photo', bg: 'from-violet-400 to-purple-600', label: '' },
+    { type: 'photo', bg: 'from-amber-400 to-orange-500', label: '' },
+    { type: 'video', bg: 'from-sky-400 to-blue-600', label: 'Reel' },
+    { type: 'photo', bg: 'from-emerald-400 to-teal-600', label: '' },
+    { type: 'video', bg: 'from-fuchsia-400 to-pink-500', label: 'Reel' },
+  ];
+
   return (
-    <div className="relative w-full h-[600px] bg-neutral-900 rounded-[2.5rem] overflow-hidden flex items-center justify-center shadow-2xl border border-neutral-800 group">
-       {/* Background Gradient */}
-       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#3b82f630_0%,_transparent_70%)] opacity-60 animate-pulse" />
-       
-       {/* Grid Effect */}
-       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+    <div className="relative flex items-center justify-center py-8 select-none">
+      {/* Soft glow behind phone */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#e879f940_0%,_#818cf820_40%,_transparent_70%)] pointer-events-none" />
 
-       {/* Orbit Rings */}
-       <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[280px] h-[280px] border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
-          <div className="w-[480px] h-[480px] border border-white/5 rounded-full animate-[spin_35s_linear_infinite_reverse]" />
-          <div className="w-[650px] h-[650px] border border-white/5 rounded-full animate-[spin_50s_linear_infinite]" />
-       </div>
+      {/* ── Phone shell ── */}
+      <div className="relative z-10" style={{ width: 240 }}>
+        <div className="relative bg-neutral-900 rounded-[44px] shadow-[0_40px_100px_rgba(0,0,0,0.35)]" style={{ padding: '14px 10px' }}>
+          {/* Buttons */}
+          <div className="absolute -left-[3px] top-[88px] w-[3px] h-8 bg-neutral-700 rounded-l-full" />
+          <div className="absolute -left-[3px] top-[126px] w-[3px] h-8 bg-neutral-700 rounded-l-full" />
+          <div className="absolute -right-[3px] top-[108px] w-[3px] h-12 bg-neutral-700 rounded-r-full" />
 
-       {/* Central Hub */}
-       <div className="relative z-20 w-32 h-32 bg-gradient-to-br from-white to-neutral-200 rounded-3xl flex items-center justify-center shadow-[0_0_80px_rgba(255,255,255,0.2)] transform hover:scale-110 transition-transform duration-500">
-          <div className="absolute inset-0 bg-white/20 rounded-3xl animate-ping opacity-20" />
-          <div className="text-center">
-             <img src="https://the-marketingverse.com/wp-content/uploads/2023/11/Mverse_Logo_Transparent_1-copy.png" className="w-16 h-auto opacity-90 mx-auto mb-1" alt="Core" />
-             <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-800">Hub</span>
-          </div>
-       </div>
+          {/* Screen */}
+          <div className="relative overflow-hidden rounded-[32px] bg-white" style={{ height: 480 }}>
+            {/* Dynamic island */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 w-20 h-5 bg-black rounded-full" />
 
-       {/* Floating Satellites - Using inline styles for absolute positioning around the center */}
-       
-       {/* Inner Orbit */}
-       <div className="absolute animate-[spin_20s_linear_infinite] w-[280px] h-[280px] pointer-events-none">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-br from-purple-500 to-pink-500 p-2 rounded-xl shadow-lg shadow-purple-500/30 animate-[spin_20s_linear_infinite_reverse]">
-             <Instagram size={20} className="text-white" />
-          </div>
-          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-600/30 animate-[spin_20s_linear_infinite_reverse]">
-             <Facebook size={20} className="text-white" />
-          </div>
-       </div>
+            {/* Instagram header */}
+            <div className="pt-9 px-3 pb-2 flex items-center justify-between border-b border-neutral-100">
+              <span className="font-serif italic font-bold text-[15px] text-neutral-900">marketingverse</span>
+              <div className="flex gap-2">
+                <Heart size={16} className="text-neutral-700" />
+                <MessageCircle size={16} className="text-neutral-700" />
+              </div>
+            </div>
 
-       {/* Middle Orbit */}
-       <div className="absolute animate-[spin_35s_linear_infinite_reverse] w-[480px] h-[480px] pointer-events-none">
-          <div className="absolute top-1/4 -right-3 bg-black border border-neutral-700 p-2 rounded-xl shadow-lg animate-[spin_35s_linear_infinite]">
-             <Twitter size={20} className="text-white" />
-          </div>
-          <div className="absolute bottom-1/4 -left-3 bg-red-600 p-2 rounded-xl shadow-lg shadow-red-600/30 animate-[spin_35s_linear_infinite]">
-             <Youtube size={20} className="text-white" />
-          </div>
-          <div className="absolute -bottom-3 left-1/2 bg-blue-500 p-2 rounded-xl shadow-lg shadow-blue-500/30 animate-[spin_35s_linear_infinite]">
-             <Linkedin size={20} className="text-white" />
-          </div>
-       </div>
+            {/* Stories row */}
+            <div className="flex gap-2 px-3 py-2 overflow-hidden">
+              {['#f472b6','#818cf8','#34d399','#fb923c'].map((c, i) => (
+                <div key={i} className="flex-shrink-0 flex flex-col items-center gap-1">
+                  <div className="w-9 h-9 rounded-full ring-2 ring-offset-1" style={{ background: c, ringColor: c }} />
+                  <span className="text-[8px] text-neutral-400 truncate w-9 text-center">{['brand','travel','food','life'][i]}</span>
+                </div>
+              ))}
+            </div>
 
-       {/* Outer Orbit Stats Pills */}
-       <div className="absolute animate-[spin_50s_linear_infinite] w-[650px] h-[650px] pointer-events-none">
-          <div className="absolute top-10 left-20 px-4 py-2 bg-neutral-800/80 backdrop-blur-md rounded-full border border-white/10 text-white text-xs font-bold flex items-center gap-2 shadow-xl animate-[spin_50s_linear_infinite_reverse]">
-             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" /> Reach +450%
+            {/* Feed grid */}
+            <div className="grid grid-cols-3 gap-px bg-neutral-100 overflow-hidden" style={{ height: 330 }}>
+              {feed.map((item, i) => (
+                <div key={i} className={`relative bg-gradient-to-br ${item.bg} overflow-hidden`}>
+                  {item.label && (
+                    <div className="absolute bottom-1 left-1 flex items-center gap-0.5 bg-black/40 backdrop-blur-sm rounded px-1 py-0.5">
+                      <Play size={7} className="text-white fill-white" />
+                      <span className="text-[7px] text-white font-bold">{item.label}</span>
+                    </div>
+                  )}
+                  {/* Abstract content shape */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <div className="w-8 h-8 bg-white rounded-full" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="absolute bottom-20 right-20 px-4 py-2 bg-neutral-800/80 backdrop-blur-md rounded-full border border-white/10 text-white text-xs font-bold flex items-center gap-2 shadow-xl animate-[spin_50s_linear_infinite_reverse]">
-             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" /> New Lead
-          </div>
-       </div>
+        </div>
+      </div>
 
-       {/* Floating Particles */}
-       <div className="absolute inset-0 pointer-events-none">
-          {[...Array(8)].map((_, i) => (
-             <div 
-               key={i}
-               className="absolute w-1 h-1 bg-white rounded-full opacity-0 animate-[ping_4s_ease-in-out_infinite]"
-               style={{
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`
-               }}
-             />
-          ))}
-       </div>
+      {/* ── Floating engagement bubbles ── */}
+
+      {/* Likes */}
+      <div className="absolute top-10 -left-4 z-20 bg-white shadow-xl rounded-2xl px-3 py-2 flex items-center gap-2 animate-[float_3s_ease-in-out_infinite]">
+        <Heart size={14} className="text-rose-500 fill-rose-500" />
+        <span className="text-xs font-bold text-neutral-800">4,821 <span className="text-neutral-400 font-normal">likes</span></span>
+      </div>
+
+      {/* Comment bubble */}
+      <div className="absolute top-32 -right-6 z-20 bg-white shadow-xl rounded-2xl px-3 py-2 max-w-[130px] animate-[float_4s_ease-in-out_infinite_0.8s]">
+        <div className="flex items-center gap-1 mb-1">
+          <div className="w-4 h-4 rounded-full bg-gradient-to-br from-violet-400 to-purple-600" />
+          <span className="text-[9px] font-bold text-neutral-700">@username</span>
+        </div>
+        <p className="text-[9px] text-neutral-500 leading-snug">This is exactly what I needed 🔥</p>
+      </div>
+
+      {/* Followers gained */}
+      <div className="absolute bottom-32 -left-6 z-20 bg-white shadow-xl rounded-2xl px-3 py-2 flex items-center gap-2 animate-[float_5s_ease-in-out_infinite_0.4s]">
+        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
+          <Users size={10} className="text-white" />
+        </div>
+        <div>
+          <div className="text-[10px] font-bold text-neutral-800">+238</div>
+          <div className="text-[8px] text-neutral-400">new followers</div>
+        </div>
+      </div>
+
+      {/* Reach pill */}
+      <div className="absolute bottom-20 -right-4 z-20 bg-black text-white shadow-xl rounded-full px-4 py-2 flex items-center gap-2 animate-[float_3.5s_ease-in-out_infinite_1.2s]">
+        <TrendingUp size={12} className="text-green-400" />
+        <span className="text-[10px] font-bold">Reach +450%</span>
+      </div>
+
+      {/* DM bubble */}
+      <div className="absolute top-56 -left-2 z-20 bg-white shadow-xl rounded-2xl px-3 py-2 flex items-center gap-2 animate-[float_4.5s_ease-in-out_infinite_0.2s]">
+        <MessageCircle size={13} className="text-blue-500" />
+        <span className="text-[10px] font-bold text-neutral-700">12 new DMs</span>
+      </div>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+      `}</style>
     </div>
   );
 };
@@ -1767,7 +1807,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <RevealOnScroll className="relative group">
               <div className="absolute inset-0 bg-blue-600 blur-[100px] opacity-20 rounded-full"></div>
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Broker Dashboard" className="w-full" />
+                <img src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a375f030a683b64fe3f1ecd.jpg" alt="Broker Dashboard" className="w-full" />
               </div>
           </RevealOnScroll>
           <RevealOnScroll delay={200}>
@@ -1786,7 +1826,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <RevealOnScroll className="lg:order-2 relative group">
               <div className="absolute inset-0 bg-purple-600 blur-[100px] opacity-20 rounded-full"></div>
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=2664" alt="Agent Tools" className="w-full" />
+                <img src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a375f161c5d711b35c1b63b.jpg" alt="Agent Tools" className="w-full" />
               </div>
           </RevealOnScroll>
           <RevealOnScroll delay={200} className="lg:order-1">
