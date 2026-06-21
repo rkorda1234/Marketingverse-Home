@@ -1427,9 +1427,8 @@ const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
 // Add your audio file URLs here. A random one plays once per session when
 // the user scrolls past the hero. Rotate the array to add more greetings.
 const GREETING_AUDIOS: string[] = [
-  // 'https://your-cdn.com/greeting-1.mp3',
-  // 'https://your-cdn.com/greeting-2.mp3',
-  // 'https://your-cdn.com/greeting-3.mp3',
+  'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a385aff1c5d711b35dec744.mp3',
+  'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a385b560a683b64fe5c053e.mp3',
 ];
 
 const VoiceGreeting: React.FC<{ heroRef: React.RefObject<HTMLElement | null> }> = ({ heroRef }) => {
