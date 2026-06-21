@@ -1423,9 +1423,62 @@ const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
   </footer>
 );
 
+// --- Voice Greeting ---
+// Add your audio file URLs here. A random one plays once per session when
+// the user scrolls past the hero. Rotate the array to add more greetings.
+const GREETING_AUDIOS: string[] = [
+  // 'https://your-cdn.com/greeting-1.mp3',
+  // 'https://your-cdn.com/greeting-2.mp3',
+  // 'https://your-cdn.com/greeting-3.mp3',
+];
+
+const VoiceGreeting: React.FC<{ heroRef: React.RefObject<HTMLElement | null> }> = ({ heroRef }) => {
+  const [label, setLabel] = useState<string | null>(null);
+  const played = useRef(false);
+
+  useEffect(() => {
+    if (!GREETING_AUDIOS.length) return;
+    // Only play once per browser session
+    if (sessionStorage.getItem('mv_greeted')) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && !played.current) {
+          played.current = true;
+          sessionStorage.setItem('mv_greeted', '1');
+
+          const src = GREETING_AUDIOS[Math.floor(Math.random() * GREETING_AUDIOS.length)];
+          const audio = new Audio(src);
+          audio.volume = 0.85;
+          audio.play().catch(() => {}); // swallow autoplay blocks gracefully
+
+          setLabel('🎙 A message for you');
+          setTimeout(() => setLabel(null), 4000);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, [heroRef]);
+
+  if (!label) return null;
+  return (
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] animate-fade-in">
+      <div className="flex items-center gap-3 bg-neutral-900 text-white text-sm font-medium px-5 py-3 rounded-full shadow-2xl backdrop-blur-sm border border-white/10">
+        <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+        {label}
+      </div>
+    </div>
+  );
+};
+
 // --- Views ---
 
 const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: () => void }> = ({ changeView, onBookConsultation }) => {
+  const heroRef = useRef<HTMLElement>(null);
+
   const handleServiceClick = (id: string) => {
     if (id === 'social') changeView('social');
     else if (id === 'ai') changeView('integrations');
@@ -1435,7 +1488,8 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
 
   return (
     <div className="animate-fade-in relative z-10">
-      <section className="relative py-20 lg:py-32 text-center overflow-hidden">
+      <VoiceGreeting heroRef={heroRef} />
+      <section ref={heroRef} className="relative py-20 lg:py-32 text-center overflow-hidden">
         {/* Removed opaque background for abstract background visibility */}
         <RevealOnScroll>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm">
