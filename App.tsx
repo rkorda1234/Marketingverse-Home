@@ -1429,6 +1429,7 @@ const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
 const GREETING_AUDIOS: string[] = [
   'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a385aff1c5d711b35dec744.mp3',
   'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a385b560a683b64fe5c053e.mp3',
+  'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a385c041c5d711b35ded514.mp3',
 ];
 
 const VoiceGreeting: React.FC<{ heroRef: React.RefObject<HTMLElement | null> }> = ({ heroRef }) => {
