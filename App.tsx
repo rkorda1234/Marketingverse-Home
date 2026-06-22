@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, Heart, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, Heart, Maximize2, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
 import { AIBot } from './components/AIBot';
 import { CustomCursor } from './components/CustomCursor';
 import { RevealOnScroll } from './components/RevealOnScroll';
@@ -1691,71 +1691,136 @@ const SCREENSHOT_LABELS: Record<string, string> = {
 
 const PlatformCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const total = PLATFORM_SCREENSHOTS.length;
-  const prev = () => setCurrent(p => (p - 1 + total) % total);
-  const next = () => setCurrent(p => (p + 1) % total);
+  const prev = (e?: React.MouseEvent) => { e?.stopPropagation(); setCurrent(p => (p - 1 + total) % total); };
+  const next = (e?: React.MouseEvent) => { e?.stopPropagation(); setCurrent(p => (p + 1) % total); };
 
   const fileId = PLATFORM_SCREENSHOTS[current].split('/d/')[1];
   const label = SCREENSHOT_LABELS[fileId] ?? `Screen ${current + 1}`;
 
-  return (
-    <div className="relative select-none">
-      {/* Main image area — bg-white so any corner bleed is invisible */}
-      <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_32px_80px_rgba(0,0,0,0.18)]" style={{ aspectRatio: '1636/1035' }}>
-        {PLATFORM_SCREENSHOTS.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt={label}
-            className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
-          />
-        ))}
+  // Keyboard nav for lightbox
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') setCurrent(p => (p + 1) % total);
+      if (e.key === 'ArrowLeft') setCurrent(p => (p - 1 + total) % total);
+      if (e.key === 'Escape') setLightbox(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox, total]);
 
-        {/* Bottom gradient + label */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent z-10 pointer-events-none rounded-b-2xl" />
-        <div className="absolute bottom-5 left-6 z-20 flex items-center gap-3">
-          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">Platform</span>
-          <span className="w-px h-3 bg-white/20" />
-          <span className="text-sm font-semibold text-white">{label}</span>
+  return (
+    <>
+      <div className="relative select-none">
+        {/* Main image — click to open lightbox */}
+        <div
+          className="relative overflow-hidden rounded-2xl bg-white shadow-[0_32px_80px_rgba(0,0,0,0.18)] cursor-zoom-in"
+          style={{ aspectRatio: '1636/1035' }}
+          onClick={() => setLightbox(true)}
+        >
+          {PLATFORM_SCREENSHOTS.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={label}
+              className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+            />
+          ))}
+          {/* Subtle expand hint */}
+          <div className="absolute top-3 right-3 z-10 bg-black/30 backdrop-blur-sm text-white rounded-full p-1.5 opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+            <Maximize2 size={14} />
+          </div>
         </div>
-        <div className="absolute bottom-5 right-6 z-20 text-[11px] font-bold text-white/40 tabular-nums">
-          {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+
+        {/* Pill caption below image */}
+        <div className="mt-4 flex justify-center">
+          <div className="inline-flex items-center gap-2 bg-neutral-100 rounded-full px-4 py-1.5">
+            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-400">Platform</span>
+            <span className="w-px h-3 bg-neutral-300" />
+            <span className="text-xs font-semibold text-neutral-700">{label}</span>
+          </div>
+        </div>
+
+        {/* Controls: progress bar + dots + arrows */}
+        <div className="mt-4 flex flex-col gap-3">
+          <div className="w-full h-px bg-neutral-100 relative overflow-hidden rounded-full">
+            <div
+              className="absolute left-0 top-0 h-full bg-neutral-900 transition-all duration-500 rounded-full"
+              style={{ width: `${((current + 1) / total) * 100}%` }}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-4">
+            <button onClick={prev} className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors">
+              <ChevronLeft size={16} />
+            </button>
+            <div className="flex gap-1.5">
+              {PLATFORM_SCREENSHOTS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
+                />
+              ))}
+            </div>
+            <button onClick={next} className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors">
+              <ChevronRight size={16} />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Controls: progress bar + dots + arrows together */}
-      <div className="mt-5 flex flex-col gap-3">
-        <div className="w-full h-px bg-neutral-100 relative overflow-hidden rounded-full">
-          <div
-            className="absolute left-0 top-0 h-full bg-neutral-900 transition-all duration-500 rounded-full"
-            style={{ width: `${((current + 1) / total) * 100}%` }}
+      {/* Fullscreen lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[500] bg-black/95 flex items-center justify-center animate-fade-in"
+          onClick={() => setLightbox(false)}
+        >
+          {/* Close */}
+          <button
+            onClick={() => setLightbox(false)}
+            className="absolute top-5 right-5 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+
+          {/* Counter */}
+          <div className="absolute top-5 left-1/2 -translate-x-1/2 z-10 text-white/50 text-sm font-mono tabular-nums">
+            {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </div>
+
+          {/* Image */}
+          <img
+            src={PLATFORM_SCREENSHOTS[current]}
+            alt={label}
+            className="max-w-[92vw] max-h-[88vh] object-contain rounded-xl shadow-2xl"
+            onClick={e => e.stopPropagation()}
           />
-        </div>
-        <div className="flex items-center justify-center gap-4">
+
+          {/* Pill caption */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2">
+            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Platform</span>
+            <span className="w-px h-3 bg-white/20" />
+            <span className="text-sm font-semibold text-white">{label}</span>
+          </div>
+
+          {/* Arrows */}
           <button
             onClick={prev}
-            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center text-white transition-colors"
           >
-            <ChevronLeft size={16} />
+            <ChevronLeft size={22} />
           </button>
-          <div className="flex gap-1.5">
-            {PLATFORM_SCREENSHOTS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-1.5 bg-neutral-900' : 'w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-400'}`}
-              />
-            ))}
-          </div>
           <button
             onClick={next}
-            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center text-white transition-colors"
           >
-            <ChevronRight size={16} />
+            <ChevronRight size={22} />
           </button>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
@@ -2021,17 +2086,6 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           </div>
           <PlatformCarousel />
 
-          {/* Mobile screenshots */}
-          <div className="mt-24 px-4">
-            <div className="text-center mb-12">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Built Mobile-First</span>
-              <h3 className="text-3xl font-bold mb-3">Manage Everything <span className="font-serif italic font-normal">On The Go</span></h3>
-              <p className="text-neutral-600 max-w-xl mx-auto">Your agents and brokers stay connected from anywhere — leads, tasks, and performance at their fingertips.</p>
-            </div>
-            <div className="max-w-sm mx-auto">
-              <PhoneCarousel />
-            </div>
-          </div>
         </div>
       </RevealOnScroll>
 
@@ -2053,7 +2107,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
               className="flex-shrink-0 flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-bold text-lg hover:bg-neutral-100 transition-all hover:scale-105 active:scale-95 shadow-2xl"
             >
               <FileText size={22} />
-              View Sales Presentation
+              View Your Interactive Use Case
             </a>
           </div>
         </div>
