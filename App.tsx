@@ -612,12 +612,6 @@ const SocialEcosystem: React.FC = () => {
         <span className="text-[10px] font-bold text-neutral-700">12 new DMs</span>
       </div>
 
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
-        }
-      `}</style>
     </div>
   );
 };
