@@ -1691,54 +1691,31 @@ const SCREENSHOT_LABELS: Record<string, string> = {
 
 const PlatformCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
-  const [lightbox, setLightbox] = useState(false);
   const total = PLATFORM_SCREENSHOTS.length;
-  const prev = (e?: React.MouseEvent) => { e?.stopPropagation(); setCurrent(p => (p - 1 + total) % total); };
-  const next = (e?: React.MouseEvent) => { e?.stopPropagation(); setCurrent(p => (p + 1) % total); };
+  const prev = () => setCurrent(p => (p - 1 + total) % total);
+  const next = () => setCurrent(p => (p + 1) % total);
 
   const fileId = PLATFORM_SCREENSHOTS[current].split('/d/')[1];
   const label = SCREENSHOT_LABELS[fileId] ?? `Screen ${current + 1}`;
 
-  // Keyboard nav for lightbox
-  useEffect(() => {
-    if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') setCurrent(p => (p + 1) % total);
-      if (e.key === 'ArrowLeft') setCurrent(p => (p - 1 + total) % total);
-      if (e.key === 'Escape') setLightbox(false);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [lightbox, total]);
-
   return (
-    <>
-      <div className="relative select-none">
-        {/* Main image — click to open lightbox */}
-        <div
-          className="relative overflow-hidden rounded-2xl bg-white shadow-[0_32px_80px_rgba(0,0,0,0.18)] cursor-zoom-in"
-          style={{ aspectRatio: '1636/1035' }}
-          onClick={() => setLightbox(true)}
-        >
-          {PLATFORM_SCREENSHOTS.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={label}
-              className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
-            />
-          ))}
-          {/* Subtle expand hint */}
-          <div className="absolute top-3 right-3 z-10 bg-black/30 backdrop-blur-sm text-white rounded-full p-1.5 opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
-            <Maximize2 size={14} />
-          </div>
-        </div>
+    <div className="relative select-none">
+      <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_32px_80px_rgba(0,0,0,0.18)]" style={{ aspectRatio: '1636/1035' }}>
+        {PLATFORM_SCREENSHOTS.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={label}
+            className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
+      </div>
 
-        {/* Pill caption below image */}
-        <div className="mt-4 flex justify-center">
-          <div className="inline-flex items-center gap-2 bg-neutral-100 rounded-full px-4 py-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-400">Platform</span>
-            <span className="w-px h-3 bg-neutral-300" />
+      {/* Pill caption below image */}
+      <div className="mt-4 flex justify-center">
+        <div className="inline-flex items-center gap-2 bg-neutral-100 rounded-full px-4 py-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-400">Platform</span>
+          <span className="w-px h-3 bg-neutral-300" />
             <span className="text-xs font-semibold text-neutral-700">{label}</span>
           </div>
         </div>
@@ -1770,57 +1747,7 @@ const PlatformCarousel: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Fullscreen lightbox */}
-      {lightbox && (
-        <div
-          className="fixed inset-0 z-[500] bg-black/95 flex items-center justify-center animate-fade-in"
-          onClick={() => setLightbox(false)}
-        >
-          {/* Close */}
-          <button
-            onClick={() => setLightbox(false)}
-            className="absolute top-5 right-5 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
-          >
-            <X size={20} />
-          </button>
-
-          {/* Counter */}
-          <div className="absolute top-5 left-1/2 -translate-x-1/2 z-10 text-white/50 text-sm font-mono tabular-nums">
-            {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-          </div>
-
-          {/* Image */}
-          <img
-            src={PLATFORM_SCREENSHOTS[current]}
-            alt={label}
-            className="max-w-[92vw] max-h-[88vh] object-contain rounded-xl shadow-2xl"
-            onClick={e => e.stopPropagation()}
-          />
-
-          {/* Pill caption */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">Platform</span>
-            <span className="w-px h-3 bg-white/20" />
-            <span className="text-sm font-semibold text-white">{label}</span>
-          </div>
-
-          {/* Arrows */}
-          <button
-            onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center text-white transition-colors"
-          >
-            <ChevronLeft size={22} />
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center text-white transition-colors"
-          >
-            <ChevronRight size={22} />
-          </button>
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 
