@@ -1846,7 +1846,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <RevealOnScroll className="relative group">
               <div className="absolute inset-0 bg-blue-600 blur-[100px] opacity-20 rounded-full"></div>
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-2xl">
-                <img src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a375f030a683b64fe3f1ecd.jpg" alt="Broker Dashboard" className="w-full" />
+                <video src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a39c34521502f4c61070c35.mp4" autoPlay muted loop playsInline className="w-full" />
               </div>
           </RevealOnScroll>
           <RevealOnScroll delay={200}>
@@ -1865,7 +1865,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <RevealOnScroll className="lg:order-2 relative group">
               <div className="absolute inset-0 bg-purple-600 blur-[100px] opacity-20 rounded-full"></div>
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-2xl">
-                <img src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a375f161c5d711b35c1b63b.jpg" alt="Agent Tools" className="w-full" />
+                <video src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a39c0cb610e9ace506d9de4.mp4" autoPlay muted loop playsInline className="w-full" />
               </div>
           </RevealOnScroll>
           <RevealOnScroll delay={200} className="lg:order-1">
