@@ -2091,12 +2091,9 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           <div className="text-center mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-4 block">The Marketingverse Way</span>
             <h2 className="text-4xl font-bold mb-4">Why Social? <span className="font-serif italic font-normal">Our Unique Approach.</span></h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-              Hear directly from our team on why social media is the cornerstone of every growth strategy we build.
-            </p>
           </div>
-          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-4xl mx-auto">
-            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
+            <div style={{ paddingTop: '177.78%', position: 'relative' }}>
               <iframe
                 src="https://app.heygen.com/embeds/8b5febff625b45fdadc43dbc95587e9e"
                 allow="autoplay; fullscreen; picture-in-picture"
