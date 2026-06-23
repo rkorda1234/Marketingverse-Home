@@ -2089,6 +2089,29 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
       <RevealOnScroll>
         <div className="mb-32">
           <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-4 block">The Marketingverse Way</span>
+            <h2 className="text-4xl font-bold mb-4">Why Social? <span className="font-serif italic font-normal">Our Unique Approach.</span></h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+              Hear directly from our team on why social media is the cornerstone of every growth strategy we build.
+            </p>
+          </div>
+          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-4xl mx-auto">
+            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+              <iframe
+                src="https://app.heygen.com/embeds/8b5febff625b45fdadc43dbc95587e9e"
+                allow="autoplay; fullscreen; picture-in-picture"
+                frameBorder="0"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                title="Why Social? Marketingverse Approach"
+              />
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <div className="mb-32">
+          <div className="text-center mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Cinematic Excellence</span>
             <h2 className="text-4xl font-bold mb-4">Content That <span className="font-serif italic font-normal">Stops The Scroll</span></h2>
             <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
