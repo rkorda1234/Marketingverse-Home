@@ -2095,8 +2095,8 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
             <div style={{ paddingTop: '177.78%', position: 'relative' }}>
               <iframe
-                src="https://app.heygen.com/embeds/8b5febff625b45fdadc43dbc95587e9e"
-                allow="autoplay; fullscreen; picture-in-picture"
+                src="https://player.vimeo.com/video/1203822578?badge=0&autopause=0&player_id=0&app_id=58479"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 frameBorder="0"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 title="Why Social? Marketingverse Approach"
