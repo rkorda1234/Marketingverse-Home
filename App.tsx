@@ -1,4 +1,25 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback, Component } from 'react';
+
+class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
+          <h2 className="text-2xl font-bold">Something went wrong.</h2>
+          <button className="bg-black text-white px-6 py-3 rounded-full font-bold" onClick={() => { this.setState({ hasError: false }); window.location.href = '/'; }}>
+            Return Home
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, Heart, Maximize2, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
 import { AIBot } from './components/AIBot';
 import { CustomCursor } from './components/CustomCursor';
@@ -2660,7 +2681,7 @@ const App: React.FC = () => {
     return window.location.hash.replace('#', '') || 'home';
   });
 
-  const navigate = (v: string) => {
+  const navigate = useCallback((v: string) => {
     if (v === 'thank-you') {
       window.location.href = '/thank-you';
       return;
@@ -2668,7 +2689,17 @@ const App: React.FC = () => {
     window.history.pushState({}, '', `/#${v}`);
     setView(v);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
+
+  useEffect(() => {
+    const onPop = () => {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      setView(hash);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
   // Update all SEO meta tags whenever the view changes
   useEffect(() => { applyPageSEO(view); }, [view]);
 
@@ -2817,7 +2848,9 @@ const App: React.FC = () => {
       <NavBar active={view} setView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />
       
       <main className="relative z-10 min-h-screen">
-        {renderView()}
+        <ErrorBoundary key={view}>
+          {renderView()}
+        </ErrorBoundary>
       </main>
 
       <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
