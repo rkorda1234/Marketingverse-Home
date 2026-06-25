@@ -2662,11 +2662,10 @@ const App: React.FC = () => {
 
   const navigate = (v: string) => {
     if (v === 'thank-you') {
-      window.history.pushState({}, '', '/thank-you');
-    } else {
-      window.history.pushState({}, '', '/');
-      window.location.hash = v;
+      window.location.href = '/thank-you';
+      return;
     }
+    window.history.pushState({}, '', `/#${v}`);
     setView(v);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
