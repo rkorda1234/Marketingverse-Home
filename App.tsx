@@ -735,23 +735,14 @@ const SocialAdvantageSection: React.FC = () => {
 
                 {/* Previews */}
                 <div className="grid grid-cols-3 gap-4 mb-10 items-start">
-                   {/* Embed 1 */}
                    <div className="rounded-2xl overflow-hidden relative w-full border border-white/10 bg-black shadow-lg">
-                      <div style={{padding:'177.78% 0 0 0', position:'relative'}}>
-                        <iframe src="https://player.vimeo.com/video/503202988?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} title="2iD_CasaArmani_ IGTV" loading="lazy"></iframe>
-                      </div>
+                     <VimeoFacade id="503202988" title="Casa Armani" />
                    </div>
-                   {/* Embed 2 */}
                    <div className="rounded-2xl overflow-hidden relative w-full border border-white/10 bg-black shadow-lg">
-                      <div style={{padding:'177.78% 0 0 0', position:'relative'}}>
-                        <iframe src="https://player.vimeo.com/video/878437211?badge=0&autopause=0&player_id=0&app_id=58479" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} title="Mverse_ChristianG_Video_Avanti" loading="lazy"></iframe>
-                      </div>
+                     <VimeoFacade id="878437211" title="Avanti" />
                    </div>
-                   {/* Embed 3 */}
                    <div className="rounded-2xl overflow-hidden relative w-full border border-white/10 bg-black shadow-lg">
-                      <div style={{padding:'177.78% 0 0 0', position:'relative'}}>
-                        <iframe src="https://player.vimeo.com/video/572254653?badge=0&autopause=0&player_id=0&app_id=58479" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} title="Artizan_Film_4_Story" loading="lazy"></iframe>
-                      </div>
+                     <VimeoFacade id="572254653" title="Artizan Film" />
                    </div>
                 </div>
 
@@ -1170,6 +1161,44 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             <iframe src={project.videoUrl?.includes('vimeo') ? `${project.videoUrl}?autoplay=1` : project.videoUrl} className="w-full h-full" allow="autoplay; fullscreen" title={project.title} />
           </div>
         </div>
+      )}
+    </div>
+  );
+};
+
+const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = ({ id, title = '', aspect = '177.78%' }) => {
+  const [active, setActive] = useState(false);
+  const src = `https://player.vimeo.com/video/${id}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`;
+  const thumb = `https://vumbnail.com/${id}.jpg`;
+  return (
+    <div style={{ paddingTop: aspect, position: 'relative' }} className="bg-black">
+      {active ? (
+        <iframe
+          src={src}
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          title={title}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+        />
+      ) : (
+        <button
+          onClick={() => setActive(true)}
+          aria-label={`Play ${title}`}
+          className="absolute inset-0 w-full h-full group"
+        >
+          <img
+            src={thumb}
+            alt={title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <span className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
+            <span className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-xl">
+              <Play size={20} className="text-black fill-current ml-0.5" />
+            </span>
+          </span>
+        </button>
       )}
     </div>
   );
@@ -2204,16 +2233,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             <h2 className="text-4xl font-bold mb-4">Why Social? <span className="font-serif italic font-normal">Our Unique Approach.</span></h2>
           </div>
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
-            <div style={{ paddingTop: '177.78%', position: 'relative' }}>
-              <iframe
-                src="https://player.vimeo.com/video/1203822578?badge=0&autopause=0&player_id=0&app_id=58479"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                frameBorder="0"
-                loading="lazy"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                title="Why Social? Marketingverse Approach"
-              />
-            </div>
+            <VimeoFacade id="1203822578" title="Why Social? Marketingverse Approach" />
           </div>
         </div>
       </RevealOnScroll>
@@ -2228,9 +2248,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             </p>
           </div>
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black">
-             <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-               <iframe src='https://vimeo.com/showcase/9806547/embed2' allow='autoplay; fullscreen; picture-in-picture; gyroscope; accelerometer; clipboard-write; encrypted-media; web-share' frameBorder='0' loading="lazy" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="Marketingverse Video Showcase"></iframe>
-             </div>
+            <VimeoFacade id="572254653" title="Marketingverse Video Showcase" aspect="56.25%" />
           </div>
         </div>
       </RevealOnScroll>
@@ -2263,9 +2281,7 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
         <div className="mb-16">
            <h3 className="text-2xl mb-6 text-center uppercase tracking-widest text-black font-serif italic">Workflow in Action</h3>
            <div className="rounded-3xl overflow-hidden shadow-lg border border-neutral-100 bg-black">
-              <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-                <iframe src="https://player.vimeo.com/video/1112989697?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="AI Integration Example"></iframe>
-              </div>
+             <VimeoFacade id="1112989697" title="Workflow in Action" aspect="56.25%" />
            </div>
         </div>
       </RevealOnScroll>
