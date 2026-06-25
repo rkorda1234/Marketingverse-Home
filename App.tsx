@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback, Component } from 'react';
 
-class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean; message: string }> {
+class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean; message: string; stack: string }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
-    this.state = { hasError: false, message: '' };
+    this.state = { hasError: false, message: '', stack: '' };
   }
   static getDerivedStateFromError(error: Error) { return { hasError: true, message: error?.message || String(error) }; }
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    this.setState({ stack: info.componentStack || '' });
+  }
   render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
           <h2 className="text-2xl font-bold">Something went wrong.</h2>
           <p className="text-sm text-neutral-500 max-w-md font-mono bg-neutral-100 p-4 rounded-xl">{this.state.message}</p>
-          <button className="bg-black text-white px-6 py-3 rounded-full font-bold" onClick={() => { this.setState({ hasError: false, message: '' }); window.location.href = '/'; }}>
+          <pre className="text-xs text-left text-neutral-400 max-w-xl overflow-auto bg-neutral-50 p-4 rounded-xl">{this.state.stack}</pre>
+          <button className="bg-black text-white px-6 py-3 rounded-full font-bold" onClick={() => { this.setState({ hasError: false, message: '', stack: '' }); window.location.href = '/'; }}>
             Return Home
           </button>
         </div>
