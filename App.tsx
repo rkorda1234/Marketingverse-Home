@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback, Component } from 'react';
 
-class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean; message: string; stack: string }> {
+class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
-    this.state = { hasError: false, message: '', stack: '' };
+    this.state = { hasError: false };
   }
-  static getDerivedStateFromError(error: Error) { return { hasError: true, message: error?.message || String(error) }; }
-  componentDidCatch(error: Error, info: React.ErrorInfo) {
-    this.setState({ stack: info.componentStack || '' });
-  }
+  static getDerivedStateFromError() { return { hasError: true }; }
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
-          <h2 className="text-2xl font-bold">Something went wrong.</h2>
-          <p className="text-sm text-neutral-500 max-w-md font-mono bg-neutral-100 p-4 rounded-xl">{this.state.message}</p>
-          <pre className="text-xs text-left text-neutral-400 max-w-xl overflow-auto bg-neutral-50 p-4 rounded-xl">{this.state.stack}</pre>
-          <button className="bg-black text-white px-6 py-3 rounded-full font-bold" onClick={() => { this.setState({ hasError: false, message: '', stack: '' }); window.location.href = '/'; }}>
+        <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-8 text-center">
+          <h2 className="text-2xl font-bold">Oops — something went wrong.</h2>
+          <button
+            className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-neutral-800 transition-colors"
+            onClick={() => { window.location.href = '/'; }}
+          >
             Return Home
           </button>
         </div>
@@ -533,17 +531,16 @@ const ClientsSection: React.FC = () => {
 const ZOHO_SCRIPT = 'https://static.zohocdn.com/zfwidgets/v1/hpwidgets/assets/js/zf-widget.js';
 
 const ZohoWidget: React.FC<{ widgetId: string; digest: string }> = ({ widgetId, digest }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const init = () => {
-      if (typeof (window as any).ZFWidget !== 'undefined') {
-        (window as any).ZFWidget.init();
-      }
+      try {
+        const ZF = (window as any).ZFWidget;
+        if (ZF) ZF.init();
+      } catch { /* ignore */ }
     };
 
     if (document.querySelector(`script[src="${ZOHO_SCRIPT}"]`)) {
-      init();
+      requestAnimationFrame(init);
       return;
     }
 
@@ -554,13 +551,12 @@ const ZohoWidget: React.FC<{ widgetId: string; digest: string }> = ({ widgetId, 
     document.body.appendChild(script);
   }, [widgetId]);
 
+  // dangerouslySetInnerHTML prevents React from reconciling Zoho's injected DOM
   return (
     <div
-      ref={ref}
-      id={widgetId}
-      data-pricing-table="true"
-      data-digest={digest}
-      data-product_url="https://billing.zoho.com"
+      dangerouslySetInnerHTML={{
+        __html: `<div id="${widgetId}" data-pricing-table="true" data-digest="${digest}" data-product_url="https://billing.zoho.com"></div>`
+      }}
     />
   );
 };
