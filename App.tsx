@@ -2291,6 +2291,54 @@ const BlogView: React.FC<{ blogs: BlogPost[]; onReadMore: (blog: BlogPost) => vo
   </div>
 );
 
+const ThankYouView: React.FC = () => (
+  <div className="animate-fade-in min-h-screen flex items-center justify-center py-32 relative z-10">
+    <div className="max-w-2xl mx-auto px-4 text-center">
+      {/* Checkmark */}
+      <div className="w-24 h-24 rounded-full bg-black flex items-center justify-center mx-auto mb-10 shadow-2xl">
+        <Check size={44} className="text-white" strokeWidth={3} />
+      </div>
+
+      <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-6 block">You're In</span>
+
+      <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        We'll Be In <span className="font-serif italic font-normal">Touch Soon.</span>
+      </h1>
+
+      <p className="text-xl text-neutral-600 leading-relaxed mb-6 max-w-lg mx-auto">
+        Your strategy call is booked. Our team will review your business before we meet so we can hit the ground running.
+      </p>
+
+      <p className="text-base text-neutral-500 mb-14">
+        Check your email for a confirmation and calendar invite. In the meantime, feel free to explore what we do.
+      </p>
+
+      {/* What happens next */}
+      <div className="grid md:grid-cols-3 gap-6 mb-16 text-left">
+        {[
+          { step: '01', title: 'Confirmation Email', desc: "You'll receive a calendar invite with all the details." },
+          { step: '02', title: 'We Prep Your Profile', desc: "We research your brand and market before the call." },
+          { step: '03', title: 'Strategy Session', desc: 'We show up ready with a tailored growth roadmap for you.' },
+        ].map(({ step, title, desc }) => (
+          <div key={step} className="p-6 rounded-2xl bg-neutral-50 border border-neutral-100">
+            <span className="text-xs font-bold text-neutral-300 uppercase tracking-widest block mb-3">{step}</span>
+            <h4 className="font-bold mb-2">{title}</h4>
+            <p className="text-sm text-neutral-500 leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href="#home"
+        onClick={() => { window.location.hash = 'home'; window.scrollTo(0, 0); }}
+        className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 transition-all hover:scale-105 shadow-lg"
+      >
+        Back to Home <ArrowRight size={18} />
+      </a>
+    </div>
+  </div>
+);
+
 const ContactView: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -2500,6 +2548,8 @@ const App: React.FC = () => {
     switch (view) {
       case 'home':
         return <HomeView changeView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />;
+      case 'thank-you':
+        return <ThankYouView />;
       case 'contact':
         return <ContactView />;
       case 'social':
