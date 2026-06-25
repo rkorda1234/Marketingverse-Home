@@ -504,6 +504,41 @@ const ClientsSection: React.FC = () => {
   );
 };
 
+const ZOHO_SCRIPT = 'https://static.zohocdn.com/zfwidgets/v1/hpwidgets/assets/js/zf-widget.js';
+
+const ZohoWidget: React.FC<{ widgetId: string; digest: string }> = ({ widgetId, digest }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const init = () => {
+      if (typeof (window as any).ZFWidget !== 'undefined') {
+        (window as any).ZFWidget.init();
+      }
+    };
+
+    if (document.querySelector(`script[src="${ZOHO_SCRIPT}"]`)) {
+      init();
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = ZOHO_SCRIPT;
+    script.async = true;
+    script.onload = init;
+    document.body.appendChild(script);
+  }, [widgetId]);
+
+  return (
+    <div
+      ref={ref}
+      id={widgetId}
+      data-pricing-table="true"
+      data-digest={digest}
+      data-product_url="https://billing.zoho.com"
+    />
+  );
+};
+
 const SocialEcosystem: React.FC = () => {
   const feed = [
     { type: 'video', bg: 'from-rose-400 to-pink-600', label: 'Reel' },
@@ -1900,67 +1935,11 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
         </div>
       </RevealOnScroll>
 
-      <div className="grid lg:grid-cols-3 gap-8 mb-20 items-start">
-        {BROKER_CRM_PLANS.map((plan, i) => (
-          <RevealOnScroll key={i} delay={i * 100} className="h-full">
-            <div
-              className={`rounded-3xl p-8 border flex flex-col h-full transition-all duration-300 hover:shadow-2xl relative ${
-                plan.recommended
-                  ? 'bg-black text-white border-black shadow-2xl scale-105 z-10'
-                  : 'bg-white/90 backdrop-blur-sm text-neutral-900 border-neutral-200 hover:-translate-y-2'
-              }`}
-            >
-              {plan.recommended && (
-                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-lg">
-                    Most Popular
-                 </div>
-              )}
-
-              <div className="mb-8">
-                <h3 className="text-xl font-bold mb-2 uppercase tracking-wide opacity-80">{plan.name}</h3>
-                <div className="flex items-baseline gap-1">
-                   <span className="font-serif italic text-5xl">{plan.price}</span>
-                   <span className="text-sm opacity-60 font-medium">/month</span>
-                </div>
-                <p className="mt-4 text-sm opacity-70 leading-relaxed">{plan.description}</p>
-                <div className="mt-2 text-xs font-bold uppercase tracking-widest opacity-50">Billed Monthly</div>
-                <div className="text-[10px] font-medium opacity-50 mt-1">*Plus activation fee</div>
-              </div>
-
-              <div className="h-px bg-current opacity-10 mb-8" />
-              
-              <ul className="space-y-4 mb-10 flex-grow">
-                {plan.features.map((f, idx) => {
-                   const isHeader = f.startsWith('Everything in') || f.startsWith('Includes everything');
-                   return (
-                      <li key={idx} className={`flex items-start gap-3 ${isHeader ? 'font-bold mt-2 mb-2' : ''}`}>
-                        {!isHeader && <Check size={16} className={`mt-0.5 shrink-0 ${plan.recommended ? 'text-white' : 'text-black'}`} />}
-                        <span className="text-sm leading-relaxed">{f}</span>
-                      </li>
-                   );
-                })}
-              </ul>
-              
-              <button 
-                onClick={() => {
-                  if (plan.paymentLink && plan.paymentLink.startsWith('http')) {
-                    openPaymentPopup(plan.paymentLink);
-                  } else {
-                    onSubscribe(plan);
-                  }
-                }}
-                data-cursor="magic"
-                className={`w-full py-4 rounded-xl font-bold transition-transform active:scale-95 shadow-lg ${
-                  plan.recommended 
-                    ? 'bg-white text-black hover:bg-neutral-200' 
-                    : 'bg-black text-white hover:bg-neutral-800'
-                }`}
-              >
-                Subscribe
-              </button>
-            </div>
-          </RevealOnScroll>
-        ))}
+      <div className="mb-20">
+        <ZohoWidget
+          widgetId="zf-widget-root-id-prxgvpvhz"
+          digest="2-fa4c5864403ccd92903c484486c00aa55f13a369d0cdf3ce22d19dc62443cb22437c90e9c79f8ee4b737c2b253195bdf012b590903e576e248bf2deb26f7ad42"
+        />
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
@@ -2124,34 +2103,11 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
       </RevealOnScroll>
 
       <div className="text-center mb-16"><h2 className="text-4xl font-bold mb-4">Social Media <span className="font-serif italic font-normal">Packages</span></h2></div>
-      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
-        {SOCIAL_PLANS.map((plan, i) => (
-          <div key={i} className={`rounded-3xl p-10 border flex flex-col transition-all duration-300 hover:shadow-2xl ${plan.recommended ? 'bg-black text-white border-black shadow-2xl' : 'bg-white/90 backdrop-blur-sm border-neutral-200 hover:-translate-y-2'}`}>
-            {/* Fixed-height badge row keeps price vertically aligned across cards */}
-            <div className="h-6 mb-4 flex items-center">
-              {plan.recommended && <span className="text-xs font-bold uppercase tracking-widest opacity-60">Most Popular</span>}
-            </div>
-            <h3 className="text-3xl font-bold mb-2">{plan.name}</h3>
-            <p className={`text-sm mb-6 ${plan.recommended ? 'opacity-60' : 'text-neutral-500'}`}>{plan.description}</p>
-            <div className="font-serif italic text-5xl mb-8">{plan.price}<span className="font-sans not-italic text-base opacity-50">/mo</span></div>
-            <ul className="space-y-4 mb-10 flex-grow">
-              {plan.features.map((f, idx) => <li key={idx} className="flex items-center gap-3"><Check size={14} /> <span className="text-sm">{f}</span></li>)}
-            </ul>
-            <button
-              onClick={() => {
-                if (plan.paymentLink && plan.paymentLink.startsWith('http')) {
-                  openPaymentPopup(plan.paymentLink);
-                } else {
-                  onInitiateGrowth(plan);
-                }
-              }}
-              data-cursor="magic"
-              className={`w-full py-4 rounded-xl font-bold transition-transform active:scale-95 ${plan.recommended ? 'bg-white text-black hover:bg-neutral-100' : 'bg-black text-white hover:bg-neutral-800'}`}
-            >
-              Get Started
-            </button>
-          </div>
-        ))}
+      <div className="mb-20">
+        <ZohoWidget
+          widgetId="zf-widget-root-id-38zcrwakz"
+          digest="2-fa4c5864403ccd92bf50b11e166685c2c2663351fc6f31f604172c46c40c00c6d7ce03e345f9b239b737c2b253195bdf012b590903e576e248bf2deb26f7ad42"
+        />
       </div>
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
