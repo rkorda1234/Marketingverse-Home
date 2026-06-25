@@ -2465,6 +2465,194 @@ const ContactView: React.FC = () => {
   );
 };
 
+// ── SEO ──────────────────────────────────────────────────────────────────────
+
+const BASE_URL = 'https://home.the-marketingverse.com';
+const DEFAULT_IMAGE = 'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a189e3df58810f313b623a3.png';
+
+interface PageSEO {
+  title: string;
+  description: string;
+  keywords: string;
+  canonical: string;
+  schema: object;
+}
+
+const PAGE_SEO: Record<string, PageSEO> = {
+  home: {
+    title: 'Marketingverse | AI Social Media & CRM for Realtors',
+    description: 'Marketingverse gives Florida real estate agents automated social media, a broker CRM, and AI tools — all in one membership. Book a demo.',
+    keywords: 'real estate marketing, social media for real estate, broker CRM, AI real estate tools, real estate automation, AI marketing for realtors',
+    canonical: `${BASE_URL}/`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Marketingverse',
+      url: BASE_URL,
+      logo: DEFAULT_IMAGE,
+      description: 'AI-powered social media, broker CRM, and marketing automation for Florida real estate agents.',
+      contactPoint: { '@type': 'ContactPoint', telephone: '+1-786-705-3154', contactType: 'sales', email: 'hello@the-marketingverse.com' },
+      sameAs: ['https://www.instagram.com/themarketingverse', 'https://www.facebook.com/themarketingverse'],
+    },
+  },
+  social: {
+    title: 'Social Media Marketing for Realtors | Marketingverse',
+    description: 'AI-powered social media management built for real estate agents. We create, post, and optimize content that builds trust, grows your audience, and drives inbound leads.',
+    keywords: 'social media for real estate agents, realtor social media management, real estate Instagram marketing, AI content for realtors, social media automation real estate',
+    canonical: `${BASE_URL}/#social`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Social Media Marketing for Real Estate',
+      provider: { '@type': 'Organization', name: 'Marketingverse', url: BASE_URL },
+      description: 'Done-for-you social media management for Florida real estate agents — content creation, scheduling, analytics, and AI-powered storytelling.',
+      areaServed: { '@type': 'State', name: 'Florida' },
+      serviceType: 'Social Media Management',
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'USD',
+        description: 'Monthly social media management packages for real estate professionals.',
+      },
+    },
+  },
+  crm: {
+    title: 'Broker CRM Suite for Real Estate Brokerages | Marketingverse',
+    description: 'All-in-one brokerage CRM with AI marketing, lead routing, agent dashboards, automated campaigns, and cohesive branding. Built for Florida brokerages.',
+    keywords: 'broker CRM, real estate CRM, brokerage management software, real estate lead management, agent performance dashboard, real estate marketing automation',
+    canonical: `${BASE_URL}/#crm`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Marketingverse Broker CRM Suite',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web, iOS, Android',
+      description: 'All-in-one CRM platform for real estate brokerages — lead routing, agent dashboards, social media planner, email and SMS marketing, and AI-powered campaigns.',
+      provider: { '@type': 'Organization', name: 'Marketingverse', url: BASE_URL },
+      featureList: ['Agent Dashboards', 'Lead Routing', 'Social Media Planner', 'Email Marketing', 'SMS & WhatsApp', 'Ads Launcher', 'Mobile App'],
+      offers: { '@type': 'Offer', priceCurrency: 'USD' },
+    },
+  },
+  integrations: {
+    title: 'AI Workflow Automation for Real Estate | Marketingverse',
+    description: 'Custom AI integrations and workflow automation for real estate professionals — from intelligent lead triage and content generation to CRM sync and multi-channel outreach.',
+    keywords: 'AI real estate automation, AI workflow real estate, real estate AI tools, lead triage automation, AI content generation real estate, CRM automation realtors',
+    canonical: `${BASE_URL}/#integrations`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'AI Workflow Automation for Real Estate',
+      provider: { '@type': 'Organization', name: 'Marketingverse', url: BASE_URL },
+      description: 'Custom AI-powered workflow automations for real estate agents and brokerages — lead qualification, content pipelines, CRM integrations, and intelligent follow-up systems.',
+      serviceType: 'AI Automation & Systems Integration',
+      areaServed: { '@type': 'Country', name: 'United States' },
+    },
+  },
+  blog: {
+    title: 'Real Estate Marketing Blog & Insights | Marketingverse',
+    description: 'Expert articles on real estate marketing, AI automation, social media strategy, and growth tactics — straight from the Marketingverse team.',
+    keywords: 'real estate marketing blog, realtor marketing tips, AI real estate content, social media strategy realtors, real estate growth tactics',
+    canonical: `${BASE_URL}/#blog`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'Marketingverse Marketing Intelligence',
+      description: 'Insights, trends, and strategies in real estate marketing and AI automation.',
+      url: `${BASE_URL}/#blog`,
+      publisher: { '@type': 'Organization', name: 'Marketingverse', logo: DEFAULT_IMAGE },
+    },
+  },
+  contact: {
+    title: 'Contact Marketingverse | Book a Free Strategy Call',
+    description: 'Ready to scale your real estate brand? Book a free strategy call with Marketingverse or send us a message — we\'ll build a tailored growth roadmap for your business.',
+    keywords: 'contact Marketingverse, book real estate marketing consultation, real estate marketing strategy call, hire real estate marketing agency',
+    canonical: `${BASE_URL}/#contact`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: 'Contact Marketingverse',
+      url: `${BASE_URL}/#contact`,
+      description: 'Get in touch with the Marketingverse team to book a free strategy call or send us a message.',
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'Marketingverse',
+        telephone: '+1-786-705-3154',
+        email: 'hello@the-marketingverse.com',
+      },
+    },
+  },
+  projects: {
+    title: 'Our Work & Client Results | Marketingverse',
+    description: 'See how Marketingverse has helped real estate agents and brokerages scale through AI-powered marketing, cinematic content, and smart automation.',
+    keywords: 'real estate marketing portfolio, realtor marketing results, Marketingverse client work, real estate content examples, social media real estate case studies',
+    canonical: `${BASE_URL}/#projects`,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Marketingverse Featured Work',
+      url: `${BASE_URL}/#projects`,
+      description: 'Portfolio of real estate marketing campaigns, social media content, and AI workflow projects by Marketingverse.',
+      provider: { '@type': 'Organization', name: 'Marketingverse', url: BASE_URL },
+    },
+  },
+};
+
+const setMeta = (attr: string, key: string, value: string) => {
+  let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.content = value;
+};
+
+const applyPageSEO = (view: string) => {
+  const seo = PAGE_SEO[view] || PAGE_SEO.home;
+
+  // Title
+  document.title = seo.title;
+
+  // Basic meta
+  setMeta('name', 'description', seo.description);
+  setMeta('name', 'keywords', seo.keywords);
+  setMeta('name', 'robots', 'index, follow');
+
+  // Canonical
+  let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = seo.canonical;
+
+  // Open Graph
+  setMeta('property', 'og:title', seo.title);
+  setMeta('property', 'og:description', seo.description);
+  setMeta('property', 'og:url', seo.canonical);
+  setMeta('property', 'og:type', 'website');
+  setMeta('property', 'og:site_name', 'Marketingverse');
+  setMeta('property', 'og:image', DEFAULT_IMAGE);
+
+  // Twitter Card
+  setMeta('name', 'twitter:card', 'summary_large_image');
+  setMeta('name', 'twitter:title', seo.title);
+  setMeta('name', 'twitter:description', seo.description);
+  setMeta('name', 'twitter:image', DEFAULT_IMAGE);
+
+  // JSON-LD schema
+  let schemaEl = document.getElementById('page-schema') as HTMLScriptElement | null;
+  if (!schemaEl) {
+    schemaEl = document.createElement('script');
+    schemaEl.id = 'page-schema';
+    schemaEl.type = 'application/ld+json';
+    document.head.appendChild(schemaEl);
+  }
+  schemaEl.textContent = JSON.stringify(seo.schema);
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const App: React.FC = () => {
   const [view, setView] = useState(() => {
     const path = window.location.pathname.replace(/^\//, '');
@@ -2482,6 +2670,9 @@ const App: React.FC = () => {
     setView(v);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  // Update all SEO meta tags whenever the view changes
+  useEffect(() => { applyPageSEO(view); }, [view]);
+
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
