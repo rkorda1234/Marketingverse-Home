@@ -1935,7 +1935,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
         </div>
       </RevealOnScroll>
 
-      <div className="mb-20">
+      <div className="mb-20 rounded-3xl overflow-hidden">
         <ZohoWidget
           widgetId="zf-widget-root-id-prxgvpvhz"
           digest="2-fa4c5864403ccd92903c484486c00aa55f13a369d0cdf3ce22d19dc62443cb22437c90e9c79f8ee4b737c2b253195bdf012b590903e576e248bf2deb26f7ad42"
@@ -2103,7 +2103,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
       </RevealOnScroll>
 
       <div className="text-center mb-16"><h2 className="text-4xl font-bold mb-4">Social Media <span className="font-serif italic font-normal">Packages</span></h2></div>
-      <div className="mb-20">
+      <div className="mb-20 rounded-3xl overflow-hidden">
         <ZohoWidget
           widgetId="zf-widget-root-id-38zcrwakz"
           digest="2-fa4c5864403ccd92bf50b11e166685c2c2663351fc6f31f604172c46c40c00c6d7ce03e345f9b239b737c2b253195bdf012b590903e576e248bf2deb26f7ad42"
