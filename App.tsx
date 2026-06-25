@@ -1436,13 +1436,13 @@ const SuccessCasesView: React.FC = () => (
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Proven Results</span>
         <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Client Wins</h2>
         <p className="text-xl text-neutral-500 max-w-xl mx-auto leading-relaxed">
-          Real numbers. Real agents. Here's what consistent, AI-powered content does to your metrics.
+          Real numbers. Real agents. Here's what consistent, strategic content does to your metrics.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-10 justify-items-center [&>*]:w-full max-w-4xl mx-auto">
         {SUCCESS_CASES.map((sc) => (
-          <RevealOnScroll key={sc.client}>
+          <RevealOnScroll key={sc.client} className={SUCCESS_CASES.length % 2 !== 0 && sc === SUCCESS_CASES[SUCCESS_CASES.length - 1] ? 'md:col-span-2 md:max-w-[calc(50%-1.25rem)]' : ''}>
             <div className="bg-neutral-50 border border-neutral-100 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start justify-between mb-8">
                 <div>
