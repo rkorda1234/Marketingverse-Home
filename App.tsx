@@ -2329,8 +2329,7 @@ const ThankYouView: React.FC = () => (
       </div>
 
       <a
-        href="#home"
-        onClick={() => { window.location.hash = 'home'; window.scrollTo(0, 0); }}
+        href="/"
         className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 transition-all hover:scale-105 shadow-lg"
       >
         Back to Home <ArrowRight size={18} />
@@ -2511,10 +2510,19 @@ const ContactView: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const [view, setView] = useState(() => window.location.hash.replace('#', '') || 'home');
+  const [view, setView] = useState(() => {
+    const path = window.location.pathname.replace(/^\//, '');
+    if (path && path !== 'index.html') return path;
+    return window.location.hash.replace('#', '') || 'home';
+  });
 
   const navigate = (v: string) => {
-    window.location.hash = v;
+    if (v === 'thank-you') {
+      window.history.pushState({}, '', '/thank-you');
+    } else {
+      window.history.pushState({}, '', '/');
+      window.location.hash = v;
+    }
     setView(v);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
