@@ -1,0 +1,23 @@
+# Marketingverse
+
+> Marketingverse is an AI-powered marketing platform built for Florida real estate agents and brokerages. It combines automated social media management, a broker CRM, and AI workflow integrations in one membership.
+
+## Services
+
+- [Social Media Management](/social) — AI-assisted content creation, scheduling, and performance tracking for Instagram, Facebook, and LinkedIn.
+- [Broker CRM Suite](/crm) — Full pipeline visibility, lead distribution, agent performance dashboards, and cohesive branding for brokerages.
+- [AI Integrations](/integrations) — Custom n8n, Zapier, and AI agent workflows that automate lead nurturing, follow-ups, and reporting.
+- [Blog](/blog) — Marketing insights, AI strategy guides, and real estate growth tips.
+- [Client Results](/projects) — Real growth metrics from active Marketingverse clients.
+
+## Contact
+
+- Website: https://home.the-marketingverse.com/
+- Email: hello@the-marketingverse.com
+- Phone: +1-786-705-3154
+- Instagram: https://www.instagram.com/themarketingverse
+- Facebook: https://www.facebook.com/themarketingverse
+
+## About
+
+Marketingverse serves Florida-based real estate agents and brokerages. Clients get a dedicated social media team, a broker-level CRM dashboard, and custom AI automations — all under one monthly membership. Book a free strategy call at https://home.the-marketingverse.com/#contact.
