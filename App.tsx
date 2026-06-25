@@ -1391,7 +1391,104 @@ const CustomPlanBuilder: React.FC<{ onOrderNow: () => void }> = ({ onOrderNow })
 
 const NAV_ITEMS = ['home', 'social', 'crm', 'integrations', 'blog', 'projects', 'contact'] as const;
 const navLabel = (id: string) =>
-  id === 'integrations' ? 'AI Integrations' : id === 'crm' ? 'Broker CRM' : id.charAt(0).toUpperCase() + id.slice(1);
+  id === 'integrations' ? 'AI Integrations' : id === 'crm' ? 'Broker CRM' : id === 'projects' ? 'Results' : id.charAt(0).toUpperCase() + id.slice(1);
+
+interface SuccessMetric {
+  label: string;
+  growth: string;
+  platform: string;
+}
+
+interface SuccessCase {
+  client: string;
+  niche: string;
+  period: string;
+  metrics: SuccessMetric[];
+}
+
+const SUCCESS_CASES: SuccessCase[] = [
+  {
+    client: 'Yael R.',
+    niche: 'Real Estate Agent',
+    period: 'Apr – Jun 2025',
+    metrics: [
+      { label: 'Instagram Views',       growth: '+44.8%',  platform: 'Instagram' },
+      { label: 'Instagram Reach',       growth: '+562.1%', platform: 'Instagram' },
+      { label: 'Instagram Interactions',growth: '+168.4%', platform: 'Instagram' },
+      { label: 'Facebook Views',        growth: '+210%',   platform: 'Facebook'  },
+      { label: 'Facebook Viewers',      growth: '+327.8%', platform: 'Facebook'  },
+    ],
+  },
+  // Add more clients here as SuccessCase objects
+];
+
+const PLATFORM_COLORS: Record<string, string> = {
+  Instagram: 'bg-gradient-to-r from-purple-500 to-pink-500',
+  Facebook:  'bg-gradient-to-r from-blue-600 to-blue-400',
+  LinkedIn:  'bg-gradient-to-r from-blue-800 to-cyan-500',
+  TikTok:    'bg-gradient-to-r from-black to-neutral-600',
+};
+
+const SuccessCasesView: React.FC = () => (
+  <div className="animate-fade-in relative z-10 pt-32 pb-24">
+    <div className="max-w-6xl mx-auto px-4">
+      <div className="text-center mb-20">
+        <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Proven Results</span>
+        <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Client Wins</h2>
+        <p className="text-xl text-neutral-500 max-w-xl mx-auto leading-relaxed">
+          Real numbers. Real agents. Here's what consistent, AI-powered content does to your metrics.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-10">
+        {SUCCESS_CASES.map((sc) => (
+          <RevealOnScroll key={sc.client}>
+            <div className="bg-neutral-50 border border-neutral-100 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-start justify-between mb-8">
+                <div>
+                  <h3 className="text-2xl font-bold tracking-tight">{sc.client}</h3>
+                  <p className="text-sm text-neutral-500 mt-1">{sc.niche}</p>
+                </div>
+                <span className="text-xs font-semibold uppercase tracking-widest bg-black text-white px-4 py-2 rounded-full">
+                  {sc.period}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {sc.metrics.map((m) => (
+                  <div key={m.label} className="bg-white border border-neutral-100 rounded-2xl p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`w-2 h-2 rounded-full ${PLATFORM_COLORS[m.platform] ?? 'bg-neutral-400'}`} />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{m.platform}</span>
+                    </div>
+                    <p className="text-3xl font-black text-black tracking-tight">{m.growth}</p>
+                    <p className="text-xs text-neutral-500 mt-1 leading-snug">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+        ))}
+      </div>
+
+      <RevealOnScroll delay={200}>
+        <div className="mt-20 rounded-3xl bg-black text-white p-12 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Your turn</p>
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">Ready to see your numbers move?</h3>
+          <p className="text-neutral-400 mb-8 max-w-md mx-auto">Book a free strategy call and we'll map out a content plan built around your market.</p>
+          <a
+            href="https://api.leadconnectorhq.com/widget/booking/oyFVqTBrTOPpLRpShBRz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-black font-bold px-10 py-4 rounded-full hover:bg-neutral-100 transition-colors"
+          >
+            Book a Free Call
+          </a>
+        </div>
+      </RevealOnScroll>
+    </div>
+  </div>
+);
 
 const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookConsultation: () => void }> = ({ active, setView, onBookConsultation }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -2817,26 +2914,7 @@ const App: React.FC = () => {
            </div>
         );
       case 'projects':
-        return (
-           <div className="animate-fade-in relative z-10 pt-32 pb-24">
-              <div className="max-w-7xl mx-auto px-4">
-                 <div className="text-center mb-20">
-                   <h2 className="text-5xl font-bold mb-6">Featured Work</h2>
-                   <p className="text-xl text-neutral-600 max-w-2xl mx-auto">See how we've helped brands scale through content and automation.</p>
-                 </div>
-                 <div className="mb-20 rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-200 bg-black">
-                    <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-                      <iframe src='https://vimeo.com/showcase/9806547/embed2' allow='autoplay; fullscreen; picture-in-picture; gyroscope; accelerometer; clipboard-write; encrypted-media; web-share' frameBorder='0' style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} title="Marketingverse Project Showcase"></iframe>
-                    </div>
-                 </div>
-                 <div className="grid md:grid-cols-2 gap-10">
-                   {projects.map((p) => (
-                     <ProjectCard key={p.id} project={p} />
-                   ))}
-                 </div>
-              </div>
-           </div>
-        );
+        return <SuccessCasesView />;
       default:
         return <HomeView changeView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />;
     }
