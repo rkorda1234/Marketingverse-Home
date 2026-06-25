@@ -2247,7 +2247,7 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
 
       <RevealOnScroll>
         <div className="mb-16">
-           <h3 className="text-2xl font-bold mb-6 text-center uppercase tracking-widest text-neutral-400">Implementation Example</h3>
+           <h3 className="text-2xl mb-6 text-center uppercase tracking-widest text-neutral-400 font-serif italic">Workflow in Action</h3>
            <div className="rounded-3xl overflow-hidden shadow-lg border border-neutral-100 bg-black">
               <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
                 <iframe src="https://player.vimeo.com/video/1112989697?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="AI Integration Example"></iframe>
