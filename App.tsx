@@ -1096,7 +1096,7 @@ const AdminPortal: React.FC<{ projects: Project[]; setProjects: React.Dispatch<R
               {projects.map(p => (
                 <div key={p.id} className="bg-white/5 border border-white/10 rounded-2xl p-4 flex gap-4 group">
                   <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0">
-                    <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover" />
+                    <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-white font-bold truncate">{p.title}</h4>
@@ -1120,7 +1120,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <div data-cursor="card" className="group relative bg-neutral-50/90 backdrop-blur-md rounded-3xl overflow-hidden border border-neutral-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
       <div className="aspect-[16/10] overflow-hidden relative">
-        <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
         {project.videoUrl && (
           <button onClick={() => setShowVideo(true)} className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors z-10">
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-105 transition-transform">
@@ -2218,7 +2218,7 @@ const BlogView: React.FC<{ blogs: BlogPost[]; onReadMore: (blog: BlogPost) => vo
               className="group cursor-pointer bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
             >
               <div className="aspect-[16/10] overflow-hidden relative">
-                <img src={blog.imageUrl} alt={blog.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                <img src={blog.imageUrl} alt={blog.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                   {blog.category}
                 </div>
@@ -2723,7 +2723,7 @@ const App: React.FC = () => {
                   </button>
                   
                   <div className="mb-8 rounded-3xl overflow-hidden aspect-video shadow-lg">
-                     <img src={selectedBlog.imageUrl} alt={selectedBlog.title} className="w-full h-full object-cover" />
+                     <img src={selectedBlog.imageUrl} alt={selectedBlog.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                   </div>
                   
                   <div className="flex items-center gap-3 text-xs md:text-sm text-neutral-500 mb-6 font-bold uppercase tracking-widest">
@@ -2764,7 +2764,7 @@ const App: React.FC = () => {
                         className="group cursor-pointer"
                      >
                         <div className="aspect-[2/1] rounded-3xl overflow-hidden mb-8 border border-neutral-200 shadow-sm relative">
-                           <img src={blog.imageUrl} alt={blog.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                           <img src={blog.imageUrl} alt={blog.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                            <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">{blog.category}</div>
                         </div>
                         <div className="max-w-3xl mx-auto">
