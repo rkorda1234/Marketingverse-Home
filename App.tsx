@@ -1066,7 +1066,7 @@ const AdminPortal: React.FC<{ projects: Project[]; setProjects: React.Dispatch<R
             </h2>
             <p className="text-neutral-500 uppercase tracking-widest text-[10px] font-bold">Marketingverse Admin Portal</p>
           </div>
-          <button onClick={onClose} className="p-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-all">
+          <button onClick={onClose} aria-label="Close" className="p-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-all">
             <X size={24} />
           </button>
         </div>
@@ -1156,7 +1156,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       </div>
       {showVideo && (
         <div className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center p-4 animate-fade-in" onClick={() => setShowVideo(false)}>
-          <button className="absolute top-8 right-8 text-white p-4 hover:bg-white/10 rounded-full transition-colors"><X size={32} /></button>
+          <button aria-label="Close video" className="absolute top-8 right-8 text-white p-4 hover:bg-white/10 rounded-full transition-colors"><X size={32} /></button>
           <div className="w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl" onClick={e => e.stopPropagation()}>
             <iframe src={project.videoUrl?.includes('vimeo') ? `${project.videoUrl}?autoplay=1` : project.videoUrl} className="w-full h-full" allow="autoplay; fullscreen" title={project.title} />
           </div>
@@ -1236,7 +1236,7 @@ const BackToTop: React.FC = () => {
     return () => window.removeEventListener('scroll', toggle);
   }, []);
   return (
-    <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={`fixed bottom-8 left-8 z-[90] p-4 bg-black text-white rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 border border-neutral-800 flex items-center justify-center ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <button aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={`fixed bottom-8 left-8 z-[90] p-4 bg-black text-white rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 border border-neutral-800 flex items-center justify-center ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <ArrowUp size={24} />
     </button>
   );
@@ -1919,7 +1919,7 @@ const PlatformCarousel: React.FC = () => {
             />
           </div>
           <div className="flex items-center justify-center gap-4">
-            <button onClick={prev} className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors">
+            <button onClick={prev} aria-label="Previous" className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors">
               <ChevronLeft size={16} />
             </button>
             <div className="flex gap-1.5">
@@ -1931,7 +1931,7 @@ const PlatformCarousel: React.FC = () => {
                 />
               ))}
             </div>
-            <button onClick={next} className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors">
+            <button onClick={next} aria-label="Next" className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition-colors">
               <ChevronRight size={16} />
             </button>
           </div>
@@ -2248,7 +2248,9 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             </p>
           </div>
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black">
-            <VimeoFacade id="572254653" title="Marketingverse Video Showcase" aspect="56.25%" />
+            <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+              <iframe src='https://vimeo.com/showcase/9806547/embed2' allow='autoplay; fullscreen; picture-in-picture; gyroscope; accelerometer; clipboard-write; encrypted-media; web-share' frameBorder='0' loading="lazy" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="Marketingverse Video Showcase"></iframe>
+            </div>
           </div>
         </div>
       </RevealOnScroll>
