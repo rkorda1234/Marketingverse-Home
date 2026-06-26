@@ -1183,7 +1183,8 @@ const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = (
         <button
           onClick={() => setActive(true)}
           aria-label={`Play ${title}`}
-          className="absolute inset-0 w-full h-full group flex items-center justify-center bg-gradient-to-br from-neutral-800 to-black"
+          className="absolute inset-0 w-full h-full group flex items-center justify-center"
+          style={{ background: 'linear-gradient(135deg, #a8edea 0%, #c9b8f5 40%, #f5c6d0 100%)' }}
         >
           <span className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
             <Play size={22} className="text-black fill-current ml-0.5" />
