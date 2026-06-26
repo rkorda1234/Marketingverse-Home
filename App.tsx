@@ -1169,9 +1169,8 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = ({ id, title = '', aspect = '177.78%' }) => {
   const [active, setActive] = useState(false);
   const src = `https://player.vimeo.com/video/${id}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`;
-  const thumb = `https://vumbnail.com/${id}.jpg`;
   return (
-    <div style={{ paddingTop: aspect, position: 'relative' }} className="bg-black">
+    <div style={{ paddingTop: aspect, position: 'relative' }} className="bg-neutral-900">
       {active ? (
         <iframe
           src={src}
@@ -1184,19 +1183,10 @@ const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = (
         <button
           onClick={() => setActive(true)}
           aria-label={`Play ${title}`}
-          className="absolute inset-0 w-full h-full group"
+          className="absolute inset-0 w-full h-full group flex items-center justify-center bg-gradient-to-br from-neutral-800 to-black"
         >
-          <img
-            src={thumb}
-            alt={title}
-            className="w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-          <span className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
-            <span className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-xl">
-              <Play size={20} className="text-black fill-current ml-0.5" />
-            </span>
+          <span className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+            <Play size={22} className="text-black fill-current ml-0.5" />
           </span>
         </button>
       )}
