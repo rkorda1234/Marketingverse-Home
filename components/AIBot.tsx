@@ -164,10 +164,11 @@ export const AIBot: React.FC<AIBotProps> = ({ context, initialMessage }) => {
               />
               <button
                 type="submit"
+                aria-label="Send message"
                 disabled={isLoading || !inputValue.trim()}
                 className="p-4 bg-black text-white rounded-2xl hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
-                <Send size={24} />
+                <Send size={24} aria-hidden="true" />
               </button>
             </form>
           </div>

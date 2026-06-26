@@ -1560,7 +1560,7 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('home')}>
-          <img src="https://the-marketingverse.com/wp-content/uploads/2023/11/Mverse_Logo_Transparent_1-copy.png" alt="Marketingverse Logo" className="h-5 w-auto object-contain" />
+          <img src="/logo.png" alt="Marketingverse Logo" className="h-5 w-auto object-contain" />
         </div>
 
         {/* Desktop nav */}
@@ -1618,7 +1618,7 @@ const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
     <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-2">
-          <img src="https://the-marketingverse.com/wp-content/uploads/2023/11/Mverse_Logo_Transparent_1-copy.png" alt="Logo" className="h-6 w-auto invert" />
+          <img src="/logo.png" alt="Marketingverse Logo" className="h-6 w-auto invert" />
         </div>
         <button onClick={onOpenAdmin} className="text-neutral-800 hover:text-neutral-500 transition-colors" title="Admin Portal">
           <Lock size={14} />
