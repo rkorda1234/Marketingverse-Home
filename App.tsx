@@ -532,23 +532,31 @@ const ZOHO_SCRIPT = 'https://static.zohocdn.com/zfwidgets/v1/hpwidgets/assets/js
 
 const ZohoWidget: React.FC<{ widgetId: string; digest: string }> = ({ widgetId, digest }) => {
   useEffect(() => {
-    const init = () => {
+    const tryInit = (attempts = 0) => {
       try {
         const ZF = (window as any).ZFWidget;
-        if (ZF) ZF.init();
+        if (ZF) {
+          ZF.init();
+          return;
+        }
       } catch { /* ignore */ }
+      if (attempts < 10) setTimeout(() => tryInit(attempts + 1), 300);
     };
 
-    if (document.querySelector(`script[src="${ZOHO_SCRIPT}"]`)) {
-      requestAnimationFrame(init);
-      return;
-    }
+    // Remove any existing Zoho script so it re-runs fresh on each mount
+    const existing = document.querySelector(`script[src="${ZOHO_SCRIPT}"]`);
+    if (existing) existing.remove();
 
     const script = document.createElement('script');
     script.src = ZOHO_SCRIPT;
     script.async = true;
-    script.onload = init;
+    script.onload = () => setTimeout(tryInit, 100);
     document.body.appendChild(script);
+
+    return () => {
+      const s = document.querySelector(`script[src="${ZOHO_SCRIPT}"]`);
+      if (s) s.remove();
+    };
   }, [widgetId]);
 
   // dangerouslySetInnerHTML prevents React from reconciling Zoho's injected DOM
@@ -1168,7 +1176,16 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = ({ id, title = '', aspect = '177.78%' }) => {
   const [active, setActive] = useState(false);
+  const [thumb, setThumb] = useState('');
   const src = `https://player.vimeo.com/video/${id}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`;
+
+  useEffect(() => {
+    fetch(`https://vimeo.com/api/v2/video/${id}.json`)
+      .then(r => r.json())
+      .then(data => { if (data[0]?.thumbnail_large) setThumb(data[0].thumbnail_large); })
+      .catch(() => {});
+  }, [id]);
+
   return (
     <div style={{ paddingTop: aspect, position: 'relative' }} className="bg-neutral-900">
       {active ? (
@@ -1184,9 +1201,10 @@ const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = (
           onClick={() => setActive(true)}
           aria-label={`Play ${title}`}
           className="absolute inset-0 w-full h-full group flex items-center justify-center"
-          style={{ background: 'linear-gradient(135deg, #a8edea 0%, #c9b8f5 40%, #f5c6d0 100%)' }}
+          style={thumb ? {} : { background: 'linear-gradient(135deg, #a8edea 0%, #c9b8f5 40%, #f5c6d0 100%)' }}
         >
-          <span className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+          {thumb && <img src={thumb} alt={title} className="absolute inset-0 w-full h-full object-cover" decoding="async" />}
+          <span className="relative w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
             <Play size={22} className="text-black fill-current ml-0.5" />
           </span>
         </button>
