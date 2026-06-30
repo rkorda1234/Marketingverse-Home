@@ -2353,6 +2353,36 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
       <WorkflowSimulator />
       <N8NWorkflowVisualizer />
       <CustomPlanBuilder onOrderNow={onBookConsultation} />
+
+      {/* AI Automation Suite Builder CTA */}
+      <RevealOnScroll>
+        <div className="mb-20">
+          <div className="relative rounded-[2.5rem] border border-neutral-200 overflow-hidden px-8 py-16 md:px-16 text-center backdrop-blur-sm">
+            {/* Subtle decorative blobs */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-100/60 rounded-full blur-[80px] -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-100/60 rounded-full blur-[80px] translate-y-1/2 pointer-events-none" />
+            <div className="relative z-10">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block">AI Automation Suite</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Build Your <span className="font-serif italic font-normal">Custom AI Suite</span>
+              </h2>
+              <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Audit your company's bottlenecks in 2 minutes. Receive custom-tailored AI workflow agents, calculate real-time monthly ROI, and deploy your custom automations instantly.
+              </p>
+              <a
+                href="https://proposal.the-marketingverse.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="magic"
+                className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white rounded-2xl font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl"
+              >
+                Build My AI Suite <ArrowRight size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
   </div>
