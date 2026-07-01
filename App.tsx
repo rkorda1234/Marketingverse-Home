@@ -1568,47 +1568,53 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/40">
+    <nav className="sticky top-0 z-50 mv-glass border-b border-white/40" style={{ boxShadow: '0 1px 24px -16px rgba(15,23,42,.4)' }}>
       <div className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-400 transition-all duration-100" style={{ width: `${scrollPct}%` }} />
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('home')}>
-          <img src="/logo.png" alt="Marketingverse Logo" className="h-8 w-auto object-contain" />
-        </div>
+        {/* Text logo matching DC design */}
+        <button onClick={() => navigate('home')} data-cursor="magic" className="text-2xl font-bold tracking-tighter">
+          Marketing<span className="font-serif font-normal mv-shimmer">verse</span>
+        </button>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex gap-8 items-center">
+        <div className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map(id => (
             <button
               key={id}
               onClick={() => navigate(id)}
-              className={`text-sm font-medium transition-colors ${active === id ? 'text-black font-bold' : 'text-neutral-500 hover:text-black'}`}
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-colors ${active === id ? 'bg-black text-white' : 'text-neutral-500 hover:text-black hover:bg-neutral-100'}`}
             >
               {navLabel(id)}
             </button>
           ))}
-          <button onClick={onBookConsultation} className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors">Book a Call</button>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onBookConsultation}
+            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white rounded-full text-sm font-semibold hover:shadow-[0_10px_30px_-8px_rgba(0,0,0,.5)] transition-shadow"
+          >
+            Book a Strategy Call <ArrowRight size={15} />
+          </button>
+          {/* Mobile hamburger */}
+          <button
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-neutral-200 bg-white/70"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-neutral-100 px-4 py-4 flex flex-col gap-1 shadow-lg">
+        <div className="lg:hidden border-t border-white/40 px-4 py-4 flex flex-col gap-1 animate-fade-in">
           {NAV_ITEMS.map(id => (
             <button
               key={id}
               onClick={() => navigate(id)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors ${active === id ? 'bg-black text-white' : 'text-neutral-700 hover:bg-neutral-100'}`}
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${active === id ? 'bg-black text-white' : 'text-neutral-700 hover:bg-black hover:text-white'}`}
             >
               {navLabel(id)}
             </button>
@@ -1617,7 +1623,7 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
             onClick={() => { onBookConsultation(); setMenuOpen(false); }}
             className="mt-2 w-full bg-black text-white px-5 py-3 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors"
           >
-            Book a Call
+            Book a Strategy Call
           </button>
         </div>
       )}
@@ -1629,8 +1635,8 @@ const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
   <footer className="bg-black text-white py-12 border-t border-white/5 relative z-10">
     <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
       <div className="flex items-center gap-6">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Marketingverse Logo" className="h-6 w-auto invert" />
+        <div className="text-xl font-bold tracking-tighter text-white">
+          Marketing<span className="font-serif font-normal" style={{ fontStyle: 'italic' }}>verse</span>
         </div>
         <button onClick={onOpenAdmin} className="text-neutral-800 hover:text-neutral-500 transition-colors" title="Admin Portal">
           <Lock size={14} />
@@ -1711,15 +1717,18 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
   return (
     <div className="animate-fade-in relative z-10">
       <VoiceGreeting heroRef={heroRef} />
-      <section ref={heroRef} className="relative py-20 lg:py-32 text-center overflow-hidden">
-        {/* Removed opaque background for abstract background visibility */}
+      <section ref={heroRef} className="relative py-24 lg:py-36 text-center px-4">
         <RevealOnScroll>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-neutral-200 text-xs font-bold uppercase tracking-widest text-neutral-500 mb-8 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
+          <div className="max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 border border-neutral-200/70 backdrop-blur-sm text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 mb-8">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-indigo-500 opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500" />
+            </span>
             AI-Native Growth Studio
           </div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm overflow-hidden">
-            Marketing<span className="mv-shimmer font-serif italic font-normal">verse</span>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-7 leading-[0.95]">
+            Marketing<span className="mv-shimmer font-serif font-normal">verse</span>
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
           
@@ -1748,10 +1757,11 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
           </div>
           
           <div className="mt-8">
-             <button onClick={onBookConsultation} className="text-sm font-bold text-neutral-500 hover:text-black flex items-center gap-2 mx-auto transition-colors group">
+             <button onClick={onBookConsultation} className="text-sm font-semibold text-neutral-400 hover:text-black flex items-center gap-2 mx-auto transition-colors group">
                  Not sure what you need? Book a Strategy Call <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
              </button>
           </div>
+          </div>{/* end max-w-4xl */}
         </RevealOnScroll>
       </section>
 
