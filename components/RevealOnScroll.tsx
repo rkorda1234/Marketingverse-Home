@@ -38,7 +38,7 @@ export const RevealOnScroll: React.FC<RevealProps> = ({ children, className = ""
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transition-all duration-1000 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-12 blur-sm'
       } ${className}`}
     >
       {children}
