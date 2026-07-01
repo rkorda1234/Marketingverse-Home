@@ -1573,7 +1573,7 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         {/* Text logo matching DC design */}
         <button onClick={() => navigate('home')} data-cursor="magic" className="text-2xl font-bold tracking-tighter">
-          Marketing<span className="font-serif font-normal mv-shimmer">verse</span>
+          Marketing<span className="font-serif font-normal mv-shimmer inline-block pr-1">verse</span>
         </button>
 
         {/* Desktop nav */}
@@ -1728,7 +1728,7 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
             AI-Native Growth Studio
           </div>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-7 leading-[0.95]">
-            Marketing<span className="mv-shimmer font-serif font-normal">verse</span>
+            Marketing<span className="mv-shimmer font-serif font-normal inline-block pr-2">verse</span>
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
           
