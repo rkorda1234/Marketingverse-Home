@@ -1291,21 +1291,21 @@ const WorkflowIcon = ({ icon }: { icon: string }) => {
 
 const ConsultationCTA: React.FC<{ onBookConsultation: () => void }> = ({ onBookConsultation }) => (
   <RevealOnScroll delay={100}>
-    {/* Container: Frosted White */}
-    <div className="w-full py-32 bg-white/30 backdrop-blur-xl border-t border-white/50 relative overflow-hidden mt-20">
-      {/* Background pattern - light version */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#000000_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03]"></div>
-      {/* Ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none" />
-      
+    <div className="w-full py-32 bg-neutral-950 rounded-[2.5rem] relative overflow-hidden mt-20">
+      {/* Colored blob glows */}
+      <div className="absolute top-0 left-1/3 w-80 h-80 bg-indigo-600/30 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-violet-600/25 rounded-full blur-[80px] pointer-events-none" />
+      {/* Dot grid */}
+      <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
       <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-        <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-neutral-900">Ready To Take It <span className="font-serif italic font-normal">Up A Notch?</span></h2>
-        <p className="text-xl text-neutral-600 mb-12 max-w-2xl mx-auto">
+        <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white">Ready To Take It <span className="font-serif italic font-normal text-violet-300">Up A Notch?</span></h2>
+        <p className="text-xl text-neutral-400 mb-12 max-w-2xl mx-auto">
           Book a free consultation to discuss your specific needs and find the perfect strategy for you.
         </p>
-        <button 
-          onClick={onBookConsultation} 
-          className="px-10 py-5 bg-black text-white rounded-full font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl"
+        <button
+          onClick={onBookConsultation}
+          className="px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:bg-neutral-100 transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl"
         >
           Schedule Consultation <ArrowRight size={20} />
         </button>
@@ -1554,10 +1554,22 @@ const SuccessCasesView: React.FC = () => (
 
 const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookConsultation: () => void }> = ({ active, setView, onBookConsultation }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollPct, setScrollPct] = useState(0);
   const navigate = (id: string) => { setView(id); setMenuOpen(false); };
 
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.documentElement;
+      const pct = el.scrollTop / (el.scrollHeight - el.clientHeight) * 100;
+      setScrollPct(isNaN(pct) ? 0 : pct);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/40">
+      <div className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-400 transition-all duration-100" style={{ width: `${scrollPct}%` }} />
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('home')}>
           <img src="/logo.png" alt="Marketingverse Logo" className="h-5 w-auto object-contain" />
@@ -1702,8 +1714,12 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
       <section ref={heroRef} className="relative py-20 lg:py-32 text-center overflow-hidden">
         {/* Removed opaque background for abstract background visibility */}
         <RevealOnScroll>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-neutral-200 text-xs font-bold uppercase tracking-widest text-neutral-500 mb-8 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
+            AI-Native Growth Studio
+          </div>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm">
-            Marketing<span className="font-serif italic font-normal">verse</span>
+            Marketing<span className="mv-shimmer font-serif italic font-normal">verse</span>
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
           
@@ -1739,17 +1755,17 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
         </RevealOnScroll>
       </section>
 
-      <section className="py-20 bg-neutral-50/60 backdrop-blur-md">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {SERVICES.map(s => (
-              <div 
-                key={s.id} 
+              <div
+                key={s.id}
                 onClick={() => handleServiceClick(s.id)}
                 data-cursor="hover"
-                className="bg-white/80 p-8 rounded-3xl border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group backdrop-blur-sm"
+                className="mv-glass mv-lift p-8 rounded-3xl cursor-pointer group"
               >
-                <div className="mb-6 group-hover:scale-110 transition-transform"><ServiceIcon icon={s.icon} /></div>
+                <div className="mb-6 w-12 h-12 rounded-2xl bg-neutral-900 text-white flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300"><ServiceIcon icon={s.icon} /></div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-black">{s.title}</h3>
                 <p className="text-neutral-600 mb-6">{s.description}</p>
                 <div className="flex items-center gap-2 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
@@ -2331,9 +2347,9 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
          {AI_WORKFLOWS.map((category, index) => (
             <RevealOnScroll key={category.title} delay={index * 50} className="h-full">
-              <div data-cursor="card" className="bg-neutral-50/80 backdrop-blur-sm rounded-3xl p-8 border border-neutral-100 hover:border-black hover:bg-white hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full group">
+              <div data-cursor="card" className="mv-glass mv-lift rounded-3xl p-8 h-full group">
                   <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-white text-black border border-neutral-100 rounded-xl group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                      <div className="p-3 bg-neutral-900 text-white rounded-xl group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
                           <WorkflowIcon icon={category.icon} />
                       </div>
                       <h3 className="text-xl font-bold">{category.title}</h3>
@@ -2403,9 +2419,9 @@ const BlogView: React.FC<{ blogs: BlogPost[]; onReadMore: (blog: BlogPost) => vo
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog, i) => (
           <RevealOnScroll key={blog.id} delay={i * 50}>
-            <div 
+            <div
               onClick={() => onReadMore(blog)}
-              className="group cursor-pointer bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
+              className="group cursor-pointer mv-glass mv-lift rounded-3xl overflow-hidden h-full flex flex-col"
             >
               <div className="aspect-[16/10] overflow-hidden relative">
                 <img src={blog.imageUrl} alt={blog.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
