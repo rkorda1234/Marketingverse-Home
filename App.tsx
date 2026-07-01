@@ -1572,7 +1572,7 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
       <div className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-400 transition-all duration-100" style={{ width: `${scrollPct}%` }} />
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('home')}>
-          <img src="/logo.png" alt="Marketingverse Logo" className="h-5 w-auto object-contain" />
+          <img src="/logo.png" alt="Marketingverse Logo" className="h-8 w-auto object-contain" />
         </div>
 
         {/* Desktop nav */}
@@ -1718,7 +1718,7 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
             AI-Native Growth Studio
           </div>
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 drop-shadow-sm overflow-hidden">
             Marketing<span className="mv-shimmer font-serif italic font-normal">verse</span>
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
