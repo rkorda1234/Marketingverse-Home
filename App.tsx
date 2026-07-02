@@ -25,6 +25,7 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError:
 }
 import { Menu, X, ArrowRight, Check, ExternalLink, Instagram, Facebook, PenTool, Cpu, Layers, TrendingUp, Heart, Maximize2, ClipboardList, Megaphone, Calculator, MessageSquare, Headphones, Briefcase, Users, Quote, Shield, Plus, ArrowUp, ShoppingCart, Trash2, ChevronLeft, ChevronRight, Mic, Wand2, Sparkles, Loader2, RotateCcw, Lock, Settings, Video, Image as ImageIcon, Save, Play, Copy, Calendar, User as UserIcon, Star, Bell, Target, Zap, Building2, LayoutDashboard, Smartphone, Mail, Share2, MessageCircle, Globe, CreditCard, Bot, Phone, FileText, CheckCircle2, Tag, GitBranch, RefreshCcw, UserPlus, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
 import { AIBot } from './components/AIBot';
+import { ReviewsWidget } from './components/ReviewsWidget';
 import { CustomCursor } from './components/CustomCursor';
 import { RevealOnScroll } from './components/RevealOnScroll';
 import { WorkflowSimulator } from './components/WorkflowSimulator';
@@ -1837,6 +1838,18 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
 
       <ClientsSection />
 
+      <RevealOnScroll>
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-10">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Social Proof</span>
+              <h2 className="text-3xl font-bold">What Our <span className="font-serif italic font-normal">Clients Say</span></h2>
+            </div>
+            <ReviewsWidget />
+          </div>
+        </section>
+      </RevealOnScroll>
+
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
   );
@@ -2297,6 +2310,17 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           digest="2-fa4c5864403ccd92bf50b11e166685c2c2663351fc6f31f604172c46c40c00c6d7ce03e345f9b239b737c2b253195bdf012b590903e576e248bf2deb26f7ad42"
         />
       </div>
+
+      <RevealOnScroll>
+        <section className="py-16">
+          <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Social Proof</span>
+            <h2 className="text-3xl font-bold">What Our <span className="font-serif italic font-normal">Clients Say</span></h2>
+          </div>
+          <ReviewsWidget />
+        </section>
+      </RevealOnScroll>
+
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
   </div>
