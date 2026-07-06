@@ -2303,6 +2303,69 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         </div>
       </RevealOnScroll>
 
+      {/* Instagram Feed Showcase — 3 phone mockup videos */}
+      <RevealOnScroll>
+        <div className="mb-32">
+          <div className="text-center mb-14">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Strategies In Action</span>
+            <h2 className="text-4xl font-bold mb-4">Real Accounts. <span className="font-serif italic font-normal">Real Results.</span></h2>
+            <p className="text-lg text-neutral-500 max-w-2xl mx-auto">Three different account types, three winning playbooks — each tailored to how the audience discovers and converts.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 items-end">
+            {[
+              {
+                id: '1Abf2__wlo8ccDfC8X7bc2MLujIr79HGc',
+                label: 'Luxury Real Estate',
+                tag: 'Brand Authority',
+                color: 'from-amber-500/20 to-orange-500/10',
+                tagColor: 'text-amber-600 bg-amber-50 border-amber-200',
+              },
+              {
+                id: '1ls8IYvJfkq30iVDc01difJNUKXlCab0P',
+                label: 'Personal Brand Agent',
+                tag: 'Community Growth',
+                color: 'from-violet-500/20 to-fuchsia-500/10',
+                tagColor: 'text-violet-600 bg-violet-50 border-violet-200',
+                featured: true,
+              },
+              {
+                id: '1YIWmwKzJEmo5i0gfVzqL_2pUsjmcCyB6',
+                label: 'Brokerage Brand',
+                tag: 'Lead Generation',
+                color: 'from-sky-500/20 to-blue-500/10',
+                tagColor: 'text-sky-600 bg-sky-50 border-sky-200',
+              },
+            ].map(({ id, label, tag, color, tagColor, featured }) => (
+              <div key={id} className={`flex flex-col items-center gap-5 ${featured ? 'md:-mt-6' : ''}`}>
+                {/* Phone shell */}
+                <div className={`relative w-full max-w-[260px] mx-auto rounded-[2.8rem] bg-neutral-900 shadow-2xl overflow-hidden border-4 border-neutral-800 ${featured ? 'shadow-violet-500/20' : ''}`}
+                  style={{ aspectRatio: '9/19.5' }}>
+                  {/* Dynamic island */}
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 w-24 h-6 bg-black rounded-full" />
+                  {/* Glow behind screen */}
+                  <div className={`absolute inset-0 bg-gradient-to-b ${color} opacity-60 pointer-events-none z-0`} />
+                  {/* Video */}
+                  <iframe
+                    src={`https://drive.google.com/file/d/${id}/preview`}
+                    allow="autoplay"
+                    className="absolute inset-0 w-full h-full z-10"
+                    frameBorder={0}
+                    title={label}
+                    loading="lazy"
+                  />
+                </div>
+                {/* Label */}
+                <div className="text-center">
+                  <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border mb-2 ${tagColor}`}>{tag}</span>
+                  <p className="font-bold text-neutral-900">{label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
       <div className="text-center mb-16"><h2 className="text-4xl font-bold mb-4">Social Media <span className="font-serif italic font-normal">Packages</span></h2></div>
       <div className="mb-20 rounded-3xl overflow-hidden">
         <ZohoWidget
