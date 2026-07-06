@@ -2597,7 +2597,54 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         </div>
       </RevealOnScroll>
 
-      <div className="text-center mb-16"><h2 className="text-4xl font-bold mb-4">Social Media <span className="font-serif italic font-normal">Packages</span></h2></div>
+      {/* Growth in first month section */}
+      <RevealOnScroll>
+        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">A Powerful Digital Storefront</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              Our clients see <span className="text-indigo-500">growth</span> in the first month.
+            </h2>
+            <p className="text-neutral-600 leading-relaxed mb-8">
+              Ideally, we reach a powerful collaboration. Our job is to guide you and elevate you with the right inspiration, tools, motivation, and accountability. Your job is to be yourself and enjoy the process.
+            </p>
+          </div>
+          <div className="space-y-5">
+            {[
+              { icon: <Cpu size={22} />, label: 'Brand Identity' },
+              { icon: <Users size={22} />, label: 'Coaching' },
+              { icon: <Wand2 size={22} />, label: 'Concept Creation' },
+              { icon: <Video size={22} />, label: 'Content Shoot' },
+              { icon: <ImageIcon size={22} />, label: 'Editing & Graphics' },
+              { icon: <Calendar size={22} />, label: 'Post At Ideal Times' },
+              { icon: <TrendingUp size={22} />, label: 'Results Analytics & Tracking' },
+            ].map(({ icon, label }, i) => (
+              <RevealOnScroll key={label} delay={i * 60}>
+                <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                  <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0">
+                    {icon}
+                  </div>
+                  <span className="font-semibold text-neutral-900">{label}</span>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Pricing section */}
+      <RevealOnScroll>
+        <div className="text-center mb-10">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Pricing / Membership Tiers</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Market Isn't Waiting.{' '}
+            <span className="text-indigo-500">Neither Should You.</span>
+          </h2>
+          <p className="text-neutral-500 max-w-2xl mx-auto">
+            Every month without a strong social presence is a month your competitors are taking deals that should be yours. Choose the plan that fits where you are today.
+          </p>
+        </div>
+      </RevealOnScroll>
       <div className="mb-20 rounded-3xl overflow-hidden">
         <ZohoWidget
           widgetId="zf-widget-root-id-38zcrwakz"
@@ -2617,7 +2664,26 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
 
       <FAQSection items={SOCIAL_FAQS} label="Social Media Questions, Answered" />
 
-      <ConsultationCTA onBookConsultation={onBookConsultation} />
+      {/* Social-specific CTA */}
+      <RevealOnScroll delay={100}>
+        <div className="w-full py-20 mv-glass rounded-[2.5rem] relative overflow-hidden mt-20 text-center px-8">
+          <div className="absolute top-0 left-1/3 w-80 h-80 bg-indigo-100/60 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-violet-100/50 rounded-full blur-[80px] pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              Ready to Become <span className="text-indigo-500">the Most Recognizable Agent in Your Market?</span>
+            </h2>
+            <p className="text-neutral-500 mb-10 text-lg">No long-term contract. Just a 20-minute call to show you exactly how we'd build your brand.</p>
+            <button
+              onClick={onBookConsultation}
+              data-cursor="magic"
+              className="px-10 py-5 bg-neutral-950 text-white rounded-full font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl uppercase tracking-wide text-sm"
+            >
+              Book a Free Demo Call <ArrowRight size={20} />
+            </button>
+          </div>
+        </div>
+      </RevealOnScroll>
     </div>
   </div>
 );
