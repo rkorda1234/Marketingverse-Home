@@ -2446,6 +2446,84 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         </div>
       </RevealOnScroll>
 
+      {/* Authority Hero Banner */}
+      <RevealOnScroll>
+        <div className="mb-20 rounded-[2.5rem] overflow-hidden relative bg-neutral-950 text-white px-8 py-20 md:px-20 text-center">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(99,102,241,0.25)_0%,_transparent_55%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(168,85,247,0.2)_0%,_transparent_55%)] pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+              Building the Authority That Wins Listings
+              <br />
+              <span className="font-serif italic font-normal text-neutral-400">Before You Ever Pick Up the Phone.</span>
+            </h2>
+            <p className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Buyers and sellers are checking your Instagram before they call you. If they don't like what they see, they call someone else. We turn your social media into your most powerful listing tool.
+            </p>
+            <button
+              onClick={onBookConsultation}
+              data-cursor="magic"
+              className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-10 py-4 rounded-2xl transition-all hover:scale-105 shadow-xl tracking-wide uppercase text-sm"
+            >
+              Book a Free Strategy Call
+            </button>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Real Reason + 4 Pillars */}
+      <RevealOnScroll>
+        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              The Real Reason{' '}
+              <span className="text-indigo-500">Agents Lose Deals</span>
+            </h2>
+            <p className="font-bold text-neutral-900 mb-4">It's not your skills. It's your social proof.</p>
+            <div className="space-y-4 text-neutral-600 leading-relaxed">
+              <p>The best agents in your market aren't necessarily the most experienced — they're the most visible. Social media isn't about likes and followers. It's about being the first name your sphere, your farm area, and every referral thinks of when it's time to buy or sell.</p>
+              <p>We don't post generic content. We build your brand as the only logical choice in your territory.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              {
+                icon: <TrendingUp size={22} />,
+                title: 'Market Authority',
+                desc: 'Become the agent everyone in your ZIP code already knows, likes, and trusts — before they ever need to buy or sell.',
+                color: 'text-indigo-500 group-hover:bg-indigo-500',
+              },
+              {
+                icon: <Shield size={22} />,
+                title: 'Trust Architecture',
+                desc: 'Content that makes past clients refer you, future clients choose you, and your sphere never forget you.',
+                color: 'text-violet-500 group-hover:bg-violet-500',
+              },
+              {
+                icon: <Layers size={22} />,
+                title: 'Brand Consistency',
+                desc: "A polished, professional presence across every platform so your brand works for you 24/7 — even when you're at a closing.",
+                color: 'text-sky-500 group-hover:bg-sky-500',
+              },
+              {
+                icon: <Heart size={22} />,
+                title: 'Emotional Connection',
+                desc: 'People don\'t hire agents. They hire people they feel connected to. We create content that builds that relationship at scale.',
+                color: 'text-rose-500 group-hover:bg-rose-500',
+              },
+            ].map(({ icon, title, desc, color }) => (
+              <div key={title} className="mv-glass mv-lift rounded-3xl p-5 group">
+                <div className={`mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit ${color} transition-all duration-300 group-hover:text-white`}>
+                  {icon}
+                </div>
+                <h4 className="font-bold mb-2 text-sm">{title}</h4>
+                <p className="text-xs text-neutral-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
       <RevealOnScroll>
         <div className="mb-32">
           <div className="text-center mb-10">
