@@ -2359,6 +2359,43 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
          ))}
       </div>
       
+      {/* Mobile Powerhouse */}
+      <RevealOnScroll>
+        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="flex justify-center">
+            <img
+              src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/69b99fb6dac584678da72f91.png"
+              alt="Broker mobile app"
+              className="max-w-[320px] w-full rounded-3xl shadow-2xl"
+            />
+          </div>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-4 block">Mobile Powerhouse</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Your Brokerage, In<br />
+              <span className="text-blue-500">Your Pocket</span>.
+            </h2>
+            <p className="text-lg text-neutral-600 leading-relaxed mb-8">
+              Empower your agents to work from anywhere. Our white-labeled mobile app gives your team instant access to leads, conversations, and calendars on the go.
+            </p>
+            <ul className="space-y-4">
+              {[
+                'Instant Push Notifications for New Leads',
+                '2-Way SMS & Calling Directly from the App',
+                'Manage Appointments & Tasks Anywhere',
+                'Real-time Pipeline Tracking',
+                'Unified Inbox for All Social DMs',
+              ].map(item => (
+                <li key={item} className="flex items-center gap-3">
+                  <CheckCircle2 className="text-blue-500 shrink-0" size={20} />
+                  <span className="font-semibold text-neutral-800">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </RevealOnScroll>
+
       {/* Avanti Way Case Study */}
       <RevealOnScroll>
         <div className="mb-20 rounded-[2.5rem] overflow-hidden">
@@ -2398,43 +2435,6 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </RevealOnScroll>
-
-      {/* Mobile Powerhouse */}
-      <RevealOnScroll>
-        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
-          <div className="flex justify-center">
-            <img
-              src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/69b99fb6dac584678da72f91.png"
-              alt="Broker mobile app"
-              className="max-w-[320px] w-full rounded-3xl shadow-2xl"
-            />
-          </div>
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-4 block">Mobile Powerhouse</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Your Brokerage, In<br />
-              <span className="text-blue-500">Your Pocket</span>.
-            </h2>
-            <p className="text-lg text-neutral-600 leading-relaxed mb-8">
-              Empower your agents to work from anywhere. Our white-labeled mobile app gives your team instant access to leads, conversations, and calendars on the go.
-            </p>
-            <ul className="space-y-4">
-              {[
-                'Instant Push Notifications for New Leads',
-                '2-Way SMS & Calling Directly from the App',
-                'Manage Appointments & Tasks Anywhere',
-                'Real-time Pipeline Tracking',
-                'Unified Inbox for All Social DMs',
-              ].map(item => (
-                <li key={item} className="flex items-center gap-3">
-                  <CheckCircle2 className="text-blue-500 shrink-0" size={20} />
-                  <span className="font-semibold text-neutral-800">{item}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </RevealOnScroll>
