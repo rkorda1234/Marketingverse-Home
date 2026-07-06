@@ -2309,6 +2309,25 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
         />
       </div>
 
+      {/* Video background divider */}
+      <div className="relative mb-20 rounded-[2.5rem] overflow-hidden h-[420px] md:h-[520px]">
+        <video
+          src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/69bdaac00a14d5e14304c315.mp4"
+          autoPlay muted loop playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-neutral-950/60 backdrop-blur-[2px]" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-8">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-4 block">Features</span>
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            An <span className="font-serif italic font-normal text-blue-300">integrated</span> ecosystem<br className="hidden md:block" /> to claim your time back
+          </h2>
+          <p className="text-neutral-300 text-lg max-w-2xl leading-relaxed">
+            Get the leads, nurture them, service them powerfully, stay in touch, get their reviews, sign the contracts, manage the team.
+          </p>
+        </div>
+      </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
          {[
             { icon: <LayoutDashboard size={24} />, title: "Agent Dashboards", desc: "Individual logins and lead tracking for every agent." },
@@ -2340,6 +2359,86 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
          ))}
       </div>
       
+      {/* Avanti Way Case Study */}
+      <RevealOnScroll>
+        <div className="mb-20 rounded-[2.5rem] overflow-hidden">
+          <div className="grid lg:grid-cols-2">
+            {/* Left: dark storytelling panel */}
+            <div className="bg-neutral-950 text-white p-12 md:p-16 flex flex-col justify-center relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-72 h-72 bg-blue-600/20 rounded-full blur-[80px] pointer-events-none" />
+              <div className="relative z-10">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-6 block">The Case Study</span>
+                <h2 className="text-3xl md:text-5xl font-bold mb-3 leading-tight">
+                  We helped them grow<br />
+                  from <span className="text-blue-400">500</span> to <span className="text-blue-400">2,000+</span><br />
+                  Agents
+                </h2>
+                <p className="text-2xl font-bold tracking-widest text-neutral-400 mb-8 uppercase">Avanti Way</p>
+                <p className="text-neutral-400 leading-relaxed">
+                  We provided <span className="text-white font-bold">Avanti Way Realty</span> with the exact Broker Engine Platform and Content Marketing Strategies we now offer to independent brokers. By equipping their team with cutting-edge tech and ready-made content, they transformed into one of the fastest-growing brokerages in the nation.
+                </p>
+              </div>
+            </div>
+            {/* Right: glass results panel */}
+            <div className="mv-glass p-12 md:p-16 flex flex-col justify-center gap-6">
+              {[
+                { icon: <Users size={22} />, title: 'Nurturing Leads', desc: 'Automated follow-ups and lead routing' },
+                { icon: <ClipboardList size={22} />, title: 'Managing Operations', desc: 'Streamlined transactions via the platform' },
+                { icon: <Megaphone size={22} />, title: 'Content That Converted', desc: 'Equipping agents with ready-made marketing' },
+                { icon: <MessageCircle size={22} />, title: 'Internal Communications', desc: 'Seamless team and agent collaboration' },
+              ].map(({ icon, title, desc }) => (
+                <div key={title} className="flex items-start gap-5 group">
+                  <div className="p-3 rounded-2xl bg-white/60 border border-white/70 text-blue-500 shadow-sm shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+                    {icon}
+                  </div>
+                  <div>
+                    <p className="font-bold text-neutral-900">{title}</p>
+                    <p className="text-sm text-neutral-500 mt-0.5">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Mobile Powerhouse */}
+      <RevealOnScroll>
+        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="flex justify-center">
+            <img
+              src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/69b99fb6dac584678da72f91.png"
+              alt="Broker mobile app"
+              className="max-w-[320px] w-full rounded-3xl shadow-2xl"
+            />
+          </div>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-4 block">Mobile Powerhouse</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Your Brokerage, In<br />
+              <span className="text-blue-500">Your Pocket</span>.
+            </h2>
+            <p className="text-lg text-neutral-600 leading-relaxed mb-8">
+              Empower your agents to work from anywhere. Our white-labeled mobile app gives your team instant access to leads, conversations, and calendars on the go.
+            </p>
+            <ul className="space-y-4">
+              {[
+                'Instant Push Notifications for New Leads',
+                '2-Way SMS & Calling Directly from the App',
+                'Manage Appointments & Tasks Anywhere',
+                'Real-time Pipeline Tracking',
+                'Unified Inbox for All Social DMs',
+              ].map(item => (
+                <li key={item} className="flex items-center gap-3">
+                  <CheckCircle2 className="text-blue-500 shrink-0" size={20} />
+                  <span className="font-semibold text-neutral-800">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </RevealOnScroll>
+
       <CRMWorkflowVisualizer />
 
       {/* Platform Screenshot Carousel */}
