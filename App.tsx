@@ -2323,16 +2323,16 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
               },
               {
                 vimeoId: '1173074396',
-                tag: 'Bold & Witty',
-                tagColor: 'text-orange-500 bg-orange-50 border-orange-200',
-                glow: 'rgba(249,115,22,0.22)',
+                tag: 'Polished & Professional',
+                tagColor: 'text-slate-600 bg-slate-50 border-slate-200',
+                glow: 'rgba(100,116,139,0.18)',
                 featured: true,
               },
               {
                 vimeoId: '1173074432',
-                tag: 'Polished & Professional',
-                tagColor: 'text-slate-600 bg-slate-50 border-slate-200',
-                glow: 'rgba(100,116,139,0.18)',
+                tag: 'Bold & Witty',
+                tagColor: 'text-orange-500 bg-orange-50 border-orange-200',
+                glow: 'rgba(249,115,22,0.22)',
                 featured: false,
               },
             ].map(({ vimeoId, tag, tagColor, glow, featured }) => (
