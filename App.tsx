@@ -1850,6 +1850,44 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
         </section>
       </RevealOnScroll>
 
+      {/* Team Section */}
+      <RevealOnScroll>
+        <section className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-14">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">The Team</span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-3">
+                We work with AI, yet we are{' '}
+                <span className="font-serif italic font-normal text-indigo-500">real</span>{' '}people
+              </h2>
+              <p className="text-neutral-500 text-lg">Here's a few of them.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+              {[
+                { name: 'Ricky', role: 'Founder & CEO', img: '/team/ricky.png', delay: 0 },
+                { name: 'Mari', role: 'Creative Director', img: '/team/mari.png', delay: 80 },
+                { name: 'Nati', role: 'Project Manager', img: '/team/nati.png', delay: 160 },
+                { name: 'Vale', role: 'Content Creator', img: '/team/vale.png', delay: 240 },
+                { name: 'Leo', role: 'Content Creator', img: '/team/leo.png', delay: 320 },
+                { name: 'Adri', role: 'Marketing Specialist', img: '/team/adri.png', delay: 400 },
+              ].map(({ name, role, img, delay }) => (
+                <RevealOnScroll key={name} delay={delay}>
+                  <div className="mv-glass mv-lift rounded-3xl p-5 flex flex-col items-center text-center gap-3 group">
+                    <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-white/70 shadow-md group-hover:ring-indigo-300 transition-all duration-500">
+                      <img src={img} alt={name} className="w-full h-full object-cover object-top" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-neutral-900 text-sm">{name}</p>
+                      <p className="text-neutral-400 text-xs mt-0.5 leading-snug">{role}</p>
+                    </div>
+                  </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+          </div>
+        </section>
+      </RevealOnScroll>
+
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
   );
