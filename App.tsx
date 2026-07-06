@@ -2312,37 +2312,36 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             <p className="text-lg text-neutral-500 max-w-2xl mx-auto">Three different account types, three winning playbooks — each tailored to how the audience discovers and converts.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 items-end">
+          <div className="grid md:grid-cols-3 gap-10 items-end justify-items-center">
             {[
               {
                 id: '1Abf2__wlo8ccDfC8X7bc2MLujIr79HGc',
                 tag: 'Fun & Elegant',
                 tagColor: 'text-rose-500 bg-rose-50 border-rose-200',
-                glow: 'rgba(244,114,182,0.15)',
+                glow: 'rgba(244,114,182,0.2)',
                 featured: false,
               },
               {
                 id: '1ls8IYvJfkq30iVDc01difJNUKXlCab0P',
                 tag: 'Bold & Witty',
                 tagColor: 'text-orange-500 bg-orange-50 border-orange-200',
-                glow: 'rgba(249,115,22,0.18)',
+                glow: 'rgba(249,115,22,0.22)',
                 featured: true,
               },
               {
                 id: '1YIWmwKzJEmo5i0gfVzqL_2pUsjmcCyB6',
                 tag: 'Polished & Professional',
                 tagColor: 'text-slate-600 bg-slate-50 border-slate-200',
-                glow: 'rgba(100,116,139,0.15)',
+                glow: 'rgba(100,116,139,0.18)',
                 featured: false,
               },
             ].map(({ id, tag, tagColor, glow, featured }) => (
-              <div key={id} className={`flex flex-col items-center gap-4 ${featured ? 'md:-mt-8' : ''}`}>
-                {/* Video — no extra shell, the mockup is baked in */}
+              <div key={id} className={`flex flex-col items-center gap-4 w-full max-w-[240px] ${featured ? 'md:-mt-10' : ''}`}>
                 <div
-                  className="relative w-full rounded-3xl overflow-hidden shadow-2xl"
+                  className="relative w-full overflow-hidden rounded-2xl"
                   style={{
                     aspectRatio: '9/19.5',
-                    boxShadow: `0 32px 64px -20px ${glow}, 0 8px 24px -8px rgba(0,0,0,0.18)`,
+                    boxShadow: `0 24px 60px -16px ${glow}, 0 6px 20px -6px rgba(0,0,0,0.14)`,
                   }}
                 >
                   <iframe
@@ -2354,7 +2353,6 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
                     loading="lazy"
                   />
                 </div>
-                {/* Tag only — no bottom label text */}
                 <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${tagColor}`}>{tag}</span>
               </div>
             ))}
