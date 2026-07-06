@@ -2109,6 +2109,126 @@ const PhoneCarousel: React.FC = () => {
   );
 };
 
+/* ── FAQ Section ─────────────────────────────────────────────── */
+const FAQSection: React.FC<{ items: { q: string; a: string }[]; label?: string }> = ({ items, label = 'Questions, Answered' }) => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <RevealOnScroll>
+      <section className="py-20">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="grid lg:grid-cols-[240px_1fr] gap-12 items-start">
+            <div className="lg:sticky lg:top-28">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">{label}</span>
+              <h2 className="text-3xl font-bold leading-tight">Quick <span className="font-serif italic font-normal">Answers</span></h2>
+            </div>
+            <div className="space-y-3">
+              {items.map((item, i) => (
+                <div key={i} className="mv-glass rounded-2xl overflow-hidden">
+                  <button
+                    onClick={() => setOpen(open === i ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-neutral-900 hover:text-indigo-600 transition-colors duration-200"
+                  >
+                    <span>{item.q}</span>
+                    <span className={`shrink-0 transition-transform duration-300 ${open === i ? 'rotate-45' : ''}`}>
+                      <Plus size={18} />
+                    </span>
+                  </button>
+                  {open === i && (
+                    <div className="px-6 pb-6 text-neutral-600 leading-relaxed text-[15px] border-t border-white/50 pt-4">
+                      {item.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </RevealOnScroll>
+  );
+};
+
+const BROKER_FAQS = [
+  {
+    q: 'Do I still need my other subscriptions, or can this replace my current tech stack?',
+    a: 'Our Broker CRM Suite is designed to be your all-in-one solution, allowing you to cancel almost every other subscription you\'re currently paying for. We replace the need for separate CRM platforms, Zapier integrations, email marketing tools, ad managers, phone systems, and transaction management software. By consolidating your stack into one powerhouse platform, you save thousands in monthly overhead while eliminating the headache of managing ten different logins.',
+  },
+  {
+    q: 'I\'m not a "tech person." How hard is this to manage?',
+    a: 'You don\'t need to be. We provide a "Done-For-You" onboarding experience. We handle the technical heavy lifting and setup so you can focus on your clients, not troubleshooting software. If you can check your email, you can use our systems.',
+  },
+  {
+    q: 'How will this help me grow my brand and local market share?',
+    a: 'Whether you are an individual agent or an independent broker, our systems are designed to build authority. We use targeted lead capture and high-value content like Seller Guides and Market Reports to ensure that when homeowners in your area think of real estate, they think of your brand first.',
+  },
+  {
+    q: 'How much of my marketing can be automated without losing my "personal touch"?',
+    a: 'We automate the repetitive tasks like initial lead follow-ups, long-term nurturing, and social scheduling so you have more time for the human tasks like showings, listings, and closings. Your brand voice stays consistent, but your manual workload disappears.',
+  },
+  {
+    q: 'Is it difficult to switch my database over to your platform?',
+    a: 'It\'s incredibly easy. We handle the heavy lifting for you. Our team manages the migration of your existing contacts and lead flow from your current CRM, ensuring a seamless transition with zero downtime for your business. We bridge the gap so you can start seeing results on day one.',
+  },
+  {
+    q: 'What kind of ROI can I realistically expect?',
+    a: 'Most brokerages see a positive ROI within the first 60–90 days. By replacing 5–8 separate tools, the monthly savings alone often cover the platform cost. Add in the revenue from better lead conversion and agent retention — and the numbers become very compelling. We\'ll walk you through a custom projection on your strategy call.',
+  },
+];
+
+const SOCIAL_FAQS = [
+  {
+    q: 'Will the content actually sound like me, or will it feel generic and robotic?',
+    a: 'Every piece of content we create is rooted in your brand voice, your stories, and your market. Our onboarding process is specifically designed to extract your personality, opinions, and differentiators — so what goes out looks and sounds like you, even when you\'re busy closing deals.',
+  },
+  {
+    q: 'How quickly will I start seeing real results from social media?',
+    a: 'Organic growth is a long game, but our clients typically start seeing measurable engagement increases within the first 30 days and meaningful lead activity within 60–90 days. Social media compounds over time — the earlier you start, the stronger your position becomes.',
+  },
+  {
+    q: 'What if I don\'t have time to film content or send you material?',
+    a: 'We\'ve built our process around busy professionals. We can work with short voice notes, existing photos, repurposed listings, and market data to build a full content calendar. For clients who want high-production video, we coordinate shoot schedules that fit around your work — not the other way around.',
+  },
+  {
+    q: 'How is this different from just hiring a social media manager?',
+    a: 'A single social media manager is one person with one skillset. Our team includes strategists, designers, video editors, copywriters, and data analysts working together on your account. You get an entire creative department at a fraction of the cost of a full in-house hire — plus AI-powered tools no freelancer can match.',
+  },
+  {
+    q: 'Which platforms do you manage, and do I need to be on all of them?',
+    a: 'We manage Instagram, Facebook, TikTok, LinkedIn, YouTube Shorts, and more. We don\'t believe in spreading thin — we\'ll audit your audience and recommend the 2–3 platforms where your ideal clients actually spend time, then dominate those before expanding.',
+  },
+  {
+    q: 'Can social media actually generate real estate leads, or is it just brand awareness?',
+    a: 'Both — and the combination is what makes it powerful. We pair organic authority-building with targeted lead-capture strategies (lead magnets, DM funnels, story CTAs) that convert followers into booked consultations. Social media is not just vanity metrics for us; it\'s a business development engine.',
+  },
+];
+
+const AI_FAQS = [
+  {
+    q: 'Will AI automation replace my team, or does it work alongside them?',
+    a: 'AI workflows are designed to eliminate the repetitive, low-value tasks that drain your team\'s time — data entry, follow-up sequences, report generation, appointment reminders. Your team focuses on judgment calls, relationships, and creative work. The result is the same headcount producing significantly more output without burnout.',
+  },
+  {
+    q: 'My business is unique. Can AI workflows actually be customized for how we operate?',
+    a: 'That\'s exactly what we build. We start with a deep audit of your current processes, identify every manual bottleneck, and design workflows that map to your specific systems — not a generic template. Whether you\'re a real estate team, a law firm, or an e-commerce brand, the automation is built around your reality.',
+  },
+  {
+    q: 'What platforms and tools does your AI infrastructure connect with?',
+    a: 'We integrate with virtually any tool in your stack — CRMs like HubSpot, Salesforce, and GoHighLevel; communication tools like Slack, Gmail, and SMS platforms; scheduling tools, payment processors, spreadsheets, and custom databases. If it has an API, we can wire it in. If it doesn\'t, we build the bridge.',
+  },
+  {
+    q: 'How long does it take to go from strategy to live automation?',
+    a: 'Most single-workflow automations go live within 1–2 weeks. Full AI suite buildouts — covering multiple departments — are typically deployed over 4–8 weeks in prioritized phases, so you start seeing ROI immediately rather than waiting for the entire project to complete.',
+  },
+  {
+    q: 'What happens if something breaks or the AI makes a mistake?',
+    a: 'Every workflow we build includes error-handling logic, human-approval checkpoints for sensitive actions, and monitoring alerts. Nothing mission-critical runs fully "dark." We also provide ongoing support and quarterly reviews to refine workflows as your business evolves.',
+  },
+  {
+    q: 'Is there a minimum size business that makes sense for AI automation?',
+    a: 'Not really — even a solo operator or small team of 3–5 can see dramatic time savings from the right automation. The ROI threshold is lower than most people think. If you\'re spending more than 5 hours a week on a repeatable task, there\'s almost certainly a workflow that can reclaim that time at a fraction of the cost.',
+  },
+];
+
 const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onSubscribe, onBookConsultation }) => (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -2258,6 +2378,8 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           </div>
         </div>
       </RevealOnScroll>
+
+      <FAQSection items={BROKER_FAQS} label="Broker Questions, Answered" />
 
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
@@ -2415,6 +2537,8 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         </section>
       </RevealOnScroll>
 
+      <FAQSection items={SOCIAL_FAQS} label="Social Media Questions, Answered" />
+
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
   </div>
@@ -2526,6 +2650,8 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
           </div>
         </div>
       </RevealOnScroll>
+
+      <FAQSection items={AI_FAQS} label="AI Workflow Questions, Answered" />
 
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
