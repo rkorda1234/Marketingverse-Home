@@ -2315,28 +2315,28 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           <div className="grid md:grid-cols-3 gap-10 items-end justify-items-center">
             {[
               {
-                id: '1Abf2__wlo8ccDfC8X7bc2MLujIr79HGc',
+                vimeoId: '1173074414',
                 tag: 'Fun & Elegant',
                 tagColor: 'text-rose-500 bg-rose-50 border-rose-200',
                 glow: 'rgba(244,114,182,0.2)',
                 featured: false,
               },
               {
-                id: '1ls8IYvJfkq30iVDc01difJNUKXlCab0P',
+                vimeoId: '1173074396',
                 tag: 'Bold & Witty',
                 tagColor: 'text-orange-500 bg-orange-50 border-orange-200',
                 glow: 'rgba(249,115,22,0.22)',
                 featured: true,
               },
               {
-                id: '1YIWmwKzJEmo5i0gfVzqL_2pUsjmcCyB6',
+                vimeoId: '1173074432',
                 tag: 'Polished & Professional',
                 tagColor: 'text-slate-600 bg-slate-50 border-slate-200',
                 glow: 'rgba(100,116,139,0.18)',
                 featured: false,
               },
-            ].map(({ id, tag, tagColor, glow, featured }) => (
-              <div key={id} className={`flex flex-col items-center gap-4 w-full max-w-[240px] ${featured ? 'md:-mt-10' : ''}`}>
+            ].map(({ vimeoId, tag, tagColor, glow, featured }) => (
+              <div key={vimeoId} className={`flex flex-col items-center gap-4 w-full max-w-[240px] ${featured ? 'md:-mt-10' : ''}`}>
                 <div
                   className="relative w-full overflow-hidden rounded-2xl"
                   style={{
@@ -2345,12 +2345,11 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
                   }}
                 >
                   <iframe
-                    src={`https://drive.google.com/file/d/${id}/preview`}
-                    allow="autoplay"
+                    src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
+                    allow="autoplay; fullscreen"
                     className="absolute inset-0 w-full h-full"
                     frameBorder={0}
                     title={tag}
-                    loading="lazy"
                   />
                 </div>
                 <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${tagColor}`}>{tag}</span>
