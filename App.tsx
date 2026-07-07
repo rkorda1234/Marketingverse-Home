@@ -1632,25 +1632,106 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
   );
 };
 
-const Footer: React.FC<{ onOpenAdmin: () => void }> = ({ onOpenAdmin }) => (
-  <footer className="bg-black text-white py-12 border-t border-white/5 relative z-10">
-    <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div className="flex items-center gap-6">
-        <div className="text-xl font-bold tracking-tighter text-white">
-          Marketing<span className="font-serif font-normal" style={{ fontStyle: 'italic' }}>verse</span>
+const Footer: React.FC<{ onOpenAdmin: () => void; onNavigate: (v: string) => void }> = ({ onOpenAdmin, onNavigate }) => (
+  <footer className="bg-black text-white pt-16 pb-10 border-t border-white/5 relative z-10">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="flex flex-col md:flex-row justify-between gap-10 mb-12">
+        {/* Brand */}
+        <div className="flex flex-col gap-4 max-w-xs">
+          <div className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+            Marketing<span className="font-serif font-normal" style={{ fontStyle: 'italic' }}>verse</span>
+            <button onClick={onOpenAdmin} className="text-neutral-800 hover:text-neutral-500 transition-colors ml-1" title="Admin Portal">
+              <Lock size={12} />
+            </button>
+          </div>
+          <p className="text-neutral-500 text-sm leading-relaxed">AI-native growth studio helping brokers, agents, and brands dominate their market.</p>
+          <div className="flex gap-4 text-neutral-500 mt-1">
+            <a href="https://www.facebook.com/themarketingverse" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Facebook size={18} /></a>
+            <a href="https://www.instagram.com/the.marketingverse" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Instagram size={18} /></a>
+          </div>
         </div>
-        <button onClick={onOpenAdmin} className="text-neutral-800 hover:text-neutral-500 transition-colors" title="Admin Portal">
-          <Lock size={14} />
-        </button>
+        {/* Nav links */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm">
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-1">Services</span>
+            {[['Social Media', 'social'], ['Broker CRM', 'crm'], ['AI Integrations', 'integrations']].map(([label, view]) => (
+              <button key={view} onClick={() => onNavigate(view)} className="text-neutral-400 hover:text-white transition-colors text-left">{label}</button>
+            ))}
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-1">Company</span>
+            {[['Blog', 'blog'], ['Projects', 'projects'], ['Contact', 'contact']].map(([label, view]) => (
+              <button key={view} onClick={() => onNavigate(view)} className="text-neutral-400 hover:text-white transition-colors text-left">{label}</button>
+            ))}
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-1">Legal</span>
+            <button onClick={() => onNavigate('privacy-policy')} className="text-neutral-400 hover:text-white transition-colors text-left">Privacy Policy</button>
+            <button onClick={() => onNavigate('terms-and-conditions')} className="text-neutral-400 hover:text-white transition-colors text-left">Terms & Conditions</button>
+          </div>
+        </div>
       </div>
-      <div className="flex gap-6 text-neutral-400">
-        <Facebook size={18} className="hover:text-white cursor-pointer" />
-        <Instagram size={18} className="hover:text-white cursor-pointer" />
+      <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-neutral-600 text-xs">
+        <span>© {new Date().getFullYear()} Marketingverse. All rights reserved.</span>
+        <div className="flex gap-4">
+          <button onClick={() => onNavigate('privacy-policy')} className="hover:text-neutral-400 transition-colors">Privacy Policy</button>
+          <button onClick={() => onNavigate('terms-and-conditions')} className="hover:text-neutral-400 transition-colors">Terms & Conditions</button>
+        </div>
       </div>
-      <div className="text-neutral-500 text-sm">© {new Date().getFullYear()} Marketingverse.</div>
     </div>
   </footer>
 );
+
+/* ── Legal Pages ──────────────────────────────────────────────── */
+const LegalPage: React.FC<{ title: string; lastUpdated: string; sections: { heading: string; body: string }[] }> = ({ title, lastUpdated, sections }) => (
+  <div className="animate-fade-in relative z-10 pt-32 pb-24">
+    <div className="max-w-3xl mx-auto px-4">
+      <RevealOnScroll>
+        <div className="mb-12">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Legal</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">{title}</h1>
+          <p className="text-neutral-400 text-sm">Last updated: {lastUpdated}</p>
+        </div>
+      </RevealOnScroll>
+      <div className="space-y-10">
+        {sections.map(({ heading, body }) => (
+          <RevealOnScroll key={heading}>
+            <div className="mv-glass rounded-3xl p-8">
+              <h2 className="text-lg font-bold mb-3">{heading}</h2>
+              <p className="text-neutral-600 leading-relaxed text-[15px] whitespace-pre-line">{body}</p>
+            </div>
+          </RevealOnScroll>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const PRIVACY_SECTIONS = [
+  { heading: '1. Information We Collect', body: 'We collect information you provide directly to us, such as when you fill out a contact form, book a consultation, or subscribe to our services. This may include your name, email address, phone number, company name, and any other information you choose to share.\n\nWe also automatically collect certain information when you visit our website, including your IP address, browser type, operating system, referring URLs, and pages viewed.' },
+  { heading: '2. How We Use Your Information', body: 'We use the information we collect to:\n• Provide, maintain, and improve our services\n• Respond to your inquiries and fulfill your requests\n• Send you marketing communications (with your consent)\n• Analyze usage patterns to enhance user experience\n• Comply with legal obligations' },
+  { heading: '3. Information Sharing', body: 'We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website and delivering our services, provided they agree to keep your information confidential.' },
+  { heading: '4. Cookies & Tracking Technologies', body: 'We use cookies and similar tracking technologies to enhance your experience on our site. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, some features of our services may not function properly without cookies.' },
+  { heading: '5. Data Security', body: 'We implement industry-standard security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.' },
+  { heading: '6. Your Rights', body: 'Depending on your location, you may have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at hello@the-marketingverse.com. We will respond to your request within 30 days.' },
+  { heading: '7. Third-Party Links', body: 'Our website may contain links to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.' },
+  { heading: '8. Changes to This Policy', body: 'We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.' },
+  { heading: '9. Contact Us', body: 'If you have questions about this Privacy Policy, please contact us at:\n\nMarketingverse\nhello@the-marketingverse.com\nhome.the-marketingverse.com' },
+];
+
+const TERMS_SECTIONS = [
+  { heading: '1. Acceptance of Terms', body: 'By accessing or using the Marketingverse website and services, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services.' },
+  { heading: '2. Services', body: 'Marketingverse provides social media management, broker CRM solutions, AI workflow integrations, and related marketing services. The specific scope, deliverables, and timelines for services are defined in individual service agreements or proposals agreed upon between Marketingverse and the client.' },
+  { heading: '3. Client Responsibilities', body: 'You agree to:\n• Provide accurate and complete information as required for service delivery\n• Maintain the confidentiality of any account credentials\n• Use our services only for lawful purposes\n• Not attempt to interfere with the proper functioning of our platform\n• Obtain all necessary rights and permissions for content you provide to us' },
+  { heading: '4. Intellectual Property', body: 'All content, designs, and materials created by Marketingverse remain our intellectual property until full payment is received. Upon receipt of full payment, ownership of deliverables transfers to the client as specified in the service agreement. Our proprietary tools, systems, and processes remain the exclusive property of Marketingverse.' },
+  { heading: '5. Payment Terms', body: 'Payment terms are outlined in individual service agreements. Late payments may incur interest charges. Marketingverse reserves the right to pause or terminate services for accounts with outstanding balances. All fees are non-refundable unless otherwise specified in writing.' },
+  { heading: '6. Confidentiality', body: 'Both parties agree to keep confidential any proprietary information shared during the course of the business relationship. This obligation survives the termination of any service agreement.' },
+  { heading: '7. Limitation of Liability', body: 'Marketingverse shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of our services. Our total liability shall not exceed the fees paid by the client in the three months preceding the claim.' },
+  { heading: '8. Termination', body: 'Either party may terminate a service agreement with written notice as specified in that agreement. Upon termination, you remain responsible for any fees owed for services rendered up to the termination date.' },
+  { heading: '9. Governing Law', body: 'These Terms and Conditions are governed by the laws of the State of Florida, United States. Any disputes shall be resolved in the courts of Miami-Dade County, Florida.' },
+  { heading: '10. Changes to Terms', body: 'We reserve the right to modify these Terms at any time. Continued use of our services after changes are posted constitutes your acceptance of the revised terms.' },
+  { heading: '11. Contact Us', body: 'For questions about these Terms and Conditions, contact us at:\n\nMarketingverse\nhello@the-marketingverse.com\nhome.the-marketingverse.com' },
+];
 
 // --- Voice Greeting ---
 // Add your audio file URLs here. A random one plays once per session when
@@ -3499,6 +3580,10 @@ const App: React.FC = () => {
         );
       case 'projects':
         return <SuccessCasesView />;
+      case 'privacy-policy':
+        return <LegalPage title="Privacy Policy" lastUpdated="July 7, 2026" sections={PRIVACY_SECTIONS} />;
+      case 'terms-and-conditions':
+        return <LegalPage title="Terms & Conditions" lastUpdated="July 7, 2026" sections={TERMS_SECTIONS} />;
       default:
         return <HomeView changeView={navigate} onBookConsultation={() => setIsBookingOpen(true)} />;
     }
@@ -3516,7 +3601,7 @@ const App: React.FC = () => {
         </ErrorBoundary>
       </main>
 
-      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
+      <Footer onOpenAdmin={() => setIsAdminOpen(true)} onNavigate={navigate} />
       
       <BackToTop />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
