@@ -1865,30 +1865,6 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
           
-          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-4 mt-8 px-4">
-            <button 
-              onClick={() => changeView('social-agents')} 
-              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
-            >
-              <Instagram size={20} className="group-hover:text-pink-400 transition-colors" />
-              Social Media
-            </button>
-            <button 
-              onClick={() => changeView('crm')} 
-              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
-            >
-              <Building2 size={20} className="group-hover:text-blue-600 transition-colors" />
-              Broker CRM
-            </button>
-            <button 
-              onClick={() => changeView('integrations')} 
-              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
-            >
-              <Bot size={20} className="group-hover:text-purple-600 transition-colors" />
-              AI Systems
-            </button>
-          </div>
-          
           <div className="mt-8">
              <button onClick={onBookConsultation} className="text-sm font-semibold text-neutral-400 hover:text-black flex items-center gap-2 mx-auto transition-colors group">
                  Not sure what you need? Book a Strategy Call <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -1898,25 +1874,89 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
         </RevealOnScroll>
       </section>
 
-      <section className="py-20">
+      {/* 4-Step System Section */}
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {SERVICES.map(s => (
-              <div
-                key={s.id}
-                onClick={() => handleServiceClick(s.id)}
-                data-cursor="hover"
-                className="mv-glass mv-lift p-8 rounded-3xl cursor-pointer group"
-              >
-                <div className="mb-6 w-12 h-12 rounded-2xl bg-neutral-900 text-white flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300"><ServiceIcon icon={s.icon} /></div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-black">{s.title}</h3>
-                <p className="text-neutral-600 mb-6">{s.description}</p>
-                <div className="flex items-center gap-2 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                  Learn More <ArrowRight size={14} />
+          <RevealOnScroll>
+            <div className="text-center mb-16">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">The Marketingverse Method</span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                How You Go From <span className="font-serif italic font-normal">Invisible</span><br className="hidden md:block" /> to <span className="font-serif italic font-normal">Unforgettable</span>
+              </h2>
+              <p className="text-neutral-500 max-w-xl mx-auto text-lg">Four moves. No fluff. This is how brands stop chasing clients and start attracting them on repeat.</p>
+            </div>
+          </RevealOnScroll>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                step: '01',
+                icon: <Wand2 size={22} />,
+                color: 'from-violet-500/10 to-purple-500/5',
+                accent: 'text-violet-600',
+                ring: 'ring-violet-200',
+                title: 'Clean Up Your Brand',
+                subtitle: 'Make it feel like you.',
+                body: 'Before you post a single thing, your brand needs to look, sound, and feel coherent. We align your visuals, voice, and story so that the moment someone lands on your page — they feel something. Because emotion is what converts.',
+              },
+              {
+                step: '02',
+                icon: <TrendingUp size={22} />,
+                color: 'from-sky-500/10 to-blue-500/5',
+                accent: 'text-sky-600',
+                ring: 'ring-sky-200',
+                title: 'Show Up Every Day',
+                subtitle: 'Feed the algorithm. Build the audience.',
+                body: "Consistency isn't optional — it's the whole game. Regular, high-quality content warms up the algorithm, grows your reach organically, and keeps you top-of-mind. You don't need to go viral. You need to show up.",
+              },
+              {
+                step: '03',
+                icon: <Target size={22} />,
+                color: 'from-rose-500/10 to-pink-500/5',
+                accent: 'text-rose-600',
+                ring: 'ring-rose-200',
+                title: 'Run Smarter Ads',
+                subtitle: "Amplify what's already working.",
+                body: "Once the algorithm knows you and your audience is warm, ads become a multiplier — not a gamble. We run targeted digital campaigns that bring the right people into your world at the right time, with a return that actually makes sense.",
+              },
+              {
+                step: '04',
+                icon: <Heart size={22} />,
+                color: 'from-emerald-500/10 to-green-500/5',
+                accent: 'text-emerald-600',
+                ring: 'ring-emerald-200',
+                title: 'Keep Them Close',
+                subtitle: 'Leads today. Loyal clients forever.',
+                body: "Social media, email, DMs, CRM — every channel working together to nurture your leads and keep your current clients engaged. The brands that win long-term aren't just good at getting attention. They're great at keeping it.",
+              },
+            ].map(({ step, icon, color, accent, ring, title, subtitle, body }, i) => (
+              <RevealOnScroll key={step} delay={i * 80}>
+                <div className={`mv-glass mv-lift rounded-3xl p-7 h-full flex flex-col group relative overflow-hidden`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl`} />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className={`w-11 h-11 rounded-2xl bg-white ring-1 ${ring} flex items-center justify-center shadow-sm ${accent} group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300`}>
+                        {icon}
+                      </div>
+                      <span className="text-[11px] font-bold tracking-[0.15em] text-neutral-300 mt-1">{step}</span>
+                    </div>
+                    <h3 className="text-lg font-bold mb-1 text-neutral-900">{title}</h3>
+                    <p className={`text-xs font-semibold uppercase tracking-wider mb-4 ${accent}`}>{subtitle}</p>
+                    <p className="text-neutral-500 text-sm leading-relaxed flex-1">{body}</p>
+                  </div>
                 </div>
-              </div>
+              </RevealOnScroll>
             ))}
           </div>
+
+          <RevealOnScroll delay={320}>
+            <div className="text-center mt-12">
+              <button onClick={onBookConsultation} className="inline-flex items-center gap-3 px-8 py-4 bg-neutral-900 text-white rounded-2xl font-bold hover:bg-black transition-all hover:scale-105 shadow-lg text-sm tracking-wide">
+                <Sparkles size={16} />
+                Let's Build Your System
+              </button>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
