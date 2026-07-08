@@ -1294,21 +1294,22 @@ const WorkflowIcon = ({ icon }: { icon: string }) => {
 
 const ConsultationCTA: React.FC<{ onBookConsultation: () => void }> = ({ onBookConsultation }) => (
   <RevealOnScroll delay={100}>
-    <div className="w-full py-32 bg-neutral-950 rounded-[2.5rem] relative overflow-hidden mt-20">
-      {/* Colored blob glows */}
-      <div className="absolute top-0 left-1/3 w-80 h-80 bg-indigo-600/30 rounded-full blur-[80px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-violet-600/25 rounded-full blur-[80px] pointer-events-none" />
-      {/* Dot grid */}
-      <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+    <div className="w-full py-24 mv-glass rounded-[2.5rem] relative overflow-hidden mt-20 text-center px-8">
+      <div className="absolute top-0 left-1/3 w-80 h-80 bg-indigo-200/50 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-violet-200/40 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
-      <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-        <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white">Ready To Take It <span className="font-serif italic font-normal text-violet-300">Up A Notch?</span></h2>
-        <p className="text-xl text-neutral-400 mb-12 max-w-2xl mx-auto">
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-neutral-900">
+          Ready To Take It <span className="font-serif italic font-normal text-violet-500">Up A Notch?</span>
+        </h2>
+        <p className="text-xl text-neutral-500 mb-12 max-w-2xl mx-auto">
           Book a free consultation to discuss your specific needs and find the perfect strategy for you.
         </p>
         <button
           onClick={onBookConsultation}
-          className="px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:bg-neutral-100 transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl"
+          data-cursor="magic"
+          className="px-10 py-5 bg-neutral-950 text-white rounded-full font-bold text-lg hover:bg-black transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl"
         >
           Schedule Consultation <ArrowRight size={20} />
         </button>
