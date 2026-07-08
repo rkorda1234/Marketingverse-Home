@@ -1865,6 +1865,30 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 leading-relaxed">Scaling brands with <span className="font-serif italic">AI storytelling</span> and high-performance social workflows.</p>
           
+          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-4 mt-8 px-4">
+            <button
+              onClick={() => changeView('social-agents')}
+              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
+            >
+              <Instagram size={20} className="group-hover:text-pink-400 transition-colors" />
+              Social Media
+            </button>
+            <button
+              onClick={() => changeView('crm')}
+              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
+            >
+              <Building2 size={20} className="group-hover:text-blue-600 transition-colors" />
+              Broker Engine
+            </button>
+            <button
+              onClick={() => changeView('integrations')}
+              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
+            >
+              <Bot size={20} className="group-hover:text-purple-600 transition-colors" />
+              AI Automation
+            </button>
+          </div>
+
           <div className="mt-8">
              <button onClick={onBookConsultation} className="text-sm font-semibold text-neutral-400 hover:text-black flex items-center gap-2 mx-auto transition-colors group">
                  Not sure what you need? Book a Strategy Call <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
