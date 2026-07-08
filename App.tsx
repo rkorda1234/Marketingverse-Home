@@ -1475,14 +1475,59 @@ const SUCCESS_CASES: SuccessCase[] = [
     niche: 'Real Estate Agent',
     period: 'Apr – Jun 2025',
     metrics: [
-      { label: 'Instagram Views',       growth: '+44.8%',  platform: 'Instagram' },
-      { label: 'Instagram Reach',       growth: '+562.1%', platform: 'Instagram' },
-      { label: 'Instagram Interactions',growth: '+168.4%', platform: 'Instagram' },
-      { label: 'Facebook Views',        growth: '+210%',   platform: 'Facebook'  },
-      { label: 'Facebook Viewers',      growth: '+327.8%', platform: 'Facebook'  },
+      { label: 'Instagram Views',        growth: '+44.8%',  platform: 'Instagram' },
+      { label: 'Instagram Reach',        growth: '+562.1%', platform: 'Instagram' },
+      { label: 'Instagram Interactions', growth: '+168.4%', platform: 'Instagram' },
+      { label: 'Facebook Views',         growth: '+210%',   platform: 'Facebook'  },
+      { label: 'Facebook Viewers',       growth: '+327.8%', platform: 'Facebook'  },
     ],
   },
-  // Add more clients here as SuccessCase objects
+  {
+    client: 'Mauricio V.',
+    niche: 'Real Estate Agent',
+    period: 'Early Growth · Apr – Jun 2025',
+    metrics: [
+      { label: 'Facebook Views',         growth: '1.6K ↑273%',  platform: 'Facebook'  },
+      { label: 'Facebook Viewers',       growth: '1.4K ↑396%',  platform: 'Facebook'  },
+      { label: 'Instagram Views',        growth: '5.5K',         platform: 'Instagram' },
+      { label: 'Instagram Reach',        growth: '1.8K ↑29%',   platform: 'Instagram' },
+      { label: 'Content Interactions',   growth: '597 ↑20%',    platform: 'Instagram' },
+    ],
+  },
+  {
+    client: 'Mauricio V.',
+    niche: 'Real Estate Agent',
+    period: 'Growth Spike · May – Jun 2025',
+    metrics: [
+      { label: 'Facebook Views',         growth: '5.8K ↑325%',  platform: 'Facebook'  },
+      { label: 'Facebook Viewers',       growth: '4.7K ↑336%',  platform: 'Facebook'  },
+      { label: 'Instagram Views',        growth: '14.3K ↑20%',  platform: 'Instagram' },
+      { label: 'Instagram Reach',        growth: '3.9K ↑30%',   platform: 'Instagram' },
+    ],
+  },
+  {
+    client: 'Judith A.',
+    niche: 'Real Estate Agent',
+    period: 'Launch Phase · Oct – Jan',
+    metrics: [
+      { label: 'Facebook Views',         growth: '106 ↑—',      platform: 'Facebook'  },
+      { label: 'Facebook Reach',         growth: '32 ↑256%',    platform: 'Facebook'  },
+      { label: 'Facebook Visits',        growth: '5 ↑150%',     platform: 'Facebook'  },
+      { label: 'Instagram Views',        growth: '798 ↑418%',   platform: 'Instagram' },
+      { label: 'Instagram Reach',        growth: '397 ↑1.8K%',  platform: 'Instagram' },
+    ],
+  },
+  {
+    client: 'Judith A.',
+    niche: 'Real Estate Agent',
+    period: 'Viral Moment · Feb – Mar 2025',
+    metrics: [
+      { label: 'Instagram Reach',        growth: '106.7K',       platform: 'Instagram' },
+      { label: 'Reach Growth',           growth: '+11,400%',     platform: 'Instagram' },
+      { label: 'Instagram Views',        growth: '125.8K',       platform: 'Instagram' },
+      { label: 'Views Growth',           growth: '+2,000%',      platform: 'Instagram' },
+    ],
+  },
 ];
 
 const PLATFORM_COLORS: Record<string, string> = {
@@ -1503,9 +1548,9 @@ const SuccessCasesView: React.FC = () => (
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-10 justify-items-center [&>*]:w-full max-w-4xl mx-auto">
-        {SUCCESS_CASES.map((sc) => (
-          <RevealOnScroll key={sc.client} className={SUCCESS_CASES.length % 2 !== 0 && sc === SUCCESS_CASES[SUCCESS_CASES.length - 1] ? 'md:col-span-2 md:max-w-[calc(50%-1.25rem)]' : ''}>
+      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {SUCCESS_CASES.map((sc, idx) => (
+          <RevealOnScroll key={`${sc.client}-${idx}`} delay={idx * 60} className={SUCCESS_CASES.length % 2 !== 0 && idx === SUCCESS_CASES.length - 1 ? 'md:col-span-2 md:max-w-[calc(50%-1rem)] md:mx-auto' : ''}>
             <div className="bg-neutral-50 border border-neutral-100 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start justify-between mb-8">
                 <div>
