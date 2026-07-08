@@ -3078,176 +3078,112 @@ const ThankYouView: React.FC = () => (
   </div>
 );
 
-const ContactView: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+const ContactView: React.FC = () => (
+  <div className="animate-fade-in py-20 relative z-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ASubject: ${formData.subject}%0D%0AMessage: ${formData.message}`;
-    window.location.href = `mailto:rkorda@the-marketingverse.com?subject=Contact Form: ${formData.subject}&body=${body}`;
-    setSubmitted(true);
-  };
-
-  return (
-    <div className="animate-fade-in py-20 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <RevealOnScroll>
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6">Let's Build Something Great.</h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-              Whether you have a question about our services, pricing, or just want to talk strategy, we're here to help.
-            </p>
-          </div>
-        </RevealOnScroll>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <RevealOnScroll delay={100}>
-            <div className="bg-white/80 backdrop-blur-md p-10 rounded-[2.5rem] border border-neutral-100 shadow-xl">
-              <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                <MessageSquare className="text-blue-600" /> Send a Message
-              </h3>
-              {submitted ? (
-                <div className="bg-green-50 text-green-800 p-8 rounded-2xl text-center">
-                  <CheckCircle2 size={48} className="mx-auto mb-4" />
-                  <h4 className="text-xl font-bold mb-2">Message Sent!</h4>
-                  <p>We'll get back to you within 24 hours.</p>
-                  <button onClick={() => setSubmitted(false)} className="mt-6 text-sm font-bold underline">Send another</button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Name</label>
-                      <input 
-                        required 
-                        type="text" 
-                        value={formData.name}
-                        onChange={e => setFormData({...formData, name: e.target.value})}
-                        className="w-full p-4 bg-white rounded-xl border border-neutral-200 focus:ring-2 focus:ring-black focus:outline-none transition-all"
-                        placeholder="John Doe" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Email</label>
-                      <input 
-                        required 
-                        type="email" 
-                        value={formData.email}
-                        onChange={e => setFormData({...formData, email: e.target.value})}
-                        className="w-full p-4 bg-white rounded-xl border border-neutral-200 focus:ring-2 focus:ring-black focus:outline-none transition-all"
-                        placeholder="john@example.com" 
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Subject</label>
-                    <input 
-                      required 
-                      type="text" 
-                      value={formData.subject}
-                      onChange={e => setFormData({...formData, subject: e.target.value})}
-                      className="w-full p-4 bg-white rounded-xl border border-neutral-200 focus:ring-2 focus:ring-black focus:outline-none transition-all"
-                      placeholder="Project Inquiry..." 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Message</label>
-                    <textarea 
-                      required 
-                      value={formData.message}
-                      onChange={e => setFormData({...formData, message: e.target.value})}
-                      className="w-full p-4 bg-white rounded-xl border border-neutral-200 focus:ring-2 focus:ring-black focus:outline-none transition-all h-40 resize-none"
-                      placeholder="Tell us about your project..." 
-                    />
-                  </div>
-                  <button 
-                    type="submit" 
-                    data-cursor="magic"
-                    className="w-full py-5 bg-black text-white rounded-xl font-bold text-lg hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-lg hover:scale-[1.02]"
-                  >
-                    Send Message <ArrowRight size={20} />
-                  </button>
-                </form>
-              )}
-            </div>
-          </RevealOnScroll>
-
-          <RevealOnScroll delay={200}>
-            <div className="space-y-10">
-              <div className="bg-neutral-900 text-white p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-                  <div className="space-y-8">
-                    <a href="mailto:rkorda@the-marketingverse.com" className="flex items-center gap-6 group/item cursor-pointer hover:opacity-80 transition-opacity">
-                      <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover/item:bg-white group-hover/item:text-black transition-colors shrink-0">
-                        <Mail size={20} />
-                      </div>
-                      <div>
-                        <p className="text-neutral-400 text-xs font-bold uppercase tracking-widest mb-1">Email Us</p>
-                        <p className="text-xl font-bold break-all">rkorda@the-marketingverse.com</p>
-                      </div>
-                    </a>
-                    <a href="https://maps.google.com/?q=8400+NW+33rd+St+Suite+104+Doral+FL+33122" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group/item cursor-pointer hover:opacity-80 transition-opacity">
-                      <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover/item:bg-white group-hover/item:text-black transition-colors shrink-0">
-                        <MapPin size={20} />
-                      </div>
-                      <div>
-                        <p className="text-neutral-400 text-xs font-bold uppercase tracking-widest mb-1">HQ Location</p>
-                        <p className="text-xl font-bold leading-tight">8400 NW 33rd. St, Suite 104,<br/> Doral, FL 33122, United States</p>
-                      </div>
-                    </a>
-                    <a href="tel:+17867053154" className="flex items-center gap-6 group/item cursor-pointer hover:opacity-80 transition-opacity">
-                      <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover/item:bg-white group-hover/item:text-black transition-colors shrink-0">
-                        <Phone size={20} />
-                      </div>
-                      <div>
-                        <p className="text-neutral-400 text-xs font-bold uppercase tracking-widest mb-1">Support</p>
-                        <p className="text-xl font-bold">+1 (786) 705-3154</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl border border-neutral-100">
-                <h4 className="font-bold text-lg mb-4">Connect on Social</h4>
-                <div className="flex gap-4">
-                  {[
-                    { icon: <Instagram size={20} />, label: "Instagram" },
-                    { icon: <Linkedin size={20} />, label: "LinkedIn" },
-                    { icon: <Twitter size={20} />, label: "Twitter/X" },
-                    { icon: <Youtube size={20} />, label: "YouTube" }
-                  ].map((social, i) => (
-                    <button key={i} className="flex-1 py-4 bg-white border border-neutral-200 rounded-xl flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-all group">
-                      {social.icon}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </RevealOnScroll>
+      {/* Header */}
+      <RevealOnScroll>
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Get In Touch</span>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+            Let's Build Something <span className="font-serif italic font-normal">Great.</span>
+          </h2>
+          <p className="text-xl text-neutral-500 max-w-xl mx-auto leading-relaxed">
+            Whether you have a question about our services, pricing, or just want to talk strategy — we're here.
+          </p>
         </div>
-        
-        <RevealOnScroll delay={300}>
-           <div className="mt-16 rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-200 h-[450px] relative w-full">
-              <iframe 
-                src="https://maps.google.com/maps?q=8400%20NW%2033rd%20St%20Suite%20104%20Doral%20FL%2033122&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                width="100%" 
-                height="100%" 
-                style={{border:0}} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Marketingverse HQ Map"
-              ></iframe>
-           </div>
-        </RevealOnScroll>
-      </div>
+      </RevealOnScroll>
+
+      {/* Contact cards row */}
+      <RevealOnScroll>
+        <div className="grid sm:grid-cols-3 gap-5 mb-10">
+          {[
+            {
+              icon: <Mail size={22} />,
+              label: 'Email Us',
+              value: 'hello@the-marketingverse.com',
+              href: 'mailto:hello@the-marketingverse.com',
+            },
+            {
+              icon: <Phone size={22} />,
+              label: 'Call Us',
+              value: '+1 (786) 705-3154',
+              href: 'tel:+17867053154',
+            },
+            {
+              icon: <MapPin size={22} />,
+              label: 'HQ Location',
+              value: '8400 NW 33rd St, Suite 104\nDoral, FL 33122',
+              href: 'https://maps.google.com/?q=8400+NW+33rd+St+Suite+104+Doral+FL+33122',
+              external: true,
+            },
+          ].map(({ icon, label, value, href, external }) => (
+            <a
+              key={label}
+              href={href}
+              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className="mv-glass mv-lift rounded-3xl p-8 flex flex-col gap-4 group"
+            >
+              <div className="p-3 rounded-2xl bg-neutral-100 text-neutral-500 w-fit group-hover:bg-neutral-900 group-hover:text-white transition-all duration-300">
+                {icon}
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-1">{label}</p>
+                <p className="font-semibold text-neutral-900 leading-snug whitespace-pre-line">{value}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </RevealOnScroll>
+
+      {/* Social row */}
+      <RevealOnScroll delay={80}>
+        <div className="mv-glass rounded-3xl p-8 mb-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-1">Connect on Social</p>
+            <p className="font-semibold text-neutral-700">Follow us for daily insights and behind-the-scenes content.</p>
+          </div>
+          <div className="flex gap-3">
+            {[
+              { icon: <Instagram size={20} />, href: 'https://www.instagram.com/the.marketingverse' },
+              { icon: <Facebook size={20} />, href: 'https://www.facebook.com/themarketingverse' },
+              { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/company/marketingverse' },
+              { icon: <Youtube size={20} />, href: 'https://www.youtube.com/@marketingverse' },
+            ].map(({ icon, href }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-500 hover:bg-neutral-900 hover:text-white transition-all duration-300"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Map */}
+      <RevealOnScroll delay={160}>
+        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-200 h-[420px] w-full">
+          <iframe
+            src="https://maps.google.com/maps?q=8400%20NW%2033rd%20St%20Suite%20104%20Doral%20FL%2033122&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Marketingverse HQ Map"
+          />
+        </div>
+      </RevealOnScroll>
+
     </div>
-  );
-};
+  </div>
+);
 
 // ── SEO ──────────────────────────────────────────────────────────────────────
 
