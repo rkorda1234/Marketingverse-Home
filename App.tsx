@@ -1258,7 +1258,9 @@ const BookingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOp
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in" onClick={onClose}>
       <div className="bg-white w-full max-w-4xl h-[90vh] rounded-2xl overflow-hidden relative shadow-2xl flex flex-col" onClick={e => e.stopPropagation()}>
         <button onClick={onClose} className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-neutral-100 transition-colors border border-neutral-200"><X size={24} /></button>
-        <iframe src="https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd" className="w-full h-full border-none" title="Booking Consultation" />
+        <div className="w-full flex-1 overflow-hidden">
+          <iframe src="https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd" className="w-full border-none" style={{ height: 'calc(100% + 4px)', marginTop: '-4px' }} title="Booking Consultation" />
+        </div>
       </div>
     </div>
   );
