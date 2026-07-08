@@ -1868,7 +1868,7 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
           <div className="flex flex-col md:flex-row flex-wrap justify-center gap-4 mt-8 px-4">
             <button 
               onClick={() => changeView('social-agents')} 
-              className="px-8 py-4 bg-black text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-lg group"
+              className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-neutral-200 text-black rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-neutral-50 hover:border-black hover:scale-105 transition-all shadow-sm group"
             >
               <Instagram size={20} className="group-hover:text-pink-400 transition-colors" />
               Social Media
