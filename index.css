@@ -37,6 +37,16 @@ body {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 34px 70px -28px rgba(15, 23, 42, 0.4);
 }
 
+/* Logo purple glow pulse */
+@keyframes mv-logo-glow {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(139,92,246,0)) drop-shadow(0 0 0px rgba(99,102,241,0)); }
+  40%       { filter: drop-shadow(0 0 8px rgba(139,92,246,.55)) drop-shadow(0 0 18px rgba(99,102,241,.35)); }
+  60%       { filter: drop-shadow(0 0 10px rgba(168,85,247,.6))  drop-shadow(0 0 22px rgba(139,92,246,.4)); }
+}
+.mv-logo-glow {
+  animation: mv-logo-glow 4s ease-in-out infinite;
+}
+
 /* Shimmer text */
 @keyframes mv-shimmer {
   0%   { background-position: 200% center; }

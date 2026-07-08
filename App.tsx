@@ -1623,9 +1623,9 @@ const NavBar: React.FC<{ active: string; setView: (v: string) => void; onBookCon
     <nav className="sticky top-0 z-50 mv-glass border-b border-white/40" style={{ boxShadow: '0 1px 24px -16px rgba(15,23,42,.4)' }}>
       <div className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-400 transition-all duration-100" style={{ width: `${scrollPct}%` }} />
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-        {/* Text logo matching DC design */}
-        <button onClick={() => navigate('home')} data-cursor="magic" className="text-2xl font-bold tracking-tighter">
-          Marketing<span className="font-serif font-normal mv-shimmer inline-block pr-1">verse</span>
+        {/* Image logo with purple glow animation */}
+        <button onClick={() => navigate('home')} data-cursor="magic" className="flex items-center">
+          <img src="/logo.png" alt="Marketingverse" className="h-10 w-auto mv-logo-glow" />
         </button>
 
         {/* Desktop nav */}
