@@ -2242,6 +2242,47 @@ const PhoneCarousel: React.FC = () => {
 };
 
 /* ── FAQ Section ─────────────────────────────────────────────── */
+const PresentationBanner: React.FC<{ href: string; eyebrow?: string }> = ({ href, eyebrow = 'Dig Deeper' }) => (
+  <RevealOnScroll>
+    <div className="mb-20">
+      <div className="mv-glass rounded-[2.5rem] px-10 py-14 md:px-16 relative overflow-hidden">
+        {/* subtle dot grid */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+        {/* soft blob */}
+        <div className="absolute -top-16 -right-16 w-72 h-72 bg-indigo-200/40 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-violet-200/30 rounded-full blur-[70px] pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 rounded-2xl bg-white/80 border border-white/70 shadow-sm flex items-center justify-center shrink-0">
+              <Sparkles size={28} className="text-indigo-500" />
+            </div>
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-1 block">{eyebrow}</span>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
+                Interactive <span className="font-serif italic font-normal">Presentation</span>
+              </h3>
+              <p className="text-neutral-500 mt-1 text-sm max-w-md">
+                Walk through a fully interactive deck built to show you exactly how this works — at your own pace, in under 10 minutes.
+              </p>
+            </div>
+          </div>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="magic"
+            className="shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-neutral-900 text-white rounded-2xl font-bold hover:bg-black transition-all hover:scale-105 shadow-lg text-sm tracking-wide whitespace-nowrap"
+          >
+            <Sparkles size={17} />
+            Open Presentation
+          </a>
+        </div>
+      </div>
+    </div>
+  </RevealOnScroll>
+);
+
 const FAQSection: React.FC<{ items: { q: string; a: string }[]; label?: string }> = ({ items, label = 'Questions, Answered' }) => {
   const [open, setOpen] = useState<number | null>(null);
   return (
@@ -2610,6 +2651,8 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
         </div>
       </RevealOnScroll>
 
+      <PresentationBanner href="https://presentations.the-marketingverse.com/decks/deck-broker-light.html" eyebrow="Broker Engine" />
+
       <FAQSection items={BROKER_FAQS} label="Broker Questions, Answered" />
 
       <ConsultationCTA onBookConsultation={onBookConsultation} />
@@ -2839,6 +2882,8 @@ const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBook
           <ReviewsWidget />
         </section>
       </RevealOnScroll>
+
+      <PresentationBanner href="https://presentations.the-marketingverse.com/decks/deck-smallbiz-light.html" eyebrow="Social Media" />
 
       <FAQSection items={SOCIAL_BRANDS_FAQS} label="Brand Questions, Answered" />
 
@@ -3142,6 +3187,8 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           <ReviewsWidget />
         </section>
       </RevealOnScroll>
+
+      <PresentationBanner href="https://presentations.the-marketingverse.com/decks/deck-agents-light.html" eyebrow="For Realtors" />
 
       <FAQSection items={SOCIAL_FAQS} label="Social Media Questions, Answered" />
 
