@@ -1546,7 +1546,7 @@ const PLATFORM_COLORS: Record<string, string> = {
   TikTok:    'bg-gradient-to-r from-black to-neutral-600',
 };
 
-const SuccessCasesView: React.FC = () => (
+const SuccessCasesView: React.FC<{ onBookConsultation: () => void }> = ({ onBookConsultation }) => (
   <div className="animate-fade-in relative z-10 pt-32 pb-24">
     <div className="max-w-6xl mx-auto px-4">
       <div className="text-center mb-20">
@@ -1593,14 +1593,12 @@ const SuccessCasesView: React.FC = () => (
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Your turn</p>
           <h3 className="text-3xl md:text-4xl font-bold mb-4">Ready to see your numbers move?</h3>
           <p className="text-neutral-400 mb-8 max-w-md mx-auto">Book a free strategy call and we'll map out a content plan built around your market.</p>
-          <a
-            href="https://api.leadconnectorhq.com/widget/booking/oyFVqTBrTOPpLRpShBRz"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onBookConsultation}
             className="inline-block bg-white text-black font-bold px-10 py-4 rounded-full hover:bg-neutral-100 transition-colors"
           >
             Book a Free Call
-          </a>
+          </button>
         </div>
       </RevealOnScroll>
     </div>
@@ -3932,7 +3930,7 @@ const App: React.FC = () => {
            </div>
         );
       case 'projects':
-        return <SuccessCasesView />;
+        return <SuccessCasesView onBookConsultation={onBookConsultation} />;
       case 'privacy-policy':
         return <LegalPage title="Privacy Policy" lastUpdated="July 7, 2026" sections={PRIVACY_SECTIONS} />;
       case 'terms-and-conditions':
