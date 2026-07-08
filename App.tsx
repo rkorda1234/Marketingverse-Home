@@ -700,7 +700,7 @@ const SocialAdvantageSection: React.FC = () => {
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6 block">The Modern Business Engine</span>
               <h2 className="text-5xl md:text-6xl font-bold leading-[1.1] mb-8">
                 Social Media is <br />
-                <span className="font-serif italic font-normal">A Must.</span>
+                <span className="font-serif italic font-normal">Too Powerful to Ignore.</span>
               </h2>
               <p className="text-lg text-neutral-500 mb-12 leading-relaxed max-w-lg">
                 In today's fast-paced market, social media isn't just a platform—it's your digital storefront, your prospecting engine, and your primary relationship nurture tool.
