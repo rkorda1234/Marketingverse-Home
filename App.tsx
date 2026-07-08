@@ -1217,7 +1217,7 @@ const VimeoFacade: React.FC<{ id: string; title?: string; aspect?: string }> = (
 const DeferredBgVideo: React.FC = () => {
   const [src, setSrc] = useState('');
   useEffect(() => {
-    const t = setTimeout(() => setSrc('https://player.vimeo.com/video/647525886?background=1&autoplay=1&loop=1&badge=0&autopause=0&player_id=0&app_id=58479'), 2000);
+    const t = setTimeout(() => setSrc('https://player.vimeo.com/video/1175589663?background=1&autoplay=1&loop=1&badge=0&autopause=0&player_id=0&app_id=58479'), 2000);
     return () => clearTimeout(t);
   }, []);
   return (
@@ -3032,7 +3032,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             <h2 className="text-4xl font-bold mb-4">Why Social? <span className="font-serif italic font-normal">Our Unique Approach.</span></h2>
           </div>
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
-            <VimeoFacade id="1203822578" title="Why Social? Marketingverse Approach" />
+            <VimeoFacade id="820353118" title="Why Social? Marketingverse Approach" />
           </div>
         </div>
       </RevealOnScroll>
@@ -3061,6 +3061,18 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           </div>
         </div>
       </RevealOnScroll>
+
+      {/* Background video before Real Reason */}
+      <div className="relative w-full h-[60vh] bg-black overflow-hidden rounded-[2.5rem] mb-20" style={{ clipPath: 'inset(0 round 2.5rem)' }}>
+        <iframe
+          src="https://player.vimeo.com/video/785026134?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479"
+          className="absolute top-1/2 left-1/2 w-[177.77vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          title="Agents Background Video"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
       {/* Real Reason + 4 Pillars */}
       <RevealOnScroll>
