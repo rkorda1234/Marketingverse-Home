@@ -1452,9 +1452,15 @@ const CustomPlanBuilder: React.FC<{ onOrderNow: () => void }> = ({ onOrderNow })
   );
 };
 
-const NAV_ITEMS = ['home', 'social', 'crm', 'integrations', 'blog', 'projects', 'contact'] as const;
-const navLabel = (id: string) =>
-  id === 'integrations' ? 'AI Integrations' : id === 'crm' ? 'Broker CRM' : id === 'projects' ? 'Results' : id.charAt(0).toUpperCase() + id.slice(1);
+const NAV_ITEMS = ['home', 'social', 'social-agents', 'crm', 'integrations', 'blog', 'projects', 'contact'] as const;
+const navLabel = (id: string) => {
+  if (id === 'social') return 'Social Media';
+  if (id === 'social-agents') return 'For Agents';
+  if (id === 'integrations') return 'AI Integrations';
+  if (id === 'crm') return 'Broker CRM';
+  if (id === 'projects') return 'Results';
+  return id.charAt(0).toUpperCase() + id.slice(1);
+};
 
 interface SuccessMetric {
   label: string;
@@ -1835,7 +1841,7 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
   const heroRef = useRef<HTMLElement>(null);
 
   const handleServiceClick = (id: string) => {
-    if (id === 'social') changeView('social');
+    if (id === 'social') changeView('social-agents');
     else if (id === 'ai') changeView('integrations');
     else if (id === 'content') changeView('blog');
     else if (id === 'crm') changeView('crm');
@@ -1861,7 +1867,7 @@ const HomeView: React.FC<{ changeView: (v: string) => void; onBookConsultation: 
           
           <div className="flex flex-col md:flex-row flex-wrap justify-center gap-4 mt-8 px-4">
             <button 
-              onClick={() => changeView('social')} 
+              onClick={() => changeView('social-agents')} 
               className="px-8 py-4 bg-black text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-lg group"
             >
               <Instagram size={20} className="group-hover:text-pink-400 transition-colors" />
@@ -2607,6 +2613,256 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
       <FAQSection items={BROKER_FAQS} label="Broker Questions, Answered" />
 
       <ConsultationCTA onBookConsultation={onBookConsultation} />
+    </div>
+  </div>
+);
+
+/* ── Social Brands FAQ ───────────────────────────────────────── */
+const SOCIAL_BRANDS_FAQS = [
+  {
+    q: 'I\'m not a big brand. Does social media actually work for small businesses?',
+    a: 'Absolutely — in fact, smaller brands often have the biggest advantage. People buy from people they know and trust, and social media is the fastest way to build that relationship at scale. A local restaurant, boutique, coach, or service business with a consistent, authentic presence will consistently outperform a faceless brand with a bigger ad budget.',
+  },
+  {
+    q: 'How is this different from just posting on Instagram myself?',
+    a: 'Posting is the easy part. What we bring is strategy: knowing what to post, when, in what format, with what hook, and how to turn that content into actual business. We also bring production quality, consistency, and data-driven iteration — the combination that turns a dormant account into a lead-generating machine.',
+  },
+  {
+    q: 'What kind of results can I realistically expect in the first 90 days?',
+    a: 'Most of our brand clients see meaningful follower growth, increased engagement, and inbound DM inquiries within the first 30–60 days. The first 90 days are about building a foundation: dialing in the brand voice, identifying the content formats your audience responds to, and building consistency. Revenue impact typically follows by month 3–4 as your audience warms up.',
+  },
+  {
+    q: 'Do I need to be on camera or participate in content creation?',
+    a: 'Only as much as you want to be. For personal brands, on-camera content tends to perform best — but we can build around voice notes, repurposed photos, your product, your workspace, and your story. We work around your availability and comfort level. For business accounts, we can create compelling content entirely from your brand assets.',
+  },
+  {
+    q: 'Which platforms should my business be on?',
+    a: 'That depends entirely on where your audience spends time and what your content naturally fits. We\'ll audit your business, audience, and competitors in week one and recommend 2–3 platforms to dominate rather than spreading thin across all of them. Quality beats quantity every time.',
+  },
+  {
+    q: 'What\'s included in your social media management?',
+    a: 'We handle the full production cycle: content strategy, copywriting, design, video editing, scheduling, community engagement, hashtag research, and monthly analytics reports. You get a complete content team — not just someone who presses "post."',
+  },
+];
+
+/* ── Social Brands View ──────────────────────────────────────── */
+const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBookConsultation }) => (
+  <div className="animate-fade-in py-20 relative z-10">
+    <div className="max-w-7xl mx-auto px-4">
+
+      {/* Hero intro */}
+      <RevealOnScroll>
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
+          <div className="relative group">
+            <SocialEcosystem />
+          </div>
+          <div className="lg:pl-8">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-600 mb-6 block">Social Media Management</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+              Turn Your Brand Into<br />
+              <span className="font-serif italic font-normal">A Movement.</span>
+            </h2>
+            <div className="space-y-5 text-lg text-neutral-600 leading-relaxed">
+              <p>
+                Whether you're a personal brand, a boutique, a service business, or a growing startup — your social media is your most powerful sales tool. Most small brands post and hope. We build and <span className="text-black font-bold">convert.</span>
+              </p>
+              <p>
+                We create content that makes your audience feel something — and feeling is what drives follows, saves, shares, and ultimately, <span className="text-black font-bold">purchases.</span>
+              </p>
+            </div>
+            <div className="mt-10 grid grid-cols-2 gap-4">
+              <div className="p-5 bg-neutral-50/80 backdrop-blur-sm rounded-2xl border border-neutral-100 hover:border-violet-400 transition-colors group">
+                <div className="mb-3 p-2 bg-white rounded-lg w-fit shadow-sm text-violet-600 group-hover:bg-violet-600 group-hover:text-white transition-colors">
+                  <TrendingUp size={20} />
+                </div>
+                <h4 className="font-bold mb-1">Audience Growth</h4>
+                <p className="text-xs text-neutral-500">Real followers who actually buy.</p>
+              </div>
+              <div className="p-5 bg-neutral-50/80 backdrop-blur-sm rounded-2xl border border-neutral-100 hover:border-violet-400 transition-colors group">
+                <div className="mb-3 p-2 bg-white rounded-lg w-fit shadow-sm text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                  <Heart size={20} />
+                </div>
+                <h4 className="font-bold mb-1">Brand Love</h4>
+                <p className="text-xs text-neutral-500">Content that creates real connection.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Why social for brands */}
+      <RevealOnScroll>
+        <div className="mb-32">
+          <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-600 mb-4 block">The Marketingverse Way</span>
+            <h2 className="text-4xl font-bold mb-4">Why Social? <span className="font-serif italic font-normal">Our Unique Approach.</span></h2>
+          </div>
+          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
+            <VimeoFacade id="1203822578" title="Why Social? Marketingverse Approach" />
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Authority banner */}
+      <RevealOnScroll>
+        <div className="mb-20 rounded-[2.5rem] overflow-hidden relative bg-neutral-950 text-white px-8 py-20 md:px-20 text-center">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(139,92,246,0.3)_0%,_transparent_55%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(236,72,153,0.2)_0%,_transparent_55%)] pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+              The Brands That Win Aren't<br />
+              <span className="font-serif italic font-normal text-neutral-400">the Loudest. They're the Most Consistent.</span>
+            </h2>
+            <p className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Your competitors are either invisible online or posting without strategy. Either way, that's your opportunity. We help you show up every day — with purpose, quality, and a point of view.
+            </p>
+            <button
+              onClick={onBookConsultation}
+              data-cursor="magic"
+              className="inline-flex items-center gap-2 bg-violet-500 hover:bg-violet-600 text-white font-bold px-10 py-4 rounded-2xl transition-all hover:scale-105 shadow-xl tracking-wide uppercase text-sm"
+            >
+              Book a Free Strategy Call
+            </button>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* 4 pillars */}
+      <RevealOnScroll>
+        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              The Real Reason <span className="text-violet-500">Small Brands Stay Small</span>
+            </h2>
+            <p className="font-bold text-neutral-900 mb-4">It's not the product. It's the presence.</p>
+            <div className="space-y-4 text-neutral-600 leading-relaxed">
+              <p>The brands dominating your market right now aren't necessarily better than you. They're more visible, more consistent, and more connected to their audience. Social media done right doesn't just build followers — it builds a community that sells for you.</p>
+              <p>We don't post to fill a calendar. We build a brand people can't stop talking about.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { icon: <TrendingUp size={22} />, title: 'Market Visibility', desc: 'Become the go-to name in your niche before a customer ever searches for you.', color: 'text-violet-500 group-hover:bg-violet-500' },
+              { icon: <Shield size={22} />, title: 'Trust at Scale', desc: 'Content that builds credibility, warms up cold leads, and turns strangers into buyers.', color: 'text-indigo-500 group-hover:bg-indigo-500' },
+              { icon: <Layers size={22} />, title: 'Brand Consistency', desc: 'A cohesive look, voice, and feel across every platform — so your brand works while you sleep.', color: 'text-sky-500 group-hover:bg-sky-500' },
+              { icon: <Heart size={22} />, title: 'Community & Loyalty', desc: "People don't just buy products. They join brands they believe in. We build that belief.", color: 'text-pink-500 group-hover:bg-pink-500' },
+            ].map(({ icon, title, desc, color }) => (
+              <div key={title} className="mv-glass mv-lift rounded-3xl p-5 group">
+                <div className={`mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit ${color} transition-all duration-300 group-hover:text-white`}>
+                  {icon}
+                </div>
+                <h4 className="font-bold mb-2 text-sm">{title}</h4>
+                <p className="text-xs text-neutral-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Content showcase */}
+      <RevealOnScroll>
+        <div className="mb-32">
+          <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Cinematic Excellence</span>
+            <h2 className="text-4xl font-bold mb-4">Content That <span className="font-serif italic font-normal">Stops The Scroll</span></h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">See what we've done for our clients</p>
+          </div>
+          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black">
+            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+              <iframe src="https://vimeo.com/showcase/9806547/embed2" allow="autoplay; fullscreen; picture-in-picture" frameBorder={0} loading="lazy" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} title="Marketingverse Video Showcase" />
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Growth section */}
+      <RevealOnScroll>
+        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-500 mb-4 block">A Powerful Digital Storefront</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              Our clients see <span className="text-violet-500">growth</span> in the first month.
+            </h2>
+            <p className="text-neutral-600 leading-relaxed mb-8">
+              We guide you with the right strategy, tools, and creative direction. Your job is to show up as yourself and let us handle the rest.
+            </p>
+          </div>
+          <div className="space-y-4">
+            {[
+              { icon: <Cpu size={22} />, label: 'Brand Identity & Voice' },
+              { icon: <Users size={22} />, label: 'Strategy & Coaching' },
+              { icon: <Wand2 size={22} />, label: 'Content Concept Creation' },
+              { icon: <Video size={22} />, label: 'Video & Photo Production' },
+              { icon: <ImageIcon size={22} />, label: 'Editing & Graphics' },
+              { icon: <Calendar size={22} />, label: 'Scheduling at Peak Times' },
+              { icon: <TrendingUp size={22} />, label: 'Analytics & Monthly Reporting' },
+            ].map(({ icon, label }, i) => (
+              <RevealOnScroll key={label} delay={i * 60}>
+                <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                  <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-violet-500 group-hover:text-white transition-all duration-300 shrink-0">
+                    {icon}
+                  </div>
+                  <span className="font-semibold text-neutral-900">{label}</span>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Pricing */}
+      <RevealOnScroll>
+        <div className="text-center mb-10">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Pricing / Membership Tiers</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Your Competitors Are Online.<br />
+            <span className="text-violet-500">Are You?</span>
+          </h2>
+          <p className="text-neutral-500 max-w-2xl mx-auto">
+            Every month without a strong content presence is a month your competitors earn the trust that should be yours. Choose the plan that fits where you are today.
+          </p>
+        </div>
+      </RevealOnScroll>
+      <div className="mb-20 rounded-3xl overflow-hidden">
+        <ZohoWidget
+          widgetId="zf-widget-root-id-38zcrwakz"
+          digest="2-fa4c5864403ccd92bf50b11e166685c2c2663351fc6f31f604172c46c40c00c6d7ce03e345f9b239b737c2b253195bdf012b590903e576e248bf2deb26f7ad42"
+        />
+      </div>
+
+      <RevealOnScroll>
+        <section className="py-16">
+          <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Social Proof</span>
+            <h2 className="text-3xl font-bold">What Our <span className="font-serif italic font-normal">Clients Say</span></h2>
+          </div>
+          <ReviewsWidget />
+        </section>
+      </RevealOnScroll>
+
+      <FAQSection items={SOCIAL_BRANDS_FAQS} label="Brand Questions, Answered" />
+
+      {/* CTA */}
+      <RevealOnScroll delay={100}>
+        <div className="w-full py-20 mv-glass rounded-[2.5rem] relative overflow-hidden mt-20 text-center px-8">
+          <div className="absolute top-0 left-1/3 w-80 h-80 bg-violet-100/60 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-pink-100/50 rounded-full blur-[80px] pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              Ready to Build a Brand <span className="text-violet-500">People Actually Remember?</span>
+            </h2>
+            <p className="text-neutral-500 mb-10 text-lg">No long-term contract. Just a 20-minute call to show you exactly how we'd grow your brand.</p>
+            <button
+              onClick={onBookConsultation}
+              data-cursor="magic"
+              className="px-10 py-5 bg-neutral-950 text-white rounded-full font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl uppercase tracking-wide text-sm"
+            >
+              Book a Free Demo Call <ArrowRight size={20} />
+            </button>
+          </div>
+        </div>
+      </RevealOnScroll>
+
     </div>
   </div>
 );
@@ -3482,6 +3738,8 @@ const App: React.FC = () => {
       case 'contact':
         return <ContactView />;
       case 'social':
+        return <SocialBrandsView onBookConsultation={() => setIsBookingOpen(true)} />;
+      case 'social-agents':
         return <SocialMediaView onInitiateGrowth={() => setIsBookingOpen(true)} onBookConsultation={() => setIsBookingOpen(true)} />;
       case 'crm':
         return <BrokerCRMView onSubscribe={() => setIsBookingOpen(true)} onBookConsultation={() => setIsBookingOpen(true)} />;
