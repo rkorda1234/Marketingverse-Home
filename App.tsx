@@ -3930,7 +3930,7 @@ const App: React.FC = () => {
            </div>
         );
       case 'projects':
-        return <SuccessCasesView onBookConsultation={onBookConsultation} />;
+        return <SuccessCasesView onBookConsultation={() => setIsBookingOpen(true)} />;
       case 'privacy-policy':
         return <LegalPage title="Privacy Policy" lastUpdated="July 7, 2026" sections={PRIVACY_SECTIONS} />;
       case 'terms-and-conditions':
