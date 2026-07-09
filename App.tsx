@@ -2651,6 +2651,13 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           <p className="text-neutral-300 text-lg max-w-2xl leading-relaxed">
             Get the leads, nurture them, service them powerfully, stay in touch, get their reviews, sign the contracts, manage the team.
           </p>
+          <button
+            onClick={onBookConsultation}
+            className="mt-8 inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-2xl font-bold hover:bg-neutral-100 transition-all hover:scale-105 shadow-lg text-sm tracking-wide"
+          >
+            <Sparkles size={16} />
+            Book a Demo
+          </button>
         </div>
       </div>
 
