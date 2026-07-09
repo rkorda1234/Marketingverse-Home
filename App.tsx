@@ -3236,8 +3236,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
       </RevealOnScroll>
 
       {/* Instagram Feed Showcase — 3 phone mockup videos */}
-      <RevealOnScroll>
-        <div className="mb-32">
+      <div className="mb-32">
           <div className="text-center mb-14">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Strategies In Action</span>
             <h2 className="text-4xl font-bold mb-4">Real Accounts. <span className="font-serif italic font-normal">Real Results.</span></h2>
@@ -3277,8 +3276,8 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
                   }}
                 >
                   <iframe
-                    src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
-                    allow="autoplay; fullscreen"
+                    src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479`}
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                     className="absolute inset-0 w-full h-full"
                     frameBorder={0}
                     title={tag}
@@ -3289,7 +3288,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             ))}
           </div>
         </div>
-      </RevealOnScroll>
+      </div>
 
       {/* Growth in first month section */}
       <RevealOnScroll>
