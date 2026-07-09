@@ -2467,6 +2467,94 @@ const AI_FAQS = [
   },
 ];
 
+const BrokerComparisonSection: React.FC = () => {
+  const [tab, setTab] = useState<'without' | 'with'>('without');
+  const without = [
+    { emoji: '⏳', text: 'Agents wait hours — sometimes days — for a callback on a new lead' },
+    { emoji: '📋', text: 'Manual data entry kills 2+ hours of productive time every single day' },
+    { emoji: '💸', text: 'Follow-ups fall through the cracks and deals walk out the door' },
+    { emoji: '🕵️', text: 'Zero visibility into what agents are doing or which leads are hot' },
+    { emoji: '🤷', text: 'Agents waste energy chasing unqualified leads with no system' },
+    { emoji: '🧱', text: "Can't scale the brokerage without adding headcount and overhead" },
+  ];
+  const withBE = [
+    { emoji: '⚡', text: 'AI responds to every new lead in under 30 seconds — automatically' },
+    { emoji: '🤖', text: 'CRM updates itself. Zero manual data entry, ever' },
+    { emoji: '🚀', text: 'Automated follow-up sequences nurture every lead until they convert' },
+    { emoji: '📊', text: 'Real-time dashboards show exactly what your agents are closing' },
+    { emoji: '🎯', text: 'AI pre-qualifies leads before your agents spend a single minute on them' },
+    { emoji: '📈', text: 'Scale your brokerage without adding headcount or burning your team out' },
+  ];
+  return (
+    <RevealOnScroll>
+      <div className="mb-20">
+        <div className="text-center mb-12">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">The Real Difference</span>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            Your competitors are automating.<br />
+            <span className="font-serif italic font-normal">Are you keeping up?</span>
+          </h2>
+          <p className="text-neutral-500 max-w-xl mx-auto text-lg">Most brokerages still run on spreadsheets and gut instinct. Here's what changes when your brokerage runs on the Broker Engine.</p>
+        </div>
+
+        {/* Tab toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="mv-glass rounded-2xl p-1.5 flex gap-1">
+            <button
+              onClick={() => setTab('without')}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${tab === 'without' ? 'bg-red-500 text-white shadow-md' : 'text-neutral-500 hover:text-neutral-800'}`}
+            >
+              Without Broker Engine
+            </button>
+            <button
+              onClick={() => setTab('with')}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${tab === 'with' ? 'bg-indigo-600 text-white shadow-md' : 'text-neutral-500 hover:text-neutral-800'}`}
+            >
+              With Broker Engine
+            </button>
+          </div>
+        </div>
+
+        {/* Cards side by side on desktop, tab-switched on mobile */}
+        <div className="grid lg:grid-cols-2 gap-6 relative">
+          {/* VS badge */}
+          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-amber-400 text-black font-black text-sm items-center justify-center shadow-lg">VS</div>
+
+          {/* Without */}
+          <div className={`mv-glass rounded-3xl p-8 border border-red-100 ${tab === 'with' ? 'hidden lg:block opacity-50' : ''}`}>
+            <span className="inline-block px-3 py-1 rounded-full bg-red-100 text-red-600 text-[10px] font-bold uppercase tracking-widest mb-5">Without Broker Engine</span>
+            <h3 className="text-2xl font-bold mb-1 text-neutral-900">Slow, manual, and losing deals.</h3>
+            <p className="text-neutral-400 text-sm mb-6">The daily grind that keeps your brokerage stuck.</p>
+            <ul className="space-y-4">
+              {without.map(({ emoji, text }, i) => (
+                <li key={i} className="flex items-start gap-3 text-neutral-500 text-sm">
+                  <span className="text-lg shrink-0 mt-0.5">{emoji}</span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* With */}
+          <div className={`mv-glass rounded-3xl p-8 border border-indigo-100 ${tab === 'without' ? 'hidden lg:block opacity-50' : ''}`}>
+            <span className="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-600 text-[10px] font-bold uppercase tracking-widest mb-5">With Broker Engine</span>
+            <h3 className="text-2xl font-bold mb-1 text-neutral-900">Fast, automated, and scaling.</h3>
+            <p className="text-indigo-500 text-sm font-semibold mb-6">The engine handles the work. Your agents close deals.</p>
+            <ul className="space-y-4">
+              {withBE.map(({ emoji, text }, i) => (
+                <li key={i} className="flex items-start gap-3 text-neutral-700 text-sm font-medium">
+                  <span className="text-lg shrink-0 mt-0.5">{emoji}</span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </RevealOnScroll>
+  );
+};
+
 const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onSubscribe, onBookConsultation }) => (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -2678,6 +2766,9 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
       </RevealOnScroll>
 
       <CRMWorkflowVisualizer />
+
+      {/* Without vs With Broker Engine comparison */}
+      <BrokerComparisonSection />
 
       {/* Platform Screenshot Carousel */}
       <RevealOnScroll>
