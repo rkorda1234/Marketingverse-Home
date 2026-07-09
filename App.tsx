@@ -3269,7 +3269,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         <div className="mb-20">
           <div className="text-center mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">See It In Action</span>
-            <h2 className="text-4xl font-bold mb-4">Real Content. <span className="font-serif italic font-normal">Real Results.</span></h2>
+            <h2 className="text-4xl font-bold mb-4">In Gary's <span className="font-serif italic font-normal">Wise Words.</span></h2>
           </div>
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-3xl mx-auto">
             <VimeoFacade id="820353118" title="Real Content Real Results" aspect="56.25%" />
