@@ -2467,6 +2467,51 @@ const AI_FAQS = [
   },
 ];
 
+const BROKER_TICKER_TOOLS = [
+  'a CRM', 'Marketing Tools', 'Lead Gen Software', 'Social Media Scheduling',
+  'AI Agents', 'Email Marketing', 'Transaction Management', 'Listing Syndication',
+  'Agent Reporting', 'Text Automation', 'Review Management', 'Digital Contracts',
+];
+
+const BrokerTickerBanner: React.FC = () => {
+  const [idx, setIdx] = useState(0);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIdx(i => (i + 1) % BROKER_TICKER_TOOLS.length);
+        setVisible(true);
+      }, 300);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+  return (
+    <div className="mb-16">
+      <div className="mv-glass rounded-[2rem] px-8 py-10 md:px-14 md:py-12 text-center relative overflow-hidden">
+        <div className="absolute -top-12 left-1/3 w-64 h-64 bg-indigo-200/30 rounded-full blur-[60px] pointer-events-none" />
+        <div className="absolute -bottom-12 right-1/4 w-56 h-56 bg-violet-200/25 rounded-full blur-[60px] pointer-events-none" />
+        <div className="relative z-10">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 mb-5">Sound Familiar?</p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-5">
+            <span className="text-neutral-400 font-normal text-2xl md:text-3xl whitespace-nowrap">If you're paying for</span>
+            <span
+              className="inline-block min-w-[260px] md:min-w-[320px] text-indigo-600 transition-all duration-300 text-center"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(8px)' }}
+            >
+              {BROKER_TICKER_TOOLS[idx]}
+            </span>
+          </div>
+          <p className="text-2xl md:text-3xl font-bold text-neutral-900">
+            — then the Broker Engine is a <span className="font-serif italic font-normal text-indigo-500">game-changer.</span>
+          </p>
+          <p className="text-neutral-500 mt-4 max-w-xl mx-auto">One platform. Every tool your brokerage needs. None of the bloated stack.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BrokerComparisonSection: React.FC = () => {
   const [tab, setTab] = useState<'without' | 'with'>('without');
   const without = [
@@ -2566,6 +2611,9 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           </p>
         </div>
       </RevealOnScroll>
+
+      {/* Ticker section */}
+      <BrokerTickerBanner />
 
       {/* Visual Showcase Section */}
       <div className="mb-32 space-y-24">
@@ -2751,22 +2799,22 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
             </div>
             {/* Right: glass results panel */}
             <div className="mv-glass p-12 md:p-16 flex flex-col justify-center gap-6">
-              {[
-                { icon: <Users size={22} />, title: 'Nurturing Leads', desc: 'Automated follow-ups and lead routing' },
-                { icon: <ClipboardList size={22} />, title: 'Managing Operations', desc: 'Streamlined transactions via the platform' },
-                { icon: <Megaphone size={22} />, title: 'Content That Converted', desc: 'Equipping agents with ready-made marketing' },
-                { icon: <MessageCircle size={22} />, title: 'Internal Communications', desc: 'Seamless team and agent collaboration' },
-              ].map(({ icon, title, desc }) => (
-                <div key={title} className="flex items-start gap-5 group">
-                  <div className="p-3 rounded-2xl bg-white/60 border border-white/70 text-blue-500 shadow-sm shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
-                    {icon}
-                  </div>
-                  <div>
-                    <p className="font-bold text-neutral-900">{title}</p>
-                    <p className="text-sm text-neutral-500 mt-0.5">{desc}</p>
-                  </div>
-                </div>
-              ))}
+              <div className="flex items-start gap-5 group">
+                <div className="p-3 rounded-2xl bg-white/60 border border-white/70 text-blue-500 shadow-sm shrink-0 mv-gi-blue transition-all duration-300"><Users size={22} /></div>
+                <div><p className="font-bold text-neutral-900">Nurturing Leads</p><p className="text-sm text-neutral-500 mt-0.5">Automated follow-ups and lead routing</p></div>
+              </div>
+              <div className="flex items-start gap-5 group">
+                <div className="p-3 rounded-2xl bg-white/60 border border-white/70 text-blue-500 shadow-sm shrink-0 mv-gi-blue transition-all duration-300"><ClipboardList size={22} /></div>
+                <div><p className="font-bold text-neutral-900">Managing Operations</p><p className="text-sm text-neutral-500 mt-0.5">Streamlined transactions via the platform</p></div>
+              </div>
+              <div className="flex items-start gap-5 group">
+                <div className="p-3 rounded-2xl bg-white/60 border border-white/70 text-blue-500 shadow-sm shrink-0 mv-gi-blue transition-all duration-300"><Megaphone size={22} /></div>
+                <div><p className="font-bold text-neutral-900">Content That Converted</p><p className="text-sm text-neutral-500 mt-0.5">Equipping agents with ready-made marketing</p></div>
+              </div>
+              <div className="flex items-start gap-5 group">
+                <div className="p-3 rounded-2xl bg-white/60 border border-white/70 text-blue-500 shadow-sm shrink-0 mv-gi-blue transition-all duration-300"><MessageCircle size={22} /></div>
+                <div><p className="font-bold text-neutral-900">Internal Communications</p><p className="text-sm text-neutral-500 mt-0.5">Seamless team and agent collaboration</p></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2947,20 +2995,26 @@ const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBook
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {[
-              { icon: <TrendingUp size={22} />, title: 'Market Visibility', desc: 'Become the go-to name in your niche before a customer ever searches for you.', color: 'text-violet-500 group-hover:bg-violet-500' },
-              { icon: <Shield size={22} />, title: 'Trust at Scale', desc: 'Content that builds credibility, warms up cold leads, and turns strangers into buyers.', color: 'text-indigo-500 group-hover:bg-indigo-500' },
-              { icon: <Layers size={22} />, title: 'Brand Consistency', desc: 'A cohesive look, voice, and feel across every platform — so your brand works while you sleep.', color: 'text-sky-500 group-hover:bg-sky-500' },
-              { icon: <Heart size={22} />, title: 'Community & Loyalty', desc: "People don't just buy products. They join brands they believe in. We build that belief.", color: 'text-pink-500 group-hover:bg-pink-500' },
-            ].map(({ icon, title, desc, color }) => (
-              <div key={title} className="mv-glass mv-lift rounded-3xl p-5 group">
-                <div className={`mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit ${color} transition-all duration-300 group-hover:text-white`}>
-                  {icon}
-                </div>
-                <h4 className="font-bold mb-2 text-sm">{title}</h4>
-                <p className="text-xs text-neutral-500 leading-relaxed">{desc}</p>
-              </div>
-            ))}
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-violet-500 mv-gi-violet transition-all duration-300"><TrendingUp size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Market Visibility</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">Become the go-to name in your niche before a customer ever searches for you.</p>
+            </div>
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-indigo-500 mv-gi-indigo transition-all duration-300"><Shield size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Trust at Scale</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">Content that builds credibility, warms up cold leads, and turns strangers into buyers.</p>
+            </div>
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-sky-500 mv-gi-sky transition-all duration-300"><Layers size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Brand Consistency</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">A cohesive look, voice, and feel across every platform — so your brand works while you sleep.</p>
+            </div>
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-pink-500 mv-gi-pink transition-all duration-300"><Heart size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Community &amp; Loyalty</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">People don{"'"}t just buy products. They join brands they believe in. We build that belief.</p>
+            </div>
           </div>
         </div>
       </RevealOnScroll>
@@ -2994,24 +3048,48 @@ const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBook
             </p>
           </div>
           <div className="space-y-4">
-            {[
-              { icon: <Cpu size={22} />, label: 'Brand Identity & Voice' },
-              { icon: <Users size={22} />, label: 'Strategy & Coaching' },
-              { icon: <Wand2 size={22} />, label: 'Content Concept Creation' },
-              { icon: <Video size={22} />, label: 'Video & Photo Production' },
-              { icon: <ImageIcon size={22} />, label: 'Editing & Graphics' },
-              { icon: <Calendar size={22} />, label: 'Scheduling at Peak Times' },
-              { icon: <TrendingUp size={22} />, label: 'Analytics & Monthly Reporting' },
-            ].map(({ icon, label }, i) => (
-              <RevealOnScroll key={label} delay={i * 60}>
-                <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
-                  <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-violet-500 group-hover:text-white transition-all duration-300 shrink-0">
-                    {icon}
-                  </div>
-                  <span className="font-semibold text-neutral-900">{label}</span>
-                </div>
-              </RevealOnScroll>
-            ))}
+            <RevealOnScroll delay={0}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><Cpu size={22} /></div>
+                <span className="font-semibold text-neutral-900">Brand Identity &amp; Voice</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={60}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><Users size={22} /></div>
+                <span className="font-semibold text-neutral-900">Strategy &amp; Coaching</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><Wand2 size={22} /></div>
+                <span className="font-semibold text-neutral-900">Content Concept Creation</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={180}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><Video size={22} /></div>
+                <span className="font-semibold text-neutral-900">Video &amp; Photo Production</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><ImageIcon size={22} /></div>
+                <span className="font-semibold text-neutral-900">Editing &amp; Graphics</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={300}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><Calendar size={22} /></div>
+                <span className="font-semibold text-neutral-900">Scheduling at Peak Times</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={360}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-violet transition-all duration-300 shrink-0"><TrendingUp size={22} /></div>
+                <span className="font-semibold text-neutral-900">Analytics &amp; Monthly Reporting</span>
+              </div>
+            </RevealOnScroll>
           </div>
         </div>
       </RevealOnScroll>
@@ -3187,40 +3265,34 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {[
-              {
-                icon: <TrendingUp size={22} />,
-                title: 'Market Authority',
-                desc: 'Become the agent everyone in your ZIP code already knows, likes, and trusts — before they ever need to buy or sell.',
-                color: 'text-indigo-500 group-hover:bg-indigo-500',
-              },
-              {
-                icon: <Shield size={22} />,
-                title: 'Trust Architecture',
-                desc: 'Content that makes past clients refer you, future clients choose you, and your sphere never forget you.',
-                color: 'text-violet-500 group-hover:bg-violet-500',
-              },
-              {
-                icon: <Layers size={22} />,
-                title: 'Brand Consistency',
-                desc: "A polished, professional presence across every platform so your brand works for you 24/7 — even when you're at a closing.",
-                color: 'text-sky-500 group-hover:bg-sky-500',
-              },
-              {
-                icon: <Heart size={22} />,
-                title: 'Emotional Connection',
-                desc: 'People don\'t hire agents. They hire people they feel connected to. We create content that builds that relationship at scale.',
-                color: 'text-rose-500 group-hover:bg-rose-500',
-              },
-            ].map(({ icon, title, desc, color }) => (
-              <div key={title} className="mv-glass mv-lift rounded-3xl p-5 group">
-                <div className={`mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit ${color} transition-all duration-300 group-hover:text-white`}>
-                  {icon}
+              <div className="mv-glass mv-lift rounded-3xl p-5 group">
+                <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-indigo-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                  <TrendingUp size={22} />
                 </div>
-                <h4 className="font-bold mb-2 text-sm">{title}</h4>
-                <p className="text-xs text-neutral-500 leading-relaxed">{desc}</p>
+                <h4 className="font-bold mb-2 text-sm">Market Authority</h4>
+                <p className="text-xs text-neutral-500 leading-relaxed">Become the agent everyone in your ZIP code already knows, likes, and trusts — before they ever need to buy or sell.</p>
               </div>
-            ))}
+              <div className="mv-glass mv-lift rounded-3xl p-5 group">
+                <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-violet-500 group-hover:bg-violet-500 group-hover:text-white transition-all duration-300">
+                  <Shield size={22} />
+                </div>
+                <h4 className="font-bold mb-2 text-sm">Trust Architecture</h4>
+                <p className="text-xs text-neutral-500 leading-relaxed">Content that makes past clients refer you, future clients choose you, and your sphere never forget you.</p>
+              </div>
+              <div className="mv-glass mv-lift rounded-3xl p-5 group">
+                <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-sky-500 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                  <Layers size={22} />
+                </div>
+                <h4 className="font-bold mb-2 text-sm">Brand Consistency</h4>
+                <p className="text-xs text-neutral-500 leading-relaxed">A polished, professional presence across every platform so your brand works for you 24/7 — even when you are at a closing.</p>
+              </div>
+              <div className="mv-glass mv-lift rounded-3xl p-5 group">
+                <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-rose-500 group-hover:bg-rose-500 group-hover:text-white transition-all duration-300">
+                  <Heart size={22} />
+                </div>
+                <h4 className="font-bold mb-2 text-sm">Emotional Connection</h4>
+                <p className="text-xs text-neutral-500 leading-relaxed">People do not hire agents. They hire people they feel connected to. We create content that builds that relationship at scale.</p>
+              </div>
           </div>
         </div>
       </RevealOnScroll>
@@ -3251,51 +3323,26 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           </div>
 
           <div className="grid md:grid-cols-3 gap-10 items-end justify-items-center">
-            {[
-              {
-                vimeoId: '1173074414',
-                tag: 'Fun & Elegant',
-                tagColor: 'text-rose-500 bg-rose-50 border-rose-200',
-                glow: 'rgba(244,114,182,0.2)',
-                featured: false,
-              },
-              {
-                vimeoId: '1173074396',
-                tag: 'Polished & Professional',
-                tagColor: 'text-slate-600 bg-slate-50 border-slate-200',
-                glow: 'rgba(100,116,139,0.18)',
-                featured: true,
-              },
-              {
-                vimeoId: '1173074432',
-                tag: 'Bold & Witty',
-                tagColor: 'text-orange-500 bg-orange-50 border-orange-200',
-                glow: 'rgba(249,115,22,0.22)',
-                featured: false,
-              },
-            ].map(({ vimeoId, tag, tagColor, glow, featured }) => (
-              <div key={vimeoId} className={`flex flex-col items-center gap-4 w-full max-w-[240px] ${featured ? 'md:-mt-10' : ''}`}>
-                <div
-                  className="relative w-full overflow-hidden rounded-2xl"
-                  style={{
-                    aspectRatio: '9/19.5',
-                    boxShadow: `0 24px 60px -16px ${glow}, 0 6px 20px -6px rgba(0,0,0,0.14)`,
-                  }}
-                >
-                  <iframe
-                    src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479`}
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                    className="absolute inset-0 w-full h-full"
-                    frameBorder={0}
-                    title={tag}
-                  />
+              <div className="flex flex-col items-center gap-4 w-full max-w-[240px]">
+                <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(244,114,182,0.2), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
+                  <iframe src="https://player.vimeo.com/video/1173074414?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Fun and Elegant" />
                 </div>
-                <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${tagColor}`}>{tag}</span>
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-rose-500 bg-rose-50 border-rose-200">Fun &amp; Elegant</span>
               </div>
-            ))}
+              <div className="flex flex-col items-center gap-4 w-full max-w-[240px] md:-mt-10">
+                <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(100,116,139,0.18), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
+                  <iframe src="https://player.vimeo.com/video/1173074396?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Polished and Professional" />
+                </div>
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-slate-600 bg-slate-50 border-slate-200">Polished &amp; Professional</span>
+              </div>
+              <div className="flex flex-col items-center gap-4 w-full max-w-[240px]">
+                <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(249,115,22,0.22), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
+                  <iframe src="https://player.vimeo.com/video/1173074432?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Bold and Witty" />
+                </div>
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-orange-500 bg-orange-50 border-orange-200">Bold &amp; Witty</span>
+              </div>
           </div>
         </div>
-      </div>
 
       {/* Growth in first month section */}
       <RevealOnScroll>
@@ -3310,24 +3357,48 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             </p>
           </div>
           <div className="space-y-5">
-            {[
-              { icon: <Cpu size={22} />, label: 'Brand Identity' },
-              { icon: <Users size={22} />, label: 'Coaching' },
-              { icon: <Wand2 size={22} />, label: 'Concept Creation' },
-              { icon: <Video size={22} />, label: 'Content Shoot' },
-              { icon: <ImageIcon size={22} />, label: 'Editing & Graphics' },
-              { icon: <Calendar size={22} />, label: 'Post At Ideal Times' },
-              { icon: <TrendingUp size={22} />, label: 'Results Analytics & Tracking' },
-            ].map(({ icon, label }, i) => (
-              <RevealOnScroll key={label} delay={i * 60}>
-                <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
-                  <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0">
-                    {icon}
-                  </div>
-                  <span className="font-semibold text-neutral-900">{label}</span>
-                </div>
-              </RevealOnScroll>
-            ))}
+            <RevealOnScroll delay={0}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><Cpu size={22} /></div>
+                <span className="font-semibold text-neutral-900">Brand Identity</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={60}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><Users size={22} /></div>
+                <span className="font-semibold text-neutral-900">Coaching</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={120}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><Wand2 size={22} /></div>
+                <span className="font-semibold text-neutral-900">Concept Creation</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={180}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><Video size={22} /></div>
+                <span className="font-semibold text-neutral-900">Content Shoot</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={240}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><ImageIcon size={22} /></div>
+                <span className="font-semibold text-neutral-900">Editing &amp; Graphics</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={300}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><Calendar size={22} /></div>
+                <span className="font-semibold text-neutral-900">Post At Ideal Times</span>
+              </div>
+            </RevealOnScroll>
+            <RevealOnScroll delay={360}>
+              <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+                <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shrink-0"><TrendingUp size={22} /></div>
+                <span className="font-semibold text-neutral-900">Results Analytics &amp; Tracking</span>
+              </div>
+            </RevealOnScroll>
           </div>
         </div>
       </RevealOnScroll>
@@ -3366,7 +3437,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
         <div className="mb-20">
           <div className="text-center mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">See It In Action</span>
-            <h2 className="text-4xl font-bold mb-4">In Gary's <span className="font-serif italic font-normal">Wise Words.</span></h2>
+            <h2 className="text-4xl font-bold mb-4">In Gary{"'"}s <span className="font-serif italic font-normal">Wise Words.</span></h2>
           </div>
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-3xl mx-auto">
             <VimeoFacade id="820353118" title="Real Content Real Results" aspect="56.25%" />
@@ -3459,7 +3530,7 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
             <RevealOnScroll key={category.title} delay={index * 50} className="h-full">
               <div data-cursor="card" className="mv-glass mv-lift rounded-3xl p-8 h-full group">
                   <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-neutral-900 text-white rounded-xl group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                      <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">
                           <WorkflowIcon icon={category.icon} />
                       </div>
                       <h3 className="text-xl font-bold">{category.title}</h3>
@@ -3659,7 +3730,7 @@ const ContactView: React.FC = () => (
               {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className="mv-glass mv-lift rounded-3xl p-8 flex flex-col gap-4 group"
             >
-              <div className="p-3 rounded-2xl bg-neutral-100 text-neutral-500 w-fit group-hover:bg-neutral-900 group-hover:text-white transition-all duration-300">
+              <div className="p-3 rounded-2xl bg-neutral-100 text-neutral-500 w-fit mv-gi-dark transition-all duration-300">
                 {icon}
               </div>
               <div>

@@ -78,6 +78,15 @@ body {
   66%       { transform: translate(-4vw, 6vh) scale(1.02); }
 }
 
+/* Group-hover helpers (avoids esbuild colon-in-className parse bug inside .map()) */
+.group:hover .mv-gi-indigo { background-color: rgb(99 102 241); color: white; }
+.group:hover .mv-gi-violet { background-color: rgb(139 92 246); color: white; }
+.group:hover .mv-gi-sky    { background-color: rgb(14 165 233); color: white; }
+.group:hover .mv-gi-pink   { background-color: rgb(236 72 153); color: white; }
+.group:hover .mv-gi-dark   { background-color: rgb(23 23 23);   color: white; }
+.group:hover .mv-gi-blue   { background-color: rgb(37 99 235);  color: white; }
+.group:hover .mv-gi-rotate { transform: scale(1.1) rotate(-6deg); }
+
 /* Hide scrollbar for chat */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
