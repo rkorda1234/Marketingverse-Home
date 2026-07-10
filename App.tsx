@@ -2747,7 +2747,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
             <img
               src="https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/69b99fb6dac584678da72f91.png"
               alt="Broker mobile app"
-              className="max-w-[320px] w-full rounded-3xl shadow-2xl"
+              className="max-w-[320px] w-full"
             />
           </div>
           <div>
