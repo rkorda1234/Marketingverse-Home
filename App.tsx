@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback, Component } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -4146,6 +4147,7 @@ const App: React.FC = () => {
       <BackToTop />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
       {isAdminOpen && <AdminPortal projects={projects} setProjects={setProjects} onClose={() => setIsAdminOpen(false)} />}
+      <SpeedInsights />
     </div>
   );
 };
