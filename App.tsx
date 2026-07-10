@@ -2469,7 +2469,7 @@ const AI_FAQS = [
 
 const BROKER_TICKER_TOOLS = [
   'a CRM', 'Marketing Tools', 'Lead Gen Software', 'Social Media Scheduling',
-  'AI Agents', 'Email Marketing', 'Transaction Management', 'Listing Syndication',
+  'AI Agents', 'Email Marketing', 'Transaction Management',
   'Agent Reporting', 'Text Automation', 'Review Management', 'Digital Contracts',
 ];
 
@@ -2487,27 +2487,21 @@ const BrokerTickerBanner: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="mb-16">
-      <div className="mv-glass rounded-[2rem] px-8 py-10 md:px-14 md:py-12 text-center relative overflow-hidden">
-        <div className="absolute -top-12 left-1/3 w-64 h-64 bg-indigo-200/30 rounded-full blur-[60px] pointer-events-none" />
-        <div className="absolute -bottom-12 right-1/4 w-56 h-56 bg-violet-200/25 rounded-full blur-[60px] pointer-events-none" />
-        <div className="relative z-10">
-          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 mb-5">Sound Familiar?</p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-5">
-            <span className="text-neutral-400 font-normal text-2xl md:text-3xl whitespace-nowrap">If you're paying for</span>
-            <span
-              className="inline-block min-w-[260px] md:min-w-[320px] text-indigo-600 transition-all duration-300 text-center"
-              style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(8px)' }}
-            >
-              {BROKER_TICKER_TOOLS[idx]}
-            </span>
-          </div>
-          <p className="text-2xl md:text-3xl font-bold text-neutral-900">
-            — then the Broker Engine is a <span className="font-serif italic font-normal text-indigo-500">game-changer.</span>
-          </p>
-          <p className="text-neutral-500 mt-4 max-w-xl mx-auto">One platform. Every tool your brokerage needs. None of the bloated stack.</p>
-        </div>
+    <div className="mb-16 text-center">
+      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 mb-5">Sound Familiar?</p>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-5">
+        <span className="text-neutral-400 font-normal text-2xl md:text-3xl whitespace-nowrap">If you{"'"}re paying for</span>
+        <span
+          className="inline-block min-w-[260px] md:min-w-[320px] text-indigo-600 transition-all duration-300 text-left"
+          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(8px)' }}
+        >
+          {BROKER_TICKER_TOOLS[idx]}
+        </span>
       </div>
+      <p className="text-2xl md:text-3xl font-bold text-neutral-900">
+        then the Broker Engine is a <span className="font-serif italic font-normal text-indigo-500">game-changer.</span>
+      </p>
+      <p className="text-neutral-500 mt-4 max-w-xl mx-auto">One platform. Every tool your brokerage needs. None of the bloated stack.</p>
     </div>
   );
 };
