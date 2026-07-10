@@ -2829,8 +2829,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
       <RevealOnScroll>
         <div className="mb-20 px-4 md:px-0 md:-mx-8 lg:-mx-16 xl:-mx-24">
           <div className="text-center mb-12">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Inside The Platform</span>
-            <h2 className="text-4xl font-bold mb-4">See It <span className="font-serif italic font-normal">In Action</span></h2>
+            <h2 className="text-4xl font-bold mb-4">A Peek <span className="font-serif italic font-normal">Inside</span></h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">A look inside the Broker CRM engine — built for modern brokerages that refuse to be outpaced.</p>
           </div>
           <PlatformCarousel />
