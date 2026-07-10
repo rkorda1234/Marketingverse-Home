@@ -2487,21 +2487,27 @@ const BrokerTickerBanner: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="mb-16 text-center">
-      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 mb-5">Sound Familiar?</p>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-5">
-        <span className="text-neutral-400 font-normal text-2xl md:text-3xl whitespace-nowrap">If you{"'"}re paying for</span>
-        <span
-          className="inline-block min-w-[260px] md:min-w-[320px] text-indigo-600 transition-all duration-300 text-left"
-          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(8px)' }}
-        >
-          {BROKER_TICKER_TOOLS[idx]}
-        </span>
+    <div className="mb-24">
+      <div className="mv-glass rounded-[2rem] px-8 py-10 md:px-14 md:py-12 text-center relative overflow-hidden">
+        <div className="absolute -top-12 left-1/3 w-64 h-64 bg-indigo-200/30 rounded-full blur-[60px] pointer-events-none" />
+        <div className="absolute -bottom-12 right-1/4 w-56 h-56 bg-violet-200/25 rounded-full blur-[60px] pointer-events-none" />
+        <div className="relative z-10">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400 mb-5">Sound Familiar?</p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-5">
+            <span className="text-neutral-400 font-normal text-2xl md:text-3xl whitespace-nowrap">If you{"'"}re paying for</span>
+            <span
+              className="inline-block min-w-[260px] md:min-w-[320px] text-indigo-600 transition-all duration-300 text-left"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(8px)' }}
+            >
+              {BROKER_TICKER_TOOLS[idx]}
+            </span>
+          </div>
+          <p className="text-2xl md:text-3xl font-bold text-neutral-900">
+            then the Broker Engine is a <span className="font-serif italic font-normal text-indigo-500">game-changer.</span>
+          </p>
+          <p className="text-neutral-500 mt-4 max-w-xl mx-auto">One platform. Every tool your brokerage needs. None of the bloated stack.</p>
+        </div>
       </div>
-      <p className="text-2xl md:text-3xl font-bold text-neutral-900">
-        then the Broker Engine is a <span className="font-serif italic font-normal text-indigo-500">game-changer.</span>
-      </p>
-      <p className="text-neutral-500 mt-4 max-w-xl mx-auto">One platform. Every tool your brokerage needs. None of the bloated stack.</p>
     </div>
   );
 };
@@ -2598,7 +2604,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
       <RevealOnScroll>
-        <div className="text-center mb-16">
+        <div className="text-center mb-24">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Broker <span className="font-serif italic font-normal">CRM Suite</span></h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Empower your agents, automate your marketing, and dominate your local market with our all-in-one brokerage operating system.
@@ -2839,7 +2845,7 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
             <div className="max-w-xl">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 mb-4 block">Dig Deeper</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Understand The <span className="font-serif italic font-normal">Full Opportunity</span></h2>
-              <p className="text-lg text-neutral-400 leading-relaxed">Ready to see exactly how this platform transforms your brokerage's revenue? Walk through our full sales deck — built specifically for broker-owners who want the whole picture.</p>
+              <p className="text-lg text-neutral-400 leading-relaxed">Ready to see exactly how this platform transforms your brokerage's revenue? Walk through our full sales deck built specifically for broker-owners who want the whole picture.</p>
             </div>
             <a
               href="https://presentations.the-marketingverse.com/decks/deck-broker.html"
@@ -2854,8 +2860,6 @@ const BrokerCRMView: React.FC<{ onSubscribe: (plan: Plan) => void; onBookConsult
           </div>
         </div>
       </RevealOnScroll>
-
-      <PresentationBanner href="https://presentations.the-marketingverse.com/decks/deck-broker-light.html" eyebrow="Broker Engine" />
 
       <FAQSection items={BROKER_FAQS} label="Broker Questions, Answered" />
 
