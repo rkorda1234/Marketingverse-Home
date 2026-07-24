@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         'thank-you': 'thank-you.html',
+        'avanti-way': 'avanti-way.html',
       },
     },
   },

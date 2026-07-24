@@ -1,0 +1,620 @@
+import React, { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom/client';
+import {
+  ArrowRight, Check, Instagram, Facebook, X, ArrowUp,
+  CreditCard, Layers, Layout, FileText, PenTool, Upload, Camera,
+  Cpu, Users, Wand2, Video, ImageIcon, Calendar, TrendingUp,
+  Shield, Heart, CheckCircle2, Star, Zap, Bot, Building2, Play
+} from 'lucide-react';
+import { RevealOnScroll } from './components/RevealOnScroll';
+import { AIBot } from './components/AIBot';
+import { CustomCursor } from './components/CustomCursor';
+import './index.css';
+
+// ── Constants ──────────────────────────────────────────────────────────────
+const AVANTI_LOGO = 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/6944c02faca6ab53cc7aa4b9.png';
+const ORDER_URL   = 'https://billing.zohosecure.com/subscribe/012b590903e576e21bb2f16ffd298a88a7726ba08b65d6ccad482bf477cf719e/StartUpPackageAvanti';
+const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd';
+
+// ── Start-Up Package deliverables ──────────────────────────────────────────
+const DELIVERABLES = [
+  { id: 'cards',    icon: <CreditCard size={22} />, title: 'Business Card Template',    desc: "Personalization of Avanti's business card templates plus coordination with printer.",          img: 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/69456bedaca6ab79968e82b2.png' },
+  { id: 'social',   icon: <Instagram  size={22} />, title: '3 Social Media Posts',      desc: 'Launch your presence with professionally curated authority-building content.',                 img: 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/694570f91739662c88a8907a.png' },
+  { id: 'logo',     icon: <Layers     size={22} />, title: 'Logo Broker Integration',   desc: 'Seamlessly blend your identity with the Avanti Way brokerage brand.',                        img: 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/69457dbb0190af17b5f0e5d6.png' },
+  { id: 'profiles', icon: <Layout     size={22} />, title: 'Online RE Profiles',        desc: 'On-brand setup for your Zillow, Realtor.com and Trulia profiles.',                           img: 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/69457f639a634f21631c0f60.png' },
+  { id: 'flyer',    icon: <FileText   size={22} />, title: 'Digital Flyer Design',      desc: 'Luxury digital flyer personalization from Avanti Templates.',                                 img: 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/69457c3c8cae8f853cf05b25.png' },
+  { id: 'bios',     icon: <PenTool    size={22} />, title: 'Professional Profile Bios', desc: 'Strategic storytelling that highlights your expertise and local market authority.',            img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=800' },
+  { id: 'crm',      icon: <Upload     size={22} />, title: 'Avex CRM Contact Upload',   desc: 'Instant contact sync — we handle the heavy lifting of your Avex CRM migration.',             img: 'https://storage.googleapis.com/msgsndr/CFAAUO2gnPooyim4LdoM/media/69458154106fdc613f031b71.png' },
+  { id: 'photo',    icon: <Camera     size={22} />, title: 'Photo Appt. Coordination',  desc: 'Help coordinate your professional shoot with any of the preferred photographers.',            img: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=800' },
+];
+
+// ── Pricing plans ──────────────────────────────────────────────────────────
+const PLANS = [
+  {
+    name: 'Social Growth',
+    price: '$797',
+    period: '/mo',
+    badge: 'Agentpreneur Rate',
+    features: [
+      'Full brand identity setup',
+      'Strategy & coaching sessions',
+      '12 posts/month (Reels + Statics)',
+      'Professional video & photo editing',
+      'AI caption & hashtag optimization',
+      'Scheduled at peak engagement times',
+      'Monthly analytics report',
+    ],
+    cta: 'Book a Strategy Call',
+    dark: false,
+  },
+  {
+    name: 'Social Growth Pro',
+    price: '$1,197',
+    period: '/mo',
+    badge: 'Most Popular',
+    features: [
+      'Everything in Social Growth',
+      '20 posts/month including Stories',
+      'Quarterly content shoot coordination',
+      'Paid ads strategy & management',
+      'Monthly 1:1 coaching call',
+      'Broker Engine CRM included',
+      'Priority support',
+    ],
+    cta: 'Book a Strategy Call',
+    dark: true,
+  },
+  {
+    name: 'Brand Authority',
+    price: 'Custom',
+    period: '',
+    badge: 'Full Service',
+    features: [
+      'Everything in Social Growth Pro',
+      'Custom content shoots monthly',
+      'Full-service ad management',
+      'AI Automation workflows',
+      'Dedicated account manager',
+      'Quarterly brand audits',
+    ],
+    cta: 'Talk to Us',
+    dark: false,
+  },
+];
+
+// ── VimeoFacade ───────────────────────────────────────────────────────────
+const VimeoFacade: React.FC<{ id: string; title: string; aspect?: string }> = ({ id, title, aspect = '177.78%' }) => {
+  const [playing, setPlaying] = useState(false);
+  const [thumb, setThumb] = useState('');
+  useEffect(() => {
+    fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/' + id + '&width=640')
+      .then(r => r.json())
+      .then(d => { if (d.thumbnail_url) setThumb(d.thumbnail_url.replace(/_\d+x\d+/, '_640')); })
+      .catch(() => {});
+  }, [id]);
+  if (playing) {
+    return (
+      <div style={{ padding: aspect + ' 0 0 0', position: 'relative' }}>
+        <iframe
+          src={'https://player.vimeo.com/video/' + id + '?autoplay=1&loop=1&badge=0&autopause=0&player_id=0&app_id=58479'}
+          allow="autoplay; fullscreen; picture-in-picture"
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          title={title}
+        />
+      </div>
+    );
+  }
+  return (
+    <div style={{ paddingTop: aspect, position: 'relative' }} className="cursor-pointer group" onClick={() => setPlaying(true)}>
+      {thumb && <img src={thumb} alt={title} className="absolute inset-0 w-full h-full object-cover" />}
+      <span className="absolute inset-0 flex items-center justify-center">
+        <span className="relative w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-xl mv-gi-rotate transition-all duration-300">
+          <Play size={22} className="text-black fill-current ml-0.5" />
+        </span>
+      </span>
+    </div>
+  );
+};
+
+// ── BackToTop ─────────────────────────────────────────────────────────────
+const BackToTop: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const t = () => setVisible(window.scrollY > 300);
+    window.addEventListener('scroll', t);
+    return () => window.removeEventListener('scroll', t);
+  }, []);
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className={'fixed bottom-8 left-8 z-[90] p-4 bg-black text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 border border-neutral-800 ' + (visible ? 'opacity-100' : 'opacity-0 pointer-events-none')}
+    >
+      <ArrowUp size={24} />
+    </button>
+  );
+};
+
+// ── Nav ───────────────────────────────────────────────────────────────────
+const Nav: React.FC<{ onBook: () => void; onOrder: () => void }> = ({ onBook, onOrder }) => (
+  <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-100 h-20 flex items-center">
+    <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
+      <div className="flex items-center gap-4 sm:gap-6 flex-shrink-0">
+        <img src="/logo.png" alt="Marketingverse" className="h-9 w-auto mv-logo-glow" />
+        <div className="h-5 w-px bg-neutral-200 hidden sm:block" />
+        <img src={AVANTI_LOGO} alt="Avanti Way" className="h-5 md:h-6 w-auto object-contain" />
+      </div>
+      <div className="flex items-center gap-3">
+        <button onClick={onBook} className="hidden sm:flex items-center gap-2 text-sm font-semibold text-neutral-600 hover:text-black transition-colors">
+          Book a Call
+        </button>
+        <button onClick={onOrder} data-cursor="magic" className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors flex items-center gap-2">
+          Start-Up Package <ArrowRight size={14} />
+        </button>
+      </div>
+    </div>
+  </nav>
+);
+
+// ── Footer ────────────────────────────────────────────────────────────────
+const Footer: React.FC = () => (
+  <footer className="bg-black text-white py-16 border-t border-white/5">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+        <div className="space-y-6">
+          <div className="flex items-center gap-6">
+            <img src="/logo.png" alt="Marketingverse" className="h-9 w-auto brightness-0 invert" />
+            <div className="h-5 w-px bg-white/10" />
+            <img src={AVANTI_LOGO} alt="Avanti Way" className="h-5 w-auto object-contain brightness-0 invert" />
+          </div>
+          <p className="text-neutral-500 max-w-xs leading-relaxed text-sm">The preferred marketing partner for Avanti Way Agentpreneurs.</p>
+          <div className="flex gap-4">
+            <a href="https://www.instagram.com/themarketingverse" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-all" aria-label="Instagram"><Instagram size={18} /></a>
+            <a href="https://www.facebook.com/themarketingverse/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-all" aria-label="Facebook"><Facebook size={18} /></a>
+          </div>
+        </div>
+        <div className="flex gap-16">
+          <div className="space-y-4">
+            <h4 className="font-bold uppercase tracking-widest text-[10px] text-neutral-500">Contact</h4>
+            <ul className="space-y-2 text-sm text-neutral-400">
+              <li><a href="tel:+17867053154" className="hover:text-white transition-colors">+1 (786) 705-3154</a></li>
+              <li><a href="mailto:hello@the-marketingverse.com" className="hover:text-white transition-colors">hello@the-marketingverse.com</a></li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h4 className="font-bold uppercase tracking-widest text-[10px] text-neutral-500">Links</h4>
+            <ul className="space-y-2 text-sm text-neutral-400">
+              <li><a href="/" className="hover:text-white transition-colors">Main Site</a></li>
+              <li><a href="https://www.instagram.com/themarketingverse" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-[11px] text-neutral-600 font-medium uppercase tracking-[0.2em]">
+        <span>© {new Date().getFullYear()} Marketingverse. The Preferred Avanti Way Marketing Partner.</span>
+        <div className="flex gap-6">
+          <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="/terms" className="hover:text-white transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+);
+
+// ── Booking Modal ─────────────────────────────────────────────────────────
+const BookingModal: React.FC<{ onClose: () => void }> = ({ onClose }) => (
+  <div
+    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in"
+    onClick={onClose}
+  >
+    <div
+      className="bg-white w-full max-w-4xl h-[90vh] rounded-[2.5rem] overflow-hidden relative shadow-2xl flex flex-col"
+      onClick={e => e.stopPropagation()}
+    >
+      <button onClick={onClose} className="absolute top-6 right-6 z-10 p-3 bg-white/90 text-black rounded-full hover:bg-neutral-100 transition-all border border-neutral-200">
+        <X size={24} />
+      </button>
+      <div className="w-full flex-1 overflow-hidden">
+        <iframe
+          src={BOOKING_URL}
+          className="w-full border-none"
+          style={{ height: 'calc(100% + 4px)', marginTop: '-4px' }}
+          title="Book a Strategy Call"
+        />
+      </div>
+    </div>
+  </div>
+);
+
+// ── Hero ──────────────────────────────────────────────────────────────────
+const Hero: React.FC<{ onBook: () => void; onOrder: () => void }> = ({ onBook, onOrder }) => (
+  <section className="relative py-28 lg:py-40 overflow-hidden">
+    {/* Blobs */}
+    <div className="absolute top-[-20vh] left-[-10vw] w-[60vw] h-[60vw] max-w-3xl rounded-full bg-indigo-200/40 blur-[120px] pointer-events-none" style={{ animation: 'mv-drift1 22s ease-in-out infinite' }} />
+    <div className="absolute bottom-[-15vh] right-[-8vw]  w-[50vw] h-[50vw] max-w-2xl rounded-full bg-violet-200/35 blur-[100px] pointer-events-none" style={{ animation: 'mv-drift2 26s ease-in-out infinite' }} />
+
+    <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
+      <RevealOnScroll>
+        <div className="flex items-center justify-center gap-4 mb-10">
+          <span className="px-4 py-1.5 bg-neutral-100 text-neutral-500 text-[10px] font-bold uppercase tracking-widest rounded-full">Preferred Partner</span>
+          <img src={AVANTI_LOGO} alt="Avanti Way" className="h-6 md:h-8 w-auto object-contain" />
+        </div>
+        <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]">
+          Built for
+          <br />
+          <span className="font-serif italic font-normal text-indigo-500">Agentpreneurs.</span>
+        </h1>
+        <p className="text-xl text-neutral-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+          Exclusive marketing packages for Avanti Way agents. Social media that converts, branding that commands authority, and AI tools that never sleep.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <button onClick={onBook} data-cursor="magic" className="px-10 py-5 bg-neutral-950 text-white rounded-full font-bold text-lg hover:bg-black transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl">
+            Book a Free Strategy Call <ArrowRight size={20} />
+          </button>
+          <button onClick={onOrder} className="px-10 py-5 bg-white border border-neutral-200 rounded-full font-bold text-lg hover:bg-neutral-50 hover:border-black transition-all inline-flex items-center gap-3">
+            View Start-Up Package
+          </button>
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+);
+
+// ── Start-Up Package ──────────────────────────────────────────────────────
+const StartUpPackage: React.FC<{ onOrder: () => void }> = ({ onOrder }) => (
+  <section id="startup" className="py-24 scroll-mt-20">
+    <div className="max-w-7xl mx-auto px-4">
+      <RevealOnScroll>
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">Launch Ready</span>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            The Agentpreneur <span className="font-serif italic font-normal">Start-Up Package</span>
+          </h2>
+          <p className="text-xl text-neutral-500 max-w-2xl mx-auto">
+            The all-in-one launch sequence for your personal real estate brand. We build the engine while you focus on the closing.
+          </p>
+        </div>
+      </RevealOnScroll>
+
+      {/* Price card + checklist */}
+      <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <RevealOnScroll>
+          <div>
+            <h3 className="text-3xl font-bold mb-6 leading-tight">Launch-Ready. <br />Compliance-Perfect.</h3>
+            <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
+              In 7-10 business days, your digital and physical brand will be fully deployed within the Avanti ecosystem — co-branded, polished, and ready to win listings.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Business Card Template</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">3 Social Media Posts</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Logo Broker Integration</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Online RE Profiles</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Digital Flyer Design</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Professional Profile Bios</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Avex CRM Contact Upload</span></div>
+              <div className="flex items-center gap-3"><div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0"><Check size={14} /></div><span className="text-sm font-medium text-neutral-700">Photo Appt. Coordination</span></div>
+            </div>
+          </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll delay={200}>
+          <div className="bg-neutral-900 text-white rounded-[3rem] p-10 md:p-14 relative overflow-hidden shadow-2xl text-center">
+            <div className="absolute top-0 right-0 w-60 h-60 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
+            <div className="relative z-10">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4 block">Special Agentpreneur Offer</span>
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="text-7xl md:text-8xl font-bold text-white">$340</span>
+                <div className="flex flex-col items-start gap-1">
+                  <span className="text-2xl text-white/30 line-through font-bold">$400</span>
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded-full">Save $60</span>
+                </div>
+              </div>
+              <p className="text-white/50 text-sm mb-8 leading-relaxed">One-time investment. Delivered in 7-10 business days. Built exclusively for Avanti Way agents.</p>
+              <button onClick={onOrder} data-cursor="magic" className="w-full py-5 bg-white text-black rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all shadow-xl hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3">
+                Get Start-Up Package <ArrowRight size={22} />
+              </button>
+            </div>
+          </div>
+        </RevealOnScroll>
+      </div>
+
+      {/* Deliverables grid */}
+      <RevealOnScroll>
+        <h3 className="text-2xl font-bold text-center mb-12">What{"'"}s Included</h3>
+      </RevealOnScroll>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <RevealOnScroll delay={0}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[0].img} alt={DELIVERABLES[0].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[0].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[0].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[0].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={50}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[1].img} alt={DELIVERABLES[1].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[1].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[1].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[1].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={100}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[2].img} alt={DELIVERABLES[2].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[2].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[2].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[2].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={150}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[3].img} alt={DELIVERABLES[3].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[3].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[3].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[3].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={200}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[4].img} alt={DELIVERABLES[4].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[4].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[4].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[4].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={250}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[5].img} alt={DELIVERABLES[5].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[5].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[5].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[5].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={300}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[6].img} alt={DELIVERABLES[6].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[6].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[6].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[6].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={350}>
+          <div className="group bg-white border border-neutral-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div className="aspect-[4/3] overflow-hidden"><img src={DELIVERABLES[7].img} alt={DELIVERABLES[7].title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" /></div>
+            <div className="p-6"><div className="flex items-center gap-3 mb-3"><div className="p-2.5 bg-neutral-900 text-white rounded-xl">{DELIVERABLES[7].icon}</div><h4 className="font-bold text-sm">{DELIVERABLES[7].title}</h4></div><p className="text-neutral-500 text-xs leading-relaxed">{DELIVERABLES[7].desc}</p></div>
+          </div>
+        </RevealOnScroll>
+      </div>
+    </div>
+  </section>
+);
+
+// ── Social Media Section ──────────────────────────────────────────────────
+const SocialSection: React.FC<{ onBook: () => void }> = ({ onBook }) => (
+  <section className="py-24">
+    <div className="max-w-7xl mx-auto px-4">
+      <RevealOnScroll>
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">Social Media Management</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              The Agent Who Shows Up <span className="font-serif italic font-normal">Every Day</span> Wins.
+            </h2>
+            <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
+              Buyers and sellers are checking your Instagram before they call you. If they don{"'"}t like what they see, they call someone else. As an Agentpreneur, your personal brand is your competitive edge.
+            </p>
+            <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
+              We build content that makes your audience feel something — and feeling is what drives follows, saves, shares, and ultimately, closed deals.
+            </p>
+            <button onClick={onBook} data-cursor="magic" className="px-8 py-4 bg-neutral-950 text-white rounded-full font-bold hover:bg-black transition-all hover:scale-105 inline-flex items-center gap-3">
+              Book a Free Demo Call <ArrowRight size={18} />
+            </button>
+          </div>
+          <div>
+            <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
+              <VimeoFacade id="1203822578" title="Why Social Media for Agents" />
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Service list */}
+      <RevealOnScroll>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">What We Handle</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              Our clients see <span className="text-indigo-500">growth</span> in the first month.
+            </h2>
+            <p className="text-neutral-600 leading-relaxed">
+              Ideally, we reach a powerful collaboration. Our job is to guide you and elevate you with the right inspiration, tools, motivation, and accountability. Your job is to be yourself and enjoy the process.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><Cpu size={22} /></div>
+              <span className="font-semibold text-neutral-900">Brand Identity &amp; Voice</span>
+            </div>
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><Users size={22} /></div>
+              <span className="font-semibold text-neutral-900">Strategy &amp; Coaching</span>
+            </div>
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><Wand2 size={22} /></div>
+              <span className="font-semibold text-neutral-900">Content Concept Creation</span>
+            </div>
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><Video size={22} /></div>
+              <span className="font-semibold text-neutral-900">Video &amp; Photo Production</span>
+            </div>
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><ImageIcon size={22} /></div>
+              <span className="font-semibold text-neutral-900">Editing &amp; Graphics</span>
+            </div>
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><Calendar size={22} /></div>
+              <span className="font-semibold text-neutral-900">Scheduling at Peak Times</span>
+            </div>
+            <div className="mv-glass rounded-2xl px-6 py-4 flex items-center gap-4 group mv-lift">
+              <div className="p-2.5 rounded-xl bg-neutral-100 text-neutral-500 mv-gi-indigo transition-all duration-300 shrink-0"><TrendingUp size={22} /></div>
+              <span className="font-semibold text-neutral-900">Analytics &amp; Monthly Reporting</span>
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+);
+
+// ── Pricing ───────────────────────────────────────────────────────────────
+const Pricing: React.FC<{ onBook: () => void }> = ({ onBook }) => (
+  <section className="py-24">
+    <div className="max-w-7xl mx-auto px-4">
+      <RevealOnScroll>
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Agentpreneur Pricing</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Your Market Isn{"'"}t Waiting. <span className="text-indigo-500">Neither Should You.</span>
+          </h2>
+          <p className="text-neutral-500 max-w-2xl mx-auto">
+            Every month without a strong social presence is a month your competitors are taking deals that should be yours.
+          </p>
+        </div>
+      </RevealOnScroll>
+      <div className="grid md:grid-cols-3 gap-8 items-stretch">
+        <RevealOnScroll delay={0} className="h-full">
+          <div className="rounded-3xl p-8 border border-neutral-200 bg-white/90 backdrop-blur-sm hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-500 mb-4 block">{PLANS[0].badge}</span>
+            <h3 className="text-2xl font-bold mb-2">{PLANS[0].name}</h3>
+            <div className="flex items-baseline gap-1 mb-6">
+              <span className="text-4xl font-bold">{PLANS[0].price}</span>
+              <span className="text-sm text-neutral-400">{PLANS[0].period}</span>
+            </div>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[0]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[1]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[2]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[3]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[4]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[5]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[6]}</span></li>
+            </ul>
+            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">{PLANS[0].cta}</button>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={150} className="h-full">
+          <div className="rounded-3xl p-8 bg-black text-white shadow-2xl scale-105 flex flex-col h-full">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-4 block">{PLANS[1].badge}</span>
+            <h3 className="text-2xl font-bold mb-2">{PLANS[1].name}</h3>
+            <div className="flex items-baseline gap-1 mb-6">
+              <span className="text-4xl font-bold">{PLANS[1].price}</span>
+              <span className="text-sm text-white/40">{PLANS[1].period}</span>
+            </div>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[0]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[1]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[2]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[3]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[4]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[5]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[6]}</span></li>
+            </ul>
+            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-100 transition-all active:scale-95">{PLANS[1].cta}</button>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={300} className="h-full">
+          <div className="rounded-3xl p-8 border border-neutral-200 bg-white/90 backdrop-blur-sm hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-violet-500 mb-4 block">{PLANS[2].badge}</span>
+            <h3 className="text-2xl font-bold mb-2">{PLANS[2].name}</h3>
+            <div className="flex items-baseline gap-1 mb-6">
+              <span className="text-4xl font-bold">{PLANS[2].price}</span>
+            </div>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[0]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[1]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[2]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[3]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[4]}</span></li>
+              <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[5]}</span></li>
+            </ul>
+            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">{PLANS[2].cta}</button>
+          </div>
+        </RevealOnScroll>
+      </div>
+    </div>
+  </section>
+);
+
+// ── AI Bot Section ────────────────────────────────────────────────────────
+const AskVerseBot: React.FC = () => (
+  <section className="py-24">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="rounded-[2.5rem] bg-neutral-950 text-white p-12 md:p-16 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/15 rounded-full blur-[100px] pointer-events-none" />
+        <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold">Ask VerseBot</h2>
+              <div className="h-10 w-px bg-white/20 hidden sm:block" />
+              <img src={AVANTI_LOGO} alt="Avanti Way" className="h-8 w-auto object-contain hidden sm:block brightness-0 invert" />
+            </div>
+            <p className="text-xl text-white/60 leading-relaxed">
+              Curious how co-branding with Avanti Way works? Chat with our AI to understand the ROI and deployment process of any of our packages.
+            </p>
+          </div>
+          <div>
+            <AIBot initialMessage="Hi Agentpreneur! I'm VerseBot. I can help explain our packages, how we co-brand with Avanti Way, or answer any questions about growing your real estate brand. What's on your mind?" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// ── CTA ───────────────────────────────────────────────────────────────────
+const CTA: React.FC<{ onBook: () => void }> = ({ onBook }) => (
+  <section className="py-24">
+    <div className="max-w-7xl mx-auto px-4">
+      <RevealOnScroll delay={100}>
+        <div className="w-full py-24 mv-glass rounded-[2.5rem] relative overflow-hidden text-center px-8">
+          <div className="absolute top-0 left-1/3 w-80 h-80 bg-indigo-200/50 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-violet-200/40 rounded-full blur-[80px] pointer-events-none" />
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <img src={AVANTI_LOGO} alt="Avanti Way" className="h-8 w-auto object-contain mx-auto mb-8 opacity-60" />
+            <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-neutral-900">
+              Ready to Become the <span className="font-serif italic font-normal text-violet-500">Most Recognizable Agent</span> in Your Market?
+            </h2>
+            <p className="text-xl text-neutral-500 mb-12 max-w-2xl mx-auto">
+              Book a free 20-minute strategy call. We{"'"}ll show you exactly how we{"'"}d build your brand as an Avanti Way Agentpreneur.
+            </p>
+            <button onClick={onBook} data-cursor="magic" className="px-10 py-5 bg-neutral-950 text-white rounded-full font-bold text-lg hover:bg-black transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl">
+              Book a Free Strategy Call <ArrowRight size={20} />
+            </button>
+          </div>
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+);
+
+// ── App ───────────────────────────────────────────────────────────────────
+const App: React.FC = () => {
+  const [bookingOpen, setBookingOpen] = useState(false);
+
+  const handleOrder = () => {
+    const w = 600, h = 800;
+    const left = (window.screen.width  - w) / 2;
+    const top  = (window.screen.height - h) / 2;
+    window.open(ORDER_URL, 'OrderWindow', 'width=' + w + ',height=' + h + ',top=' + top + ',left=' + left + ',scrollbars=yes,resizable=yes');
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white text-neutral-900 font-sans overflow-x-hidden">
+      <CustomCursor />
+      <BackToTop />
+
+      <Nav onBook={() => setBookingOpen(true)} onOrder={handleOrder} />
+
+      <main className="flex-grow">
+        <Hero    onBook={() => setBookingOpen(true)} onOrder={handleOrder} />
+        <StartUpPackage onOrder={handleOrder} />
+        <SocialSection  onBook={() => setBookingOpen(true)} />
+        <Pricing        onBook={() => setBookingOpen(true)} />
+        <AskVerseBot />
+        <CTA            onBook={() => setBookingOpen(true)} />
+      </main>
+
+      <Footer />
+
+      {bookingOpen && <BookingModal onClose={() => setBookingOpen(false)} />}
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
