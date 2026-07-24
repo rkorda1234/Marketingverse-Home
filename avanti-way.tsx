@@ -393,6 +393,19 @@ const SocialSection: React.FC<{ onBook: () => void }> = ({ onBook }) => (
   <section id="social" className="py-24 scroll-mt-20">
     <div className="max-w-7xl mx-auto px-4">
 
+      {/* Why Social vertical video */}
+      <RevealOnScroll>
+        <div className="mb-24">
+          <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">The Marketingverse Way</span>
+            <h2 className="text-4xl font-bold mb-4">Why Social? <span className="font-serif italic font-normal">Our Unique Approach.</span></h2>
+          </div>
+          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
+            <VimeoFacade id="1203822578" title="Why Social? Marketingverse Approach" />
+          </div>
+        </div>
+      </RevealOnScroll>
+
       {/* Dark banner */}
       <RevealOnScroll>
         <div className="rounded-[2.5rem] bg-neutral-950 text-white p-14 md:p-20 mb-24 relative overflow-hidden text-center">
