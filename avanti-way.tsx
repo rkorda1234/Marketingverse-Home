@@ -4,7 +4,8 @@ import {
   ArrowRight, Check, Instagram, Facebook, X, ArrowUp,
   CreditCard, Layers, Layout, FileText, PenTool, Upload, Camera,
   Cpu, Users, Wand2, Video, ImageIcon, Calendar, TrendingUp,
-  Shield, Heart, CheckCircle2, Star, Zap, Bot, Building2, Play
+  Shield, Heart, CheckCircle2, Star, Zap, Bot, Building2, Play,
+  MessageSquare, ClipboardList, Headphones, Megaphone
 } from 'lucide-react';
 import { RevealOnScroll } from './components/RevealOnScroll';
 import { AIBot } from './components/AIBot';
@@ -29,39 +30,42 @@ const DELIVERABLES = [
 ];
 
 // ── Pricing plans ──────────────────────────────────────────────────────────
+const GROWTH_URL    = 'https://billing.the-marketingverse.com/subscribe/012b590903e576e21bb2f16ffd298a88a7726ba08b65d6ccad482bf477cf719e/smproavanti';
+const DOMINANCE_URL = 'https://billing.the-marketingverse.com/subscribe/012b590903e576e21bb2f16ffd298a88a7726ba08b65d6ccad482bf477cf719e/SocialPlusAvanti';
+
 const PLANS = [
   {
-    name: 'Social Growth',
-    price: '$797',
+    name: 'Growth',
+    price: '$340',
     period: '/mo',
     badge: 'Agentpreneur Rate',
     features: [
       'Full brand identity setup',
       'Strategy & coaching sessions',
-      '12 posts/month (Reels + Statics)',
+      '8 posts/month (Reels + Statics)',
       'Professional video & photo editing',
       'AI caption & hashtag optimization',
       'Scheduled at peak engagement times',
       'Monthly analytics report',
     ],
-    cta: 'Book a Strategy Call',
+    paymentUrl: GROWTH_URL,
     dark: false,
   },
   {
-    name: 'Social Growth Pro',
-    price: '$1,197',
+    name: 'Dominance',
+    price: '$700',
     period: '/mo',
     badge: 'Most Popular',
     features: [
-      'Everything in Social Growth',
-      '20 posts/month including Stories',
+      'Everything in Growth',
+      '16 posts/month including Stories',
       'Quarterly content shoot coordination',
       'Paid ads strategy & management',
       'Monthly 1:1 coaching call',
-      'Broker Engine CRM included',
       'Priority support',
+      'Community management',
     ],
-    cta: 'Book a Strategy Call',
+    paymentUrl: DOMINANCE_URL,
     dark: true,
   },
   {
@@ -70,14 +74,14 @@ const PLANS = [
     period: '',
     badge: 'Full Service',
     features: [
-      'Everything in Social Growth Pro',
+      'Everything in Dominance',
       'Custom content shoots monthly',
       'Full-service ad management',
       'AI Automation workflows',
       'Dedicated account manager',
       'Quarterly brand audits',
     ],
-    cta: 'Talk to Us',
+    paymentUrl: null,
     dark: false,
   },
 ];
@@ -135,22 +139,31 @@ const BackToTop: React.FC = () => {
 };
 
 // ── Nav ───────────────────────────────────────────────────────────────────
-const Nav: React.FC<{ onBook: () => void; onOrder: () => void }> = ({ onBook, onOrder }) => (
+const scrollToSection = (id: string) => {
+  if (id === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+};
+
+const Nav: React.FC<{ onBook: () => void }> = ({ onBook }) => (
   <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-100 h-20 flex items-center">
     <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-      <div className="flex items-center gap-4 sm:gap-6 flex-shrink-0">
+      <div
+        className="flex items-center gap-4 sm:gap-6 flex-shrink-0 cursor-pointer"
+        onClick={() => scrollToSection('top')}
+      >
         <img src="/logo.png" alt="Marketingverse" className="h-9 w-auto mv-logo-glow" />
         <div className="h-5 w-px bg-neutral-200 hidden sm:block" />
         <img src={AVANTI_LOGO} alt="Avanti Way" className="h-5 md:h-6 w-auto object-contain" />
       </div>
-      <div className="flex items-center gap-3">
-        <button onClick={onBook} className="hidden sm:flex items-center gap-2 text-sm font-semibold text-neutral-600 hover:text-black transition-colors">
-          Book a Call
-        </button>
-        <button onClick={onOrder} data-cursor="magic" className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors flex items-center gap-2">
-          Start-Up Package <ArrowRight size={14} />
-        </button>
+      <div className="hidden md:flex items-center gap-7">
+        <button onClick={() => scrollToSection('top')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Home</button>
+        <button onClick={() => scrollToSection('startup')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Start-Up Package</button>
+        <button onClick={() => scrollToSection('social')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Social</button>
+        <button onClick={() => scrollToSection('ai')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">AI Integrations</button>
       </div>
+      <button onClick={onBook} data-cursor="magic" className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors flex items-center gap-2">
+        Book a Call <ArrowRight size={14} />
+      </button>
     </div>
   </nav>
 );
@@ -227,7 +240,7 @@ const BookingModal: React.FC<{ onClose: () => void }> = ({ onClose }) => (
 
 // ── Hero ──────────────────────────────────────────────────────────────────
 const Hero: React.FC<{ onBook: () => void; onOrder: () => void }> = ({ onBook, onOrder }) => (
-  <section className="relative py-28 lg:py-40 overflow-hidden">
+  <section id="top" className="relative py-28 lg:py-40 overflow-hidden">
     {/* Blobs */}
     <div className="absolute top-[-20vh] left-[-10vw] w-[60vw] h-[60vw] max-w-3xl rounded-full bg-indigo-200/40 blur-[120px] pointer-events-none" style={{ animation: 'mv-drift1 22s ease-in-out infinite' }} />
     <div className="absolute bottom-[-15vh] right-[-8vw]  w-[50vw] h-[50vw] max-w-2xl rounded-full bg-violet-200/35 blur-[100px] pointer-events-none" style={{ animation: 'mv-drift2 26s ease-in-out infinite' }} />
@@ -250,8 +263,8 @@ const Hero: React.FC<{ onBook: () => void; onOrder: () => void }> = ({ onBook, o
           <button onClick={onBook} data-cursor="magic" className="px-10 py-5 bg-neutral-950 text-white rounded-full font-bold text-lg hover:bg-black transition-all hover:scale-105 inline-flex items-center gap-3 shadow-xl">
             Book a Free Strategy Call <ArrowRight size={20} />
           </button>
-          <button onClick={onOrder} className="px-10 py-5 bg-white border border-neutral-200 rounded-full font-bold text-lg hover:bg-neutral-50 hover:border-black transition-all inline-flex items-center gap-3">
-            View Start-Up Package
+          <button onClick={() => scrollToSection('pricing')} className="px-10 py-5 bg-white border border-neutral-200 rounded-full font-bold text-lg hover:bg-neutral-50 hover:border-black transition-all inline-flex items-center gap-3">
+            Growth Plans
           </button>
         </div>
       </RevealOnScroll>
@@ -377,7 +390,7 @@ const StartUpPackage: React.FC<{ onOrder: () => void }> = ({ onOrder }) => (
 
 // ── Social Section (For Agentpreneurs) ───────────────────────────────────
 const SocialSection: React.FC<{ onBook: () => void }> = ({ onBook }) => (
-  <section className="py-24">
+  <section id="social" className="py-24 scroll-mt-20">
     <div className="max-w-7xl mx-auto px-4">
 
       {/* Dark banner */}
@@ -509,7 +522,7 @@ const SocialSection: React.FC<{ onBook: () => void }> = ({ onBook }) => (
 
 // ── Pricing ───────────────────────────────────────────────────────────────
 const Pricing: React.FC<{ onBook: () => void }> = ({ onBook }) => (
-  <section className="py-24">
+  <section id="pricing" className="py-24 scroll-mt-20">
     <div className="max-w-7xl mx-auto px-4">
       <RevealOnScroll>
         <div className="text-center mb-16">
@@ -540,7 +553,7 @@ const Pricing: React.FC<{ onBook: () => void }> = ({ onBook }) => (
               <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[5]}</span></li>
               <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-500 mt-0.5 shrink-0" /><span>{PLANS[0].features[6]}</span></li>
             </ul>
-            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">{PLANS[0].cta}</button>
+            <a href={PLANS[0].paymentUrl!} target="_blank" rel="noopener noreferrer" className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95 text-center block">Get Growth</a>
           </div>
         </RevealOnScroll>
         <RevealOnScroll delay={150} className="h-full">
@@ -560,7 +573,7 @@ const Pricing: React.FC<{ onBook: () => void }> = ({ onBook }) => (
               <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[5]}</span></li>
               <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-indigo-400 mt-0.5 shrink-0" /><span>{PLANS[1].features[6]}</span></li>
             </ul>
-            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-100 transition-all active:scale-95">{PLANS[1].cta}</button>
+            <a href={PLANS[1].paymentUrl!} target="_blank" rel="noopener noreferrer" className="w-full py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-100 transition-all active:scale-95 text-center block">Get Dominance</a>
           </div>
         </RevealOnScroll>
         <RevealOnScroll delay={300} className="h-full">
@@ -578,10 +591,158 @@ const Pricing: React.FC<{ onBook: () => void }> = ({ onBook }) => (
               <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[4]}</span></li>
               <li className="flex items-start gap-3 text-sm"><CheckCircle2 size={16} className="text-violet-500 mt-0.5 shrink-0" /><span>{PLANS[2].features[5]}</span></li>
             </ul>
-            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">{PLANS[2].cta}</button>
+            <button onClick={onBook} className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">Talk to Us</button>
           </div>
         </RevealOnScroll>
       </div>
+    </div>
+  </section>
+);
+
+// ── AI Integrations Section ───────────────────────────────────────────────
+const AI_RE_CATEGORIES = [
+  {
+    icon: <TrendingUp size={22} />,
+    title: 'Lead Generation',
+    items: ['AI-powered lead capture forms', 'Automated follow-up sequences', 'CRM pipeline integration', 'Smart appointment scheduling bots', 'Lead scoring & prioritization'],
+  },
+  {
+    icon: <MessageSquare size={22} />,
+    title: 'Client Communication',
+    items: ['24/7 AI chatbots on your site', 'Natural conversation flows', 'Personalized follow-up messages', 'Voice note transcription', 'Sentiment analysis on inquiries'],
+  },
+  {
+    icon: <Calendar size={22} />,
+    title: 'Scheduling & Admin',
+    items: ['Auto-book showings & calls', 'Calendar sync across platforms', 'Reminder & confirmation sequences', 'Document automation', 'Transaction milestone alerts'],
+  },
+  {
+    icon: <Megaphone size={22} />,
+    title: 'Content Automation',
+    items: ['AI listing descriptions', 'Social post generation', 'Email newsletter drafts', 'Video script creation', 'Market report automation'],
+  },
+  {
+    icon: <Users size={22} />,
+    title: 'Sphere Management',
+    items: ['Automated referral outreach', 'Anniversary & milestone messages', 'Review collection workflows', 'Past client re-engagement', 'Sphere segmentation & tagging'],
+  },
+  {
+    icon: <Zap size={22} />,
+    title: 'Marketing Automation',
+    items: ['Drip email campaigns', 'Retargeting ad workflows', 'Open house follow-up sequences', 'GEO/SEO automation', 'WhatsApp & SMS campaigns'],
+  },
+];
+
+const AISection: React.FC<{ onBook: () => void }> = ({ onBook }) => (
+  <section id="ai" className="py-24 scroll-mt-20">
+    <div className="max-w-7xl mx-auto px-4">
+      <RevealOnScroll>
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">AI Integrations</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Your Business, <span className="font-serif italic font-normal">On Autopilot.</span>
+          </h2>
+          <p className="text-xl text-neutral-500 max-w-2xl mx-auto">
+            Custom AI agents that handle the repetitive work so you can focus on closing. Built specifically for Avanti Way Agentpreneurs.
+          </p>
+        </div>
+      </RevealOnScroll>
+
+      {/* Workflow categories grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <RevealOnScroll delay={0} className="h-full">
+          <div className="mv-glass mv-lift rounded-3xl p-8 h-full group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">{AI_RE_CATEGORIES[0].icon}</div>
+              <h3 className="text-lg font-bold">{AI_RE_CATEGORIES[0].title}</h3>
+            </div>
+            <ul className="space-y-2.5">
+              {AI_RE_CATEGORIES[0].items.map((item, i) => <li key={i} className="flex items-start gap-3 text-sm text-neutral-500"><div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" /><span className="leading-relaxed">{item}</span></li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={60} className="h-full">
+          <div className="mv-glass mv-lift rounded-3xl p-8 h-full group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">{AI_RE_CATEGORIES[1].icon}</div>
+              <h3 className="text-lg font-bold">{AI_RE_CATEGORIES[1].title}</h3>
+            </div>
+            <ul className="space-y-2.5">
+              {AI_RE_CATEGORIES[1].items.map((item, i) => <li key={i} className="flex items-start gap-3 text-sm text-neutral-500"><div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" /><span className="leading-relaxed">{item}</span></li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={120} className="h-full">
+          <div className="mv-glass mv-lift rounded-3xl p-8 h-full group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">{AI_RE_CATEGORIES[2].icon}</div>
+              <h3 className="text-lg font-bold">{AI_RE_CATEGORIES[2].title}</h3>
+            </div>
+            <ul className="space-y-2.5">
+              {AI_RE_CATEGORIES[2].items.map((item, i) => <li key={i} className="flex items-start gap-3 text-sm text-neutral-500"><div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" /><span className="leading-relaxed">{item}</span></li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={180} className="h-full">
+          <div className="mv-glass mv-lift rounded-3xl p-8 h-full group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">{AI_RE_CATEGORIES[3].icon}</div>
+              <h3 className="text-lg font-bold">{AI_RE_CATEGORIES[3].title}</h3>
+            </div>
+            <ul className="space-y-2.5">
+              {AI_RE_CATEGORIES[3].items.map((item, i) => <li key={i} className="flex items-start gap-3 text-sm text-neutral-500"><div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" /><span className="leading-relaxed">{item}</span></li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={240} className="h-full">
+          <div className="mv-glass mv-lift rounded-3xl p-8 h-full group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">{AI_RE_CATEGORIES[4].icon}</div>
+              <h3 className="text-lg font-bold">{AI_RE_CATEGORIES[4].title}</h3>
+            </div>
+            <ul className="space-y-2.5">
+              {AI_RE_CATEGORIES[4].items.map((item, i) => <li key={i} className="flex items-start gap-3 text-sm text-neutral-500"><div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" /><span className="leading-relaxed">{item}</span></li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={300} className="h-full">
+          <div className="mv-glass mv-lift rounded-3xl p-8 h-full group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">{AI_RE_CATEGORIES[5].icon}</div>
+              <h3 className="text-lg font-bold">{AI_RE_CATEGORIES[5].title}</h3>
+            </div>
+            <ul className="space-y-2.5">
+              {AI_RE_CATEGORIES[5].items.map((item, i) => <li key={i} className="flex items-start gap-3 text-sm text-neutral-500"><div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" /><span className="leading-relaxed">{item}</span></li>)}
+            </ul>
+          </div>
+        </RevealOnScroll>
+      </div>
+
+      {/* CTA card */}
+      <RevealOnScroll>
+        <div className="relative rounded-[2.5rem] border border-neutral-200 overflow-hidden px-8 py-16 md:px-16 text-center backdrop-blur-sm">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-100/60 rounded-full blur-[80px] -translate-y-1/2 pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-100/50 rounded-full blur-[80px] translate-y-1/2 pointer-events-none" />
+          <div className="relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block">AI Automation Suite</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Build Your <span className="font-serif italic font-normal">Custom AI Suite</span>
+            </h2>
+            <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Audit your business bottlenecks in 2 minutes. Receive custom AI workflow recommendations, calculate your real-time monthly ROI, and deploy instantly.
+            </p>
+            <a
+              href="https://proposal.the-marketingverse.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="magic"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white rounded-2xl font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl"
+            >
+              Build My AI Suite <ArrowRight size={20} />
+            </a>
+          </div>
+        </div>
+      </RevealOnScroll>
     </div>
   </section>
 );
@@ -654,13 +815,14 @@ const App: React.FC = () => {
       <CustomCursor />
       <BackToTop />
 
-      <Nav onBook={() => setBookingOpen(true)} onOrder={handleOrder} />
+      <Nav onBook={() => setBookingOpen(true)} />
 
       <main className="flex-grow">
-        <Hero    onBook={() => setBookingOpen(true)} onOrder={handleOrder} />
+        <Hero           onBook={() => setBookingOpen(true)} onOrder={handleOrder} />
         <StartUpPackage onOrder={handleOrder} />
         <SocialSection  onBook={() => setBookingOpen(true)} />
         <Pricing        onBook={() => setBookingOpen(true)} />
+        <AISection      onBook={() => setBookingOpen(true)} />
         <AskVerseBot />
         <CTA            onBook={() => setBookingOpen(true)} />
       </main>
