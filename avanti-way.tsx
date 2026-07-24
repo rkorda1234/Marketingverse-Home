@@ -181,10 +181,10 @@ const Footer: React.FC = () => (
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="font-bold uppercase tracking-widest text-[10px] text-neutral-500">Links</h4>
+            <h4 className="font-bold uppercase tracking-widest text-[10px] text-neutral-500">Follow Us</h4>
             <ul className="space-y-2 text-sm text-neutral-400">
-              <li><a href="/" className="hover:text-white transition-colors">Main Site</a></li>
               <li><a href="https://www.instagram.com/themarketingverse" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
+              <li><a href="https://www.facebook.com/themarketingverse/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a></li>
             </ul>
           </div>
         </div>
@@ -375,45 +375,100 @@ const StartUpPackage: React.FC<{ onOrder: () => void }> = ({ onOrder }) => (
   </section>
 );
 
-// ── Social Media Section ──────────────────────────────────────────────────
+// ── Social Section (For Agentpreneurs) ───────────────────────────────────
 const SocialSection: React.FC<{ onBook: () => void }> = ({ onBook }) => (
   <section className="py-24">
     <div className="max-w-7xl mx-auto px-4">
+
+      {/* Dark banner */}
       <RevealOnScroll>
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">Social Media Management</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              The Agent Who Shows Up <span className="font-serif italic font-normal">Every Day</span> Wins.
+        <div className="rounded-[2.5rem] bg-neutral-950 text-white p-14 md:p-20 mb-24 relative overflow-hidden text-center">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(99,102,241,0.3)_0%,_transparent_55%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(139,92,246,0.2)_0%,_transparent_55%)] pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-400 mb-6 block">Social Media</span>
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+              The Agentpreneurs Who Win<br />
+              <span className="font-serif italic font-normal text-neutral-400">Show Up Every Single Day.</span>
             </h2>
-            <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
-              Buyers and sellers are checking your Instagram before they call you. If they don{"'"}t like what they see, they call someone else. As an Agentpreneur, your personal brand is your competitive edge.
+            <p className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Buyers and sellers are checking your Instagram before they call you. Your co-branded presence as an Avanti Way Agentpreneur is your biggest competitive edge — and we{"'"}re here to make it undeniable.
             </p>
-            <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
-              We build content that makes your audience feel something — and feeling is what drives follows, saves, shares, and ultimately, closed deals.
-            </p>
-            <button onClick={onBook} data-cursor="magic" className="px-8 py-4 bg-neutral-950 text-white rounded-full font-bold hover:bg-black transition-all hover:scale-105 inline-flex items-center gap-3">
-              Book a Free Demo Call <ArrowRight size={18} />
+            <button
+              onClick={onBook}
+              data-cursor="magic"
+              className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-10 py-4 rounded-2xl transition-all hover:scale-105 shadow-xl tracking-wide uppercase text-sm"
+            >
+              Book a Free Strategy Call
             </button>
           </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* 4 pillars */}
+      <RevealOnScroll>
+        <div className="mb-24 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black max-w-sm mx-auto">
-              <VimeoFacade id="1203822578" title="Why Social Media for Agents" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              The Real Reason <span className="text-indigo-500">Most Agents Stay Invisible</span>
+            </h2>
+            <p className="font-bold text-neutral-900 mb-4">It{"'"}s not your listings. It{"'"}s your presence.</p>
+            <div className="space-y-4 text-neutral-600 leading-relaxed">
+              <p>The Agentpreneurs dominating your market aren{"'"}t necessarily better than you — they{"'"}re more visible, more consistent, and more connected to their audience. Social media done right doesn{"'"}t just build followers — it builds a community that closes deals for you.</p>
+              <p>We don{"'"}t post to fill a calendar. We build an Agentpreneur brand people can{"'"}t stop talking about.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-indigo-500 mv-gi-indigo transition-all duration-300"><TrendingUp size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Market Visibility</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">Become the go-to Agentpreneur in your market before a buyer ever searches for an agent.</p>
+            </div>
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-violet-500 mv-gi-violet transition-all duration-300"><Shield size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Trust at Scale</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">Content that warms cold leads and turns strangers into loyal clients and referral sources.</p>
+            </div>
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-sky-500 mv-gi-sky transition-all duration-300"><Layers size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Brand Consistency</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">A cohesive look and voice co-branded with Avanti Way — so your brand works while you close.</p>
+            </div>
+            <div className="mv-glass mv-lift rounded-3xl p-5 group">
+              <div className="mb-3 p-2.5 bg-neutral-100 rounded-xl w-fit text-pink-500 mv-gi-pink transition-all duration-300"><Heart size={22} /></div>
+              <h4 className="font-bold mb-2 text-sm">Community &amp; Loyalty</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">People don{"'"}t just hire agents. They choose the one they feel they know. We build that connection.</p>
             </div>
           </div>
         </div>
       </RevealOnScroll>
 
-      {/* Service list */}
+      {/* Content showcase */}
+      <RevealOnScroll>
+        <div className="mb-24">
+          <div className="text-center mb-10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Cinematic Excellence</span>
+            <h2 className="text-4xl font-bold mb-4">Content That <span className="font-serif italic font-normal">Stops The Scroll</span></h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">See what we{"'"}ve done for our clients</p>
+          </div>
+          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-neutral-100 bg-black">
+            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+              <iframe src="https://vimeo.com/showcase/9806547/embed2" allow="autoplay; fullscreen; picture-in-picture" frameBorder={0} loading="lazy" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} title="Marketingverse Video Showcase" />
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* Growth section + service list */}
       <RevealOnScroll>
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">What We Handle</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              Our clients see <span className="text-indigo-500">growth</span> in the first month.
+              Our Agentpreneurs see <span className="text-indigo-500">growth</span> in the first month.
             </h2>
-            <p className="text-neutral-600 leading-relaxed">
-              Ideally, we reach a powerful collaboration. Our job is to guide you and elevate you with the right inspiration, tools, motivation, and accountability. Your job is to be yourself and enjoy the process.
+            <p className="text-neutral-600 leading-relaxed mb-8">
+              We guide you with the right strategy, creative direction, and Avanti Way co-branding. Your job is to show up as yourself and let us handle the rest.
             </p>
           </div>
           <div className="space-y-4">

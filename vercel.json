@@ -4,6 +4,7 @@
   "framework": "vite",
   "rewrites": [
     { "source": "/thank-you", "destination": "/thank-you.html" },
-    { "source": "/((?!thank-you).*)", "destination": "/index.html" }
+    { "source": "/avanti-way", "destination": "/avanti-way.html" },
+    { "source": "/((?!thank-you|avanti-way).*)", "destination": "/index.html" }
   ]
 }
