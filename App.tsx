@@ -3470,69 +3470,173 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
   </div>
 );
 
+const AI_WORKFLOW_SAVINGS = [
+  { time: '8–12 hrs/week saved', roi: '20–40% more pipeline' },
+  { time: '10–15 hrs/week saved', roi: '$2,000+ in recovered labor' },
+  { time: '6–10 hrs/week saved', roi: '3× content output, same team' },
+  { time: '5–8 hrs/week saved', roi: '90% fewer accounting errors' },
+  { time: '4–6 hrs/week saved', roi: '24/7 client response, zero staff' },
+  { time: '3–5 hrs/week saved', roi: '80% of inquiries handled automatically' },
+  { time: '5–8 hrs/week saved', roi: 'Zero dropped tasks or follow-ups' },
+  { time: '6–10 hrs/week saved', roi: 'Faster hires, better qualified fits' },
+  { time: '4–8 hrs/week saved', roi: '40% fewer incidents, less downtime' },
+];
+
 const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateRequest, onBookConsultation }) => (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      {/* Hero — outcome-focused */}
       <RevealOnScroll>
         <div className="mb-16 text-center">
-          <h2 className="text-4xl font-bold mb-4">AI <span className="font-serif italic font-normal">Integration Workflows</span></h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">Revolutionize your operations with our comprehensive suite of AI-powered integrations.</p>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 mb-4 block">AI Integrations</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            What Could Your Business Do With<br />
+            <span className="font-serif italic font-normal">20 Extra Hours a Week?</span>
+          </h2>
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-14">
+            AI doesn{"'"}t replace your team. It removes the work that prevents your team from doing their best work. Every automation we build targets one of three outcomes:
+          </p>
         </div>
       </RevealOnScroll>
-      
+
+      {/* 3 outcome pillars */}
+      <RevealOnScroll>
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
+          <div className="mv-glass rounded-3xl p-10 text-center group mv-lift">
+            <div className="w-16 h-16 rounded-2xl bg-indigo-500 text-white flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-lg">⏱</div>
+            <h3 className="text-xl font-bold mb-3">Efficiency</h3>
+            <p className="text-sm text-neutral-500 leading-relaxed mb-4">Save time. Reclaim hours every week by automating repetitive, manual tasks that drain your team.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">Save 5–20 hrs/week</span>
+          </div>
+          <div className="mv-glass rounded-3xl p-10 text-center group mv-lift">
+            <div className="w-16 h-16 rounded-2xl bg-emerald-500 text-white flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-lg">$</div>
+            <h3 className="text-xl font-bold mb-3">Effectiveness</h3>
+            <p className="text-sm text-neutral-500 leading-relaxed mb-4">Make more money. Convert more leads, close faster, and capture revenue that{"'"}s currently slipping through the cracks.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">20–40% pipeline growth</span>
+          </div>
+          <div className="mv-glass rounded-3xl p-10 text-center group mv-lift">
+            <div className="w-16 h-16 rounded-2xl bg-violet-500 text-white flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-lg">★</div>
+            <h3 className="text-xl font-bold mb-3">Quality</h3>
+            <p className="text-sm text-neutral-500 leading-relaxed mb-4">Improve your product. Deliver faster, more consistent, higher-quality output — every time, without the human error.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-violet-500 bg-violet-50 px-3 py-1 rounded-full">Consistent, scalable output</span>
+          </div>
+        </div>
+      </RevealOnScroll>
+
       <LiveAvatarDemo />
 
       <RevealOnScroll>
-        <div className="mb-16">
+        <div className="mb-20">
            <h3 className="text-2xl mb-6 text-center uppercase tracking-widest text-black font-serif italic">Workflow in Action</h3>
            <div className="rounded-3xl overflow-hidden shadow-lg border border-neutral-100 bg-black">
              <VimeoFacade id="1112989697" title="Workflow in Action" aspect="56.25%" />
            </div>
         </div>
       </RevealOnScroll>
-      <div className="py-20 border-b border-neutral-100 mb-16">
-        <div className="text-center mb-10"><h3 className="text-2xl font-bold">Choose Your Integration Level</h3></div>
-        <div className="grid md:grid-cols-3 gap-8 items-start">
-          {AI_PLANS.map((plan, index) => (
-            <RevealOnScroll key={index} delay={index * 150} className="h-full">
-              <div data-cursor="card" className={`rounded-3xl p-8 border h-full transition-all duration-300 hover:shadow-2xl flex flex-col ${plan.recommended ? 'bg-black text-white border-black shadow-2xl scale-105' : 'bg-white/90 backdrop-blur-sm hover:-translate-y-2'}`}>
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.price !== 'Custom' && <span className={`text-sm opacity-50`}>+ Development</span>}
+
+      {/* How We Work — 2 service cards */}
+      <RevealOnScroll>
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">How It Works</span>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+              Start With a <span className="font-serif italic font-normal">$200 Assessment.</span><br />Build From There.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
+            {/* Assessment card */}
+            <RevealOnScroll delay={0} className="h-full">
+              <div className="rounded-3xl border border-neutral-200 bg-white/90 backdrop-blur-sm p-10 flex flex-col h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-500 mb-4 block">Step 1</span>
+                <h3 className="text-2xl font-bold mb-2">AI Assessment</h3>
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-5xl font-bold">$200</span>
+                  <span className="text-sm text-neutral-400">one-time</span>
                 </div>
-                <p className={`mb-8 leading-relaxed opacity-80`}>{plan.description}</p>
-                <ul className="space-y-4 mb-8 flex-grow">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check size={14} className="mt-1" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
+                <p className="text-neutral-600 leading-relaxed mb-6 flex-grow">
+                  We audit your operations, map every manual bottleneck, and identify exactly where AI can save you the most time and money. At the end, you{"'"}ll have a clear picture of your AI opportunities — ranked by impact.
+                </p>
+                <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 mb-8">
+                  <div className="flex items-start gap-3">
+                    <span className="text-indigo-500 text-lg mt-0.5">🛡</span>
+                    <div>
+                      <p className="font-bold text-sm text-indigo-800 mb-1">Money-Back Guarantee</p>
+                      <p className="text-xs text-indigo-600 leading-relaxed">If we can{"'"}t identify at least 5 hours per week to save your business, you get a full refund. No questions asked.</p>
+                    </div>
+                  </div>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Deep-dive into your current workflows</span></li>
+                  <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Identify every manual bottleneck</span></li>
+                  <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Ranked list of AI opportunities by ROI</span></li>
+                  <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Estimated time & money savings per area</span></li>
+                  <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Implementation roadmap tailored to your team</span></li>
                 </ul>
-                <button 
-                  onClick={() => onInitiateRequest(plan)} 
-                  data-cursor="magic"
-                  className={`w-full py-4 rounded-xl font-bold transition-transform active:scale-95 ${plan.recommended ? 'bg-white text-black hover:bg-neutral-100' : 'bg-black text-white hover:bg-neutral-800'}`}
-                >
-                  Request Integration
+                <button onClick={onBookConsultation} data-cursor="magic" className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">
+                  Book Your Assessment
                 </button>
               </div>
             </RevealOnScroll>
-          ))}
+
+            {/* Implementation card */}
+            <RevealOnScroll delay={150} className="h-full">
+              <div className="rounded-3xl bg-black text-white p-10 flex flex-col h-full shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-4 block">Step 2</span>
+                  <h3 className="text-2xl font-bold mb-2">AI Implementation</h3>
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-5xl font-bold">$1,500</span>
+                    <span className="text-sm text-white/40">/mo</span>
+                  </div>
+                  <p className="text-white/60 leading-relaxed mb-6 flex-grow">
+                    After the assessment, we implement your AI roadmap together. Bi-monthly 1-hour working sessions where we build, test, and deploy — you learn as we go, so your team owns the results.
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-400 mt-0.5 shrink-0" /><span>2 × 1-hour implementation calls/month</span></li>
+                    <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-400 mt-0.5 shrink-0" /><span>We build it together — you learn as we go</span></li>
+                    <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-400 mt-0.5 shrink-0" /><span>Custom workflows built for your systems</span></li>
+                    <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-400 mt-0.5 shrink-0" /><span>Priority support between sessions</span></li>
+                    <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-400 mt-0.5 shrink-0" /><span>Ongoing refinement as your business grows</span></li>
+                  </ul>
+                  <button onClick={onBookConsultation} data-cursor="magic" className="w-full py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-100 transition-all active:scale-95">
+                    Start After Assessment
+                  </button>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </div>
         </div>
-      </div>
+      </RevealOnScroll>
+
+      {/* Workflow opportunity areas with savings */}
+      <RevealOnScroll>
+        <div className="text-center mb-12">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 block">Where The Time Goes</span>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+            AI Opportunities <span className="font-serif italic font-normal">By Department</span>
+          </h2>
+          <p className="text-neutral-500 max-w-2xl mx-auto mt-4">These are the areas where most businesses hemorrhage time and money — and where a single workflow can pay for itself in weeks.</p>
+        </div>
+      </RevealOnScroll>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
          {AI_WORKFLOWS.map((category, index) => (
             <RevealOnScroll key={category.title} delay={index * 50} className="h-full">
-              <div data-cursor="card" className="mv-glass mv-lift rounded-3xl p-8 h-full group">
-                  <div className="flex items-center gap-4 mb-6">
+              <div data-cursor="card" className="mv-glass mv-lift rounded-3xl p-8 h-full group flex flex-col">
+                  <div className="flex items-center gap-4 mb-4">
                       <div className="p-3 bg-neutral-900 text-white rounded-xl mv-gi-rotate transition-all duration-300">
                           <WorkflowIcon icon={category.icon} />
                       </div>
                       <h3 className="text-xl font-bold">{category.title}</h3>
                   </div>
-                  <ul className="space-y-3">
+                  {AI_WORKFLOW_SAVINGS[index] && (
+                    <div className="flex gap-2 mb-5 flex-wrap">
+                      <span className="text-[10px] font-bold uppercase tracking-wide text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-full">{AI_WORKFLOW_SAVINGS[index].time}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wide text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">{AI_WORKFLOW_SAVINGS[index].roi}</span>
+                    </div>
+                  )}
+                  <ul className="space-y-3 flex-grow">
                       {category.items.map((item, i) => (
                           <li key={i} className="flex items-start gap-3 text-sm text-neutral-500">
                               <div className="w-1 h-1 bg-neutral-300 rounded-full mt-2 shrink-0" />
@@ -3546,32 +3650,28 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
       </div>
       <WorkflowSimulator />
       <N8NWorkflowVisualizer />
-      <CustomPlanBuilder onOrderNow={onBookConsultation} />
 
-      {/* AI Automation Suite Builder CTA */}
+      {/* CTA */}
       <RevealOnScroll>
         <div className="mb-20">
           <div className="relative rounded-[2.5rem] border border-neutral-200 overflow-hidden px-8 py-16 md:px-16 text-center backdrop-blur-sm">
-            {/* Subtle decorative blobs */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-100/60 rounded-full blur-[80px] -translate-y-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-100/60 rounded-full blur-[80px] translate-y-1/2 pointer-events-none" />
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-100/60 rounded-full blur-[80px] -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-100/50 rounded-full blur-[80px] translate-y-1/2 pointer-events-none" />
             <div className="relative z-10">
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block">AI Automation Suite</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 block">Ready to Start?</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Build Your <span className="font-serif italic font-normal">Custom AI Suite</span>
+                Find Out Exactly Where <span className="font-serif italic font-normal">You{"'"}re Losing Time.</span>
               </h2>
               <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Audit your company's bottlenecks in 2 minutes. Receive custom-tailored AI workflow agents, calculate real-time monthly ROI, and deploy your custom automations instantly.
+                Book your $200 AI Assessment. We{"'"}ll map your opportunities, estimate your savings, and build a custom roadmap — or give you your money back.
               </p>
-              <a
-                href="https://proposal.the-marketingverse.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={onBookConsultation}
                 data-cursor="magic"
                 className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white rounded-2xl font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl"
               >
-                Build My AI Suite <ArrowRight size={20} />
-              </a>
+                Book AI Assessment — $200 <ArrowRight size={20} />
+              </button>
             </div>
           </div>
         </div>
