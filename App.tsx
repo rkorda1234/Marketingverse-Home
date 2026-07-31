@@ -3482,8 +3482,18 @@ const AI_WORKFLOW_SAVINGS = [
   { time: '4–8 hrs/week saved', roi: '40% fewer incidents, less downtime' },
 ];
 
-const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateRequest, onBookConsultation }) => (
+const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateRequest, onBookConsultation }) => {
+  const [showAssessmentModal, setShowAssessmentModal] = React.useState(false);
+  return (
   <div className="animate-fade-in py-20 relative z-10">
+    {showAssessmentModal && (
+      <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setShowAssessmentModal(false)}>
+        <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+          <button onClick={() => setShowAssessmentModal(false)} className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors text-neutral-600 font-bold text-lg">&times;</button>
+          <iframe src="https://api.leadconnectorhq.com/widget/booking/PBGtoz553i83wlGWhX3c" allow="payment" style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px', display: 'block' }} scrolling="no" />
+        </div>
+      </div>
+    )}
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       {/* Hero — outcome-focused */}
@@ -3573,9 +3583,9 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
                   <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Estimated time & money savings per area</span></li>
                   <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Implementation roadmap tailored to your team</span></li>
                 </ul>
-                <a href="https://api.leadconnectorhq.com/widget/bookings/mverse-ai-assessment" target="_blank" rel="noopener noreferrer" data-cursor="magic" className="block w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95 text-center">
+                <button onClick={() => setShowAssessmentModal(true)} data-cursor="magic" className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">
                   Book Your Assessment
-                </a>
+                </button>
               </div>
             </RevealOnScroll>
 
@@ -3684,7 +3694,8 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
       <ConsultationCTA onBookConsultation={onBookConsultation} />
     </div>
   </div>
-);
+  );
+};
 
 const BlogView: React.FC<{ blogs: BlogPost[]; onReadMore: (blog: BlogPost) => void }> = ({ blogs, onReadMore }) => (
   <div className="animate-fade-in py-20 relative z-10">
