@@ -3573,9 +3573,9 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
                   <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Estimated time & money savings per area</span></li>
                   <li className="flex items-start gap-3 text-sm"><Check size={14} className="text-indigo-500 mt-0.5 shrink-0" /><span>Implementation roadmap tailored to your team</span></li>
                 </ul>
-                <button onClick={onBookConsultation} data-cursor="magic" className="w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95">
+                <a href="https://api.leadconnectorhq.com/widget/bookings/mverse-ai-assessment" target="_blank" rel="noopener noreferrer" data-cursor="magic" className="block w-full py-4 rounded-xl font-bold bg-black text-white hover:bg-neutral-800 transition-all active:scale-95 text-center">
                   Book Your Assessment
-                </button>
+                </a>
               </div>
             </RevealOnScroll>
 
