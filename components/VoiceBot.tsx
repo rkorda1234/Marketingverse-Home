@@ -101,7 +101,7 @@ export const VoiceBot: React.FC = () => {
   const startSession = async () => {
     setIsConnecting(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY, httpOptions: { apiVersion: 'v1alpha' } });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
       const inputCtx = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
       const outputCtx = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
       audioContextsRef.current = { input: inputCtx, output: outputCtx };
@@ -109,7 +109,7 @@ export const VoiceBot: React.FC = () => {
       const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
       const sessionPromise = ai.live.connect({
-        model: 'gemini-live-2.5-flash-preview',
+        model: 'gemini-2.0-flash-live-001',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
