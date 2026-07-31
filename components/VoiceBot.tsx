@@ -109,7 +109,7 @@ export const VoiceBot: React.FC = () => {
       const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
       const sessionPromise = ai.live.connect({
-        model: 'gemini-live-2.5-flash-preview',
+        model: 'gemini-2.0-flash-live-001',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
