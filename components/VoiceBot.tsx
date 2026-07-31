@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Mic, MicOff, Volume2, VolumeX, Loader2, Phone, PhoneOff } from 'lucide-react';
+import { Mic, Volume2, Loader2, Phone, PhoneOff } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, Blob } from '@google/genai';
 
 // --- Helper Functions ---
@@ -64,8 +64,6 @@ Keep the energy high. Be the assistant that gets them excited about scaling.
 export const VoiceBot: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [inputTranscription, setInputTranscription] = useState('');
-  const [outputTranscription, setOutputTranscription] = useState('');
   
   const sessionRef = useRef<any>(null);
   const audioContextsRef = useRef<{ input: AudioContext; output: AudioContext } | null>(null);
@@ -147,11 +145,6 @@ export const VoiceBot: React.FC = () => {
             streamsRef.current = { mic: micStream, processor: scriptProcessor };
           },
           onmessage: async (message: LiveServerMessage) => {
-            if (message.serverContent?.turnComplete) {
-              setInputTranscription('');
-              setOutputTranscription('');
-            }
-
             const base64Audio = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (base64Audio && audioContextsRef.current) {
               const outCtx = audioContextsRef.current.output;
@@ -236,22 +229,6 @@ export const VoiceBot: React.FC = () => {
           {isActive ? <><PhoneOff size={24} /> End Conversation</> : <><Mic size={24} /> Start Voice Chat</>}
         </button>
 
-        {(inputTranscription || outputTranscription) && (
-          <div className="mt-8 p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 w-full max-w-md text-left animate-fade-in">
-             {inputTranscription && (
-               <div className="mb-4">
-                 <span className="text-[10px] uppercase tracking-widest text-neutral-500 block mb-1">You</span>
-                 <p className="text-sm text-neutral-200 leading-relaxed italic">"{inputTranscription}"</p>
-               </div>
-             )}
-             {outputTranscription && (
-               <div>
-                 <span className="text-[10px] uppercase tracking-widest text-neutral-500 block mb-1">VerseBot</span>
-                 <p className="text-sm text-white leading-relaxed">{outputTranscription}</p>
-               </div>
-             )}
-          </div>
-        )}
       </div>
     </div>
   );
