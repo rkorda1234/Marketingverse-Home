@@ -3488,9 +3488,9 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
   <div className="animate-fade-in py-20 relative z-10">
     {showAssessmentModal && (
       <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setShowAssessmentModal(false)}>
-        <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden" style={{ maxHeight: '90vh' }} onClick={e => e.stopPropagation()}>
           <button onClick={() => setShowAssessmentModal(false)} className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors text-neutral-600 font-bold text-lg">&times;</button>
-          <iframe src="https://api.leadconnectorhq.com/widget/booking/PBGtoz553i83wlGWhX3c" allow="payment" style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px', display: 'block' }} scrolling="no" />
+          <iframe src="https://api.leadconnectorhq.com/widget/booking/PBGtoz553i83wlGWhX3c" allow="payment" style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '85vh', display: 'block' }} scrolling="no" />
         </div>
       </div>
     )}
