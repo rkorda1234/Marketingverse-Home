@@ -148,6 +148,8 @@ export const VoiceBot: React.FC = () => {
             streamsRef.current = { mic: micStream, processor: scriptProcessor };
           },
           onmessage: async (message: LiveServerMessage) => {
+            console.log('[VoiceBot] message keys:', Object.keys(message));
+            if (message.serverContent) console.log('[VoiceBot] serverContent keys:', Object.keys(message.serverContent), 'modelTurn:', !!message.serverContent.modelTurn, 'parts:', message.serverContent.modelTurn?.parts?.length);
             if (message.serverContent?.inputTranscription?.text) {
               setInputTranscription(prev => prev + message.serverContent!.inputTranscription!.text);
             }
