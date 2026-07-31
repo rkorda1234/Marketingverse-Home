@@ -109,7 +109,7 @@ export const VoiceBot: React.FC = () => {
       const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.0-flash-live-001',
+        model: 'gemini-live-2.5-flash-preview',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
@@ -184,11 +184,12 @@ export const VoiceBot: React.FC = () => {
               nextStartTimeRef.current = 0;
             }
           },
-          onerror: (e) => {
-            console.error('Live API Error:', e);
+          onerror: (e: ErrorEvent) => {
+            console.error('Live API Error:', e?.message ?? e);
             stopSession();
           },
-          onclose: () => {
+          onclose: (e: CloseEvent) => {
+            console.warn('Live API closed — code:', e?.code, 'reason:', e?.reason);
             stopSession();
           },
         },
