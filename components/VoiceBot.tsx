@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Mic, MicOff, Volume2, VolumeX, Loader2, Phone, PhoneOff } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, Blob } from '@google/genai';
@@ -114,9 +115,7 @@ export const VoiceBot: React.FC = () => {
           speechConfig: {
             voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } },
           },
-          systemInstruction: SYSTEM_INSTRUCTION,
-          inputAudioTranscription: {},
-          outputAudioTranscription: {},
+          systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
         },
         callbacks: {
           onopen: () => {
@@ -148,12 +147,6 @@ export const VoiceBot: React.FC = () => {
             streamsRef.current = { mic: micStream, processor: scriptProcessor };
           },
           onmessage: async (message: LiveServerMessage) => {
-            if (message.serverContent?.inputTranscription) {
-              setInputTranscription(prev => prev + message.serverContent!.inputTranscription!.text);
-            }
-            if (message.serverContent?.outputTranscription) {
-              setOutputTranscription(prev => prev + message.serverContent!.outputTranscription!.text);
-            }
             if (message.serverContent?.turnComplete) {
               setInputTranscription('');
               setOutputTranscription('');

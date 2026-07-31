@@ -611,7 +611,7 @@ const SocialEcosystem: React.FC = () => {
             <div className="flex gap-2 px-3 py-2 overflow-hidden">
               {['#f472b6','#818cf8','#34d399','#fb923c'].map((c, i) => (
                 <div key={i} className="flex-shrink-0 flex flex-col items-center gap-1">
-                  <div className="w-9 h-9 rounded-full ring-2 ring-offset-1" style={{ background: c, ringColor: c }} />
+                  <div className="w-9 h-9 rounded-full ring-2 ring-offset-1" style={{ background: c }} />
                   <span className="text-[8px] text-neutral-400 truncate w-9 text-center">{['brand','travel','food','life'][i]}</span>
                 </div>
               ))}
