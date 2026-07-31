@@ -776,77 +776,6 @@ const SocialAdvantageSection: React.FC = () => {
   );
 };
 
-const LiveAvatarDemo: React.FC = () => (
-  <RevealOnScroll>
-    <div className="mb-24">
-      {/* Container: Frosted White */}
-      <div className="bg-white/30 backdrop-blur-xl border border-white/50 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative shadow-2xl">
-        {/* Background blobs - adjusted for light theme */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
-        
-        <div className="relative z-10 grid lg:grid-cols-5 gap-12 items-center">
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              {/* Badge */}
-              <span className="px-3 py-1 bg-black/5 border border-black/5 text-black text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-sm">Interactive Demo</span>
-              <div className="flex items-center gap-1.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
-                </span>
-                <span className="text-green-600 text-[10px] font-bold uppercase tracking-widest">Live</span>
-              </div>
-            </div>
-            
-            {/* Heading - Dark Text */}
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 leading-tight">
-              Meet Your <span className="font-serif italic font-normal">New</span> <br/>
-              {/* Gradient text needs to be darker to read on white */}
-              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">AI Support Agent</span>
-            </h2>
-            <p className="text-neutral-600 leading-relaxed mb-8">
-              Experience the future of customer service. This autonomous interactive avatar can handle inquiries, book appointments, and provide 24/7 human-like support with zero latency.
-            </p>
-            
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-neutral-700 text-sm">
-                <div className="w-8 h-8 rounded-full bg-white/60 flex items-center justify-center border border-white/60 shadow-sm">
-                  <Mic size={14} className="text-black" />
-                </div>
-                <span>Microphone enabled conversation</span>
-              </div>
-              <div className="flex items-center gap-3 text-neutral-700 text-sm">
-                <div className="w-8 h-8 rounded-full bg-white/60 flex items-center justify-center border border-white/60 shadow-sm">
-                  <Zap size={14} className="text-black" />
-                </div>
-                <span>Real-time emotional intelligence</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="lg:col-span-3">
-            {/* Iframe container - Light glass */}
-            <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/60 bg-white/40 backdrop-blur-md relative" style={{ paddingTop: '56.25%' }}>
-              <iframe 
-                src="https://embed.liveavatar.com/v1/bb28ae02-2c79-41e6-a610-c104c8ad804e" 
-                allow="microphone" 
-                title="LiveAvatar Embed" 
-                className="absolute top-0 left-0 w-full h-full border-none"
-              ></iframe>
-            </div>
-            <div className="flex justify-between items-center mt-4 px-2">
-              <p className="text-neutral-500 text-xs">
-                * Click "Start" to begin the interaction
-              </p>
-               <span className="text-neutral-400 text-[10px] uppercase tracking-widest font-bold">Powered by Marketingverse AI</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </RevealOnScroll>
-);
 
 // --- CRM Visualizer Components ---
 const WorkflowNode = ({ icon, title, subtitle, type = 'default', active = false }: any) => (
@@ -3534,7 +3463,38 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
         </div>
       </RevealOnScroll>
 
-      <LiveAvatarDemo />
+      {/* 2-Min Audit CTA */}
+      <RevealOnScroll>
+        <div className="mb-24">
+          <div className="relative rounded-[2.5rem] overflow-hidden bg-black text-white p-10 md:p-16 text-center shadow-2xl">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="relative z-10">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-400 mb-5 block">Free · 2 Minutes · Instant Results</span>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Get Your Personalized<br />
+                <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">AI Proposal</span>
+              </h2>
+              <p className="text-lg text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Answer 8 quick questions about your business. We{"'"}ll instantly map your biggest AI opportunities, estimate your time and cost savings, and show you exactly where to start.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <div className="flex items-center gap-2 text-sm text-neutral-400"><CheckCircle2 size={16} className="text-indigo-400" /><span>No sign-up required</span></div>
+                <div className="flex items-center gap-2 text-sm text-neutral-400"><CheckCircle2 size={16} className="text-indigo-400" /><span>Personalized to your industry</span></div>
+                <div className="flex items-center gap-2 text-sm text-neutral-400"><CheckCircle2 size={16} className="text-indigo-400" /><span>Instant proposal PDF</span></div>
+              </div>
+              <a
+                href="https://proposal.the-marketingverse.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="magic"
+                className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-2xl font-bold text-lg hover:bg-neutral-100 transition-all hover:scale-105 shadow-xl"
+              >
+                Take the 2-Min Audit <ArrowRight size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
 
       <RevealOnScroll>
         <div className="mb-20">
