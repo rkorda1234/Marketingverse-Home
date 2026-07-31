@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Mic, Volume2, Loader2, Phone, PhoneOff } from 'lucide-react';
-import { GoogleGenAI, LiveServerMessage, Modality, Blob } from '@google/genai';
+import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
 // --- Helper Functions ---
 function decode(base64: string) {
@@ -109,7 +109,7 @@ export const VoiceBot: React.FC = () => {
       const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.0-flash-live-001',
+        model: 'gemini-3.1-flash-live-preview',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
@@ -134,13 +134,12 @@ export const VoiceBot: React.FC = () => {
               for (let i = 0; i < l; i++) {
                 int16[i] = inputData[i] * 32768;
               }
-              const pcmBlob: Blob = {
-                data: encode(new Uint8Array(int16.buffer)),
-                mimeType: 'audio/pcm;rate=16000',
-              };
-              
+              const base64Pcm = encode(new Uint8Array(int16.buffer));
+
               if (sessionRef.current) {
-                sessionRef.current.sendRealtimeInput({ media: pcmBlob });
+                sessionRef.current.sendRealtimeInput({
+                  audio: { data: base64Pcm, mimeType: 'audio/pcm;rate=16000' },
+                });
               }
             };
 
