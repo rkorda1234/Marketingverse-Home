@@ -3665,13 +3665,15 @@ const AIWorkflowsView: React.FC<{ onInitiateRequest: (plan: Plan) => void; onBoo
               <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Book your $200 AI Assessment. We{"'"}ll map your opportunities, estimate your savings, and build a custom roadmap — or give you your money back.
               </p>
-              <button
-                onClick={onBookConsultation}
+              <a
+                href="https://api.leadconnectorhq.com/widget/bookings/mverse-ai-assessment"
+                target="_blank"
+                rel="noopener noreferrer"
                 data-cursor="magic"
                 className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white rounded-2xl font-bold text-lg hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl"
               >
                 Book AI Assessment — $200 <ArrowRight size={20} />
-              </button>
+              </a>
             </div>
           </div>
         </div>
