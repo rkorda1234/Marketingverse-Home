@@ -16,6 +16,7 @@ export default defineConfig({
         main: 'index.html',
         'thank-you': 'thank-you.html',
         'avanti-way': 'avanti-way.html',
+        saaga: 'saaga.html',
       },
     },
   },
