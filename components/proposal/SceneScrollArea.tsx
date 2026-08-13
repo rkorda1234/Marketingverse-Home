@@ -6,8 +6,9 @@ import { ChevronDown } from 'lucide-react';
 //  - caps content to the viewport so nothing renders unreachable
 //  - auto-scrolls a newly revealed beat into view as the viewer advances,
 //    so tapping/pressing forward always shows what just appeared
-//  - shows a soft "more below" cue (fade + bouncing chevron) when content
-//    overflows and hasn't been scrolled to the end yet
+//  - shows a small "more below" cue (a bouncing chevron, in normal flow
+//    below the scroll box — never overlapping content) when there's more
+//    to see and the viewer hasn't scrolled to the end yet
 //
 // Mounted fresh per scene (parent keys the wrapper by scene.id), so scroll
 // position and the cue both reset naturally on scene change.
@@ -53,16 +54,12 @@ export const SceneScrollArea: React.FC<{ beatIndex: number; children: React.Reac
   }, []);
 
   return (
-    <div className="relative">
-      <div ref={containerRef} className="max-h-[74dvh] overflow-y-auto px-1 pb-4 scrollbar-hide">
+    <div>
+      <div ref={containerRef} className="max-h-[70dvh] overflow-y-auto px-1 scrollbar-hide">
         {children}
         <div ref={anchorRef} />
       </div>
-      <div
-        className={`pointer-events-none absolute bottom-0 left-0 right-1 h-16 bg-gradient-to-t from-[#fafafa] to-transparent flex items-end justify-center pb-1 transition-opacity duration-300 ${
-          showCue ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
+      <div className={`flex justify-center transition-all duration-300 ${showCue ? 'h-6 opacity-100' : 'h-0 opacity-0'}`}>
         <ChevronDown size={16} className="text-neutral-400 animate-bounce" />
       </div>
     </div>

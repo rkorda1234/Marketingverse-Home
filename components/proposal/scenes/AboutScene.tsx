@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, ArrowUpRight } from 'lucide-react';
+import { MapPin, ArrowUpRight, Film } from 'lucide-react';
 import { BeatIn } from '../BeatIn';
 import type { AboutScene } from '../../../data/proposals/types';
 
@@ -27,6 +27,30 @@ export const AboutSceneView: React.FC<{ scene: AboutScene; revealCount: number }
                       {beat.heading}
                     </h3>
                     <p className="text-sm text-neutral-600 leading-relaxed">{beat.text}</p>
+                  </div>
+                </div>
+              </BeatIn>
+            );
+          }
+
+          if (beat.kind === 'bio') {
+            return (
+              <BeatIn key={i}>
+                <div className="mv-glass mv-lift rounded-2xl p-5 flex items-start gap-4">
+                  <span className="mt-0.5 flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center">
+                    <Film size={16} className="text-white" />
+                  </span>
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900 mb-1.5">
+                      {beat.heading}
+                    </h3>
+                    <div className="space-y-3">
+                      {beat.paragraphs.map((p, j) => (
+                        <p key={j} className="text-sm text-neutral-600 leading-relaxed">
+                          {p}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </BeatIn>

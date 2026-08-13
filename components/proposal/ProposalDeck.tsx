@@ -179,7 +179,7 @@ export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
         aria-label="Previous"
         onClick={retreat}
         disabled={atFirstScene && beatIndex <= 1}
-        className="hidden md:flex items-center justify-center absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full mv-glass text-neutral-700 hover:text-black transition-opacity disabled:opacity-0"
+        className="mv-nav-intro-left hidden md:flex items-center justify-center absolute left-3 top-1/2 z-20 w-11 h-11 rounded-full mv-glass text-neutral-700 hover:text-black transition-opacity disabled:opacity-0"
       >
         <ChevronLeft size={20} />
       </button>
@@ -187,7 +187,7 @@ export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
         aria-label="Next"
         onClick={advance}
         disabled={atLastScene && atSceneEnd}
-        className="hidden md:flex items-center justify-center absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full mv-glass text-neutral-700 hover:text-black transition-opacity disabled:opacity-0"
+        className="mv-nav-intro-right hidden md:flex items-center justify-center absolute right-3 top-1/2 z-20 w-11 h-11 rounded-full mv-glass text-neutral-700 hover:text-black transition-opacity disabled:opacity-0"
       >
         <ChevronRight size={20} />
       </button>

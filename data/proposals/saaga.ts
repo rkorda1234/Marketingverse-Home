@@ -103,15 +103,11 @@ export const saagaProposal: Proposal = {
           text: "Marketingverse is headquartered in Miami — the same city as Saaga. Discovery interviews, the production shoot, and check-ins at your office aren't a video call away; we can be there in person whenever it's useful, not on a scheduled quarterly visit.",
         },
         {
-          kind: 'previews',
-          heading: 'See the Work, Not Just the Pitch',
-          text: 'A few live examples of the same AI-guided, concierge-style approach we\'re proposing for Saaga:',
-          links: [
-            { label: 'the-marketingverse.com', url: 'https://the-marketingverse.com' },
-            { label: 'avantiway.com', url: 'https://avantiway.com' },
-            { label: 'proposal.the-marketingverse.com', url: 'https://proposal.the-marketingverse.com' },
-            { label: 'presentations.the-marketingverse.com', url: 'https://presentations.the-marketingverse.com' },
-            { label: 'upgradedreacademy.com', url: 'https://www.upgradedreacademy.com' },
+          kind: 'bio',
+          heading: 'Our Approach',
+          paragraphs: [
+            "Our team's background is in storytelling and film. We build every brand's story to form a real emotional connection with its audience — one that creates trust and sparks a visceral reaction, because that's what people actually remember.",
+            'We also believe that today, the most effective approach merges high-production storytelling with raw, organic content — the kind that lets a prospective client feel the closeness and honesty of the brand and the team behind it, who they really are, without the full Hollywood production.',
           ],
         },
         {
@@ -127,12 +123,11 @@ export const saagaProposal: Proposal = {
             { name: 'havaianas' },
             { name: 'nickelodeon' },
             { name: 'HBO' },
-            { name: 'JESSICA HAUSMANN', subtitle: 'Elevated Real Estate' },
           ],
         },
         {
           kind: 'team',
-          heading: "The Team You'll Work With",
+          heading: 'Some of the Key Players',
           members: [
             { name: 'Ricky', role: 'Founder & CEO', photo: '/team/ricky.png' },
             { name: 'Mari', role: 'Creative Director', photo: '/team/mari.png' },

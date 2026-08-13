@@ -149,6 +149,7 @@ export interface CTAScene {
 // wordmarks, and the team. One beat per sub-topic.
 export type AboutBeat =
   | { kind: 'location'; heading: string; text: string }
+  | { kind: 'bio'; heading: string; paragraphs: string[] }
   | { kind: 'previews'; heading: string; text?: string; links: { label: string; url: string }[] }
   | { kind: 'logos'; heading: string; text?: string; logos: { name: string; subtitle?: string }[] }
   | { kind: 'team'; heading: string; members: { name: string; role: string; photo: string }[] };
