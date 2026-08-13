@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Saaga Wealth's real logo file (client-provided), cropped and cleaned up
+// Saaga Family Wealth's real logo file (client-provided), cropped and cleaned up
 // (the original had a checkerboard baked into its "transparent" background
 // rather than real alpha) — see public/saaga-logo.png.
 export const SaagaLogo: React.FC<{ size?: 'lg' | 'sm'; className?: string }> = ({

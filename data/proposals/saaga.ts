@@ -4,8 +4,8 @@ const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/ricardo';
 
 export const saagaProposal: Proposal = {
   meta: {
-    client: 'Saaga Wealth',
-    title: 'Marketingverse × Saaga Wealth — Implementation Proposal',
+    client: 'Saaga Family Wealth',
+    title: 'Marketingverse × Saaga Family Wealth — Implementation Proposal',
   },
   scenes: [
     // 1 — Hero
@@ -17,7 +17,7 @@ export const saagaProposal: Proposal = {
         { kind: 'headline', text: 'Financial Hospitality, Made Visible.' },
         {
           kind: 'subhead',
-          text: "Prepared exclusively for Saaga Wealth and Juan Pablo Martinez-Blat: the scope of work, phased timeline, and investment for building the Financial Hospitality brand, digital presence, and content engine that earns every referral its trust.",
+          text: "Prepared exclusively for Saaga Family Wealth and Juan Pablo Martinez-Blat: the scope of work, phased timeline, and investment for building the Financial Hospitality brand, digital presence, and content engine that earns every referral its trust.",
         },
         { kind: 'logo' },
         { kind: 'footer', text: 'Marketingverse  ·  Branding & Marketing Proposal  ·  August 2026  ·  Valid for 30 days' },
@@ -403,7 +403,7 @@ export const saagaProposal: Proposal = {
       beats: [
         {
           title: 'Google Ads Management (Stage 3)',
-          body: 'A narrow paid layer for branded search protection ("Saaga Wealth reviews," founder name), category-education intent ("outsourced family office Miami"), and senior-hire recruiting support — not broad UHNW prospecting, which stays referral-driven.',
+          body: 'A narrow paid layer for branded search protection ("Saaga Family Wealth reviews," founder name), category-education intent ("outsourced family office Miami"), and senior-hire recruiting support — not broad UHNW prospecting, which stays referral-driven.',
           meta: '$1,500/mo management fee + $2,000-$3,000/mo ad spend',
         },
         {
