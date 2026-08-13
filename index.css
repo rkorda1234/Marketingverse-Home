@@ -107,3 +107,59 @@ body {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-8px); }
 }
+
+/* Proposal deck nav-arrow intro: slides in from near-center out to the
+   margins on first load, so the arrows read as clickable before anyone
+   has to guess. Plays once (no loop) since it's a first-impression cue.
+   Longer travel, a glow pulse, and a slight overshoot-and-settle land
+   make the motion unmistakable rather than a quick fade. */
+@keyframes mv-nav-intro-left {
+  0%   { opacity: 0; transform: translate(240px, -50%) scale(0.6); filter: drop-shadow(0 0 0 rgba(139, 92, 246, 0)); }
+  35%  { opacity: 1; }
+  75%  { filter: drop-shadow(0 0 16px rgba(139, 92, 246, 0.7)); }
+  100% { opacity: 1; transform: translate(0, -50%) scale(1); filter: drop-shadow(0 0 0 rgba(139, 92, 246, 0)); }
+}
+@keyframes mv-nav-intro-right {
+  0%   { opacity: 0; transform: translate(-240px, -50%) scale(0.6); filter: drop-shadow(0 0 0 rgba(139, 92, 246, 0)); }
+  35%  { opacity: 1; }
+  75%  { filter: drop-shadow(0 0 16px rgba(139, 92, 246, 0.7)); }
+  100% { opacity: 1; transform: translate(0, -50%) scale(1); filter: drop-shadow(0 0 0 rgba(139, 92, 246, 0)); }
+}
+.mv-nav-intro-left {
+  animation: mv-nav-intro-left 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+.mv-nav-intro-right {
+  animation: mv-nav-intro-right 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+/* Particle trail left behind the arrows as they slide in — several small
+   sparks on the same path as the button, started a beat later and fading
+   out before they arrive, so they read as being "left behind" in motion. */
+@keyframes mv-nav-trail-left {
+  0%   { opacity: 0; transform: translate(240px, -50%) scale(1); }
+  8%   { opacity: 0.9; }
+  55%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translate(30px, -50%) scale(0.2); }
+}
+@keyframes mv-nav-trail-right {
+  0%   { opacity: 0; transform: translate(-240px, -50%) scale(1); }
+  8%   { opacity: 0.9; }
+  55%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translate(-30px, -50%) scale(0.2); }
+}
+.mv-nav-trail-dot {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.95), rgba(99, 102, 241, 0.5) 55%, transparent 75%);
+  pointer-events: none;
+}
+.mv-nav-trail-left  { left: 0.75rem; animation-name: mv-nav-trail-left; }
+.mv-nav-trail-right { right: 0.75rem; animation-name: mv-nav-trail-right; }
+.mv-nav-trail-left, .mv-nav-trail-right {
+  animation-duration: 1.3s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-fill-mode: both;
+}
