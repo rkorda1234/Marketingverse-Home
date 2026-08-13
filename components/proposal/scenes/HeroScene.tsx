@@ -1,5 +1,6 @@
 import React from 'react';
 import { BeatIn } from '../BeatIn';
+import { SaagaLogo } from '../SaagaLogo';
 import type { HeroScene } from '../../../data/proposals/types';
 
 export const HeroSceneView: React.FC<{ scene: HeroScene; revealCount: number }> = ({ scene, revealCount }) => {
@@ -32,6 +33,15 @@ export const HeroSceneView: React.FC<{ scene: HeroScene; revealCount: number }> 
               <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed mb-10">
                 {beat.text}
               </p>
+            </BeatIn>
+          );
+        }
+        if (beat.kind === 'logo') {
+          return (
+            <BeatIn key={i} delay={i * 60}>
+              <div className="mb-10">
+                <SaagaLogo size="lg" />
+              </div>
             </BeatIn>
           );
         }

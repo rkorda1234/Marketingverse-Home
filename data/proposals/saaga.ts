@@ -19,6 +19,7 @@ export const saagaProposal: Proposal = {
           kind: 'subhead',
           text: "Prepared exclusively for Saaga Wealth and Juan Pablo Martinez-Blat: the scope of work, phased timeline, and investment for building the Financial Hospitality brand, digital presence, and content engine that earns every referral its trust.",
         },
+        { kind: 'logo' },
         { kind: 'footer', text: 'Marketingverse  ·  Branding & Marketing Proposal  ·  August 2026  ·  Valid for 30 days' },
       ],
     },

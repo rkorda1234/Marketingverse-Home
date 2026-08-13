@@ -5,10 +5,9 @@
 // Each scene component renders `beats.slice(0, revealCount)` and knows how to
 // draw its own beat shapes.
 
-export interface HeroBeat {
-  kind: 'eyebrow' | 'headline' | 'subhead' | 'footer';
-  text: string;
-}
+export type HeroBeat =
+  | { kind: 'eyebrow' | 'headline' | 'subhead' | 'footer'; text: string }
+  | { kind: 'logo' };
 
 export interface HeroScene {
   id: string;

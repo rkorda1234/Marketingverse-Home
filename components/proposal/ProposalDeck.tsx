@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Proposal, Scene } from '../../data/proposals/types';
 import { SceneScrollArea } from './SceneScrollArea';
+import { SaagaLogo } from './SaagaLogo';
 import { HeroSceneView } from './scenes/HeroScene';
 import { RichTextSceneView } from './scenes/RichTextScene';
 import { PipelineTableSceneView } from './scenes/PipelineTableScene';
@@ -160,6 +161,15 @@ export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
           className="absolute -bottom-40 -right-40 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-sky-200/40 to-purple-200/40 blur-3xl"
           style={{ animation: 'mv-drift2 26s ease-in-out infinite' }}
         />
+      </div>
+
+      {/* Persistent "built for you" mark — small, corner-scaled, present
+          across every scene, matching the dual-logo header treatment
+          already used on avanti-way.html */}
+      <div className="absolute top-4 left-4 md:top-6 md:left-6 z-20 flex items-center gap-2.5 opacity-90">
+        <img src="/logo.png" alt="Marketingverse" className="h-5 md:h-6 w-auto" />
+        <div className="h-4 w-px bg-neutral-300" />
+        <SaagaLogo size="sm" />
       </div>
 
       {/* Progress line */}
