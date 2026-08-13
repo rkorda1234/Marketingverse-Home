@@ -11,7 +11,7 @@ export const InvestmentSceneView: React.FC<{ scene: InvestmentScene; revealCount
   const shown = scene.beats.slice(0, revealCount);
 
   return (
-    <div className="max-w-3xl mx-auto max-h-[80dvh] overflow-y-auto px-1 pb-10 scrollbar-hide">
+    <div className="max-w-3xl mx-auto">
       <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-violet-600 mb-3">{scene.eyebrow}</p>
       <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-3">
         <span className="font-serif italic font-normal">{scene.title}</span>

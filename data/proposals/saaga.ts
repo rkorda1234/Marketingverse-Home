@@ -90,7 +90,62 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 4 — Phase 0
+    // 4 — About / Who's Building This
+    {
+      id: 'about',
+      type: 'about',
+      eyebrow: "Who's Building This",
+      title: 'Marketingverse, in Miami',
+      beats: [
+        {
+          kind: 'location',
+          heading: 'Based in Miami',
+          text: "Marketingverse is headquartered in Miami — the same city as Saaga. Discovery interviews, the production shoot, and check-ins at your office aren't a video call away; we can be there in person whenever it's useful, not on a scheduled quarterly visit.",
+        },
+        {
+          kind: 'previews',
+          heading: 'See the Work, Not Just the Pitch',
+          text: 'A few live examples of the same AI-guided, concierge-style approach we\'re proposing for Saaga:',
+          links: [
+            { label: 'the-marketingverse.com', url: 'https://the-marketingverse.com' },
+            { label: 'avantiway.com', url: 'https://avantiway.com' },
+            { label: 'proposal.the-marketingverse.com', url: 'https://proposal.the-marketingverse.com' },
+            { label: 'presentations.the-marketingverse.com', url: 'https://presentations.the-marketingverse.com' },
+            { label: 'upgradedreacademy.com', url: 'https://www.upgradedreacademy.com' },
+          ],
+        },
+        {
+          kind: 'logos',
+          heading: "Brands We've Worked With",
+          logos: [
+            { name: 'AVANTI WAY' },
+            { name: 'SERVAT GROUP', subtitle: 'luxury real estate' },
+            { name: 'viacom' },
+            { name: 'SONY MUSIC' },
+            { name: 'QUAKER' },
+            { name: 'PROPER CLOTH' },
+            { name: 'havaianas' },
+            { name: 'nickelodeon' },
+            { name: 'HBO' },
+            { name: 'JESSICA HAUSMANN', subtitle: 'Elevated Real Estate' },
+          ],
+        },
+        {
+          kind: 'team',
+          heading: "The Team You'll Work With",
+          members: [
+            { name: 'Ricky', role: 'Founder & CEO', photo: '/team/ricky.png' },
+            { name: 'Mari', role: 'Creative Director', photo: '/team/mari.png' },
+            { name: 'Nati', role: 'Project Manager', photo: '/team/nati.png' },
+            { name: 'Vale', role: 'Content Creator', photo: '/team/vale.png' },
+            { name: 'Leo', role: 'Content Creator', photo: '/team/leo.png' },
+            { name: 'Adri', role: 'Marketing Specialist', photo: '/team/adri.png' },
+          ],
+        },
+      ],
+    },
+
+    // 5 — Phase 0
     {
       id: 'phase-0',
       type: 'phase',
@@ -135,7 +190,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 5 — Phase 1A Website
+    // 6 — Phase 1A Website
     {
       id: 'phase-1a',
       type: 'phase',
@@ -175,7 +230,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 6 — Phase 1B AI Sales App
+    // 7 — Phase 1B AI Sales App
     {
       id: 'phase-1b',
       type: 'phase',
@@ -208,7 +263,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 7 — Phase 2 Podcast/Video
+    // 8 — Phase 2 Podcast/Video
     {
       id: 'phase-2',
       type: 'phase',
@@ -247,7 +302,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 8 — Phase 3 Launch
+    // 9 — Phase 3 Launch
     {
       id: 'phase-3',
       type: 'phase',
@@ -271,7 +326,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 9 — Phase 4 Growth Partnership
+    // 10 — Phase 4 Growth Partnership
     {
       id: 'phase-4',
       type: 'phase',
@@ -307,7 +362,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 10 — Recommended Add-Ons
+    // 11 — Recommended Add-Ons
     {
       id: 'add-ons',
       type: 'cardGrid',
@@ -331,7 +386,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 11 — Timeline
+    // 12 — Timeline
     {
       id: 'timeline',
       type: 'timeline',
@@ -354,7 +409,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 12 — Investment Summary
+    // 13 — Investment Summary
     {
       id: 'investment',
       type: 'investment',
@@ -394,7 +449,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 13 — Everything In This Package
+    // 14 — Everything In This Package
     {
       id: 'everything',
       type: 'checklist',
@@ -438,7 +493,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 14 — Payment Schedule & Terms
+    // 15 — Payment Schedule & Terms
     {
       id: 'terms',
       type: 'richText',
@@ -475,7 +530,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 15 — Let's Get Started
+    // 16 — Let's Get Started
     {
       id: 'cta',
       type: 'cta',

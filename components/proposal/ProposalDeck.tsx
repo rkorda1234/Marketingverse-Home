@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Proposal, Scene } from '../../data/proposals/types';
+import { SceneScrollArea } from './SceneScrollArea';
 import { HeroSceneView } from './scenes/HeroScene';
 import { RichTextSceneView } from './scenes/RichTextScene';
 import { PipelineTableSceneView } from './scenes/PipelineTableScene';
@@ -9,6 +10,7 @@ import { CardGridSceneView } from './scenes/CardGridScene';
 import { TimelineSceneView } from './scenes/TimelineScene';
 import { InvestmentSceneView } from './scenes/InvestmentScene';
 import { ChecklistSceneView } from './scenes/ChecklistScene';
+import { AboutSceneView } from './scenes/AboutScene';
 import { CTASceneView } from './scenes/CTAScene';
 
 function renderScene(scene: Scene, revealCount: number) {
@@ -29,6 +31,8 @@ function renderScene(scene: Scene, revealCount: number) {
       return <InvestmentSceneView scene={scene} revealCount={revealCount} />;
     case 'checklist':
       return <ChecklistSceneView scene={scene} revealCount={revealCount} />;
+    case 'about':
+      return <AboutSceneView scene={scene} revealCount={revealCount} />;
     case 'cta':
       return <CTASceneView scene={scene} revealCount={revealCount} />;
   }
@@ -166,7 +170,7 @@ export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
           className={`w-full max-w-5xl transition-all ease-out transform ${sceneClass}`}
           style={{ transitionDuration: `${TRANSITION_MS}ms` }}
         >
-          {renderScene(scene, beatIndex)}
+          <SceneScrollArea beatIndex={beatIndex}>{renderScene(scene, beatIndex)}</SceneScrollArea>
         </div>
       </div>
 

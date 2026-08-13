@@ -7,7 +7,7 @@ export const PhaseSceneView: React.FC<{ scene: PhaseScene; revealCount: number }
   const shown = scene.beats.slice(0, revealCount);
 
   return (
-    <div className="max-w-3xl mx-auto max-h-[78dvh] overflow-y-auto px-1 pb-10 scrollbar-hide">
+    <div className="max-w-3xl mx-auto">
       <div className="flex items-center gap-3 mb-3">
         <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-violet-600">{scene.eyebrow}</span>
         <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-neutral-900 text-white">
