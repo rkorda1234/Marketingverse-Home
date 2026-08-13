@@ -259,7 +259,42 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 8 — Phase 2 Podcast/Video
+    // 8 — Early Ideas From Our First Conversation
+    {
+      id: 'early-ideas',
+      type: 'cardGrid',
+      eyebrow: 'From Our First Conversation',
+      title: "A Few Ways We're Already Thinking About This",
+      intro: "None of this is final — Discovery is where we'd shape these together with your team. But a few ideas came out of our first conversation that we're already excited about, and wanted to share so you can picture them too, ahead of the sales app they'd likely live in.",
+      beats: [
+        {
+          title: 'Saaga vs. The Alternatives',
+          body: 'A side-by-side comparison against traditional banks and MFOs, laid out plainly enough that the advantage is visible at a glance instead of just claimed.',
+        },
+        {
+          title: 'The Generational Map',
+          body: 'A visual family tree showing how each generation typically engages with wealth, and what a healthy governance structure looks like as it passes from one generation to the next.',
+        },
+        {
+          title: '24 Years, One Departure',
+          body: "A simple, striking way to show what that track record actually means, instead of stating it as a line of text.",
+        },
+        {
+          title: 'Where the Fees Really Go',
+          body: 'An animated look at what gets skimmed by intermediaries along the way, and what changes when a family has direct access to the same funds and managers, without the extra layers in between.',
+        },
+        {
+          title: 'From Chaos to One System',
+          body: 'A visual before-and-after of what it feels like to manage wealth without a single source of truth, and what it looks like once everything runs through one coordinated system.',
+        },
+        {
+          title: 'The Response Team in Motion',
+          body: 'A look at how the team mobilizes when a problem needs solving: specialists moving together as one unit, instead of a single advisor working alone.',
+        },
+      ],
+    },
+
+    // 9 — Phase 2 Podcast/Video
     {
       id: 'phase-2',
       type: 'phase',
@@ -298,7 +333,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 9 — Phase 3 Launch
+    // 10 — Phase 3 Launch
     {
       id: 'phase-3',
       type: 'phase',
@@ -322,7 +357,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 10 — Phase 4 Growth Partnership
+    // 11 — Phase 4 Growth Partnership
     {
       id: 'phase-4',
       type: 'phase',
@@ -358,7 +393,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 11 — Recommended Add-Ons
+    // 12 — Recommended Add-Ons
     {
       id: 'add-ons',
       type: 'cardGrid',
@@ -382,7 +417,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 12 — Timeline
+    // 13 — Timeline
     {
       id: 'timeline',
       type: 'timeline',
@@ -405,7 +440,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 13 — Investment Summary
+    // 14 — Investment Summary
     {
       id: 'investment',
       type: 'investment',
@@ -445,7 +480,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 14 — Everything In This Package
+    // 15 — Everything In This Package
     {
       id: 'everything',
       type: 'checklist',
@@ -489,7 +524,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 15 — Payment Schedule & Terms
+    // 16 — Payment Schedule & Terms
     {
       id: 'terms',
       type: 'richText',
@@ -526,7 +561,7 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 16 — Let's Get Started
+    // 17 — Let's Get Started
     {
       id: 'cta',
       type: 'cta',
