@@ -1,31 +1,19 @@
 import React from 'react';
 
-// Saaga Wealth's wordmark, recreated as text rather than a raster image —
-// it's flat, solid-color typography, so this renders crisp at any size and
-// matches the same approach the main site already uses for client
-// wordmarks (see ClientsSection in App.tsx). Colors are matched from the
-// provided logo file.
-const TAUPE = '#8B7B72';
-const NAVY = '#1E3A66';
-
+// Saaga Wealth's real logo file (client-provided), cropped and cleaned up
+// (the original had a checkerboard baked into its "transparent" background
+// rather than real alpha) — see public/saaga-logo.png.
 export const SaagaLogo: React.FC<{ size?: 'lg' | 'sm'; className?: string }> = ({
   size = 'lg',
   className = '',
 }) => {
-  const wordmarkClass = size === 'lg' ? 'text-3xl md:text-4xl' : 'text-sm';
-  const subClass = size === 'lg' ? 'text-[11px] md:text-xs mt-1' : 'text-[6px] mt-0.5';
-  const trackingSub = size === 'lg' ? 'tracking-[0.5em]' : 'tracking-[0.35em]';
+  const sizeClass = size === 'lg' ? 'w-56 md:w-64 mx-auto' : 'w-16 md:w-[4.5rem]';
 
   return (
-    <div className={`inline-flex flex-col items-center ${className}`}>
-      <span className={`${wordmarkClass} font-bold tracking-[0.12em]`}>
-        <span style={{ color: TAUPE }}>SA</span>
-        <span style={{ color: NAVY }}>A</span>
-        <span style={{ color: TAUPE }}>GA</span>
-      </span>
-      <span className={`${subClass} ${trackingSub} font-semibold`} style={{ color: NAVY }}>
-        FAMILY WEALTH
-      </span>
-    </div>
+    <img
+      src="/saaga-logo.png"
+      alt="Saaga Family Wealth"
+      className={`${sizeClass} h-auto object-contain ${className}`}
+    />
   );
 };
