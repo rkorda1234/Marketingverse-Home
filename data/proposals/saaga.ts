@@ -100,14 +100,14 @@ export const saagaProposal: Proposal = {
         {
           kind: 'location',
           heading: 'Based in Miami',
-          text: "Marketingverse is headquartered in Miami — the same city as Saaga. Discovery interviews, the production shoot, and check-ins at your office aren't a video call away; we can be there in person whenever it's useful, not on a scheduled quarterly visit.",
+          text: "Marketingverse is headquartered in Miami, the same city as Saaga. Discovery interviews, the production shoot, and check-ins at your office aren't a video call away; we can be there in person whenever it's useful, not on a scheduled quarterly visit.",
         },
         {
           kind: 'bio',
           heading: 'Our Approach',
           paragraphs: [
-            "Our team's background is in storytelling and film. We build every brand's story to form a real emotional connection with its audience — one that creates trust and sparks a visceral reaction, because that's what people actually remember.",
-            'We also believe that today, the most effective approach merges high-production storytelling with raw, organic content — the kind that lets a prospective client feel the closeness and honesty of the brand and the team behind it, who they really are, without the full Hollywood production.',
+            "Our team's background is in storytelling and film. We build every brand's story to form a real emotional connection with its audience: one that creates trust and sparks a visceral reaction, because that's what people actually remember.",
+            'We also believe that today, the most effective approach merges high-production storytelling with raw, organic content: the kind that lets a prospective client feel the closeness and honesty of the brand and the team behind it, who they really are, without the full Hollywood production.',
           ],
         },
         {

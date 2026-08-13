@@ -40,6 +40,11 @@ function renderScene(scene: Scene, revealCount: number) {
 
 const TRANSITION_MS = 380;
 
+// Stagger for the nav-arrow intro's particle trail — matches the 0.3s
+// button delay set in index.css, spaced out a bit further so each dot
+// reads as a distinct spark rather than a blur.
+const TRAIL_DELAYS = [340, 400, 470, 550, 640];
+
 type TransitionPhase = 'idle' | 'leaving' | 'entering';
 
 export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => {
@@ -174,7 +179,14 @@ export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
         </div>
       </div>
 
-      {/* Forward / back (desktop) */}
+      {/* Forward / back (desktop), with a particle trail on the intro slide */}
+      {TRAIL_DELAYS.map((ms) => (
+        <span
+          key={`trail-l-${ms}`}
+          className="mv-nav-trail-dot mv-nav-trail-left hidden md:block z-20"
+          style={{ animationDelay: `${ms}ms` }}
+        />
+      ))}
       <button
         aria-label="Previous"
         onClick={retreat}
@@ -183,6 +195,13 @@ export const ProposalDeck: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
       >
         <ChevronLeft size={20} />
       </button>
+      {TRAIL_DELAYS.map((ms) => (
+        <span
+          key={`trail-r-${ms}`}
+          className="mv-nav-trail-dot mv-nav-trail-right hidden md:block z-20"
+          style={{ animationDelay: `${ms}ms` }}
+        />
+      ))}
       <button
         aria-label="Next"
         onClick={advance}
