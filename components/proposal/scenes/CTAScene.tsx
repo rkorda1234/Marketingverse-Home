@@ -23,7 +23,7 @@ export const CTASceneView: React.FC<{ scene: CTAScene; revealCount: number }> = 
         <div className="grid sm:grid-cols-3 gap-4 mb-10 text-left">
           {stepsBeat.steps.map((step, i) => (
             <BeatIn key={i} delay={i * 100}>
-              <div className="mv-glass rounded-2xl p-4 h-full">
+              <div className="mv-glass mv-lift rounded-2xl p-4 h-full">
                 <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-neutral-900 text-white text-xs font-bold mb-2">
                   {i + 1}
                 </span>

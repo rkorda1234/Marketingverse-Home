@@ -35,7 +35,7 @@ export const PipelineTableSceneView: React.FC<{ scene: PipelineTableScene; revea
         <div className="mv-glass rounded-2xl overflow-hidden divide-y divide-neutral-200/60 mb-6">
           {rows.map((row, i) => (
             <BeatIn key={row.asset} delay={i * 70}>
-              <div className="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] gap-1 md:gap-6 px-5 py-4">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] gap-1 md:gap-6 px-5 py-4 transition-colors duration-300 hover:bg-violet-50/60">
                 <span className="font-bold text-sm text-neutral-900">{row.asset}</span>
                 <span className="text-sm text-neutral-600 leading-relaxed">{row.job}</span>
               </div>
