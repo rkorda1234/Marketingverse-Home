@@ -24,7 +24,7 @@ export const InvestmentSceneView: React.FC<{ scene: InvestmentScene; revealCount
             return (
               <BeatIn key={i}>
                 <div className="mv-glass mv-lift rounded-2xl p-6">
-                  <p className="text-4xl md:text-6xl font-bold text-neutral-900 mb-1 mv-shimmer inline-block">
+                  <p className="text-2xl md:text-3xl font-bold text-neutral-900 mb-1 mv-shimmer inline-block">
                     <CountUp to={beat.amount} prefix={beat.prefix ?? '$'} suffix={beat.suffix ?? ''} />
                   </p>
                   <p className="text-sm font-semibold text-violet-600 uppercase tracking-wide mb-4">{beat.label}</p>
