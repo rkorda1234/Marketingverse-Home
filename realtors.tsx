@@ -6,6 +6,34 @@ import { captureAdAttribution, getGHLFormSrc } from './utils/adAttribution';
 const MV_LOGO = '/logo.png';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd';
 
+// ── Cursor fix (inherit system cursor) ────────────────────────────────────────
+const CursorFix: React.FC = () => (
+  <style>{`*, *::before, *::after { cursor: auto !important; } a, button, [role="button"] { cursor: pointer !important; }`}</style>
+);
+
+// ── Reviews Widget ─────────────────────────────────────────────────────────────
+const ReviewsWidget: React.FC = () => {
+  useEffect(() => {
+    const src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+    if (!document.querySelector(`script[src="${src}"]`)) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+  return (
+    <iframe
+      className="lc_reviews_widget"
+      src="https://reputationhub.site/reputation/widgets/review_widget/CFAAUO2gnPooyim4LdoM"
+      frameBorder={0}
+      scrolling="no"
+      style={{ minWidth: '100%', width: '100%', border: 'none' }}
+      title="Google Reviews"
+    />
+  );
+};
+
 // ── Reveal on scroll ──────────────────────────────────────────────────────────
 const RevealOnScroll: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -13,7 +41,7 @@ const RevealOnScroll: React.FC<{ children: React.ReactNode; delay?: number; clas
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.12 });
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.1 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
@@ -40,7 +68,7 @@ const BookingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOp
         <button onClick={onClose} className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 transition-colors">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
         </button>
-        <iframe src={src} style={{ width: '100%', height: '100%', border: 'none' }} title="Book a discovery call" />
+        <iframe src={src} style={{ width: '100%', height: '100%', border: 'none' }} title="Book a call" />
       </div>
     </div>
   );
@@ -71,10 +99,10 @@ const SUCCESS_CASES = [
     niche: 'Real Estate Agent',
     period: 'Growth Spike · May – Jun 2025',
     metrics: [
-      { label: 'Facebook Views',         growth: '5.8K ↑325%',  platform: 'Facebook'  },
-      { label: 'Facebook Viewers',       growth: '4.7K ↑336%',  platform: 'Facebook'  },
-      { label: 'Instagram Views',        growth: '14.3K ↑20%',  platform: 'Instagram' },
-      { label: 'Instagram Reach',        growth: '3.9K ↑30%',   platform: 'Instagram' },
+      { label: 'Facebook Views',    growth: '5.8K ↑325%', platform: 'Facebook'  },
+      { label: 'Facebook Viewers',  growth: '4.7K ↑336%', platform: 'Facebook'  },
+      { label: 'Instagram Views',   growth: '14.3K ↑20%', platform: 'Instagram' },
+      { label: 'Instagram Reach',   growth: '3.9K ↑30%',  platform: 'Instagram' },
     ],
   },
   {
@@ -109,10 +137,12 @@ function RealtorsPage() {
 
   return (
     <div className="bg-white text-neutral-900 font-sans antialiased">
+      <CursorFix />
+
       {/* ── Nav ── */}
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-neutral-100' : 'bg-transparent'}`}>
-        <div className="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between" style={{ height: 72 }}>
-          <a href="https://home.the-marketingverse.com">
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: 72 }}>
+          <a href="https://home.the-marketingverse.com" style={{ cursor: 'pointer' }}>
             <img src={MV_LOGO} alt="Marketingverse" className="h-9 w-auto" />
           </a>
           <button
@@ -139,7 +169,7 @@ function RealtorsPage() {
             onClick={openBooking}
             className="inline-flex items-center gap-2 bg-black text-white font-semibold px-10 py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-lg shadow-xl shadow-black/10"
           >
-            Book a Free Discovery Call
+            Book a call to learn the secret
           </button>
         </RevealOnScroll>
       </section>
@@ -155,16 +185,15 @@ function RealtorsPage() {
           </RevealOnScroll>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Video */}
-            <RevealOnScroll>
-              <div className="rounded-3xl overflow-hidden bg-neutral-900 aspect-video">
+            {/* Vertical video — 9:16 */}
+            <RevealOnScroll className="flex justify-center">
+              <div className="rounded-3xl overflow-hidden bg-neutral-900 w-full max-w-[320px]" style={{ aspectRatio: '9/16' }}>
                 <iframe
                   src="https://player.vimeo.com/video/1203822578?autoplay=0&badge=0&autopause=0&player_id=0&app_id=58479"
                   allow="autoplay; fullscreen; picture-in-picture"
                   frameBorder={0}
-                  className="w-full h-full"
-                  title="Why Social? Marketingverse Approach"
-                  style={{ display: 'block' }}
+                  style={{ width: '100%', height: '100%', display: 'block' }}
+                  title="Why Social? Our Unique Approach"
                 />
               </div>
             </RevealOnScroll>
@@ -190,40 +219,38 @@ function RealtorsPage() {
         </div>
       </section>
 
-      {/* ── Real Accounts. Real Results (vertical videos) ── */}
+      {/* ── Real Accounts. Real Results. ── */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <RevealOnScroll>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 text-center">Sample Content</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-4">
-              Real Accounts. <span className="font-serif font-normal italic">Real Results.</span>
-            </h2>
-            <p className="text-neutral-500 text-lg text-center max-w-lg mx-auto mb-16">
-              Three styles, three agents, one system. See how we adapt to each personality.
-            </p>
+            <div className="text-center mb-14">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Strategies In Action</span>
+              <h2 className="text-4xl font-bold mb-4">Real Accounts. <span className="font-serif italic font-normal">Real Results.</span></h2>
+              <p className="text-lg text-neutral-500 max-w-2xl mx-auto">Three different account types, three winning playbooks — each tailored to how the audience discovers and converts.</p>
+            </div>
           </RevealOnScroll>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { id: '1173074414', label: 'Fun & Elegant' },
-              { id: '1173074396', label: 'Polished & Professional' },
-              { id: '1173074432', label: 'Bold & Witty' },
-            ].map(({ id, label }, i) => (
-              <RevealOnScroll key={id} delay={i * 80}>
-                <div className="group">
-                  <div className="relative rounded-2xl overflow-hidden bg-neutral-100" style={{ paddingBottom: '177.78%' }}>
-                    <iframe
-                      src={`https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479`}
-                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                      className="absolute inset-0 w-full h-full"
-                      frameBorder={0}
-                      title={label}
-                    />
-                  </div>
-                  <p className="text-center font-semibold mt-4 text-neutral-700">{label}</p>
-                </div>
-              </RevealOnScroll>
-            ))}
+          <div className="grid md:grid-cols-3 gap-10 items-end justify-items-center">
+            <RevealOnScroll delay={0} className="flex flex-col items-center gap-4 w-full max-w-[240px]">
+              <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(244,114,182,0.2), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
+                <iframe src="https://player.vimeo.com/video/1173074414?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Fun and Elegant" />
+              </div>
+              <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-rose-500 bg-rose-50 border-rose-200">Fun &amp; Elegant</span>
+            </RevealOnScroll>
+
+            <RevealOnScroll delay={80} className="flex flex-col items-center gap-4 w-full max-w-[240px] md:-mt-10">
+              <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(100,116,139,0.18), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
+                <iframe src="https://player.vimeo.com/video/1173074396?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Polished and Professional" />
+              </div>
+              <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-slate-600 bg-slate-50 border-slate-200">Polished &amp; Professional</span>
+            </RevealOnScroll>
+
+            <RevealOnScroll delay={160} className="flex flex-col items-center gap-4 w-full max-w-[240px]">
+              <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(249,115,22,0.22), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
+                <iframe src="https://player.vimeo.com/video/1173074432?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Bold and Witty" />
+              </div>
+              <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-orange-500 bg-orange-50 border-orange-200">Bold &amp; Witty</span>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
@@ -269,8 +296,18 @@ function RealtorsPage() {
         </div>
       </section>
 
+      {/* ── Google Reviews ── */}
+      <section className="py-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <RevealOnScroll>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-8 text-center">What Our Clients Say</p>
+            <ReviewsWidget />
+          </RevealOnScroll>
+        </div>
+      </section>
+
       {/* ── Final CTA ── */}
-      <section className="py-28 px-6">
+      <section className="py-28 px-6 bg-neutral-50">
         <RevealOnScroll>
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">Let's talk</p>
@@ -279,13 +316,13 @@ function RealtorsPage() {
               <span className="font-serif font-normal italic">that closes deals?</span>
             </h2>
             <p className="text-neutral-500 text-lg mb-10 max-w-sm mx-auto">
-              30 minutes. No pitch. Just an honest look at what social can do for your market.
+              30 minutes. No pitch. Just an honest conversation about what social can do for your market.
             </p>
             <button
               onClick={openBooking}
               className="inline-flex items-center gap-2 bg-black text-white font-semibold px-12 py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-lg shadow-xl shadow-black/10"
             >
-              Book a Free Discovery Call
+              Book a call to learn the secret
             </button>
           </div>
         </RevealOnScroll>
@@ -294,7 +331,9 @@ function RealtorsPage() {
       {/* ── Footer ── */}
       <footer className="border-t border-neutral-100 py-10 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <img src={MV_LOGO} alt="Marketingverse" className="h-7 w-auto opacity-70" />
+          <a href="https://home.the-marketingverse.com" style={{ cursor: 'pointer' }}>
+            <img src={MV_LOGO} alt="Marketingverse" className="h-7 w-auto opacity-70" />
+          </a>
           <p className="text-xs text-neutral-400">© {new Date().getFullYear()} Marketingverse. All rights reserved.</p>
         </div>
       </footer>
