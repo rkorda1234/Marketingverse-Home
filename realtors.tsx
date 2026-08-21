@@ -62,10 +62,10 @@ const BookingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOp
   if (!isOpen) return null;
   const src = getGHLFormSrc(BOOKING_URL);
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6" onClick={onClose}>
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden" style={{ height: '82vh', maxHeight: 720 }} onClick={e => e.stopPropagation()}>
-        <button onClick={onClose} className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 transition-colors">
+      <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden" style={{ height: '92vh', maxHeight: 860 }} onClick={e => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 transition-colors">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
         </button>
         <iframe src={src} style={{ width: '100%', height: '100%', border: 'none' }} title="Book a call" />
@@ -155,19 +155,19 @@ function RealtorsPage() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="pt-40 pb-28 px-6 text-center max-w-4xl mx-auto">
+      <section className="pt-32 md:pt-40 pb-20 md:pb-28 px-6 text-center max-w-4xl mx-auto">
         <RevealOnScroll>
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">Social Media for Real Estate Agents</p>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6 md:mb-8">
             The social presence<br />that earns trust<br />
             <span className="font-serif font-normal italic">before the call.</span>
           </h1>
-          <p className="text-xl text-neutral-500 max-w-xl mx-auto leading-relaxed mb-12">
+          <p className="text-lg md:text-xl text-neutral-500 max-w-xl mx-auto leading-relaxed mb-10 md:mb-12">
             When a buyer or seller finds you online, they're deciding in seconds whether they feel a connection. We make sure that answer is yes.
           </p>
           <button
             onClick={openBooking}
-            className="inline-flex items-center gap-2 bg-black text-white font-semibold px-10 py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-lg shadow-xl shadow-black/10"
+            className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 md:px-10 py-4 md:py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-base md:text-lg shadow-xl shadow-black/10"
           >
             Book a call to learn the secret
           </button>
@@ -175,19 +175,19 @@ function RealtorsPage() {
       </section>
 
       {/* ── Why Social ── */}
-      <section className="py-24 px-6 bg-neutral-950 text-white">
+      <section className="py-16 md:py-24 px-6 bg-neutral-950 text-white">
         <div className="max-w-6xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500 mb-6 text-center">Why Social?</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16 max-w-2xl mx-auto leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-10 md:mb-16 max-w-2xl mx-auto leading-tight">
               The only channel where personal and professional mix on purpose.
             </h2>
           </RevealOnScroll>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             {/* Vertical video — 9:16 */}
             <RevealOnScroll className="flex justify-center">
-              <div className="rounded-3xl overflow-hidden bg-neutral-900 w-full max-w-[320px]" style={{ aspectRatio: '9/16' }}>
+              <div className="rounded-3xl overflow-hidden bg-neutral-900 w-full max-w-[280px] sm:max-w-[320px]" style={{ aspectRatio: '9/16' }}>
                 <iframe
                   src="https://player.vimeo.com/video/1203822578?autoplay=0&badge=0&autopause=0&player_id=0&app_id=58479"
                   allow="autoplay; fullscreen; picture-in-picture"
@@ -200,7 +200,7 @@ function RealtorsPage() {
 
             {/* Copy */}
             <RevealOnScroll delay={100}>
-              <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
+              <div className="space-y-6 text-neutral-300 text-base md:text-lg leading-relaxed">
                 <p>
                   Your clients aren't just buying a house — they're betting their biggest financial decision on a person they need to trust completely. Social media is the only place where that trust forms at scale, before you ever pick up the phone.
                 </p>
@@ -220,32 +220,33 @@ function RealtorsPage() {
       </section>
 
       {/* ── Real Accounts. Real Results. ── */}
-      <section className="py-24 px-6">
+      <section className="py-16 md:py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <RevealOnScroll>
-            <div className="text-center mb-14">
+            <div className="text-center mb-10 md:mb-14">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4 block">Strategies In Action</span>
-              <h2 className="text-4xl font-bold mb-4">Real Accounts. <span className="font-serif italic font-normal">Real Results.</span></h2>
-              <p className="text-lg text-neutral-500 max-w-2xl mx-auto">Three different account types, three winning playbooks — each tailored to how the audience discovers and converts.</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Real Accounts. <span className="font-serif italic font-normal">Real Results.</span></h2>
+              <p className="text-base md:text-lg text-neutral-500 max-w-2xl mx-auto">Three different account types, three winning playbooks — each tailored to how the audience discovers and converts.</p>
             </div>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-10 items-end justify-items-center">
-            <RevealOnScroll delay={0} className="flex flex-col items-center gap-4 w-full max-w-[240px]">
+          {/* On mobile: single column centered; md+: 3-col staggered */}
+          <div className="flex flex-col items-center gap-10 md:grid md:grid-cols-3 md:gap-10 md:items-end md:justify-items-center">
+            <RevealOnScroll delay={0} className="flex flex-col items-center gap-4 w-full max-w-[260px] md:max-w-[240px]">
               <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(244,114,182,0.2), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
                 <iframe src="https://player.vimeo.com/video/1173074414?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Fun and Elegant" />
               </div>
               <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-rose-500 bg-rose-50 border-rose-200">Fun &amp; Elegant</span>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={80} className="flex flex-col items-center gap-4 w-full max-w-[240px] md:-mt-10">
+            <RevealOnScroll delay={80} className="flex flex-col items-center gap-4 w-full max-w-[260px] md:max-w-[240px] md:-mt-10">
               <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(100,116,139,0.18), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
                 <iframe src="https://player.vimeo.com/video/1173074396?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Polished and Professional" />
               </div>
               <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border text-slate-600 bg-slate-50 border-slate-200">Polished &amp; Professional</span>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={160} className="flex flex-col items-center gap-4 w-full max-w-[240px]">
+            <RevealOnScroll delay={160} className="flex flex-col items-center gap-4 w-full max-w-[260px] md:max-w-[240px]">
               <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '9/19.5', boxShadow: '0 24px 60px -16px rgba(249,115,22,0.22), 0 6px 20px -6px rgba(0,0,0,0.14)' }}>
                 <iframe src="https://player.vimeo.com/video/1173074432?background=1&autoplay=1&loop=1&muted=1&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" className="absolute inset-0 w-full h-full" frameBorder={0} title="Bold and Witty" />
               </div>
@@ -256,17 +257,17 @@ function RealtorsPage() {
       </section>
 
       {/* ── Client Wins ── */}
-      <section className="py-24 px-6 bg-neutral-50">
+      <section className="py-16 md:py-24 px-6 bg-neutral-50">
         <div className="max-w-5xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 text-center">Proven Results</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-4">Client Wins</h2>
-            <p className="text-neutral-500 text-lg text-center max-w-md mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-4">Client Wins</h2>
+            <p className="text-neutral-500 text-base md:text-lg text-center max-w-md mx-auto mb-10 md:mb-16">
               Real numbers. Real agents. What consistent, strategic content does to your metrics.
             </p>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
             {SUCCESS_CASES.map((sc, idx) => (
               <RevealOnScroll key={`${sc.client}-${idx}`} delay={idx * 80}>
                 <div className="bg-white border border-neutral-100 rounded-3xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
@@ -307,20 +308,20 @@ function RealtorsPage() {
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="py-28 px-6 bg-neutral-50">
+      <section className="py-20 md:py-28 px-6 bg-neutral-50">
         <RevealOnScroll>
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">Let's talk</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
               Ready to build a presence<br />
               <span className="font-serif font-normal italic">that closes deals?</span>
             </h2>
-            <p className="text-neutral-500 text-lg mb-10 max-w-sm mx-auto">
+            <p className="text-neutral-500 text-base md:text-lg mb-10 max-w-sm mx-auto">
               30 minutes. No pitch. Just an honest conversation about what social can do for your market.
             </p>
             <button
               onClick={openBooking}
-              className="inline-flex items-center gap-2 bg-black text-white font-semibold px-12 py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-lg shadow-xl shadow-black/10"
+              className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 md:px-12 py-4 md:py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-base md:text-lg shadow-xl shadow-black/10"
             >
               Book a call to learn the secret
             </button>
