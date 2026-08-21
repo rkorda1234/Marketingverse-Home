@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback, Component } from 'react';
+import { captureAdAttribution, getGHLFormSrc } from './utils/adAttribution';
 
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -1181,14 +1182,17 @@ const BackToTop: React.FC = () => {
   );
 };
 
+const BOOKING_WIDGET_URL = 'https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd';
+
 const BookingModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
+  const src = getGHLFormSrc(BOOKING_WIDGET_URL);
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in" onClick={onClose}>
       <div className="bg-white w-full max-w-4xl h-[90vh] rounded-2xl overflow-hidden relative shadow-2xl flex flex-col" onClick={e => e.stopPropagation()}>
         <button onClick={onClose} className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-neutral-100 transition-colors border border-neutral-200"><X size={24} /></button>
         <div className="w-full flex-1 overflow-hidden">
-          <iframe src="https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd" className="w-full border-none" style={{ height: 'calc(100% + 4px)', marginTop: '-4px' }} title="Booking Consultation" />
+          <iframe src={src} className="w-full border-none" style={{ height: 'calc(100% + 4px)', marginTop: '-4px' }} title="Booking Consultation" />
         </div>
       </div>
     </div>
@@ -4079,6 +4083,7 @@ const App: React.FC = () => {
 
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  useEffect(() => { captureAdAttribution(); }, []);
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   const [projects, setProjects] = useState<Project[]>(() => {
     try {

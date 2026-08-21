@@ -7,6 +7,7 @@
     { "source": "/avanti-way", "destination": "/avanti-way.html" },
     { "source": "/saaga", "destination": "/saaga.html" },
     { "source": "/saaga-phase-2", "destination": "/saaga-phase-2.html" },
-    { "source": "/((?!thank-you|avanti-way|saaga-phase-2|saaga).*)", "destination": "/index.html" }
+    { "source": "/realtors", "destination": "/realtors.html" },
+    { "source": "/((?!thank-you|avanti-way|saaga-phase-2|saaga|realtors).*)", "destination": "/index.html" }
   ]
 }

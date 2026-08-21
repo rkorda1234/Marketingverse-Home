@@ -18,6 +18,7 @@ export default defineConfig({
         'avanti-way': 'avanti-way.html',
         saaga: 'saaga.html',
         'saaga-phase-2': 'saaga-phase-2.html',
+        realtors: 'realtors.html',
       },
     },
   },
