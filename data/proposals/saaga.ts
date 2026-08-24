@@ -5,7 +5,7 @@ const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/bookings/ricardo';
 export const saagaProposal: Proposal = {
   meta: {
     client: 'Saaga Family Wealth',
-    title: 'Marketingverse × Saaga Family Wealth — Implementation Proposal',
+    title: 'Marketingverse × Saaga Family Wealth — Stage 1 Implementation Proposal',
   },
   scenes: [
     // 1 — Hero
@@ -17,7 +17,7 @@ export const saagaProposal: Proposal = {
         { kind: 'headline', text: 'Financial Hospitality, Made Visible.' },
         {
           kind: 'subhead',
-          text: "Prepared exclusively for Saaga Family Wealth and Juan Pablo Martinez-Blat: the scope of work, phased timeline, and investment for building the Financial Hospitality brand, digital presence, and content engine that earns every referral its trust.",
+          text: 'Prepared exclusively for Saaga Family Wealth and Juan Pablo Martinez-Blat: the scope, timeline, and investment for Stage 1 of the Financial Hospitality build, with a clear view of what comes next.',
         },
         { kind: 'logo' },
         { kind: 'footer', text: 'Marketingverse  ·  Branding & Marketing Proposal  ·  August 2026  ·  Valid for 30 days' },
@@ -33,24 +33,23 @@ export const saagaProposal: Proposal = {
       beats: [
         {
           paragraphs: [
-            "This proposal turns the Financial Hospitality strategy into a working brand and marketing system: a website prospects trust the moment a referral sends them, an AI-guided sales experience advisors can lean on in the room, a library of educational video content built in a single efficient shoot day, and an ongoing content engine that keeps Saaga visible to the people who refer it.",
+            "This proposal covers Stage 1 of the Financial Hospitality build: a refreshed brand, a website that earns trust before the first call, and an interactive sales presentation that makes \"show, don't tell\" real in the room. It's scoped to stand completely on its own, useful and launchable without anything beyond it.",
           ],
         },
         {
           paragraphs: [
-            "Everything is scoped to be built in the order that compounds: Discovery and message architecture first, so the website, sales app, and content are all built on the same story; then the three flagship builds in parallel; then an ongoing partnership to keep the content and presence alive.",
+            "Everything else, from AI-powered personalization to ongoing content and a growth partnership, is real and ready when you are. This proposal previews what that looks like, but nothing beyond Stage 1 is priced or committed here — that's a conversation for once Stage 1 is live and working.",
           ],
         },
         {
           heading: "What's Included",
           listStyle: 'check',
           list: [
-            { text: "A structured Discovery period to translate the Financial Hospitality strategy into a build-ready brief" },
-            { text: "A bilingual (EN/ES) website with an AI concierge trained on Saaga's philosophy and service model" },
-            { text: "An Interactive AI Sales Presentation app for use in prospect meetings and as a leave-behind" },
-            { text: "A one-day podcast/video production shoot, edited into long-form education content and repurposed across platforms" },
-            { text: "Social media management to keep that content, and Saaga's voice, consistently in front of clients and referral partners" },
-            { text: "Recommended add-ons to round out the system later: Google Ads (Stage 3), next-gen program branding, and an event toolkit for referral-partner salons" },
+            { text: 'A focused Discovery week to align on the brand and build-ready brief' },
+            { text: "A refreshed brand identity, message, and narrative, built on what Saaga already has, not a rebuild from zero" },
+            { text: 'A bilingual website that validates trust the moment a referral arrives' },
+            { text: 'An interactive sales presentation: an app, a print-ready PDF, and a skimmable leave-behind summary, for use in prospect meetings' },
+            { text: "A clear look at what becomes possible in later stages, once Stage 1 is live" },
           ],
         },
       ],
@@ -68,23 +67,14 @@ export const saagaProposal: Proposal = {
           kind: 'rows',
           rows: [
             { asset: 'Brand Identity, Message & Narrative', job: 'Makes every touchpoint below sound and look like the same firm, so trust builds instead of resetting at each step.' },
-            { asset: 'Website + AI Concierge', job: 'Answers "what do you actually do?" before the first call, so a warm referral does not stall during validation.' },
-            { asset: 'Interactive AI Sales App', job: 'Turns one meeting into a decision, with proof in the room instead of a claim on a slide.' },
+            { asset: 'Website', job: 'Answers "what do you actually do?" before the first call, so a warm referral does not stall during validation.' },
           ],
         },
         {
           kind: 'rows',
           rows: [
-            { asset: 'Podcast & Video Content', job: 'Builds recognition with families and COIs before they ever need you, so the next referral starts warmer.' },
-            { asset: 'Social Media Management', job: 'Keeps that recognition alive between production days, month after month.' },
-            { asset: 'Sales, Referral & Print Collateral', job: 'Gives referral partners something physical to hand over, reinforcing the digital story in person.' },
-          ],
-        },
-        {
-          kind: 'rows',
-          rows: [
-            { asset: 'Email & Client Newsletter', job: 'Keeps referral partners and existing clients warm between meetings, without relying on a social algorithm.' },
-            { asset: 'Google Ads (Stage 3)', job: 'Protects your name and captures intent once someone finally searches for you.' },
+            { asset: 'Interactive Sales Presentation', job: 'Turns one meeting into a decision, with proof in the room instead of a claim on a slide.' },
+            { asset: 'Print PDF & Leave-Behind Summary', job: 'Gives every family something to review after the meeting, so the decision does not depend on remembering everything said in the room.' },
           ],
         },
         { kind: 'closing', text: 'None of this replaces referrals. It makes sure every referral that arrives finds a firm that already looks ready for them.' },
@@ -101,7 +91,7 @@ export const saagaProposal: Proposal = {
         {
           kind: 'location',
           heading: 'Based in Miami',
-          text: "Marketingverse is headquartered in Miami, the same city as Saaga. Discovery interviews, the production shoot, and check-ins at your office aren't a video call away; we can be there in person whenever it's useful, not on a scheduled quarterly visit.",
+          text: "Marketingverse is headquartered in Miami, the same city as Saaga. Discovery interviews, and check-ins at your office aren't a video call away; we can be there in person whenever it's useful, not on a scheduled quarterly visit.",
         },
         {
           kind: 'bio',
@@ -141,58 +131,54 @@ export const saagaProposal: Proposal = {
       ],
     },
 
-    // 5 — Phase 0
+    // 5 — Step 1, Discovery & Brand Direction
     {
-      id: 'phase-0',
+      id: 'discovery',
       type: 'phase',
-      eyebrow: 'Phase 0',
-      title: 'Discovery & Strategic Foundation',
-      timeframe: 'Weeks 1–2',
+      eyebrow: 'Step 1',
+      title: 'Discovery & Brand Direction',
+      timeframe: 'Week 1',
       beats: [
-        { kind: 'intro', text: "Before any design or development begins, we align the whole team, Saaga's and ours, around one build-ready brief. This is the highest-leverage phase in the plan: it is what keeps the website, the AI sales app, and the content shoot from telling three slightly different stories." },
+        { kind: 'intro', text: "A focused week to align on the brand and build-ready brief. Lighter than a full strategic overhaul, because the foundation is already Saaga's own — we're refining it, not starting over." },
         {
           kind: 'section',
-          heading: 'Week 1: Immersion & Architecture',
+          heading: 'Stakeholder Alignment',
           items: [
-            'Stakeholder interviews: Juan Pablo, senior team, and (with permission) 2-3 long-tenured clients or referral partners',
-            "Saaga compiles its compliance requirements (from its compliance officer or counsel) into a checklist we'll use for every piece of content going forward",
+            'Stakeholder interviews: Juan Pablo and senior team',
             'Working session to pressure-test the Financial Hospitality positioning and the three-pain / three-service framework',
             'Content and asset audit: current website, brochures, deck, and any existing photo/video',
-            'Final messaging architecture and voice guidelines, in English and Spanish',
           ],
         },
         {
           kind: 'section',
-          heading: 'Week 2: Blueprint & Sign-off',
+          heading: 'Blueprint',
           items: [
             'Website sitemap and page-by-page content outline',
-            'AI concierge conversation design: the questions it should answer, and where it should hand off to a human',
-            "Sales app flow: how it adapts to a prospect's stated pain point in the room",
+            "Sales presentation flow: how it adapts to a prospect's stated pain point in the room",
             'Presentation of the build-ready brief and written sign-off from Saaga before design and development begin',
           ],
         },
         {
           kind: 'section',
-          heading: 'Brand Identity, Message, Tone & Narrative',
+          heading: 'Brand Refresh Direction',
           items: [
-            'Refined identity: color, type, and logo use',
+            'Refined identity: color, type, and logo use, built on what Saaga already has',
             'The core message: the three-pain, three-service framework, in one page',
-            "The tone: how Saaga sounds, in English and Spanish, everywhere",
-            'The narrative: the Financial Hospitality story, start to finish',
+            'The tone: how Saaga sounds, in English and Spanish, everywhere',
           ],
-          note: 'One short document, plain and easy to hand to anyone. Every deliverable that follows is built from this one source.',
+          note: 'A light revamp, not a rebuild. Every deliverable that follows is built from this one source.',
         },
-        { kind: 'deliverable', text: 'a single approved brief that every subsequent phase is built against.' },
+        { kind: 'deliverable', text: 'a single approved brief that the website and sales presentation are built against.' },
       ],
     },
 
-    // 6 — Phase 1A Website
+    // 6 — Step 2, Website
     {
-      id: 'phase-1a',
+      id: 'website',
       type: 'phase',
-      eyebrow: 'Phase 1A',
-      title: 'Website with an AI Concierge',
-      timeframe: 'Weeks 3–6',
+      eyebrow: 'Step 2',
+      title: 'Website',
+      timeframe: 'Weeks 2–4',
       beats: [
         { kind: 'intro', text: 'The website is the single highest-leverage asset in this plan: it is what a referral checks before they ever reply to an introduction. It is built to validate trust, not to chase cold traffic.' },
         {
@@ -200,17 +186,8 @@ export const saagaProposal: Proposal = {
           heading: 'Design',
           items: [
             "Visual identity applied to a full page system: home, services (mapped to Control / Confidence / Continuity), how-we're-paid, privacy & security, team, insights, contact",
-            'Bilingual EN/ES throughout, including the AI concierge',
+            'Bilingual EN/ES throughout',
             'Calm, restrained, editorial design language, built to be read by a skeptical, discerning family, not to convert cold clicks',
-          ],
-        },
-        {
-          kind: 'section',
-          heading: 'AI Concierge',
-          items: [
-            'A conversational assistant trained on Saaga\'s philosophy, service model, and fee structure, able to answer "What do you actually do?" and "How are you paid?" in plain language, day or night',
-            'Configured to recognize when a conversation should become a human introduction, and to hand off cleanly with context',
-            'Built with the same confidentiality posture as the rest of the brand: no client data collected or stored by the assistant',
           ],
         },
         {
@@ -221,30 +198,32 @@ export const saagaProposal: Proposal = {
             'Technical SEO foundation and structured content so Saaga is well-represented when families and AI assistants research the category',
             'QA, staging review, and a guided launch',
           ],
+          note: "Built ready to add an AI concierge later, if and when that's the right fit — not included in Stage 1.",
         },
-        { kind: 'deliverable', text: "a live, bilingual website with an integrated AI concierge, on Saaga's domain." },
+        { kind: 'deliverable', text: "a live, bilingual website on Saaga's domain." },
       ],
     },
 
-    // 7 — Phase 1B AI Sales App
+    // 7 — Step 3, Interactive Sales Presentation
     {
-      id: 'phase-1b',
+      id: 'sales-presentation',
       type: 'phase',
-      eyebrow: 'Phase 1B',
-      title: 'Interactive AI Sales Presentation',
-      timeframe: 'Weeks 6–7',
+      eyebrow: 'Step 3',
+      title: 'Interactive Sales Presentation',
+      timeframe: 'Weeks 4–5',
       beats: [
-        { kind: 'intro', text: 'A tablet- and web-based app for use in prospect meetings and as a leave-behind, built to make the "show, don\'t tell" strategy tangible in the room, not just on a slide.' },
+        { kind: 'intro', text: 'A tablet- and web-based experience for prospect meetings, built the same way this proposal was: adaptive, visual, built to make "show, don\'t tell" real in the room, not just on a slide.' },
         {
           kind: 'section',
           heading: 'What It Does',
           items: [
             'Opens on the three pains (Control, Confidence, Continuity) and lets the advisor or the family select what matters most, adapting the walkthrough accordingly',
-            'Includes an interactive "hidden cost" calculator: a family enters a rough portfolio size and sees an illustration of typical bank/MFO markup versus Saaga\'s flat-fee model',
-            "An embedded AI assistant, trained on the same knowledge base as the website concierge, so it can answer follow-up questions live, letting the advisor stay in the conversation instead of flipping slides",
-            'A leave-behind mode: a secure, trackable link the family can revisit after the meeting, so Saaga can see what resonated',
+            "A side-by-side comparison of Saaga's model against traditional banks and MFOs",
+            'A visual map of how each generation typically engages with wealth, and what a healthy governance structure looks like as it passes to the next',
+            '24 years, one client departed: a simple, honest look at what that track record means',
+            'A clear illustration of where fees go through intermediaries, and what changes with direct access to the same funds and managers',
           ],
-          note: 'Illustrative direction only — the calculator and AI assistant are built as part of Phase 1B; this proposal describes them rather than including a working demo.',
+          note: "Built once, with Saaga's own numbers and framework. Making these live and personal to each family in the room is a Stage 2 upgrade, previewed later in this proposal.",
         },
         {
           kind: 'section',
@@ -255,276 +234,145 @@ export const saagaProposal: Proposal = {
             'Password- or link-protected per prospect, so content can be lightly customized per family without rebuilding the app',
           ],
         },
-        { kind: 'deliverable', text: 'a branded, installable web app, plus a short training session for the team on how to use it in-meeting.' },
+        {
+          kind: 'section',
+          heading: 'Print & Leave-Behind Materials',
+          items: [
+            'A full, print-ready PDF version of the presentation, for prospects and referral partners who want a hard copy',
+            "A short, skimmable leave-behind summary of the deck's main points, built like a FAQ, so a family can review and decide without sitting through the full presentation again",
+          ],
+        },
+        { kind: 'deliverable', text: 'a branded, installable web app; a full print-ready PDF; a skimmable leave-behind summary; and a short training session for the team on how to use it in-meeting.' },
       ],
     },
 
-    // 8 — Early Ideas From Our First Conversation
+    // 8 — Step 4, Launch
     {
-      id: 'early-ideas',
-      type: 'cardGrid',
-      eyebrow: 'From Our First Conversation',
-      title: "A Few Ways We're Already Thinking About This",
-      intro: "None of this is final — Discovery is where we'd shape these together with your team. But a few ideas came out of our first conversation that we're already excited about, and wanted to share so you can picture them too, ahead of the sales app they'd likely live in.",
-      beats: [
-        {
-          title: 'Saaga vs. The Alternatives',
-          body: 'A side-by-side comparison against traditional banks and MFOs, laid out plainly enough that the advantage is visible at a glance instead of just claimed.',
-        },
-        {
-          title: 'The Generational Map',
-          body: 'A visual family tree showing how each generation typically engages with wealth, and what a healthy governance structure looks like as it passes from one generation to the next.',
-        },
-        {
-          title: '24 Years, One Departure',
-          body: "A simple, striking way to show what that track record actually means, instead of stating it as a line of text.",
-        },
-        {
-          title: 'Where the Fees Really Go',
-          body: 'An animated look at what gets skimmed by intermediaries along the way, and what changes when a family has direct access to the same funds and managers, without the extra layers in between.',
-        },
-        {
-          title: 'From Chaos to One System',
-          body: 'A visual before-and-after of what it feels like to manage wealth without a single source of truth, and what it looks like once everything runs through one coordinated system.',
-        },
-        {
-          title: 'The Response Team in Motion',
-          body: 'A look at how the team mobilizes when a problem needs solving: specialists moving together as one unit, instead of a single advisor working alone.',
-        },
-      ],
-    },
-
-    // 9 — Phase 2 Podcast/Video
-    {
-      id: 'phase-2',
+      id: 'launch',
       type: 'phase',
-      eyebrow: 'Phase 2',
-      title: 'Podcast & Video Content Production',
-      timeframe: 'Week 8 (shoot), through Week 9 (edit)',
-      beats: [
-        { kind: 'intro', text: "One efficient production day at Saaga's own office (no location fee) built to generate a full quarter of educational content: the raw material for the LinkedIn thought-leadership and next-gen education programming recommended in the strategy phase." },
-        {
-          kind: 'section',
-          heading: 'Pre-Production (Week 7-8)',
-          items: [
-            'Scripting and interview-question development for up to 6 segments, drawn directly from the Financial Hospitality content pillars: financial + emotional wealth, governance, the economics of independence, and cross-border LatAm planning',
-            "A full shot list built around Saaga's own office; the client-provided location keeps the day efficient and the budget lean",
-          ],
-        },
-        {
-          kind: 'section',
-          heading: 'Production Day (Week 8)',
-          items: [
-            'One full-day, multi-camera shoot (video + audio) on location at Saaga',
-            'Up to 6 long-form segments (10-20 minutes each) featuring Juan Pablo and, if useful, senior team members or an outside guest',
-            'B-roll capture for use across the website, sales app, and social content',
-          ],
-        },
-        {
-          kind: 'section',
-          heading: 'Post-Production & Repurposing (Week 9)',
-          items: [
-            'Long-form edits of all segments, captioned in English and Spanish',
-            '20-30 short-form clips cut for LinkedIn, Instagram, and YouTube Shorts: the content that carries the brand between production days',
-            'Episode art, thumbnails, and a distribution-ready content calendar for the first repurposing cycle',
-          ],
-        },
-        { kind: 'deliverable', text: "a quarter's worth of long- and short-form content, ready to publish or hand to the retainer team." },
-      ],
-    },
-
-    // 10 — Phase 3 Launch
-    {
-      id: 'phase-3',
-      type: 'phase',
-      eyebrow: 'Phase 3',
+      eyebrow: 'Step 4',
       title: 'Launch',
-      timeframe: 'Week 10',
+      timeframe: 'Week 6',
       beats: [
-        { kind: 'intro', text: 'A coordinated rollout, not a quiet flip of a switch. The website, sales app, and first content wave launch together so every audience sees one consistent story at once.' },
+        { kind: 'intro', text: 'A coordinated rollout: the refreshed brand, the website, and the sales presentation go live together, so every audience sees one consistent story at once.' },
         {
           kind: 'section',
           heading: 'Launch Checklist',
           items: [
             'Website goes live; redirects and analytics confirmed',
-            'Sales app deployed to the team, with a working session on how to use it in a live meeting',
-            'First content wave published across LinkedIn (primary channel) and Instagram',
-            'Printed pamphlet, pitch deck, and COI one-pager delivered print-ready, built from the same identity and messaging as everything else',
-            'A short internal announcement kit so the team, and select clients, hear about the new presence directly from Saaga',
+            'Sales presentation deployed to the team, with a working session on how to use it in a live meeting',
+            'Refreshed brand identity applied consistently across existing materials',
+            'Leave-behind summary delivered print-ready',
+            'A short internal announcement so the team hears about the new presence directly from Juan Pablo',
           ],
         },
-        { kind: 'deliverable', text: "everything above, live, tested, and in the team's hands." },
+        { kind: 'deliverable', text: "everything above, live, tested, and in the team's hands, with a clear view of what Stage 2 could add next." },
       ],
     },
 
-    // 11 — Phase 4 Growth Partnership
+    // 9 — What's Possible Next
     {
-      id: 'phase-4',
-      type: 'phase',
-      eyebrow: 'Phase 4',
-      title: 'Ongoing Growth Partnership',
-      timeframe: 'Month 3 onward',
-      beats: [
-        { kind: 'intro', text: 'The build phase creates the assets. This phase keeps them working: consistent presence, fresh content every month, and a larger production day twice a year so the library never goes stale.' },
-        {
-          kind: 'section',
-          heading: 'Monthly',
-          items: [
-            'Social media management: content calendar, scheduling, and community management, LinkedIn-led, with Instagram in support',
-            'A basic monthly content shoot: lightweight, phone-quality photo and video captured on-site each month, for real-time social content between the larger production days',
-            'Repurposing of the existing video library into new posts, carousels, and clips',
-            'Light website and AI concierge/app updates: new insights, refreshed FAQs, seasonal messaging',
-            'Email and client newsletter, sent on a recurring schedule to clients and referral partners',
-            "Compliance-ready first-pass review: Saaga provides its compliance requirements up front, and every piece of content is checked against that checklist before it moves to Saaga's compliance officer or counsel for final sign-off",
-            "Monthly reporting: what was published, what resonated, and what we'd adjust",
-          ],
-        },
-        {
-          kind: 'section',
-          heading: 'Quarterly',
-          items: ["A strategy check-in to review what's working and re-prioritize the next quarter"],
-        },
-        {
-          kind: 'section',
-          heading: 'Twice a Year',
-          items: ['A full production day, the same format as the founding shoot, to refresh the long-form library and keep it seasonal. Billed separately at $5,800 per shoot.'],
-        },
-        { kind: 'deliverable', text: 'a standing content and presence engine, reviewed and reported on monthly.' },
-      ],
-    },
-
-    // 12 — Recommended Add-Ons
-    {
-      id: 'add-ons',
+      id: 'whats-next',
       type: 'cardGrid',
-      eyebrow: 'Recommended Add-Ons',
-      title: 'Rounding Out the System',
-      intro: 'Not included in the core investment, but worth planning for: each of these extends the same brand and content system into a channel the strategy phase identified as high-value. Introduce after Stage 2 (the Growth Partnership) is running.',
+      eyebrow: "What's Possible Next",
+      title: "Where This Goes When You're Ready",
+      intro: "Stage 1 stands on its own — nothing below is priced or committed here. But once it's live, here's what becomes possible.",
       beats: [
         {
-          title: 'Google Ads Management (Stage 3)',
-          body: 'A narrow paid layer for branded search protection ("Saaga Family Wealth reviews," founder name), category-education intent ("outsourced family office Miami"), and senior-hire recruiting support — not broad UHNW prospecting, which stays referral-driven.',
-          meta: '$1,500/mo management fee + $2,000-$3,000/mo ad spend',
+          title: 'AI-Powered Personalization',
+          body: "The comparison, generational map, and \"where the fees go\" tools in your sales presentation become live and personal to whoever's in the room: an advisor enters a specific family's numbers and structure, and each tool generates a result built for them, not an illustration. The website can add its own AI concierge too, for families who want a first answer at 2am.",
         },
         {
-          title: '"Saaga NextGen" Program Branding',
-          body: "Packages Saaga's existing education sessions and book clubs for the 3rd and 4th generation of client families into something marketable: a program name and mark, a one-page overview, a short curriculum outline, and a website page tied to the Continuity pillar.",
+          title: 'Content & Visibility Engine',
+          body: "A one-day podcast/video shoot at your own office, edited into a quarter's worth of long- and short-form content, plus ongoing social media management to keep that content, and Saaga's voice, in front of clients and referral partners month after month.",
         },
         {
-          title: 'Referral-Partner Salon Toolkit',
-          body: 'Invitation design, a simple event microsite, and a follow-up email sequence, ready to deploy whenever Saaga hosts an invitation-only dinner or salon for clients and COIs.',
+          title: 'Additional Add-Ons',
+          body: 'Branded search protection and category-education Google Ads once the organic engine is live; a named identity and curriculum for the NextGen program you already run; and a ready-to-deploy toolkit for referral-partner salons and dinners.',
         },
       ],
     },
 
-    // 13 — Timeline
+    // 10 — Timeline
     {
       id: 'timeline',
       type: 'timeline',
       eyebrow: 'Timeline',
-      title: 'The Full Arc, at a Glance',
+      title: 'Stage 1, at a Glance',
       beats: [
-        { kind: 'intro', text: "Discovery runs first and alone; the website build begins immediately after, with the sales app sprinting in behind it once the visual system and messaging are locked. Production is scheduled last, once the story is final, not a draft of it, and shot in a single day at Saaga's own office." },
+        { kind: 'intro', text: 'Discovery runs first and sets the direction; the website and sales presentation follow in sequence, then launch together.' },
         {
           kind: 'segments',
           segments: [
-            { phase: '0 · Discovery & Strategy', timeframe: 'Weeks 1-2', milestone: 'Build-ready brief approved' },
-            { phase: '1A · Website + AI Concierge', timeframe: 'Weeks 3-6', milestone: 'Site live, staging reviewed' },
-            { phase: '1B · AI Sales App', timeframe: 'Weeks 6-7', milestone: 'App deployed & team trained' },
-            { phase: '2 · Podcast / Video Production', timeframe: 'Week 8-9', milestone: 'Shoot day + first content wave edited' },
-            { phase: '3 · Launch', timeframe: 'Week 10', milestone: 'Website, app & content go live together' },
-            { phase: '4 · Growth Partnership', timeframe: 'Month 3 onward', milestone: 'Monthly management begins' },
+            { phase: '1 · Discovery & Brand Direction', timeframe: 'Week 1', milestone: 'Build-ready brief approved' },
+            { phase: '2 · Website', timeframe: 'Weeks 2-4', milestone: 'Site live, staging reviewed' },
+            { phase: '3 · Interactive Sales Presentation', timeframe: 'Weeks 4-5', milestone: 'App & leave-behind ready, team trained' },
+            { phase: '4 · Launch', timeframe: 'Week 6', milestone: 'Brand, website & sales presentation live together' },
           ],
         },
-        { kind: 'intro', text: 'Total time to launch: approximately 10 weeks (about 2.5 months) from kickoff, with the retainer beginning immediately after.' },
+        { kind: 'intro', text: "Total time to launch: approximately 6 weeks from kickoff. Stage 2 begins whenever you're ready." },
       ],
     },
 
-    // 14 — Investment Summary
+    // 11 — Investment Summary
     {
       id: 'investment',
       type: 'investment',
       eyebrow: 'Investment',
-      title: 'Investment Summary',
-      intro: 'Presented as a single build package and a single monthly partnership, not itemized line-by-line, because this is one integrated system, built and delivered together.',
+      title: 'Stage 1 Investment',
+      intro: 'Presented as a single build package, because Stage 1 is one integrated system, built and delivered together. Later stages are previewed, not priced, until you\'re ready for them.',
       beats: [
         {
           kind: 'number',
-          amount: 42000,
+          amount: 22000,
           prefix: '$',
-          label: 'One-Time Build Investment',
+          label: 'Stage 1 Investment',
           items: [
-            'Discovery & Brand Foundation — stakeholder interviews, messaging architecture, sitemap, AI conversation design',
-            'Brand Identity, Message & Narrative — visual identity guidelines, one-page messaging framework, voice and tone guide, and the Financial Hospitality narrative arc, EN/ES',
-            'Website + AI Concierge — bilingual design & build, CMS, trained AI concierge, SEO foundation',
-            'Interactive AI Sales App — adaptive presentation, cost calculator, embedded AI assistant, leave-behind mode',
-            'Podcast & Video Production — one shoot day at Saaga\'s office, up to 6 long-form edits, 20-30 repurposed clips',
-            'Sales, Referral & Print Collateral — final pitch deck, a COI one-pager, and printed pamphlet/brochure collateral',
+            'Discovery & Brand Direction — stakeholder interviews, messaging, sitemap',
+            "Brand Refresh — refined identity, messaging framework, voice & narrative, built on what Saaga already has",
+            'Website — bilingual design & build, CMS, SEO foundation',
+            "Interactive Sales Presentation — adaptive walkthrough, four illustrative tools built with Saaga's own numbers, a print-ready PDF, and a leave-behind summary",
           ],
         },
         {
-          kind: 'number',
-          amount: 4000,
-          prefix: '$',
-          suffix: '/mo',
-          label: 'Monthly Partnership',
-          items: [
-            'Social Media Management — LinkedIn-led content calendar, scheduling, community management, monthly reporting',
-            'Basic Monthly Content Shoot — lightweight, phone-quality photo & video capture each month',
-            'Content & Web Maintenance — video repurposing, website & AI concierge updates',
-            'Email & Newsletter Management — recurring send to clients and referral partners',
-            "Compliance-Ready First-Pass Review — checked against Saaga's own compliance checklist before sign-off",
-          ],
+          kind: 'line',
+          text: "Later stages, AI-powered personalization, content production, an ongoing growth partnership, and additional add-ons, are previewed in this proposal but priced separately, once you're ready to move forward.",
         },
-        { kind: 'line', text: 'Production Day (twice a year, edited & repurposed): $5,800/shoot. Retainer begins at launch (Month 3) with a 3-month minimum commitment, then continues month-to-month.' },
       ],
     },
 
-    // 15 — Everything In This Package
+    // 12 — Everything In This Package
     {
       id: 'everything',
       type: 'checklist',
       eyebrow: 'At a Glance',
-      title: 'Everything In This Package',
-      intro: 'Every deliverable across the build and the ongoing partnership, in one place.',
+      title: 'Everything In Stage 1',
+      intro: 'Every deliverable in this stage, in one place.',
       beats: [
         {
-          heading: 'One-Time Build, $42,000',
+          heading: 'Stage 1, $22,000',
           variant: 'included',
           items: [
-            'Discovery & Brand Foundation',
-            'Brand Identity, Message & Narrative',
-            'Website + AI Concierge',
-            'Interactive AI Sales App',
-            'Podcast & Video Production (founding shoot)',
-            'Sales, Referral & Print Collateral',
+            'Discovery & Brand Direction',
+            'Brand Refresh (Identity, Message & Narrative)',
+            'Website',
+            'Interactive Sales Presentation (app + print PDF + leave-behind summary)',
           ],
         },
         {
-          heading: 'Monthly Partnership, $4,000/mo',
-          variant: 'included',
-          items: [
-            'Social Media Management',
-            'Basic Monthly Content Shoot',
-            'Content & Web Maintenance',
-            'Email & Newsletter Management',
-            'Compliance-Ready First-Pass Review',
-          ],
-        },
-        {
-          heading: 'Also Included',
-          variant: 'included',
-          items: ['Production Day, twice a year ($5,800/shoot)'],
-        },
-        {
-          heading: 'Recommended For Later',
+          heading: "Also Possible, When You're Ready",
           variant: 'recommended',
-          items: ['Google Ads Management (Stage 3)', '"Saaga NextGen" Program Branding', 'Referral-Partner Salon Toolkit'],
+          items: [
+            'AI-Powered Personalization (live tools + concierge)',
+            'Podcast & Video Content Production',
+            'Ongoing Growth Partnership',
+            'Google Ads, NextGen Branding & Referral-Partner Salon Toolkit',
+          ],
         },
       ],
     },
 
-    // 16 — Payment Schedule & Terms
+    // 13 — Payment Schedule & Terms
     {
       id: 'terms',
       type: 'richText',
@@ -532,20 +380,12 @@ export const saagaProposal: Proposal = {
       title: 'Payment Schedule & Terms',
       beats: [
         {
-          heading: 'Build Phase (Phases 0-3)',
+          heading: 'Stage 1 Payment',
           listStyle: 'bullet',
           list: [
-            { text: '50% due at signing to begin Discovery and secure the production and design calendar' },
-            { text: '25% due at design/content approval (end of Phase 1, before development and the production shoot)' },
+            { text: '50% due at signing to begin Discovery and lock the build calendar' },
+            { text: '25% due at brand/design approval, before website and sales presentation development begin' },
             { text: '25% due at launch' },
-          ],
-        },
-        {
-          heading: 'Growth Partnership (Phase 4)',
-          listStyle: 'bullet',
-          list: [
-            { text: "Billed monthly in advance; each semi-annual production day billed separately, at the time it's scheduled" },
-            { text: '3-month minimum commitment, then month-to-month with 30 days\' notice to pause or cancel' },
           ],
         },
         {
@@ -554,24 +394,23 @@ export const saagaProposal: Proposal = {
           list: [
             { text: 'Figures assume content and access (logins, existing brand assets, client references for testimonials) are provided within 5 business days of request' },
             { text: 'Two rounds of revisions are included at each major milestone; additional rounds are billed at our standard hourly rate' },
-            { text: "Saaga provides its compliance requirements up front; content is screened against that checklist before publication. Final compliance sign-off remains with Saaga's compliance officer or counsel, not Marketingverse" },
             { text: 'This proposal is valid for 30 days from the date on the cover' },
           ],
         },
       ],
     },
 
-    // 17 — Let's Get Started
+    // 14 — Let's Get Started
     {
       id: 'cta',
       type: 'cta',
       beats: [
-        { kind: 'headline', text: "Let's Build the Confidence Saaga's Clients Already Feel." },
+        { kind: 'headline', text: "Let's Build Stage 1, and See Where It Leads." },
         {
           kind: 'steps',
           steps: [
-            { title: 'Confirm scope', text: 'A short call to walk through this proposal together and adjust anything before signing.' },
-            { title: 'Sign & schedule', text: 'Signed agreement and the first invoice; we schedule Discovery interviews and the production day around your calendar.' },
+            { title: 'Confirm scope', text: 'A short call to walk through Stage 1 together and adjust anything before signing.' },
+            { title: 'Sign & schedule', text: 'Signed agreement and the first invoice; we schedule Discovery around Saaga\'s calendar.' },
             { title: 'Kickoff', text: 'Week 1 begins with stakeholder interviews, and the clock starts.' },
           ],
         },
