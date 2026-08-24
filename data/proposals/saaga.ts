@@ -324,7 +324,7 @@ export const saagaProposal: Proposal = {
       beats: [
         {
           kind: 'number',
-          amount: 22000,
+          amount: 18000,
           prefix: '$',
           label: 'Stage 1 Investment',
           items: [
@@ -350,7 +350,7 @@ export const saagaProposal: Proposal = {
       intro: 'Every deliverable in this stage, in one place.',
       beats: [
         {
-          heading: 'Stage 1, $22,000',
+          heading: 'Stage 1, $18,000',
           variant: 'included',
           items: [
             'Discovery & Brand Direction',
