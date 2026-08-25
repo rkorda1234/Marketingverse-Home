@@ -4,6 +4,7 @@ import './index.css';
 import { captureAdAttribution, getGHLFormSrc } from './utils/adAttribution';
 
 const MV_LOGO = '/logo.png';
+const MV_LOGO_FALLBACK = 'https://assets.cdn.filesafe.space/CFAAUO2gnPooyim4LdoM/media/6a189e3df58810f313b623a3.png';
 const BOOKING_URL = 'https://api.leadconnectorhq.com/widget/booking/8pROsd9gdPhAtmnP5YHd';
 
 // ── Cursor fix (inherit system cursor) ────────────────────────────────────────
@@ -143,7 +144,7 @@ function RealtorsPage() {
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-neutral-100' : 'bg-transparent'}`}>
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: 72 }}>
           <a href="https://home.the-marketingverse.com" style={{ cursor: 'pointer' }}>
-            <img src={MV_LOGO} alt="Marketingverse" className="h-9 w-auto" />
+            <img src={MV_LOGO} alt="Marketingverse" className="h-9 w-auto" onError={e => { (e.currentTarget as HTMLImageElement).src = MV_LOGO_FALLBACK; }} />
           </a>
           <button
             onClick={openBooking}
@@ -333,7 +334,7 @@ function RealtorsPage() {
       <footer className="border-t border-neutral-100 py-10 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <a href="https://home.the-marketingverse.com" style={{ cursor: 'pointer' }}>
-            <img src={MV_LOGO} alt="Marketingverse" className="h-7 w-auto opacity-70" />
+            <img src={MV_LOGO} alt="Marketingverse" className="h-7 w-auto opacity-70" onError={e => { (e.currentTarget as HTMLImageElement).src = MV_LOGO_FALLBACK; }} />
           </a>
           <p className="text-xs text-neutral-400">© {new Date().getFullYear()} Marketingverse. All rights reserved.</p>
         </div>
