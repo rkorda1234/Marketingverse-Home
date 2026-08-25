@@ -84,8 +84,7 @@ const PLATFORM_COLORS: Record<string, string> = {
 // ── Data ──────────────────────────────────────────────────────────────────────
 const SUCCESS_CASES = [
   {
-    client: 'Yael R.',
-    niche: 'Real Estate Agent',
+    client: 'Yael',
     period: 'Apr – Jun 2025',
     metrics: [
       { label: 'Instagram Views',        growth: '+44.8%',  platform: 'Instagram' },
@@ -96,8 +95,7 @@ const SUCCESS_CASES = [
     ],
   },
   {
-    client: 'Mauricio V.',
-    niche: 'Real Estate Agent',
+    client: 'Mauricio',
     period: 'Growth Spike · May – Jun 2025',
     metrics: [
       { label: 'Facebook Views',    growth: '5.8K ↑325%', platform: 'Facebook'  },
@@ -107,8 +105,7 @@ const SUCCESS_CASES = [
     ],
   },
   {
-    client: 'Judith A.',
-    niche: 'Real Estate Agent',
+    client: 'Judith',
     period: 'Viral Moment · Feb – Mar 2025',
     metrics: [
       { label: 'Instagram Reach',  growth: '106.7K',   platform: 'Instagram' },
@@ -272,12 +269,9 @@ function RealtorsPage() {
             {SUCCESS_CASES.map((sc, idx) => (
               <RevealOnScroll key={`${sc.client}-${idx}`} delay={idx * 80}>
                 <div className="bg-white border border-neutral-100 rounded-3xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
-                  <div className="flex items-start justify-between mb-6">
-                    <div>
-                      <h3 className="text-xl font-bold tracking-tight">{sc.client}</h3>
-                      <p className="text-xs text-neutral-500 mt-0.5">{sc.niche}</p>
-                    </div>
-                    <span className="text-[10px] font-semibold uppercase tracking-widest bg-black text-white px-3 py-1.5 rounded-full shrink-0 ml-2">{sc.period}</span>
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold tracking-tight">{sc.client}</h3>
+                    <span className="inline-block mt-2 text-[10px] font-semibold uppercase tracking-widest bg-black text-white px-3 py-1.5 rounded-full">{sc.period}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     {sc.metrics.map((m) => (
