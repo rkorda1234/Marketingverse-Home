@@ -163,3 +163,75 @@ body {
   animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
   animation-fill-mode: both;
 }
+
+/* ==========================================================================
+   Prime Group deck — dark/amber editorial theme
+   Scoped under .pg-root so it never bleeds into the light Geist/violet
+   system used everywhere else. Fonts: Fraunces (display serif, headlines)
+   + Manrope (grotesk, body) — never Inter/Roboto/Arial/system per the brief.
+   ========================================================================== */
+
+.pg-root {
+  --pg-bg: #0e0e0e;
+  --pg-bg-raise: #161513;
+  --pg-text: #f4f1ec;
+  --pg-text-dim: rgba(244, 241, 236, 0.62);
+  --pg-text-dimmer: rgba(244, 241, 236, 0.4);
+  --pg-accent: #c8963e;
+  --pg-border: rgba(244, 241, 236, 0.14);
+  --pg-red: #d8543f;
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  background: var(--pg-bg);
+  color: var(--pg-text);
+}
+
+.pg-serif {
+  font-family: 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.pg-root ::selection {
+  background: rgba(200, 150, 62, 0.28);
+  color: #0e0e0e;
+}
+
+/* Flat bordered surface — no blur, no nesting. One per beat, never stacked. */
+.pg-panel {
+  background: var(--pg-bg-raise);
+  border: 1px solid var(--pg-border);
+}
+
+/* Blob drift, dialed down and re-tinted amber/near-black for the dark deck. */
+@keyframes pg-drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(3vw, 5vh) scale(1.06); }
+  66%       { transform: translate(-2vw, 2vh) scale(0.96); }
+}
+@keyframes pg-drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-4vw, 3vh) scale(1.04); }
+  66%       { transform: translate(3vw, -4vh) scale(0.97); }
+}
+
+/* Nav-arrow first-visit intro, amber glow variant of mv-nav-intro-*. */
+@keyframes pg-nav-intro-left {
+  0%   { opacity: 0; transform: translate(240px, -50%) scale(0.6); filter: drop-shadow(0 0 0 rgba(200, 150, 62, 0)); }
+  35%  { opacity: 1; }
+  75%  { filter: drop-shadow(0 0 14px rgba(200, 150, 62, 0.55)); }
+  100% { opacity: 1; transform: translate(0, -50%) scale(1); filter: drop-shadow(0 0 0 rgba(200, 150, 62, 0)); }
+}
+@keyframes pg-nav-intro-right {
+  0%   { opacity: 0; transform: translate(-240px, -50%) scale(0.6); filter: drop-shadow(0 0 0 rgba(200, 150, 62, 0)); }
+  35%  { opacity: 1; }
+  75%  { filter: drop-shadow(0 0 14px rgba(200, 150, 62, 0.55)); }
+  100% { opacity: 1; transform: translate(0, -50%) scale(1); filter: drop-shadow(0 0 0 rgba(200, 150, 62, 0)); }
+}
+.pg-nav-intro-left {
+  animation: pg-nav-intro-left 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+.pg-nav-intro-right {
+  animation: pg-nav-intro-right 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+.pg-root .scrollbar-hide::-webkit-scrollbar { display: none; }
+.pg-root .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

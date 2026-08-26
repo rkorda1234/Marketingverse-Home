@@ -7,27 +7,29 @@ export const CountUp: React.FC<{
   durationMs?: number;
   prefix?: string;
   suffix?: string;
+  decimals?: number;
   className?: string;
-}> = ({ to, durationMs = 1400, prefix = '', suffix = '', className = '' }) => {
+}> = ({ to, durationMs = 1400, prefix = '', suffix = '', decimals = 0, className = '' }) => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     let raf = 0;
     const start = performance.now();
+    const factor = 10 ** decimals;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / durationMs);
       const eased = 1 - Math.pow(1 - t, 3);
-      setValue(Math.round(to * eased));
+      setValue(Math.round(to * eased * factor) / factor);
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [to, durationMs]);
+  }, [to, durationMs, decimals]);
 
   return (
     <span className={className}>
       {prefix}
-      {value.toLocaleString('en-US')}
+      {value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}
       {suffix}
     </span>
   );
