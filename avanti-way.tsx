@@ -817,6 +817,96 @@ const AskVerseBot: React.FC = () => (
   </section>
 );
 
+// ── Client Wins ───────────────────────────────────────────────────────────
+const CLIENT_WINS = [
+  {
+    client: 'Yael R.',
+    period: 'Apr – Jun 2025',
+    metrics: [
+      { label: 'Instagram Views',        growth: '+44.8%',  platform: 'Instagram' },
+      { label: 'Instagram Reach',        growth: '+562.1%', platform: 'Instagram' },
+      { label: 'Instagram Interactions', growth: '+168.4%', platform: 'Instagram' },
+      { label: 'Facebook Views',         growth: '+210%',   platform: 'Facebook'  },
+      { label: 'Facebook Viewers',       growth: '+327.8%', platform: 'Facebook'  },
+    ],
+  },
+  {
+    client: 'Mauricio V.',
+    period: 'Growth Spike · May – Jun 2025',
+    metrics: [
+      { label: 'Facebook Views',    growth: '5.8K ↑325%', platform: 'Facebook'  },
+      { label: 'Facebook Viewers',  growth: '4.7K ↑336%', platform: 'Facebook'  },
+      { label: 'Instagram Views',   growth: '14.3K ↑20%', platform: 'Instagram' },
+      { label: 'Instagram Reach',   growth: '3.9K ↑30%',  platform: 'Instagram' },
+    ],
+  },
+  {
+    client: 'Judith A.',
+    period: 'Viral Moment · Feb – Mar 2025',
+    metrics: [
+      { label: 'Instagram Reach',  growth: '106.7K',   platform: 'Instagram' },
+      { label: 'Reach Growth',     growth: '+11,400%', platform: 'Instagram' },
+      { label: 'Instagram Views',  growth: '125.8K',   platform: 'Instagram' },
+      { label: 'Views Growth',     growth: '+2,000%',  platform: 'Instagram' },
+    ],
+  },
+  {
+    client: 'Yackie L.',
+    period: 'Apr – Jun 2025',
+    metrics: [
+      { label: 'Instagram Views',      growth: '210.4K ↑124%', platform: 'Instagram' },
+      { label: 'Instagram Reach',      growth: '126.3K',        platform: 'Instagram' },
+      { label: 'Content Interactions', growth: '11.6K ↑306%',  platform: 'Instagram' },
+    ],
+  },
+];
+
+const PLATFORM_DOT: Record<string, string> = {
+  Instagram: 'bg-gradient-to-r from-purple-500 to-pink-500',
+  Facebook:  'bg-gradient-to-r from-blue-600 to-blue-400',
+};
+
+const ClientWins: React.FC = () => (
+  <section className="py-24 bg-neutral-50">
+    <div className="max-w-7xl mx-auto px-4">
+      <RevealOnScroll>
+        <div className="text-center mb-16">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">Proven Results</span>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Client Wins</h2>
+          <p className="text-neutral-500 text-lg max-w-md mx-auto">
+            Real numbers. Real Avanti Way agents. What consistent, strategic content does to your metrics.
+          </p>
+        </div>
+      </RevealOnScroll>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        {CLIENT_WINS.map((sc, idx) => (
+          <RevealOnScroll key={`${sc.client}-${idx}`} delay={idx * 80}>
+            <div className="bg-white border border-neutral-100 rounded-3xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+              <div className="mb-6">
+                <h3 className="text-xl font-bold tracking-tight">{sc.client}</h3>
+                <span className="inline-block mt-2 text-[10px] font-semibold uppercase tracking-widest bg-black text-white px-3 py-1.5 rounded-full">{sc.period}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {sc.metrics.map((m) => (
+                  <div key={m.label} className="bg-neutral-50 border border-neutral-100 rounded-xl p-4">
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <span className={`w-1.5 h-1.5 rounded-full ${PLATFORM_DOT[m.platform] ?? 'bg-neutral-400'}`} />
+                      <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400">{m.platform}</span>
+                    </div>
+                    <p className="text-2xl font-black text-black tracking-tight leading-none">{m.growth}</p>
+                    <p className="text-[10px] text-neutral-500 mt-1 leading-snug">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 // ── CTA ───────────────────────────────────────────────────────────────────
 const CTA: React.FC<{ onBook: () => void }> = ({ onBook }) => (
   <section className="py-24">
@@ -868,6 +958,7 @@ const App: React.FC = () => {
         <Pricing        onBook={() => setBookingOpen(true)} />
         <AISection      onBook={() => setBookingOpen(true)} />
         <AskVerseBot />
+        <ClientWins />
         <CTA            onBook={() => setBookingOpen(true)} />
       </main>
 
