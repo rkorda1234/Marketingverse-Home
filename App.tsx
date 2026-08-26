@@ -1427,18 +1427,6 @@ const SUCCESS_CASES: SuccessCase[] = [
   {
     client: 'Mauricio V.',
     niche: 'Real Estate Agent',
-    period: 'Early Growth · Apr – Jun 2025',
-    metrics: [
-      { label: 'Facebook Views',         growth: '1.6K ↑273%',  platform: 'Facebook'  },
-      { label: 'Facebook Viewers',       growth: '1.4K ↑396%',  platform: 'Facebook'  },
-      { label: 'Instagram Views',        growth: '5.5K',         platform: 'Instagram' },
-      { label: 'Instagram Reach',        growth: '1.8K ↑29%',   platform: 'Instagram' },
-      { label: 'Content Interactions',   growth: '597 ↑20%',    platform: 'Instagram' },
-    ],
-  },
-  {
-    client: 'Mauricio V.',
-    niche: 'Real Estate Agent',
     period: 'Growth Spike · May – Jun 2025',
     metrics: [
       { label: 'Facebook Views',         growth: '5.8K ↑325%',  platform: 'Facebook'  },
@@ -1468,6 +1456,16 @@ const SUCCESS_CASES: SuccessCase[] = [
       { label: 'Reach Growth',           growth: '+11,400%',     platform: 'Instagram' },
       { label: 'Instagram Views',        growth: '125.8K',       platform: 'Instagram' },
       { label: 'Views Growth',           growth: '+2,000%',      platform: 'Instagram' },
+    ],
+  },
+  {
+    client: 'Yackie L.',
+    niche: 'Real Estate Agent',
+    period: 'Apr – Jun 2025',
+    metrics: [
+      { label: 'Instagram Views',        growth: '210.4K ↑124%', platform: 'Instagram' },
+      { label: 'Instagram Reach',        growth: '126.3K',        platform: 'Instagram' },
+      { label: 'Content Interactions',   growth: '11.6K ↑306%',  platform: 'Instagram' },
     ],
   },
 ];

@@ -114,6 +114,15 @@ const SUCCESS_CASES = [
       { label: 'Views Growth',     growth: '+2,000%',  platform: 'Instagram' },
     ],
   },
+  {
+    client: 'Yackie',
+    period: 'Apr – Jun 2025',
+    metrics: [
+      { label: 'Instagram Views',       growth: '210.4K ↑124%', platform: 'Instagram' },
+      { label: 'Instagram Reach',       growth: '126.3K',        platform: 'Instagram' },
+      { label: 'Content Interactions',  growth: '11.6K ↑306%',  platform: 'Instagram' },
+    ],
+  },
 ];
 
 // ── App ───────────────────────────────────────────────────────────────────────
