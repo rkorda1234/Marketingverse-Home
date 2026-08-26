@@ -265,7 +265,7 @@ function RealtorsPage() {
 
       {/* ── Client Wins ── */}
       <section className="py-16 md:py-24 px-6 bg-neutral-50">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 text-center">Proven Results</p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-4">Client Wins</h2>
@@ -274,7 +274,7 @@ function RealtorsPage() {
             </p>
           </RevealOnScroll>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {SUCCESS_CASES.map((sc, idx) => (
               <RevealOnScroll key={`${sc.client}-${idx}`} delay={idx * 80}>
                 <div className="bg-white border border-neutral-100 rounded-3xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
