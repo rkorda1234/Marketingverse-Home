@@ -347,24 +347,23 @@ const S = [
 
 /* 7 */ {sec:"The finding", html:`<div class="wrap">
 <span class="eyebrow">Same profile, same afternoon</span>
-<h2 class="wide">Three more things on that one page</h2>
+<h2 class="wide">Two more things on that one page</h2>
 <ul class="pts beatgroup">
 <li><span><b>Listed at Caribbean Plaza.</b> But the service travels to villas, homes and yachts — Google has a business type built for exactly that, and it changes where you show up.</span></li>
-<li><span><b>Hours close at 5pm.</b> For a business whose product is dinner. Anyone searching in the evening reads that as closed.</span></li>
-<li><span><b>No enquiry or quote button.</b> Website, directions, call. Someone ready to book has to go hunting for a way to do it.</span></li>
+<li><span><b>No enquiry or quote button.</b> Website, directions, call. Someone ready to book has to go hunting for a way to do it. A proper reservation form — party size, date, event type — would turn that hunt into a two-minute submission instead of a phone call that might not get answered.</span></li>
 </ul>
 <p class="body beat">Someone just landed and is deciding whether to hand a stranger the keys to their villa. They search, and there's no proof of anything. A competitor with forty average reviews looks safer than a decade of your work.</p>
 </div>`},
 
 /* 8 */ {sec:"What's broken", html:`<div class="wrap">
 <span class="eyebrow">Websites</span>
-<h2>Fixable this week</h2>
+<h2>A quicker fix</h2>
 <ul class="pts two beatgroup">
 <li><span><b>Prime Kitchen</b> — the "Book a chef now" button turns white-on-white on hover and disappears</span></li>
 <li><span><b>Boat catering</b> — no photos of plated food anywhere on the page</span></li>
 <li><span><b>Prime Kitchen</b> — the same two dishes repeat across the whole site</span></li>
-<li><span><b>Lucky Rabbit</b> — phone number isn't clickable</span></li>
-<li><span><b>Lucky Rabbit</b> — offers sit below the fold; "innovation" and "meticulously" both repeat</span></li>
+<li><span><b>Lucky Rabbit</b> — the footer phone number is plain text, not a tel: link, and there's no written address anywhere on the site — only a Maps embed</span></li>
+<li><span><b>Lucky Rabbit</b> — the "Sapporo Sunday — ALL YOU CAN DRINK, CI$20 per hour" promo block appears twice on the homepage, identically</span></li>
 <li><span><b>Reservations</b> — a form that promises a reply within 12 hours</span></li>
 </ul>
 <p class="body beat">A guest decides at 8:14pm they want a table tonight. By 8:15 they've booked elsewhere.</p>
@@ -379,6 +378,8 @@ const S = [
 <li><span><b>Carnivore Smash's hours say "confirmed by phone call 7 weeks ago"</b> — Google telling people it isn't sure you're open.</span></li>
 <li><span><b>San Si Wu lists Wi-Fi and leads with a dine-in photo</b> — for a delivery-only kitchen.</span></li>
 <li><span><b>Lucky Rabbit's site still has the default WordPress "Hello world!" post</b> live and indexed.</span></li>
+<li><span><b>Lucky Rabbit's logo alt text has a typo, sitewide</b> — "Lucky Rabbit Japanase Restaurant Cayman Islands," in the header and footer on every page. That's also what shows up in Google's own sitelink text — alt text is what Google reads and what screen readers announce.</span></li>
+<li><span><b>Two different vendors are leaving their names in the code.</b> San Si Wu's menu pages are indexed with the vendor's name in the title ("Created by ToctToc"), and Lucky Rabbit's Twitter card metadata reads "Written by: Estación Visual." Neither is dangerous, but both are showing up in public places — search results and social previews — where only Prime Group's name should be.</span></li>
 </ul>
 </div>`},
 
