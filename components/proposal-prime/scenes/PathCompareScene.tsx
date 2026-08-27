@@ -12,9 +12,10 @@ export const PathCompareSceneView: React.FC<{ scene: PathCompareScene; revealCou
   return (
     <div className="max-w-3xl mx-auto">
       <SceneHeader eyebrow={scene.eyebrow} title={scene.title} sub={scene.sub} />
-      <div className="grid sm:grid-cols-2 gap-5 pb-4">
+      <div className="relative grid sm:grid-cols-2 gap-5 pb-4">
         {shown.map((path, i) => {
           const good = path.tone === 'good';
+          const neutral = path.tone === 'neutral';
           return (
             <BeatIn key={i} delay={i * 130}>
               <div
@@ -26,7 +27,7 @@ export const PathCompareSceneView: React.FC<{ scene: PathCompareScene; revealCou
               >
                 <h3
                   className="pg-serif text-xl mb-3"
-                  style={{ color: good ? 'var(--pg-accent)' : 'var(--pg-text-dim)' }}
+                  style={{ color: good ? 'var(--pg-accent)' : neutral ? 'var(--pg-text)' : 'var(--pg-text-dim)' }}
                 >
                   {path.label}
                 </h3>
@@ -42,6 +43,11 @@ export const PathCompareSceneView: React.FC<{ scene: PathCompareScene; revealCou
           );
         })}
       </div>
+      {scene.note && (
+        <p className="text-center text-[11px] uppercase tracking-[0.2em] mt-1" style={{ color: 'var(--pg-accent)' }}>
+          {scene.note}
+        </p>
+      )}
     </div>
   );
 };

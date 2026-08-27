@@ -9,18 +9,19 @@ export const StatGridSceneView: React.FC<{ scene: StatGridScene; revealCount: nu
   revealCount,
 }) => {
   const shown = scene.beats.slice(0, revealCount);
+  const isCenter = scene.align === 'center';
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <SceneHeader eyebrow={scene.eyebrow} title={scene.title} sub={scene.sub} />
+    <div className={`max-w-4xl mx-auto ${isCenter ? 'text-center' : ''}`}>
+      <SceneHeader eyebrow={scene.eyebrow} title={scene.title} sub={scene.sub} align={scene.align} />
       <div className="space-y-6 pb-4">
         {shown.map((beat, i) => {
           if (beat.kind === 'stats') {
             return (
               <BeatIn key={i}>
                 <div
-                  className="grid gap-4"
-                  style={{ gridTemplateColumns: `repeat(auto-fit, minmax(9.5rem, 1fr))` }}
+                  className={`grid gap-4 ${isCenter ? 'justify-center' : ''}`}
+                  style={{ gridTemplateColumns: `repeat(auto-fit, minmax(9.5rem, ${isCenter ? '11rem' : '1fr'}))` }}
                 >
                   {beat.stats.map((s, j) => (
                     <BeatIn key={j} delay={j * 80}>

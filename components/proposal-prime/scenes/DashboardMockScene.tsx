@@ -6,11 +6,12 @@ import type { DashboardMockScene } from '../../../data/proposals/prime-group.typ
 const COLS: { key: keyof import('../../../data/proposals/prime-group.types').DashboardVenue; label: string }[] = [
   { key: 'covers', label: 'Covers' },
   { key: 'reservations', label: 'Reservations' },
+  { key: 'deliveryOrders', label: 'Delivery' },
   { key: 'reviews', label: 'Reviews' },
   { key: 'ratingTrend', label: 'Rating' },
   { key: 'gbpActions', label: 'GBP actions' },
-  { key: 'spend', label: 'Ad spend' },
-  { key: 'cpr', label: 'Cost / res.' },
+  { key: 'spend', label: 'Spend' },
+  { key: 'returnPerDollar', label: 'Return / $' },
 ];
 
 // The one mock built to look like a real product, not a placeholder — the

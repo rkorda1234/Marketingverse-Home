@@ -43,8 +43,9 @@ export interface StatGridScene {
   id: string;
   type: 'statGrid';
   eyebrow?: string;
-  title: string;
+  title?: string;
   sub?: string;
+  align?: Align;
   beats: StatGridBeat[];
 }
 
@@ -64,17 +65,20 @@ export interface FeatureGridScene {
   beats: FeatureCard[];
 }
 
-// 5. ScreenshotGrid — annotated placeholder screenshot frames.
-export interface ShotBeat {
-  label: string;
-  annotation: string;
-}
+// 5. ScreenshotGrid — annotated placeholder screenshot frames. Most shots
+// flag a problem (red annotation); `tone: 'neutral'` is for a shot that's
+// just illustrating a sequence, not calling out an issue. An optional
+// trailing `items` beat adds a follow-up checklist below the grid.
+export type ScreenshotGridBeat =
+  | { kind: 'shot'; label: string; annotation: string; tone?: 'problem' | 'neutral' }
+  | { kind: 'items'; items: string[] };
 export interface ScreenshotGridScene {
   id: string;
   type: 'screenshotGrid';
   eyebrow?: string;
   title: string;
-  beats: ShotBeat[];
+  sub?: string;
+  beats: ScreenshotGridBeat[];
 }
 
 // 6. SpotlightShot — one big screenshot placeholder + a small timeline.
@@ -156,7 +160,7 @@ export interface Tile {
 }
 export type TileStatBeat =
   | { kind: 'tiles'; tiles: Tile[] }
-  | { kind: 'callout'; value: number; suffix?: string; label: string; context: string };
+  | { kind: 'callout'; value: number; prefix?: string; suffix?: string; decimals?: number; label: string; context: string };
 export interface TileStatScene {
   id: string;
   type: 'tileStat';
@@ -180,19 +184,6 @@ export interface DiagramCompareScene {
   title: string;
   sub?: string;
   beats: DiagramCompareBeat[];
-}
-
-// 12. BeforeAfterChecklist — a list of fields, each with a before/after state.
-export interface BAField {
-  label: string;
-}
-export type BeforeAfterBeat = { kind: 'rows'; rows: BAField[] };
-export interface BeforeAfterScene {
-  id: string;
-  type: 'beforeAfter';
-  eyebrow?: string;
-  title: string;
-  beats: BeforeAfterBeat[];
 }
 
 // 13. PhoneMock — a phone frame with labeled chat threads.
@@ -268,13 +259,16 @@ export interface CompareTableScene {
 }
 
 // 19. PathCompare — named paths, each with a short list of consequences.
-export type PathBeat = { label: string; points: string[]; tone: 'warn' | 'good' };
+// tone 'neutral' is for two columns being contrasted without one being the
+// "right" answer (e.g. "who books it" vs "who reaches them first").
+export type PathBeat = { label: string; points: string[]; tone: 'warn' | 'good' | 'neutral' };
 export interface PathCompareScene {
   id: string;
   type: 'pathCompare';
   eyebrow?: string;
   title: string;
   sub?: string;
+  note?: string;
   beats: PathBeat[];
 }
 
@@ -321,11 +315,12 @@ export interface DashboardVenue {
   name: string;
   covers: string;
   reservations: string;
+  deliveryOrders: string;
   reviews: string;
   ratingTrend: string;
   gbpActions: string;
   spend: string;
-  cpr: string;
+  returnPerDollar: string;
 }
 export type DashboardBeat = { kind: 'dashboard'; venues: DashboardVenue[]; updated: string };
 export interface DashboardMockScene {
@@ -337,36 +332,44 @@ export interface DashboardMockScene {
   beats: DashboardBeat[];
 }
 
-// 24. PricingBreakdown — line-itemed sections with an optional total.
-export interface PricingLine {
-  label: string;
-  amount?: string;
-}
-export type PricingBeat =
-  | { kind: 'section'; heading: string; lines: PricingLine[]; total?: PricingLine }
-  | { kind: 'note'; text: string };
-export interface PricingBreakdownScene {
+// 24. DataTable — a generic small data table. Covers most of the audit's
+// verified-numbers slides (sales performance, spend by venue, venue-by-job,
+// content rhythm, the creator bench) without a bespoke type for each.
+export type DataTableBeat = { kind: 'rows'; rows: string[][] } | { kind: 'line'; text: string };
+export interface DataTableScene {
   id: string;
-  type: 'pricingBreakdown';
-  eyebrow?: string;
-  title: string;
-  beats: PricingBeat[];
-}
-
-// 25. StepChart — a simple step-down chart.
-export interface StepItem {
-  label: string;
-  value: string;
-  active?: boolean;
-}
-export type StepChartBeat = { kind: 'steps'; steps: StepItem[] } | { kind: 'line'; text: string };
-export interface StepChartScene {
-  id: string;
-  type: 'stepChart';
+  type: 'dataTable';
   eyebrow?: string;
   title: string;
   sub?: string;
-  beats: StepChartBeat[];
+  columns: string[];
+  highlightCol?: number;
+  beats: DataTableBeat[];
+}
+
+// 25. AuditFindings — a "what's working" summary paragraph next to a list
+// of specific, fixable issues. Used for the Google-profile honesty slide.
+export type AuditFindingsBeat =
+  | { kind: 'summary'; heading: string; text: string }
+  | { kind: 'issues'; heading: string; items: { lead: string; detail: string }[] };
+export interface AuditFindingsScene {
+  id: string;
+  type: 'auditFindings';
+  eyebrow?: string;
+  title: string;
+  beats: AuditFindingsBeat[];
+}
+
+// 26. BarsAndList — a bar comparison (e.g. review counts across venues)
+// followed by a short fixable-items list on the same slide.
+export type BarsAndListBeat = { kind: 'bars'; items: BarItem[] } | { kind: 'items'; heading?: string; items: string[] };
+export interface BarsAndListScene {
+  id: string;
+  type: 'barsAndList';
+  eyebrow?: string;
+  title: string;
+  sub?: string;
+  beats: BarsAndListBeat[];
 }
 
 export type Scene =
@@ -382,7 +385,6 @@ export type Scene =
   | BarRatioScene
   | TileStatScene
   | DiagramCompareScene
-  | BeforeAfterScene
   | PhoneMockScene
   | LogoChaosScene
   | PortraitNoteScene
@@ -394,8 +396,9 @@ export type Scene =
   | NetworkDiagramScene
   | TierListScene
   | DashboardMockScene
-  | PricingBreakdownScene
-  | StepChartScene;
+  | DataTableScene
+  | AuditFindingsScene
+  | BarsAndListScene;
 
 export interface ProposalMeta {
   client: string;

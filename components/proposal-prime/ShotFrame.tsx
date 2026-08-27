@@ -6,12 +6,13 @@ import React from 'react';
 // hatch fill where the image will go, a small page label, and — the whole
 // point of these slides — the red annotation call-out that would sit on
 // the real screenshot once it's dropped in.
-export const ShotFrame: React.FC<{ label: string; annotation?: string; aspect?: string; big?: boolean }> = ({
-  label,
-  annotation,
-  aspect = '4/3',
-  big = false,
-}) => (
+export const ShotFrame: React.FC<{
+  label: string;
+  annotation?: string;
+  aspect?: string;
+  big?: boolean;
+  tone?: 'problem' | 'neutral';
+}> = ({ label, annotation, aspect = '4/3', big = false, tone = 'problem' }) => (
   <div>
     <div
       className="relative w-full overflow-hidden rounded-sm"
@@ -38,7 +39,11 @@ export const ShotFrame: React.FC<{ label: string; annotation?: string; aspect?: 
     {annotation && (
       <p
         className={`mt-2.5 ${big ? 'text-base' : 'text-[13px]'} leading-snug pl-2.5`}
-        style={{ color: 'var(--pg-red)', borderLeft: '2px solid var(--pg-red)' }}
+        style={
+          tone === 'problem'
+            ? { color: 'var(--pg-red)', borderLeft: '2px solid var(--pg-red)' }
+            : { color: 'var(--pg-text-dim)', borderLeft: '2px solid var(--pg-border)' }
+        }
       >
         {annotation}
       </p>

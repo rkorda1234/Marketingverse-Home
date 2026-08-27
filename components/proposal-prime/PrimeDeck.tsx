@@ -15,7 +15,6 @@ import { FlowStepsSceneView } from './scenes/FlowStepsScene';
 import { BarRatioSceneView } from './scenes/BarRatioScene';
 import { TileStatSceneView } from './scenes/TileStatScene';
 import { DiagramCompareSceneView } from './scenes/DiagramCompareScene';
-import { BeforeAfterSceneView } from './scenes/BeforeAfterScene';
 import { PhoneMockSceneView } from './scenes/PhoneMockScene';
 import { LogoChaosSceneView } from './scenes/LogoChaosScene';
 import { PortraitNoteSceneView } from './scenes/PortraitNoteScene';
@@ -27,8 +26,9 @@ import { RolloutTimelineSceneView } from './scenes/RolloutTimelineScene';
 import { NetworkDiagramSceneView } from './scenes/NetworkDiagramScene';
 import { TierListSceneView } from './scenes/TierListScene';
 import { DashboardMockSceneView } from './scenes/DashboardMockScene';
-import { PricingBreakdownSceneView } from './scenes/PricingBreakdownScene';
-import { StepChartSceneView } from './scenes/StepChartScene';
+import { DataTableSceneView } from './scenes/DataTableScene';
+import { AuditFindingsSceneView } from './scenes/AuditFindingsScene';
+import { BarsAndListSceneView } from './scenes/BarsAndListScene';
 
 function renderScene(scene: Scene, revealCount: number) {
   switch (scene.type) {
@@ -56,8 +56,6 @@ function renderScene(scene: Scene, revealCount: number) {
       return <TileStatSceneView scene={scene} revealCount={revealCount} />;
     case 'diagramCompare':
       return <DiagramCompareSceneView scene={scene} revealCount={revealCount} />;
-    case 'beforeAfter':
-      return <BeforeAfterSceneView scene={scene} revealCount={revealCount} />;
     case 'phoneMock':
       return <PhoneMockSceneView scene={scene} revealCount={revealCount} />;
     case 'logoChaos':
@@ -80,10 +78,12 @@ function renderScene(scene: Scene, revealCount: number) {
       return <TierListSceneView scene={scene} revealCount={revealCount} />;
     case 'dashboardMock':
       return <DashboardMockSceneView scene={scene} revealCount={revealCount} />;
-    case 'pricingBreakdown':
-      return <PricingBreakdownSceneView scene={scene} revealCount={revealCount} />;
-    case 'stepChart':
-      return <StepChartSceneView scene={scene} revealCount={revealCount} />;
+    case 'dataTable':
+      return <DataTableSceneView scene={scene} revealCount={revealCount} />;
+    case 'auditFindings':
+      return <AuditFindingsSceneView scene={scene} revealCount={revealCount} />;
+    case 'barsAndList':
+      return <BarsAndListSceneView scene={scene} revealCount={revealCount} />;
   }
 }
 

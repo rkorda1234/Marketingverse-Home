@@ -39,7 +39,7 @@ export const TileStatSceneView: React.FC<{ scene: TileStatScene; revealCount: nu
             <BeatIn key={i}>
               <div className="pg-panel rounded-sm p-6 text-center" style={{ borderColor: 'var(--pg-accent)' }}>
                 <p className="pg-serif text-4xl md:text-5xl mb-2" style={{ color: 'var(--pg-accent)' }}>
-                  <CountUp to={beat.value} suffix={beat.suffix ?? ''} />
+                  <CountUp to={beat.value} prefix={beat.prefix ?? ''} suffix={beat.suffix ?? ''} decimals={beat.decimals ?? 0} />
                 </p>
                 <p className="text-sm font-semibold uppercase tracking-wide mb-1" style={{ color: 'var(--pg-text)' }}>
                   {beat.label}
