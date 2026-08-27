@@ -220,6 +220,29 @@ table.beatgroup.on tr:nth-child(8){transition-delay:.40s}
   z-index:64;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--muted);opacity:.6;transition:opacity .5s}
 #hint.hide{opacity:0}
+
+/* contents overlay — jump to any slide */
+#menuOverlay{position:fixed;inset:0;z-index:80;background:rgba(18,16,14,.74);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;
+  transition:opacity .3s var(--ease),visibility .3s}
+#menuOverlay.open{opacity:1;visibility:visible}
+#menuPanel{width:min(560px,92vw);max-height:78vh;background:var(--surface);border-radius:20px;
+  border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;
+  transform:translateY(12px) scale(.98);transition:transform .3s var(--ease)}
+#menuOverlay.open #menuPanel{transform:none}
+#menuHead{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;
+  border-bottom:1px solid var(--line);flex-shrink:0}
+#menuTitle{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+#menuList{overflow-y:auto;padding:8px 8px 16px}
+.menu-sec{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);padding:16px 14px 6px}
+.menu-item{display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;background:none;border:none;
+  color:var(--paper);font-family:var(--body);font-size:14px;padding:10px 14px;border-radius:10px;cursor:pointer}
+.menu-item:hover{background:rgba(240,235,227,.06)}
+.menu-item .mi-num{font-family:var(--mono);font-size:11px;color:var(--muted);min-width:20px;flex-shrink:0}
+.menu-item.current{color:var(--ember)}
+.menu-item.current .mi-num{color:var(--ember)}
+
 @media(max-width:700px){
   .figs{gap:26px}
   #sect{display:none}
@@ -241,9 +264,19 @@ table.beatgroup.on tr:nth-child(8){transition-delay:.40s}
 <div id="chrome">
   <span id="sect"></span>
   <div id="nav">
+    <button class="nb" id="menuBtn" aria-label="All slides" aria-haspopup="true" aria-expanded="false">≡</button>
     <button class="nb" id="prev" aria-label="Previous">←</button>
     <button class="nb" id="next" aria-label="Next">→</button>
     <span id="count"></span>
+  </div>
+</div>
+<div id="menuOverlay" aria-hidden="true">
+  <div id="menuPanel" role="dialog" aria-label="Contents">
+    <div id="menuHead">
+      <span id="menuTitle">Contents</span>
+      <button class="nb" id="menuClose" aria-label="Close">✕</button>
+    </div>
+    <div id="menuList"></div>
   </div>
 </div>
 
@@ -380,6 +413,14 @@ const S = [
 <p class="body beat">At <strong>3.1% of revenue</strong> the total is normal for restaurants — you're not overspending. But most of it buys agency time, and guerrilla alone is $34,440 of the least measurable money on the sheet.</p>
 </div>`},
 
+/* 12b */ {sec:"What's broken", html:`<div class="wrap">
+<span class="eyebrow">Ad spend</span>
+<h2 class="wide">You don't know what the ad spend is actually buying</h2>
+<p class="body beat">$38,376 a year in social spend is running somewhere — and right now nobody at Prime Group can say where. No platform-by-platform breakdown, no cost per click, no report on what converted and what didn't.</p>
+<p class="body beat">That's the one line on this sheet built for transparency by default. Every ad platform reports impressions, clicks and cost automatically. Not seeing any of that isn't a limit of the channel — it's a choice the agency running it hasn't made.</p>
+<p class="body beat">It's also the direct reason the return-per-dollar figures earlier in this document were hard to calculate in the first place. You can't tell what's working when you can't see what ran.</p>
+</div>`},
+
 /* 13 */ {sec:"The angle", html:`<div class="wrap">
 <p class="quote beat">People don't choose a restaurant.<br>They choose <em>the version of the night</em> they want to have.</p>
 </div>`, center:true},
@@ -433,6 +474,7 @@ const S = [
 <tr><td class="k">@caymaneats</td><td class="r num">~2.9K</td></tr>
 </table>
 <p class="body beat">Twenty thousand followers who live here is worth more than two million who never will. Chelsea Tennant at Island Epicurean is Caymanian, appears on camera, and has judged competitions and interviewed chefs at Cookout — that's credibility, not just reach.</p>
+<p class="body beat">Treat it as a relationship, not a single post: a standing invitation to a comped table each month, not a one-off sponsored visit. The creators worth pursuing are the ones who keep coming back on their own after the first dinner.</p>
 <p class="body beat"><strong>One constraint:</strong> paid creator work here runs into work permit rules. Comped visits with organic posting, or licensing content rather than buying on-island services. Worth a legal check first.</p>
 </div>`},
 
@@ -445,18 +487,73 @@ const S = [
 <div class="fig"><div class="n up">$0</div><div class="l">paid in creator fees</div></div>
 </div>
 <p class="body beat">Reported by the Cayman Compass. The DoT's own reasoning: more than 75% of travellers are influenced by social media when choosing a destination.</p>
-<p class="body beat">Those creators land here and need to eat. Being on the shortlist costs a relationship and a good familiarisation dinner — the cheapest reach available on this island.</p>
+<p class="body beat">Those creators land here and need to eat. Getting on the shortlist takes a real relationship with the department and its agency — an introduction, a familiarisation dinner, then staying front of mind — not a single enquiry email.</p>
 </div>`},
 
 /* 19 */ {sec:"New ideas", html:`<div class="wrap">
 <span class="eyebrow">New angle · referrals</span>
 <h2 class="wide">Nobody is talking to the people who talk to your customer first.</h2>
+<p class="body beat">None of these people work for Prime Group, but every one of them talks to your customer before you do. A referral fee or a comped meal converts better than paid media, because it arrives as a recommendation from someone the guest already trusts.</p>
 <div class="cards beatgroup">
 <div class="card"><span class="tag">Biggest gap</span><h3>Airbnb &amp; villa hosts</h3><p>Hundreds of rentals on Seven Mile Beach whose guests arrive with no dinner plan and a kitchen they won't use. A card in the welcome book, a WhatsApp link, a small referral share.</p></div>
 <div class="card"><span class="tag">Hotels</span><h3>Concierge desks</h3><p>Ritz-Carlton, Seafire, Westin, Marriott, Palm Heights. Familiarisation dinners cost a night of covers and pay back for years.</p></div>
 <div class="card"><span class="tag">High ticket</span><h3>Yachts &amp; villa companies</h3><p>Charter operators and villa agencies booking catering on behalf of guests. Direct fit for Prime Kitchen.</p></div>
+<div class="card"><span class="tag">Trip planners</span><h3>Travel agents &amp; DMCs</h3><p>The people building the itinerary before a guest ever lands. A commission arrangement puts Prime venues on that itinerary by default, not as an afterthought.</p></div>
+<div class="card"><span class="tag">Day visitors</span><h3>Cruise arrivals &amp; tour guides</h3><p>A few hours on the island and a shortlist handed out by the ship or a local guide. Getting on that list is a partnership with whoever's handing it out, not a social post.</p></div>
 </div>
-<p class="body beat">This is where the flat Prime Kitchen number gets solved. It costs almost nothing to start.</p>
+<p class="body beat">This is where the flat Prime Kitchen number gets solved. It needs someone assigned to build and maintain these relationships on an ongoing basis — ideally a person, not a project with an end date.</p>
+</div>`},
+
+/* 19b */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · search</span>
+<h2 class="wide">Search is where the decision starts — put real budget behind it</h2>
+<p class="body beat">Concierge, host or Google Maps is step one in how someone picks where to eat tonight. Right now that step gets almost no dedicated budget — the money is going to social, a step later in the decision.</p>
+<p class="body beat">That means two things: running paid search on high-intent terms — "private chef Cayman," "sushi Camana Bay," "boat catering" — and treating the Google Business Profiles as a channel to keep investing in, not a one-time fix. Photos, posts, Q&amp;A and review responses need someone assigned to them every week, the same way social already does.</p>
+<p class="body beat">Someone searching one of those terms has already decided to spend money tonight. Right now they find an incomplete profile and no ad — not because the channel doesn't work, but because nobody's spending on it.</p>
+</div>`},
+
+/* 19c */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · paid media</span>
+<h2>Small island, so spend where people already are</h2>
+<p class="body beat">In-market geofencing around Seven Mile Beach hotels, condos and the airport reaches people already here and deciding tonight. Local retargeting works too, but the resident pool is small — 72,000 people — so it needs frequency caps and rotation, not the same three ads on repeat.</p>
+<p class="body beat">Click-to-WhatsApp ads meet people at the exact channel they'd use to book anyway. Every operational thread in this group already runs on WhatsApp, so an ad that opens straight into that conversation converts better than one sending someone to a form.</p>
+<p class="body beat"><strong>What we'd cut:</strong> paid targeting in US source cities weeks before a trip that may not happen. It's expensive, hard to measure, and better handled by the host and concierge network once someone's actually on the ground.</p>
+</div>`},
+
+/* 19d */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · reviews</span>
+<h2>Turn the ask into a system, not a hope</h2>
+<p class="body beat">The instinct to ask at the table is right. What's missing is a system: track which server generated each new review — most guests will name a server if asked to — and give staff points for every ask, redeemable for a real reward.</p>
+<p class="body beat">The reward has to sit on the ask, never the outcome. Google removes and can penalise profiles that reward the review itself, which would put the reviews the group already has at risk. Points for asking are compliant. Points for five stars are not.</p>
+<p class="body beat">This is a staff behaviour change more than a marketing campaign, and it needs someone tracking and paying out points monthly to actually stick — not an announcement at a team meeting.</p>
+</div>`},
+
+/* 19e */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · content</span>
+<h2>The feed should sell the night, not the plate</h2>
+<p class="body beat">Everything earlier in this document about empty rooms comes back to this: the content plan needs to shift from documenting food to documenting a night out — people at the table, the room mid-service, the moment before the first bite, not just the finished dish.</p>
+<p class="body beat">That's a standing brief for whoever shoots and posts, not a one-off campaign. Every capture visit should be looking for a room that's alive, because that's the version of the night people are actually choosing when they pick where to eat.</p>
+</div>`},
+
+/* 19f */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · events</span>
+<h2 class="wide">A fixed-price month, across all eight venues</h2>
+<p class="body beat">Miami Spice works because it gives a whole city one reason to try a long list of restaurants during a slower stretch, at a fixed, low-risk price. Prime Group is the only operator on this island with enough range to run its own version — eight concepts, three price tiers, one campaign.</p>
+<p class="body beat">It needs real planning to work: a fixed menu built at each venue, a shared campaign calendar, and pricing that still protects margin during what's usually a quieter month. Done properly, it's an annual event people wait for — not a discount that just trains guests to hold out for a deal.</p>
+</div>`},
+
+/* 19g */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · events</span>
+<h2>One night a month, the room becomes the show</h2>
+<p class="body beat">The Bagatelle format — a DJ arrives mid-service, the room turns from dinner into a night out — works because it's an event, not a gimmick, and it doesn't happen every night. Once a month at Uncle Liu's or Coconut Room turns an ordinary evening into something worth booking ahead for and posting about.</p>
+<p class="body beat">This needs the same production discipline as the format itself: a real entertainment budget, a licence check, and — at Coconut Room specifically — an early conversation with Caribbean Plaza about noise before a date goes on the calendar.</p>
+</div>`},
+
+/* 19h */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · brand</span>
+<h2>Make the name do some of the selling</h2>
+<p class="body beat">Right now the eight venues share almost nothing visible — no shared mark, no cross-promotion, no reason a guest who loved Uncle Liu's would think to try Coconut Room. That's equity being left on the table: a decade of goodwill at one venue should make the others an easier yes, not a separate discovery.</p>
+<p class="body beat">This doesn't mean rebranding eight restaurants into one. It means a consistent "part of Prime Group" signal — on menus, in bios, inside the loyalty programme you already run — so the group's reputation compounds instead of staying siloed at each address.</p>
 </div>`},
 
 /* 20 */ {sec:"What we'd do", html:`<div class="wrap">
@@ -464,10 +561,10 @@ const S = [
 <h2>Five things, in order of return</h2>
 <ul class="pts beatgroup">
 <li><span><b>Follow the return data.</b> Weight toward the plaza and Lucky, where it's proven. Rebuild Prime Kitchen's channel before adding budget to it.</span></li>
-<li><span><b>Own discovery.</b> Google profile depth, review volume and recency. Cheapest work on the list.</span></li>
+<li><span><b>Own discovery.</b> Google profile depth, review volume and recency, paid search on high-intent terms.</span></li>
 <li><span><b>Fill the rooms.</b> Three shoots a year per venue, plus two capture visits a month — someone there on a busy night.</span></li>
 <li><span><b>Build the referral network.</b> Hosts, concierges, villa companies, yachts, corporate.</span></li>
-<li><span><b>Make eight venues behave like one group.</b> Loyalty, cross-promotion, a shared story.</span></li>
+<li><span><b>Make eight venues behave like one group.</b> One brand identity, cross-promotion, a shared story.</span></li>
 </ul>
 </div>`},
 
@@ -487,10 +584,8 @@ const S = [
 <span class="eyebrow">Worth exploring</span>
 <h2>Ideas, not recommendations</h2>
 <div class="cards beatgroup">
-<div class="card"><h3>A Prime fixed-price month</h3><p>Your own version across all eight venues, not just joining someone else's. Eight concepts is the reason you can.</p></div>
-<div class="card"><h3>Dinner as an event</h3><p>The Bagatelle model — DJ arrives, the room turns. Upscale at Liu's, looser at Coconut Room. Needs licensing and a noise check first.</p></div>
-<div class="card"><h3>Prime Passport</h3><p>One loyalty account across eight venues. The gift cards already prove the mechanism works.</p></div>
 <div class="card"><h3>WhatsApp assistant</h3><p>Hours, menus, allergens and bookings answered instantly across all eight.</p></div>
+<div class="card"><h3>Email marketing</h3><p>Worth testing if the group has a guest list already — a monthly note with events, the fixed-price month dates, or a note from Dylan. A smaller channel than WhatsApp here, but worth a trial.</p></div>
 <div class="card"><h3>Press</h3><p>Caribbean Journal, Travel + Leisure, Condé Nast. Earned coverage works three times — credibility, ad creative, concierge material.</p></div>
 <div class="card"><h3>Alcohol promo review</h3><p>"All you can drink" and party formats sit under Cayman's liquor advertising rules. Worth a legal read before amplifying.</p></div>
 </div>
@@ -501,7 +596,7 @@ const S = [
 <h2 class="wide">The group is in better shape than the marketing shows.</h2>
 <p class="body beat">Nearly 1,200 reviews, a 4.87 average, eight working concepts and a founder most groups would envy.</p>
 <p class="body beat">Two parts of the business return <strong>$5.84</strong> and <strong>$11.11</strong> on every extra marketing dollar. One returns nothing — and the likeliest reason is a Google profile with no reviews, no enquiry button, and hours that say it closes before dinner.</p>
-<p class="body beat">Most of what's in here costs very little. The Google fixes are an afternoon. The review collection is a habit at the table. The referral network is a series of conversations.</p>
+<p class="body beat">None of this is a single fix. It's a shift from occasional pushes to steady, ongoing work — someone asking for a review every night, someone building host relationships month over month, a search and social budget that's actually accounted for. That's a bigger commitment than what's happening today, and it's the reason the return on it is real rather than speculative.</p>
 <p class="body beat" style="color:var(--muted)">Happy to talk through any of it — or to leave it with you as it is.</p>
 </div>`}
 
@@ -623,7 +718,58 @@ function prevClick(){
 
 next.onclick=nextClick;
 prev.onclick=prevClick;
+
+// contents overlay — lets the reader jump straight to any slide,
+// not just step through with prev/next
+const menuBtn=document.getElementById('menuBtn'), menuOverlay=document.getElementById('menuOverlay'),
+      menuClose=document.getElementById('menuClose'), menuList=document.getElementById('menuList');
+(function buildMenu(){
+  let lastSec=null;
+  S.forEach((s,idx)=>{
+    if((s.sec||'')!==lastSec){
+      lastSec=s.sec||'';
+      if(lastSec){
+        const h=document.createElement('div');
+        h.className='menu-sec';
+        h.textContent=lastSec;
+        menuList.appendChild(h);
+      }
+    }
+    const label=(slides[idx].querySelector('h1,h2,.quote')||{}).textContent||'';
+    const item=document.createElement('button');
+    item.className='menu-item';
+    item.dataset.idx=idx;
+    const num=document.createElement('span');
+    num.className='mi-num';
+    num.textContent=String(idx+1).padStart(2,'0');
+    const txt=document.createElement('span');
+    txt.textContent=label;
+    item.appendChild(num);
+    item.appendChild(txt);
+    item.onclick=()=>{ go(idx); closeMenu(); };
+    menuList.appendChild(item);
+  });
+})();
+function openMenu(){
+  [...menuList.querySelectorAll('.menu-item')].forEach(el=>el.classList.toggle('current', Number(el.dataset.idx)===i));
+  menuOverlay.classList.add('open');
+  menuOverlay.setAttribute('aria-hidden','false');
+  menuBtn.setAttribute('aria-expanded','true');
+}
+function closeMenu(){
+  menuOverlay.classList.remove('open');
+  menuOverlay.setAttribute('aria-hidden','true');
+  menuBtn.setAttribute('aria-expanded','false');
+}
+menuBtn.onclick=openMenu;
+menuClose.onclick=closeMenu;
+menuOverlay.addEventListener('click',e=>{ if(e.target===menuOverlay) closeMenu(); });
+
 document.addEventListener('keydown',e=>{
+  if(menuOverlay.classList.contains('open')){
+    if(e.key==='Escape'){ e.preventDefault(); closeMenu(); }
+    return;
+  }
   if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();nextClick()}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevClick()}
   if(e.key==='Home')go(0);
