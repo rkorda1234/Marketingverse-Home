@@ -1,32 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prime Group — Marketing Audit</title>
+<meta name="description" content="Marketingverse's marketing audit for Prime Group — what's working, what's broken, and a different angle worth trying.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12100E;
+  --surface:#1A1714;
+  --surface2:#221E1A;
+  --paper:#F0EBE3;
+  --muted:#8C8177;
+  --line:rgba(240,235,227,.10);
+  --ember:#C8763E;
+  --sea:#7BA396;
+  --display:'Instrument Serif',Georgia,serif;
+  --body:'Schibsted Grotesk',system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+/* grain */
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#deck{position:relative;height:100dvh;width:100%}
+.slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(28px,6vw,110px);padding-bottom:clamp(70px,10vh,110px);
+  opacity:0;visibility:hidden;transform:translateY(18px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s;
+  overflow-y:auto;
+}
+.slide.on{opacity:1;visibility:visible;transform:none}
+.wrap{width:100%;max-width:1080px;margin:0 auto}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:clamp(18px,3vh,32px);display:block;
+}
+h1{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.015em;
+  font-size:clamp(38px,7.4vw,86px)}
+h2{font-family:var(--display);font-weight:400;line-height:1.06;letter-spacing:-.01em;
+  font-size:clamp(30px,4.9vw,58px);max-width:19ch}
+h2.wide{max-width:26ch}
+.sub{color:var(--muted);font-size:clamp(15px,1.7vw,20px);margin-top:18px;max-width:52ch;line-height:1.5}
+p.body{margin-top:26px;max-width:60ch;font-size:clamp(15px,1.55vw,18px);color:#CFC7BC}
+p.body strong{color:var(--paper);font-weight:500}
+p.body + p.body{margin-top:16px}
 
-    <title>Marketingverse × Prime Group | Proposal</title>
-    <meta name="description" content="Marketingverse's proposal for Prime Group — where the marketing budget is actually going, and where it should." />
-    <meta name="robots" content="noindex, nofollow" />
+/* numbers */
+.figs{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px);margin-top:clamp(30px,5vh,54px)}
+.fig .n{font-family:var(--display);font-size:clamp(46px,8vw,96px);line-height:.92;letter-spacing:-.02em}
+.fig .n.up{color:var(--sea)}
+.fig .n.down{color:var(--ember)}
+.fig .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:14px;max-width:22ch;line-height:1.5}
 
-    <!-- Fonts: Fraunces (display serif, headlines) + Manrope (grotesk, body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/prime-group.tsx"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
-  </body>
+/* list */
+ul.pts{list-style:none;margin-top:clamp(26px,4vh,44px);display:grid;gap:2px}
+ul.pts li{
+  padding:16px 20px;background:var(--surface);border-radius:14px;
+  display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start;
+  font-size:clamp(14px,1.45vw,17px);color:#CFC7BC;
+}
+ul.pts li b{color:var(--paper);font-weight:500}
+ul.pts li::before{content:"—";color:var(--ember);font-family:var(--mono);font-size:13px;line-height:1.7}
+ul.pts.two{grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:860px){ul.pts.two{grid-template-columns:1fr}}
+
+/* table */
+table{width:100%;border-collapse:collapse;margin-top:clamp(26px,4vh,42px);font-size:clamp(13px,1.4vw,16px)}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);text-align:left;font-weight:400;padding:0 0 14px;border-bottom:1px solid var(--line)}
+th.r,td.r{text-align:right}
+td{padding:15px 0;border-bottom:1px solid var(--line);color:#CFC7BC}
+td.k{color:var(--paper);font-weight:500}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr.hi td{color:var(--paper)}
+tr.hi td.num{color:var(--ember)}
+.up{color:var(--sea)}
+
+/* bars */
+.bars{margin-top:clamp(26px,4vh,44px);display:grid;gap:14px}
+.bar{display:grid;grid-template-columns:clamp(96px,15vw,168px) 1fr auto;gap:16px;align-items:center;font-size:14px}
+.bar .lab{color:#CFC7BC}
+.bar .track{height:9px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.bar .fill{display:block;height:100%;background:var(--ember);border-radius:99px;transform-origin:left;
+  transform:scaleX(0);transition:transform 1s var(--ease)}
+.slide.on .bar .fill{transform:scaleX(1)}
+.bar .val{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar.zero .fill{background:var(--ember);opacity:.25}
+.bar.zero .val{color:var(--ember)}
+
+/* callout */
+.callout{margin-top:clamp(26px,4vh,42px);padding:clamp(22px,3vw,34px);
+  background:var(--surface);border-radius:20px;border-left:2px solid var(--ember)}
+.callout .big{font-family:var(--display);font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.01em}
+.callout p{margin-top:14px;color:#CFC7BC;max-width:58ch;font-size:clamp(14px,1.45vw,17px)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;
+  margin-top:clamp(26px,4vh,44px)}
+.card{background:var(--surface);border-radius:16px;padding:22px}
+.card h3{font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.55}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);display:block;margin-bottom:12px}
+
+/* quote slide */
+.quote{font-family:var(--display);font-size:clamp(30px,5.4vw,66px);line-height:1.08;
+  letter-spacing:-.015em;max-width:20ch;margin:0 auto;text-align:center}
+.quote em{font-style:italic;color:var(--ember)}
+.slide.center{text-align:center}
+.slide.center .sub{margin-left:auto;margin-right:auto}
+
+/* cover */
+.cover h1{max-width:12ch}
+.cover .meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-top:clamp(30px,6vh,60px)}
+.rule{width:44px;height:2px;background:var(--ember);margin-bottom:34px}
+
+/* chrome */
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--ember);z-index:70;
+  transition:width .6s var(--ease);width:0}
+#chrome{position:fixed;bottom:0;left:0;right:0;z-index:65;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(16px,2.4vw,30px) clamp(20px,5vw,54px);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  background:linear-gradient(to top,var(--ink) 45%,transparent)}
+#sect{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#nav{display:flex;align-items:center;gap:8px}
+.nb{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .4s var(--ease),transform .4s var(--ease);font-size:15px;line-height:1}
+.nb:hover{background:rgba(240,235,227,.07)}
+.nb:active{transform:scale(.94)}
+.nb:disabled{opacity:.25;cursor:default}
+.nb:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+#count{font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+#hint{position:fixed;bottom:clamp(70px,11vh,104px);left:50%;transform:translateX(-50%);
+  z-index:64;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);opacity:.6;transition:opacity .5s}
+#hint.hide{opacity:0}
+@media(max-width:700px){
+  .figs{gap:26px}
+  #sect{display:none}
+  table{font-size:13px}
+  td,th{padding-left:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .slide.on .bar .fill{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="deck"></div>
+<div id="hint">← → to move</div>
+<div id="chrome">
+  <span id="sect"></span>
+  <div id="nav">
+    <button class="nb" id="prev" aria-label="Previous">←</button>
+    <button class="nb" id="next" aria-label="Next">→</button>
+    <span id="count"></span>
+  </div>
+</div>
+
+<script>
+const S = [
+
+/* 1 */ {sec:"", html:`<div class="wrap cover">
+<div class="rule"></div>
+<h1>Prime&nbsp;Group</h1>
+<p class="sub">An outside look at the marketing — what's working, what's broken, and a different angle worth trying.</p>
+<div class="meta">Marketingverse · August 2026</div>
+</div>`},
+
+/* 2 */ {sec:"Opening", html:`<div class="wrap">
+<span class="eyebrow">What this is</span>
+<h2 class="wide">Not a proposal. Just what we found.</h2>
+<p class="body">We went through all eight concepts the way a customer would — the websites, the Instagram accounts, the Google profiles — then read them against the sales figures you shared.</p>
+<p class="body">Some of this is small enough to fix this week. One finding, we think, explains a problem you already know about.</p>
+</div>`},
+
+/* 3 */ {sec:"Opening", html:`<div class="wrap">
+<span class="eyebrow">The short version</span>
+<h2 class="wide">Your own numbers already show where marketing works. The spend hasn't caught up.</h2>
+<div class="figs">
+<div class="fig"><div class="n up">$11.11</div><div class="l">returned per extra marketing dollar — the plaza</div></div>
+<div class="fig"><div class="n up">$5.84</div><div class="l">returned per extra dollar — Lucky Rabbit</div></div>
+<div class="fig"><div class="n down">−13%</div><div class="l">Prime Kitchen — spend tripled, sales flat</div></div>
+</div>
+</div>`},
+
+/* 4 */ {sec:"Where you stand", html:`<div class="wrap">
+<span class="eyebrow">Starting position</span>
+<h2>You're starting from strength, not from zero.</h2>
+<div class="figs">
+<div class="fig"><div class="n">1,196</div><div class="l">Google reviews across six restaurants</div></div>
+<div class="fig"><div class="n">4.87</div><div class="l">weighted average rating</div></div>
+<div class="fig"><div class="n">8</div><div class="l">concepts across three price tiers</div></div>
+</div>
+<p class="body">Nothing here is about fixing the food. It's about the gap between how good the group already is and how visible that is.</p>
+</div>`},
+
+/* 5 */ {sec:"Where you stand", html:`<div class="wrap">
+<span class="eyebrow">Jan–Jul · 2025 vs 2026</span>
+<h2>Return, by venue</h2>
+<table>
+<tr><th>Venue</th><th class="r">Sales</th><th class="r">Return per extra $</th></tr>
+<tr><td class="k">Uncle Liu's / Coconut Room / San Si Wu</td><td class="r num up">+26%</td><td class="r num up">$11.11</td></tr>
+<tr><td class="k">Lucky Rabbit</td><td class="r num up">+10%</td><td class="r num up">$5.84</td></tr>
+<tr class="hi"><td class="k">Prime Kitchen</td><td class="r num">flat</td><td class="r num">−13%</td></tr>
+</table>
+<p class="body">Two parts of the business turn marketing money into sales efficiently. One tripled its spend and nothing moved.</p>
+</div>`},
+
+/* 6 */ {sec:"The finding", html:`<div class="wrap">
+<span class="eyebrow">The finding</span>
+<h2>Prime Kitchen has zero Google reviews.</h2>
+<p class="sub">Ten years in business. Every restaurant in the group has hundreds.</p>
+<div class="bars">
+<div class="bar"><span class="lab">Uncle Liu's</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">366</span></div>
+<div class="bar"><span class="lab">Lucky Rabbit</span><span class="track"><span class="fill" style="width:92%"></span></span><span class="val">337</span></div>
+<div class="bar"><span class="lab">San Si Wu</span><span class="track"><span class="fill" style="width:65%"></span></span><span class="val">238</span></div>
+<div class="bar"><span class="lab">Yallah</span><span class="track"><span class="fill" style="width:36%"></span></span><span class="val">133</span></div>
+<div class="bar"><span class="lab">Coconut Room</span><span class="track"><span class="fill" style="width:26%"></span></span><span class="val">96</span></div>
+<div class="bar"><span class="lab">Carnivore Smash</span><span class="track"><span class="fill" style="width:7%"></span></span><span class="val">26</span></div>
+<div class="bar zero"><span class="lab">Prime Kitchen</span><span class="track"><span class="fill" style="width:1.5%"></span></span><span class="val">0</span></div>
+</div>
+</div>`},
+
+/* 7 */ {sec:"The finding", html:`<div class="wrap">
+<span class="eyebrow">Same profile, same afternoon</span>
+<h2 class="wide">Three more things on that one page</h2>
+<ul class="pts">
+<li><span><b>Listed at Caribbean Plaza.</b> But the service travels to villas, homes and yachts — Google has a business type built for exactly that, and it changes where you show up.</span></li>
+<li><span><b>Hours close at 5pm.</b> For a business whose product is dinner. Anyone searching in the evening reads that as closed.</span></li>
+<li><span><b>No enquiry or quote button.</b> Website, directions, call. Someone ready to book has to go hunting for a way to do it.</span></li>
+</ul>
+<p class="body">Someone just landed and is deciding whether to hand a stranger the keys to their villa. They search, and there's no proof of anything. A competitor with forty average reviews looks safer than a decade of your work.</p>
+</div>`},
+
+/* 8 */ {sec:"What's broken", html:`<div class="wrap">
+<span class="eyebrow">Websites</span>
+<h2>Fixable this week</h2>
+<ul class="pts two">
+<li><span><b>Prime Kitchen</b> — the "Book a chef now" button turns white-on-white on hover and disappears</span></li>
+<li><span><b>Boat catering</b> — no photos of plated food anywhere on the page</span></li>
+<li><span><b>Prime Kitchen</b> — the same two dishes repeat across the whole site</span></li>
+<li><span><b>Lucky Rabbit</b> — phone number isn't clickable</span></li>
+<li><span><b>Lucky Rabbit</b> — offers sit below the fold; "innovation" and "meticulously" both repeat</span></li>
+<li><span><b>Reservations</b> — a form that promises a reply within 12 hours</span></li>
+</ul>
+<p class="body">A guest decides at 8:14pm they want a table tonight. By 8:15 they've booked elsewhere.</p>
+</div>`},
+
+/* 9 */ {sec:"What's broken", html:`<div class="wrap">
+<span class="eyebrow">Google profiles</span>
+<h2 class="wide">The profiles are maintained. The loose ends are the problem.</h2>
+<ul class="pts">
+<li><span><b>San Si Wu and Coconut Room publish the same phone number.</b> Google reads phone numbers as identity — duplicates blur which business is which.</span></li>
+<li><span><b>Yallah says "doesn't accept reservations"</b> while also listing a reservations provider.</span></li>
+<li><span><b>Carnivore Smash's hours say "confirmed by phone call 7 weeks ago"</b> — Google telling people it isn't sure you're open.</span></li>
+<li><span><b>San Si Wu lists Wi-Fi and leads with a dine-in photo</b> — for a delivery-only kitchen.</span></li>
+<li><span><b>Lucky Rabbit's site still has the default WordPress "Hello world!" post</b> live and indexed.</span></li>
+</ul>
+</div>`},
+
+/* 10 */ {sec:"What's broken", html:`<div class="wrap">
+<span class="eyebrow">Reviews</span>
+<h2>Coconut Room: 96. Uncle Liu's: 366.</h2>
+<p class="sub">Same plaza. Same kitchen. Same phone number. Both rated 4.9.</p>
+<p class="body">That's not a quality gap, it's an asking gap. Whatever happens at the table in one room isn't happening twenty feet away in the other.</p>
+<p class="body">Carnivore Smash is worth watching too — <strong>4.5 across 26 reviews</strong>. The only rating below 4.8, and at that volume two bad nights move it in a way they could never move Liu's. <strong>Volume isn't vanity. It's insulation.</strong></p>
+</div>`},
+
+/* 11 */ {sec:"What's broken", html:`<div class="wrap">
+<span class="eyebrow">Content</span>
+<h2>Every room looks empty.</h2>
+<p class="body">Bagatelle, Blue Marlin, La Guérite — the accounts you pointed to. You can't find a single empty room in any of them. They're not selling the plate, they're selling the night.</p>
+<div class="callout">
+<div class="big">Two photoshoots a year. For eight concepts.</div>
+<p>That's one visual refresh every six months, shared across the group. Footage of a packed Friday at Liu's doesn't exist because nobody was there with a camera on a Friday. You can't post what was never shot.</p>
+</div>
+</div>`},
+
+/* 12 */ {sec:"What's broken", html:`<div class="wrap">
+<span class="eyebrow">Budget shape</span>
+<h2>Healthy total. Unusual split.</h2>
+<table>
+<tr><th>Line</th><th class="r">Annual</th><th class="r">Share</th></tr>
+<tr class="hi"><td class="k">Agency fee</td><td class="r num">$135,600</td><td class="r num">63%</td></tr>
+<tr><td class="k">Social spend</td><td class="r num">$38,376</td><td class="r num">18%</td></tr>
+<tr><td class="k">Guerrilla</td><td class="r num">$34,440</td><td class="r num">16%</td></tr>
+<tr><td class="k">Print</td><td class="r num">$7,380</td><td class="r num">3%</td></tr>
+</table>
+<p class="body">At <strong>3.1% of revenue</strong> the total is normal for restaurants — you're not overspending. But most of it buys agency time, and guerrilla alone is $34,440 of the least measurable money on the sheet.</p>
+</div>`},
+
+/* 13 */ {sec:"The angle", html:`<div class="wrap">
+<p class="quote">People don't choose a restaurant.<br>They choose <em>the version of the night</em> they want to have.</p>
+</div>`, center:true},
+
+/* 14 */ {sec:"The angle", html:`<div class="wrap">
+<span class="eyebrow">Where guests actually decide</span>
+<h2 class="wide">Instagram isn't the discovery. It's the confirmation.</h2>
+<p class="body"><strong>Concierge, host or Google Maps → reviews → Instagram → booking.</strong></p>
+<p class="body">Most of the budget sits at step three. Steps one, two and four are cheaper to fix, and right now nobody owns them.</p>
+<div class="cards">
+<div class="card"><span class="tag">Reviews</span><h3>Ask at the table</h3><p>A QR on the check presenter, server asks by name after the compliment. Works whether or not you have their number. WhatsApp follow-up is the second net.</p></div>
+<div class="card"><span class="tag">Channel</span><h3>Build on WhatsApp</h3><p>Bookings, reviews, concierges, hosts — it all runs through one app here. A plan built on email flows is solving for a different country.</p></div>
+</div>
+</div>`},
+
+/* 15 */ {sec:"The angle", html:`<div class="wrap">
+<span class="eyebrow">Eight venues</span>
+<h2>Eight different jobs</h2>
+<table>
+<tr><th>Venue</th><th>What it actually is</th><th>Where growth is</th></tr>
+<tr><td class="k">Uncle Liu's</td><td>Indoor, dinner, upscale</td><td>Reviews, bookings, occasions</td></tr>
+<tr><td class="k">Coconut Room</td><td>Covered outdoor, relaxed</td><td>Karaoke &amp; events as programming</td></tr>
+<tr><td class="k">San Si Wu</td><td>Ghost kitchen, delivery only</td><td>Apps, search, packaging</td></tr>
+<tr><td class="k">Lucky Rabbit</td><td>Neighbourhood bar, off the strip</td><td>Loyalty, regulars, local search</td></tr>
+<tr><td class="k">Yallah</td><td>Camana Bay, lunch-led</td><td>Lunch daypart, office catering</td></tr>
+<tr><td class="k">Carnivore Smash</td><td>Food truck, West Bay Rd</td><td>Hours accuracy, delivery</td></tr>
+<tr><td class="k">Prime Kitchen</td><td>Private chef, 10 years</td><td>Hosts, concierges, yachts</td></tr>
+</table>
+<p class="body">Right now they're all being marketed like restaurants.</p>
+</div>`},
+
+/* 16 */ {sec:"The angle", html:`<div class="wrap">
+<span class="eyebrow">The founder</span>
+<h2 class="wide">A Food Network chef founded this group and almost nothing says so.</h2>
+<p class="body">The format: <strong>Dylan to camera in the dining room, dish in front of him, cut with the fire and the knife.</strong> He explains <em>why</em> — why this cut, why it hangs over flame, why it rests that long. Ends on the plate.</p>
+<p class="body">It shows the credibility instead of claiming it, it changes how guests order, and it's the one thing a competitor can't copy. One morning a quarter produces ten or twelve.</p>
+<div class="callout">
+<div class="big">And it doesn't tie your hands.</div>
+<p>Founding is history, not a job title — "founded in 2011 by chef Dylan Benoit" stays true whoever owns it. The risk is only in the wording: build the heritage claim, not "come because Dylan's cooking tonight." What a buyer purchases is reviews, regulars, loyalty and a referral network — none of which leave with a person.</p>
+</div>
+</div>`},
+
+/* 17 */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · creators</span>
+<h2>Small and local beats big and famous.</h2>
+<table>
+<tr><th>Account</th><th class="r">Followers</th></tr>
+<tr><td class="k">@caymanislandsfoodie</td><td class="r num">~20K</td></tr>
+<tr><td class="k">@goodeatscayman</td><td class="r num">~11K</td></tr>
+<tr><td class="k">@island_epicurean_cayman</td><td class="r num">~6K</td></tr>
+<tr><td class="k">@caymaneats</td><td class="r num">~2.9K</td></tr>
+</table>
+<p class="body">Twenty thousand followers who live here is worth more than two million who never will. Chelsea Tennant at Island Epicurean is Caymanian, appears on camera, and has judged competitions and interviewed chefs at Cookout — that's credibility, not just reach.</p>
+<p class="body"><strong>One constraint:</strong> paid creator work here runs into work permit rules. Comped visits with organic posting, or licensing content rather than buying on-island services. Worth a legal check first.</p>
+</div>`},
+
+/* 18 */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · free reach</span>
+<h2>The Department of Tourism is already flying creators in.</h2>
+<div class="figs">
+<div class="fig"><div class="n">540</div><div class="l">posts from one in-kind partnership</div></div>
+<div class="fig"><div class="n">296M</div><div class="l">estimated reach</div></div>
+<div class="fig"><div class="n up">$0</div><div class="l">paid in creator fees</div></div>
+</div>
+<p class="body">Reported by the Cayman Compass. The DoT's own reasoning: more than 75% of travellers are influenced by social media when choosing a destination.</p>
+<p class="body">Those creators land here and need to eat. Being on the shortlist costs a relationship and a good familiarisation dinner — the cheapest reach available on this island.</p>
+</div>`},
+
+/* 19 */ {sec:"New ideas", html:`<div class="wrap">
+<span class="eyebrow">New angle · referrals</span>
+<h2 class="wide">Nobody is talking to the people who talk to your customer first.</h2>
+<div class="cards">
+<div class="card"><span class="tag">Biggest gap</span><h3>Airbnb &amp; villa hosts</h3><p>Hundreds of rentals on Seven Mile Beach whose guests arrive with no dinner plan and a kitchen they won't use. A card in the welcome book, a WhatsApp link, a small referral share.</p></div>
+<div class="card"><span class="tag">Hotels</span><h3>Concierge desks</h3><p>Ritz-Carlton, Seafire, Westin, Marriott, Palm Heights. Familiarisation dinners cost a night of covers and pay back for years.</p></div>
+<div class="card"><span class="tag">High ticket</span><h3>Yachts &amp; villa companies</h3><p>Charter operators and villa agencies booking catering on behalf of guests. Direct fit for Prime Kitchen.</p></div>
+</div>
+<p class="body">This is where the flat Prime Kitchen number gets solved. It costs almost nothing to start.</p>
+</div>`},
+
+/* 20 */ {sec:"What we'd do", html:`<div class="wrap">
+<span class="eyebrow">Priorities</span>
+<h2>Five things, in order of return</h2>
+<ul class="pts">
+<li><span><b>Follow the return data.</b> Weight toward the plaza and Lucky, where it's proven. Rebuild Prime Kitchen's channel before adding budget to it.</span></li>
+<li><span><b>Own discovery.</b> Google profile depth, review volume and recency. Cheapest work on the list.</span></li>
+<li><span><b>Fill the rooms.</b> Three shoots a year per venue, plus two capture visits a month — someone there on a busy night.</span></li>
+<li><span><b>Build the referral network.</b> Hosts, concierges, villa companies, yachts, corporate.</span></li>
+<li><span><b>Make eight venues behave like one group.</b> Loyalty, cross-promotion, a shared story.</span></li>
+</ul>
+</div>`},
+
+/* 21 */ {sec:"What we'd do", html:`<div class="wrap">
+<span class="eyebrow">Measurement</span>
+<h2>What should be visible every month</h2>
+<p class="body">No agency can honestly attribute every cover to a post. What can be reported is three tiers:</p>
+<ul class="pts">
+<li><span><b>Provable</b> — bookings carrying a source tag, click ID or promo code</span></li>
+<li><span><b>Directional</b> — Google profile actions: calls, direction requests, website taps</span></li>
+<li><span><b>The plain number</b> — covers against the same period last year</span></li>
+</ul>
+<p class="body">And it should differ by venue: <strong>cost per reservation</strong> for Liu's, Coconut Room and Prime Kitchen — <strong>profile actions and delivery orders</strong> for Lucky, San Si Wu, Smash and Yallah. One screen, eight venues, arriving monthly without anyone asking.</p>
+</div>`},
+
+/* 22 */ {sec:"What we'd do", html:`<div class="wrap">
+<span class="eyebrow">Worth exploring</span>
+<h2>Ideas, not recommendations</h2>
+<div class="cards">
+<div class="card"><h3>A Prime fixed-price month</h3><p>Your own version across all eight venues, not just joining someone else's. Eight concepts is the reason you can.</p></div>
+<div class="card"><h3>Dinner as an event</h3><p>The Bagatelle model — DJ arrives, the room turns. Upscale at Liu's, looser at Coconut Room. Needs licensing and a noise check first.</p></div>
+<div class="card"><h3>Prime Passport</h3><p>One loyalty account across eight venues. The gift cards already prove the mechanism works.</p></div>
+<div class="card"><h3>WhatsApp assistant</h3><p>Hours, menus, allergens and bookings answered instantly across all eight.</p></div>
+<div class="card"><h3>Press</h3><p>Caribbean Journal, Travel + Leisure, Condé Nast. Earned coverage works three times — credibility, ad creative, concierge material.</p></div>
+<div class="card"><h3>Alcohol promo review</h3><p>"All you can drink" and party formats sit under Cayman's liquor advertising rules. Worth a legal read before amplifying.</p></div>
+</div>
+</div>`},
+
+/* 23 */ {sec:"Close", html:`<div class="wrap">
+<span class="eyebrow">In summary</span>
+<h2 class="wide">The group is in better shape than the marketing shows.</h2>
+<p class="body">Nearly 1,200 reviews, a 4.87 average, eight working concepts and a founder most groups would envy.</p>
+<p class="body">Two parts of the business return <strong>$5.84</strong> and <strong>$11.11</strong> on every extra marketing dollar. One returns nothing — and the likeliest reason is a Google profile with no reviews, no enquiry button, and hours that say it closes before dinner.</p>
+<p class="body">Most of what's in here costs very little. The Google fixes are an afternoon. The review collection is a habit at the table. The referral network is a series of conversations.</p>
+<p class="body" style="color:var(--muted)">Happy to talk through any of it — or to leave it with you as it is.</p>
+</div>`}
+
+];
+
+const deck=document.getElementById('deck');
+S.forEach((s,i)=>{
+  const d=document.createElement('section');
+  d.className='slide'+(s.center?' center':'');
+  d.innerHTML=s.html;
+  d.setAttribute('aria-hidden','true');
+  deck.appendChild(d);
+});
+const slides=[...document.querySelectorAll('.slide')];
+const bar=document.getElementById('bar'),sect=document.getElementById('sect'),
+      count=document.getElementById('count'),prev=document.getElementById('prev'),
+      next=document.getElementById('next'),hint=document.getElementById('hint');
+let i=0;
+
+function go(n){
+  n=Math.max(0,Math.min(S.length-1,n));
+  slides[i].classList.remove('on');slides[i].setAttribute('aria-hidden','true');
+  i=n;
+  slides[i].classList.add('on');slides[i].setAttribute('aria-hidden','false');
+  slides[i].scrollTop=0;
+  bar.style.width=((i+1)/S.length*100)+'%';
+  sect.textContent=S[i].sec||'';
+  count.textContent=String(i+1).padStart(2,'0')+' / '+S.length;
+  prev.disabled=i===0;next.disabled=i===S.length-1;
+  if(i>0)hint.classList.add('hide');
+  history.replaceState(null,'','#'+(i+1));
+}
+next.onclick=()=>go(i+1);
+prev.onclick=()=>go(i-1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(i+1)}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+  if(e.key==='Home')go(0);
+  if(e.key==='End')go(S.length-1);
+});
+let x0=null,y0=null;
+deck.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+deck.addEventListener('touchend',e=>{
+  if(x0===null)return;
+  const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)) go(dx<0?i+1:i-1);
+  x0=null;
+});
+const start=parseInt((location.hash||'#1').slice(1),10);
+go(isNaN(start)?0:start-1);
+setTimeout(()=>hint.classList.add('hide'),5000);
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
 </html>
