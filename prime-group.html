@@ -40,8 +40,8 @@ body::after{
 .slide{
   position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
   padding:clamp(28px,6vw,110px);padding-bottom:clamp(70px,10vh,110px);
-  opacity:0;visibility:hidden;transform:translateY(18px);
-  transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s;
+  opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .32s var(--ease),transform .32s var(--ease),visibility .32s;
   overflow-y:auto;
 }
 .slide.on{opacity:1;visibility:visible;transform:none}
@@ -98,8 +98,8 @@ tr.hi td.num{color:var(--ember)}
 .bar .lab{color:#CFC7BC}
 .bar .track{height:9px;background:var(--surface2);border-radius:99px;overflow:hidden}
 .bar .fill{display:block;height:100%;background:var(--ember);border-radius:99px;transform-origin:left;
-  transform:scaleX(0);transition:transform 1s var(--ease)}
-.slide.on .bar .fill{transform:scaleX(1)}
+  transform:scaleX(0);transition:transform .9s var(--ease)}
+.bar.on .fill{transform:scaleX(1)}
 .bar .val{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .bar.zero .fill{background:var(--ember);opacity:.25}
 .bar.zero .val{color:var(--ember)}
@@ -132,9 +132,75 @@ tr.hi td.num{color:var(--ember)}
   color:var(--muted);margin-top:clamp(30px,6vh,60px)}
 .rule{width:44px;height:2px;background:var(--ember);margin-bottom:34px}
 
+/* ============================================================
+   Click-to-reveal beats. Slide-to-slide moves are a quick cut
+   (see #deck .slide transition above, shortened, no dissolve);
+   the motion budget goes here instead — each click brings in
+   one more piece of the slide.
+   ============================================================ */
+
+/* .beat — a single element revealed on its own click
+   (a paragraph, a callout, the quote) */
+.beat{opacity:0;transform:translateY(20px);filter:blur(3px);
+  transition:opacity .65s var(--ease),transform .65s var(--ease),filter .65s var(--ease)}
+.beat.on{opacity:1;transform:none;filter:blur(0)}
+
+/* .beatgroup — a container revealed on one click, whose children
+   cascade in with a stagger (list items, table rows, cards, figs) */
+ul.pts.beatgroup li{opacity:0;transform:translateY(14px);filter:blur(2px);
+  transition:opacity .55s var(--ease),transform .55s var(--ease),filter .55s var(--ease)}
+ul.pts.beatgroup.on li{opacity:1;transform:none;filter:blur(0)}
+ul.pts.beatgroup.on li:nth-child(1){transition-delay:0s}
+ul.pts.beatgroup.on li:nth-child(2){transition-delay:.06s}
+ul.pts.beatgroup.on li:nth-child(3){transition-delay:.12s}
+ul.pts.beatgroup.on li:nth-child(4){transition-delay:.18s}
+ul.pts.beatgroup.on li:nth-child(5){transition-delay:.24s}
+ul.pts.beatgroup.on li:nth-child(6){transition-delay:.30s}
+ul.pts.beatgroup.on li:nth-child(7){transition-delay:.36s}
+ul.pts.beatgroup.on li:nth-child(8){transition-delay:.42s}
+
+table.beatgroup tr:not(:first-child){opacity:0;transform:translateX(-10px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+table.beatgroup.on tr:not(:first-child){opacity:1;transform:none}
+table.beatgroup.on tr:nth-child(2){transition-delay:.04s}
+table.beatgroup.on tr:nth-child(3){transition-delay:.10s}
+table.beatgroup.on tr:nth-child(4){transition-delay:.16s}
+table.beatgroup.on tr:nth-child(5){transition-delay:.22s}
+table.beatgroup.on tr:nth-child(6){transition-delay:.28s}
+table.beatgroup.on tr:nth-child(7){transition-delay:.34s}
+table.beatgroup.on tr:nth-child(8){transition-delay:.40s}
+
+.figs.beatgroup .fig{opacity:0;transform:translateY(18px) scale(.94);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.figs.beatgroup.on .fig{opacity:1;transform:none}
+.figs.beatgroup.on .fig:nth-child(1){transition-delay:0s}
+.figs.beatgroup.on .fig:nth-child(2){transition-delay:.14s}
+.figs.beatgroup.on .fig:nth-child(3){transition-delay:.28s}
+@keyframes figGlow{0%{text-shadow:0 0 0 rgba(240,235,227,0)}40%{text-shadow:0 0 22px rgba(240,235,227,.45)}100%{text-shadow:0 0 0 rgba(240,235,227,0)}}
+.figs.beatgroup.on .fig:nth-child(1) .n{animation:figGlow 1s var(--ease)}
+.figs.beatgroup.on .fig:nth-child(2) .n{animation:figGlow 1s var(--ease) .14s}
+.figs.beatgroup.on .fig:nth-child(3) .n{animation:figGlow 1s var(--ease) .28s}
+
+.cards.beatgroup .card{opacity:0;transform:translateY(16px) scale(.97);
+  transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.cards.beatgroup.on .card{opacity:1;transform:none}
+.cards.beatgroup.on .card:nth-child(1){transition-delay:0s}
+.cards.beatgroup.on .card:nth-child(2){transition-delay:.08s}
+.cards.beatgroup.on .card:nth-child(3){transition-delay:.16s}
+.cards.beatgroup.on .card:nth-child(4){transition-delay:.24s}
+.cards.beatgroup.on .card:nth-child(5){transition-delay:.32s}
+.cards.beatgroup.on .card:nth-child(6){transition-delay:.40s}
+
+/* the review-count bars are the one slide where every row gets
+   its own click — the count building venue by venue down to
+   Prime Kitchen's zero is the whole point of that slide */
+.bar.beat{opacity:0;transform:translateX(-14px);filter:blur(2px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease),filter .5s var(--ease)}
+.bar.beat.on{opacity:1;transform:none;filter:blur(0)}
+
 /* chrome */
 #bar{position:fixed;top:0;left:0;height:2px;background:var(--ember);z-index:70;
-  transition:width .6s var(--ease);width:0}
+  transition:width .5s var(--ease);width:0}
 #chrome{position:fixed;bottom:0;left:0;right:0;z-index:65;
   display:flex;align-items:center;justify-content:space-between;
   padding:clamp(16px,2.4vw,30px) clamp(20px,5vw,54px);
@@ -162,7 +228,9 @@ tr.hi td.num{color:var(--ember)}
 }
 @media(prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
-  .slide.on .bar .fill{transform:scaleX(1)}
+  .beat,.beat.on,ul.pts.beatgroup li,table.beatgroup tr,.figs.beatgroup .fig,.cards.beatgroup .card,.bar.beat{
+    opacity:1!important;transform:none!important;filter:none!important}
+  .bar .fill{transform:scaleX(1)!important}
 }
 </style>
 </head>
@@ -192,14 +260,14 @@ const S = [
 /* 2 */ {sec:"Opening", html:`<div class="wrap">
 <span class="eyebrow">What this is</span>
 <h2 class="wide">Not a proposal. Just what we found.</h2>
-<p class="body">We went through all eight concepts the way a customer would — the websites, the Instagram accounts, the Google profiles — then read them against the sales figures you shared.</p>
-<p class="body">Some of this is small enough to fix this week. One finding, we think, explains a problem you already know about.</p>
+<p class="body beat">We went through all eight concepts the way a customer would — the websites, the Instagram accounts, the Google profiles — then read them against the sales figures you shared.</p>
+<p class="body beat">Some of this is small enough to fix this week. One finding, we think, explains a problem you already know about.</p>
 </div>`},
 
 /* 3 */ {sec:"Opening", html:`<div class="wrap">
 <span class="eyebrow">The short version</span>
 <h2 class="wide">Your own numbers already show where marketing works. The spend hasn't caught up.</h2>
-<div class="figs">
+<div class="figs beatgroup">
 <div class="fig"><div class="n up">$11.11</div><div class="l">returned per extra marketing dollar — the plaza</div></div>
 <div class="fig"><div class="n up">$5.84</div><div class="l">returned per extra dollar — Lucky Rabbit</div></div>
 <div class="fig"><div class="n down">−13%</div><div class="l">Prime Kitchen — spend tripled, sales flat</div></div>
@@ -209,24 +277,24 @@ const S = [
 /* 4 */ {sec:"Where you stand", html:`<div class="wrap">
 <span class="eyebrow">Starting position</span>
 <h2>You're starting from strength, not from zero.</h2>
-<div class="figs">
+<div class="figs beatgroup">
 <div class="fig"><div class="n">1,196</div><div class="l">Google reviews across six restaurants</div></div>
 <div class="fig"><div class="n">4.87</div><div class="l">weighted average rating</div></div>
 <div class="fig"><div class="n">8</div><div class="l">concepts across three price tiers</div></div>
 </div>
-<p class="body">Nothing here is about fixing the food. It's about the gap between how good the group already is and how visible that is.</p>
+<p class="body beat">Nothing here is about fixing the food. It's about the gap between how good the group already is and how visible that is.</p>
 </div>`},
 
 /* 5 */ {sec:"Where you stand", html:`<div class="wrap">
 <span class="eyebrow">Jan–Jul · 2025 vs 2026</span>
 <h2>Return, by venue</h2>
-<table>
+<table class="beatgroup">
 <tr><th>Venue</th><th class="r">Sales</th><th class="r">Return per extra $</th></tr>
 <tr><td class="k">Uncle Liu's / Coconut Room / San Si Wu</td><td class="r num up">+26%</td><td class="r num up">$11.11</td></tr>
 <tr><td class="k">Lucky Rabbit</td><td class="r num up">+10%</td><td class="r num up">$5.84</td></tr>
 <tr class="hi"><td class="k">Prime Kitchen</td><td class="r num">flat</td><td class="r num">−13%</td></tr>
 </table>
-<p class="body">Two parts of the business turn marketing money into sales efficiently. One tripled its spend and nothing moved.</p>
+<p class="body beat">Two parts of the business turn marketing money into sales efficiently. One tripled its spend and nothing moved.</p>
 </div>`},
 
 /* 6 */ {sec:"The finding", html:`<div class="wrap">
@@ -234,31 +302,31 @@ const S = [
 <h2>Prime Kitchen has zero Google reviews.</h2>
 <p class="sub">Ten years in business. Every restaurant in the group has hundreds.</p>
 <div class="bars">
-<div class="bar"><span class="lab">Uncle Liu's</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">366</span></div>
-<div class="bar"><span class="lab">Lucky Rabbit</span><span class="track"><span class="fill" style="width:92%"></span></span><span class="val">337</span></div>
-<div class="bar"><span class="lab">San Si Wu</span><span class="track"><span class="fill" style="width:65%"></span></span><span class="val">238</span></div>
-<div class="bar"><span class="lab">Yallah</span><span class="track"><span class="fill" style="width:36%"></span></span><span class="val">133</span></div>
-<div class="bar"><span class="lab">Coconut Room</span><span class="track"><span class="fill" style="width:26%"></span></span><span class="val">96</span></div>
-<div class="bar"><span class="lab">Carnivore Smash</span><span class="track"><span class="fill" style="width:7%"></span></span><span class="val">26</span></div>
-<div class="bar zero"><span class="lab">Prime Kitchen</span><span class="track"><span class="fill" style="width:1.5%"></span></span><span class="val">0</span></div>
+<div class="bar beat"><span class="lab">Uncle Liu's</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val" data-val="366">0</span></div>
+<div class="bar beat"><span class="lab">Lucky Rabbit</span><span class="track"><span class="fill" style="width:92%"></span></span><span class="val" data-val="337">0</span></div>
+<div class="bar beat"><span class="lab">San Si Wu</span><span class="track"><span class="fill" style="width:65%"></span></span><span class="val" data-val="238">0</span></div>
+<div class="bar beat"><span class="lab">Yallah</span><span class="track"><span class="fill" style="width:36%"></span></span><span class="val" data-val="133">0</span></div>
+<div class="bar beat"><span class="lab">Coconut Room</span><span class="track"><span class="fill" style="width:26%"></span></span><span class="val" data-val="96">0</span></div>
+<div class="bar beat"><span class="lab">Carnivore Smash</span><span class="track"><span class="fill" style="width:7%"></span></span><span class="val" data-val="26">0</span></div>
+<div class="bar zero beat"><span class="lab">Prime Kitchen</span><span class="track"><span class="fill" style="width:1.5%"></span></span><span class="val" data-val="0">0</span></div>
 </div>
 </div>`},
 
 /* 7 */ {sec:"The finding", html:`<div class="wrap">
 <span class="eyebrow">Same profile, same afternoon</span>
 <h2 class="wide">Three more things on that one page</h2>
-<ul class="pts">
+<ul class="pts beatgroup">
 <li><span><b>Listed at Caribbean Plaza.</b> But the service travels to villas, homes and yachts — Google has a business type built for exactly that, and it changes where you show up.</span></li>
 <li><span><b>Hours close at 5pm.</b> For a business whose product is dinner. Anyone searching in the evening reads that as closed.</span></li>
 <li><span><b>No enquiry or quote button.</b> Website, directions, call. Someone ready to book has to go hunting for a way to do it.</span></li>
 </ul>
-<p class="body">Someone just landed and is deciding whether to hand a stranger the keys to their villa. They search, and there's no proof of anything. A competitor with forty average reviews looks safer than a decade of your work.</p>
+<p class="body beat">Someone just landed and is deciding whether to hand a stranger the keys to their villa. They search, and there's no proof of anything. A competitor with forty average reviews looks safer than a decade of your work.</p>
 </div>`},
 
 /* 8 */ {sec:"What's broken", html:`<div class="wrap">
 <span class="eyebrow">Websites</span>
 <h2>Fixable this week</h2>
-<ul class="pts two">
+<ul class="pts two beatgroup">
 <li><span><b>Prime Kitchen</b> — the "Book a chef now" button turns white-on-white on hover and disappears</span></li>
 <li><span><b>Boat catering</b> — no photos of plated food anywhere on the page</span></li>
 <li><span><b>Prime Kitchen</b> — the same two dishes repeat across the whole site</span></li>
@@ -266,13 +334,13 @@ const S = [
 <li><span><b>Lucky Rabbit</b> — offers sit below the fold; "innovation" and "meticulously" both repeat</span></li>
 <li><span><b>Reservations</b> — a form that promises a reply within 12 hours</span></li>
 </ul>
-<p class="body">A guest decides at 8:14pm they want a table tonight. By 8:15 they've booked elsewhere.</p>
+<p class="body beat">A guest decides at 8:14pm they want a table tonight. By 8:15 they've booked elsewhere.</p>
 </div>`},
 
 /* 9 */ {sec:"What's broken", html:`<div class="wrap">
 <span class="eyebrow">Google profiles</span>
 <h2 class="wide">The profiles are maintained. The loose ends are the problem.</h2>
-<ul class="pts">
+<ul class="pts beatgroup">
 <li><span><b>San Si Wu and Coconut Room publish the same phone number.</b> Google reads phone numbers as identity — duplicates blur which business is which.</span></li>
 <li><span><b>Yallah says "doesn't accept reservations"</b> while also listing a reservations provider.</span></li>
 <li><span><b>Carnivore Smash's hours say "confirmed by phone call 7 weeks ago"</b> — Google telling people it isn't sure you're open.</span></li>
@@ -285,15 +353,15 @@ const S = [
 <span class="eyebrow">Reviews</span>
 <h2>Coconut Room: 96. Uncle Liu's: 366.</h2>
 <p class="sub">Same plaza. Same kitchen. Same phone number. Both rated 4.9.</p>
-<p class="body">That's not a quality gap, it's an asking gap. Whatever happens at the table in one room isn't happening twenty feet away in the other.</p>
-<p class="body">Carnivore Smash is worth watching too — <strong>4.5 across 26 reviews</strong>. The only rating below 4.8, and at that volume two bad nights move it in a way they could never move Liu's. <strong>Volume isn't vanity. It's insulation.</strong></p>
+<p class="body beat">That's not a quality gap, it's an asking gap. Whatever happens at the table in one room isn't happening twenty feet away in the other.</p>
+<p class="body beat">Carnivore Smash is worth watching too — <strong>4.5 across 26 reviews</strong>. The only rating below 4.8, and at that volume two bad nights move it in a way they could never move Liu's. <strong>Volume isn't vanity. It's insulation.</strong></p>
 </div>`},
 
 /* 11 */ {sec:"What's broken", html:`<div class="wrap">
 <span class="eyebrow">Content</span>
 <h2>Every room looks empty.</h2>
-<p class="body">Bagatelle, Blue Marlin, La Guérite — the accounts you pointed to. You can't find a single empty room in any of them. They're not selling the plate, they're selling the night.</p>
-<div class="callout">
+<p class="body beat">Bagatelle, Blue Marlin, La Guérite — the accounts you pointed to. You can't find a single empty room in any of them. They're not selling the plate, they're selling the night.</p>
+<div class="callout beat">
 <div class="big">Two photoshoots a year. For eight concepts.</div>
 <p>That's one visual refresh every six months, shared across the group. Footage of a packed Friday at Liu's doesn't exist because nobody was there with a camera on a Friday. You can't post what was never shot.</p>
 </div>
@@ -302,26 +370,26 @@ const S = [
 /* 12 */ {sec:"What's broken", html:`<div class="wrap">
 <span class="eyebrow">Budget shape</span>
 <h2>Healthy total. Unusual split.</h2>
-<table>
+<table class="beatgroup">
 <tr><th>Line</th><th class="r">Annual</th><th class="r">Share</th></tr>
 <tr class="hi"><td class="k">Agency fee</td><td class="r num">$135,600</td><td class="r num">63%</td></tr>
 <tr><td class="k">Social spend</td><td class="r num">$38,376</td><td class="r num">18%</td></tr>
 <tr><td class="k">Guerrilla</td><td class="r num">$34,440</td><td class="r num">16%</td></tr>
 <tr><td class="k">Print</td><td class="r num">$7,380</td><td class="r num">3%</td></tr>
 </table>
-<p class="body">At <strong>3.1% of revenue</strong> the total is normal for restaurants — you're not overspending. But most of it buys agency time, and guerrilla alone is $34,440 of the least measurable money on the sheet.</p>
+<p class="body beat">At <strong>3.1% of revenue</strong> the total is normal for restaurants — you're not overspending. But most of it buys agency time, and guerrilla alone is $34,440 of the least measurable money on the sheet.</p>
 </div>`},
 
 /* 13 */ {sec:"The angle", html:`<div class="wrap">
-<p class="quote">People don't choose a restaurant.<br>They choose <em>the version of the night</em> they want to have.</p>
+<p class="quote beat">People don't choose a restaurant.<br>They choose <em>the version of the night</em> they want to have.</p>
 </div>`, center:true},
 
 /* 14 */ {sec:"The angle", html:`<div class="wrap">
 <span class="eyebrow">Where guests actually decide</span>
 <h2 class="wide">Instagram isn't the discovery. It's the confirmation.</h2>
-<p class="body"><strong>Concierge, host or Google Maps → reviews → Instagram → booking.</strong></p>
-<p class="body">Most of the budget sits at step three. Steps one, two and four are cheaper to fix, and right now nobody owns them.</p>
-<div class="cards">
+<p class="body beat"><strong>Concierge, host or Google Maps → reviews → Instagram → booking.</strong></p>
+<p class="body beat">Most of the budget sits at step three. Steps one, two and four are cheaper to fix, and right now nobody owns them.</p>
+<div class="cards beatgroup">
 <div class="card"><span class="tag">Reviews</span><h3>Ask at the table</h3><p>A QR on the check presenter, server asks by name after the compliment. Works whether or not you have their number. WhatsApp follow-up is the second net.</p></div>
 <div class="card"><span class="tag">Channel</span><h3>Build on WhatsApp</h3><p>Bookings, reviews, concierges, hosts — it all runs through one app here. A plan built on email flows is solving for a different country.</p></div>
 </div>
@@ -330,7 +398,7 @@ const S = [
 /* 15 */ {sec:"The angle", html:`<div class="wrap">
 <span class="eyebrow">Eight venues</span>
 <h2>Eight different jobs</h2>
-<table>
+<table class="beatgroup">
 <tr><th>Venue</th><th>What it actually is</th><th>Where growth is</th></tr>
 <tr><td class="k">Uncle Liu's</td><td>Indoor, dinner, upscale</td><td>Reviews, bookings, occasions</td></tr>
 <tr><td class="k">Coconut Room</td><td>Covered outdoor, relaxed</td><td>Karaoke &amp; events as programming</td></tr>
@@ -340,15 +408,15 @@ const S = [
 <tr><td class="k">Carnivore Smash</td><td>Food truck, West Bay Rd</td><td>Hours accuracy, delivery</td></tr>
 <tr><td class="k">Prime Kitchen</td><td>Private chef, 10 years</td><td>Hosts, concierges, yachts</td></tr>
 </table>
-<p class="body">Right now they're all being marketed like restaurants.</p>
+<p class="body beat">Right now they're all being marketed like restaurants.</p>
 </div>`},
 
 /* 16 */ {sec:"The angle", html:`<div class="wrap">
 <span class="eyebrow">The founder</span>
 <h2 class="wide">A Food Network chef founded this group and almost nothing says so.</h2>
-<p class="body">The format: <strong>Dylan to camera in the dining room, dish in front of him, cut with the fire and the knife.</strong> He explains <em>why</em> — why this cut, why it hangs over flame, why it rests that long. Ends on the plate.</p>
-<p class="body">It shows the credibility instead of claiming it, it changes how guests order, and it's the one thing a competitor can't copy. One morning a quarter produces ten or twelve.</p>
-<div class="callout">
+<p class="body beat">The format: <strong>Dylan to camera in the dining room, dish in front of him, cut with the fire and the knife.</strong> He explains <em>why</em> — why this cut, why it hangs over flame, why it rests that long. Ends on the plate.</p>
+<p class="body beat">It shows the credibility instead of claiming it, it changes how guests order, and it's the one thing a competitor can't copy. One morning a quarter produces ten or twelve.</p>
+<div class="callout beat">
 <div class="big">And it doesn't tie your hands.</div>
 <p>Founding is history, not a job title — "founded in 2011 by chef Dylan Benoit" stays true whoever owns it. The risk is only in the wording: build the heritage claim, not "come because Dylan's cooking tonight." What a buyer purchases is reviews, regulars, loyalty and a referral network — none of which leave with a person.</p>
 </div>
@@ -357,44 +425,44 @@ const S = [
 /* 17 */ {sec:"New ideas", html:`<div class="wrap">
 <span class="eyebrow">New angle · creators</span>
 <h2>Small and local beats big and famous.</h2>
-<table>
+<table class="beatgroup">
 <tr><th>Account</th><th class="r">Followers</th></tr>
 <tr><td class="k">@caymanislandsfoodie</td><td class="r num">~20K</td></tr>
 <tr><td class="k">@goodeatscayman</td><td class="r num">~11K</td></tr>
 <tr><td class="k">@island_epicurean_cayman</td><td class="r num">~6K</td></tr>
 <tr><td class="k">@caymaneats</td><td class="r num">~2.9K</td></tr>
 </table>
-<p class="body">Twenty thousand followers who live here is worth more than two million who never will. Chelsea Tennant at Island Epicurean is Caymanian, appears on camera, and has judged competitions and interviewed chefs at Cookout — that's credibility, not just reach.</p>
-<p class="body"><strong>One constraint:</strong> paid creator work here runs into work permit rules. Comped visits with organic posting, or licensing content rather than buying on-island services. Worth a legal check first.</p>
+<p class="body beat">Twenty thousand followers who live here is worth more than two million who never will. Chelsea Tennant at Island Epicurean is Caymanian, appears on camera, and has judged competitions and interviewed chefs at Cookout — that's credibility, not just reach.</p>
+<p class="body beat"><strong>One constraint:</strong> paid creator work here runs into work permit rules. Comped visits with organic posting, or licensing content rather than buying on-island services. Worth a legal check first.</p>
 </div>`},
 
 /* 18 */ {sec:"New ideas", html:`<div class="wrap">
 <span class="eyebrow">New angle · free reach</span>
 <h2>The Department of Tourism is already flying creators in.</h2>
-<div class="figs">
+<div class="figs beatgroup">
 <div class="fig"><div class="n">540</div><div class="l">posts from one in-kind partnership</div></div>
 <div class="fig"><div class="n">296M</div><div class="l">estimated reach</div></div>
 <div class="fig"><div class="n up">$0</div><div class="l">paid in creator fees</div></div>
 </div>
-<p class="body">Reported by the Cayman Compass. The DoT's own reasoning: more than 75% of travellers are influenced by social media when choosing a destination.</p>
-<p class="body">Those creators land here and need to eat. Being on the shortlist costs a relationship and a good familiarisation dinner — the cheapest reach available on this island.</p>
+<p class="body beat">Reported by the Cayman Compass. The DoT's own reasoning: more than 75% of travellers are influenced by social media when choosing a destination.</p>
+<p class="body beat">Those creators land here and need to eat. Being on the shortlist costs a relationship and a good familiarisation dinner — the cheapest reach available on this island.</p>
 </div>`},
 
 /* 19 */ {sec:"New ideas", html:`<div class="wrap">
 <span class="eyebrow">New angle · referrals</span>
 <h2 class="wide">Nobody is talking to the people who talk to your customer first.</h2>
-<div class="cards">
+<div class="cards beatgroup">
 <div class="card"><span class="tag">Biggest gap</span><h3>Airbnb &amp; villa hosts</h3><p>Hundreds of rentals on Seven Mile Beach whose guests arrive with no dinner plan and a kitchen they won't use. A card in the welcome book, a WhatsApp link, a small referral share.</p></div>
 <div class="card"><span class="tag">Hotels</span><h3>Concierge desks</h3><p>Ritz-Carlton, Seafire, Westin, Marriott, Palm Heights. Familiarisation dinners cost a night of covers and pay back for years.</p></div>
 <div class="card"><span class="tag">High ticket</span><h3>Yachts &amp; villa companies</h3><p>Charter operators and villa agencies booking catering on behalf of guests. Direct fit for Prime Kitchen.</p></div>
 </div>
-<p class="body">This is where the flat Prime Kitchen number gets solved. It costs almost nothing to start.</p>
+<p class="body beat">This is where the flat Prime Kitchen number gets solved. It costs almost nothing to start.</p>
 </div>`},
 
 /* 20 */ {sec:"What we'd do", html:`<div class="wrap">
 <span class="eyebrow">Priorities</span>
 <h2>Five things, in order of return</h2>
-<ul class="pts">
+<ul class="pts beatgroup">
 <li><span><b>Follow the return data.</b> Weight toward the plaza and Lucky, where it's proven. Rebuild Prime Kitchen's channel before adding budget to it.</span></li>
 <li><span><b>Own discovery.</b> Google profile depth, review volume and recency. Cheapest work on the list.</span></li>
 <li><span><b>Fill the rooms.</b> Three shoots a year per venue, plus two capture visits a month — someone there on a busy night.</span></li>
@@ -406,19 +474,19 @@ const S = [
 /* 21 */ {sec:"What we'd do", html:`<div class="wrap">
 <span class="eyebrow">Measurement</span>
 <h2>What should be visible every month</h2>
-<p class="body">No agency can honestly attribute every cover to a post. What can be reported is three tiers:</p>
-<ul class="pts">
+<p class="body beat">No agency can honestly attribute every cover to a post. What can be reported is three tiers:</p>
+<ul class="pts beatgroup">
 <li><span><b>Provable</b> — bookings carrying a source tag, click ID or promo code</span></li>
 <li><span><b>Directional</b> — Google profile actions: calls, direction requests, website taps</span></li>
 <li><span><b>The plain number</b> — covers against the same period last year</span></li>
 </ul>
-<p class="body">And it should differ by venue: <strong>cost per reservation</strong> for Liu's, Coconut Room and Prime Kitchen — <strong>profile actions and delivery orders</strong> for Lucky, San Si Wu, Smash and Yallah. One screen, eight venues, arriving monthly without anyone asking.</p>
+<p class="body beat">And it should differ by venue: <strong>cost per reservation</strong> for Liu's, Coconut Room and Prime Kitchen — <strong>profile actions and delivery orders</strong> for Lucky, San Si Wu, Smash and Yallah. One screen, eight venues, arriving monthly without anyone asking.</p>
 </div>`},
 
 /* 22 */ {sec:"What we'd do", html:`<div class="wrap">
 <span class="eyebrow">Worth exploring</span>
 <h2>Ideas, not recommendations</h2>
-<div class="cards">
+<div class="cards beatgroup">
 <div class="card"><h3>A Prime fixed-price month</h3><p>Your own version across all eight venues, not just joining someone else's. Eight concepts is the reason you can.</p></div>
 <div class="card"><h3>Dinner as an event</h3><p>The Bagatelle model — DJ arrives, the room turns. Upscale at Liu's, looser at Coconut Room. Needs licensing and a noise check first.</p></div>
 <div class="card"><h3>Prime Passport</h3><p>One loyalty account across eight venues. The gift cards already prove the mechanism works.</p></div>
@@ -431,10 +499,10 @@ const S = [
 /* 23 */ {sec:"Close", html:`<div class="wrap">
 <span class="eyebrow">In summary</span>
 <h2 class="wide">The group is in better shape than the marketing shows.</h2>
-<p class="body">Nearly 1,200 reviews, a 4.87 average, eight working concepts and a founder most groups would envy.</p>
-<p class="body">Two parts of the business return <strong>$5.84</strong> and <strong>$11.11</strong> on every extra marketing dollar. One returns nothing — and the likeliest reason is a Google profile with no reviews, no enquiry button, and hours that say it closes before dinner.</p>
-<p class="body">Most of what's in here costs very little. The Google fixes are an afternoon. The review collection is a habit at the table. The referral network is a series of conversations.</p>
-<p class="body" style="color:var(--muted)">Happy to talk through any of it — or to leave it with you as it is.</p>
+<p class="body beat">Nearly 1,200 reviews, a 4.87 average, eight working concepts and a founder most groups would envy.</p>
+<p class="body beat">Two parts of the business return <strong>$5.84</strong> and <strong>$11.11</strong> on every extra marketing dollar. One returns nothing — and the likeliest reason is a Google profile with no reviews, no enquiry button, and hours that say it closes before dinner.</p>
+<p class="body beat">Most of what's in here costs very little. The Google fixes are an afternoon. The review collection is a habit at the table. The referral network is a series of conversations.</p>
+<p class="body beat" style="color:var(--muted)">Happy to talk through any of it — or to leave it with you as it is.</p>
 </div>`}
 
 ];
@@ -451,26 +519,113 @@ const slides=[...document.querySelectorAll('.slide')];
 const bar=document.getElementById('bar'),sect=document.getElementById('sect'),
       count=document.getElementById('count'),prev=document.getElementById('prev'),
       next=document.getElementById('next'),hint=document.getElementById('hint');
-let i=0;
 
-function go(n){
-  n=Math.max(0,Math.min(S.length-1,n));
-  slides[i].classList.remove('on');slides[i].setAttribute('aria-hidden','true');
-  i=n;
-  slides[i].classList.add('on');slides[i].setAttribute('aria-hidden','false');
-  slides[i].scrollTop=0;
-  bar.style.width=((i+1)/S.length*100)+'%';
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const beatCache = new Map();
+function beatsOf(idx){
+  if(!beatCache.has(idx)) beatCache.set(idx, [...slides[idx].querySelectorAll('.beat, .beatgroup')]);
+  return beatCache.get(idx);
+}
+
+// counts a bar's number up from 0 to its data-val when revealed forward
+function countUp(el, to, ms){
+  if(reduceMotion){ el.textContent=String(to); return; }
+  const start=performance.now();
+  function tick(now){
+    const t=Math.min(1,(now-start)/ms);
+    const eased=1-Math.pow(1-t,3);
+    el.textContent=String(Math.round(to*eased));
+    if(t<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+function primeBeatValue(el, animate){
+  const val=el.querySelector('.val[data-val]');
+  if(!val) return;
+  const to=parseInt(val.getAttribute('data-val'),10);
+  if(animate) countUp(val, to, 700); else val.textContent=String(to);
+}
+
+let i=0, b=1; // current slide index, beats revealed in it (1-indexed)
+
+function updateChrome(){
+  const total=beatsOf(i).length;
+  const frac=total? b/total : 1;
+  bar.style.width=(((i+frac)/S.length)*100)+'%';
   sect.textContent=S[i].sec||'';
   count.textContent=String(i+1).padStart(2,'0')+' / '+S.length;
-  prev.disabled=i===0;next.disabled=i===S.length-1;
-  if(i>0)hint.classList.add('hide');
+  prev.disabled = i===0 && b<=1;
+  next.disabled = i===S.length-1 && b>=total;
   history.replaceState(null,'','#'+(i+1));
 }
-next.onclick=()=>go(i+1);
-prev.onclick=()=>go(i-1);
+
+// full, instant reveal of every beat in a slide (used entering from
+// a jump/back-navigation, where stepping through one at a time would
+// feel tedious rather than interactive)
+function revealAll(idx){
+  beatsOf(idx).forEach(el=>{ el.classList.add('on'); primeBeatValue(el,false); });
+}
+function hideAll(idx){
+  beatsOf(idx).forEach(el=>{ el.classList.remove('on'); primeBeatValue(el,false); });
+}
+
+function enter(idx, beatCount, cut){
+  const old=slides[i];
+  const show=()=>{
+    i=idx; b=beatCount;
+    const cur=slides[i];
+    if(beatCount>=beatsOf(i).length) revealAll(i); else hideAll(i);
+    if(beatCount>0 && beatCount<beatsOf(i).length){
+      // reveal exactly the first `beatCount` beats (used on forward slide entry, beatCount=1)
+      beatsOf(i).slice(0,beatCount).forEach(el=>{ el.classList.add('on'); primeBeatValue(el,false); });
+    }
+    cur.classList.add('on');
+    cur.setAttribute('aria-hidden','false');
+    cur.scrollTop=0;
+    updateChrome();
+  };
+  if(cut){ old.classList.remove('on'); old.setAttribute('aria-hidden','true'); show(); return; }
+  old.classList.remove('on'); old.setAttribute('aria-hidden','true');
+  setTimeout(show, reduceMotion?0:220);
+}
+
+function go(n){ // used only by init / direct hash jump — full reveal
+  n=Math.max(0,Math.min(S.length-1,n));
+  enter(n, beatsOf(n).length, true);
+}
+
+function nextClick(){
+  hint.classList.add('hide');
+  const beats=beatsOf(i);
+  if(b<beats.length){
+    const el=beats[b];
+    el.classList.add('on');
+    if(el.classList.contains('bar')) primeBeatValue(el, true);
+    el.scrollIntoView({behavior: reduceMotion?'auto':'smooth', block:'nearest'});
+    b++;
+    updateChrome();
+    return;
+  }
+  if(i<S.length-1) enter(i+1, 1, false);
+}
+function prevClick(){
+  hint.classList.add('hide');
+  if(b>1){
+    b--;
+    const el=beatsOf(i)[b];
+    el.classList.remove('on');
+    primeBeatValue(el,false);
+    updateChrome();
+    return;
+  }
+  if(i>0) enter(i-1, beatsOf(i-1).length, false);
+}
+
+next.onclick=nextClick;
+prev.onclick=prevClick;
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(i+1)}
-  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();nextClick()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevClick()}
   if(e.key==='Home')go(0);
   if(e.key==='End')go(S.length-1);
 });
@@ -479,11 +634,14 @@ deck.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].c
 deck.addEventListener('touchend',e=>{
   if(x0===null)return;
   const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
-  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)) go(dx<0?i+1:i-1);
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)) (dx<0?nextClick():prevClick());
   x0=null;
 });
 const start=parseInt((location.hash||'#1').slice(1),10);
-go(isNaN(start)?0:start-1);
+const startIdx=isNaN(start)?0:start-1;
+// land on slide 1 with just its first beat showing (a real opening),
+// but a direct/deep link jumps in fully revealed
+enter(Math.max(0,Math.min(S.length-1,startIdx)), startIdx>0 ? beatsOf(startIdx).length : Math.min(1,beatsOf(0).length), true);
 setTimeout(()=>hint.classList.add('hide'),5000);
 </script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
