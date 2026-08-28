@@ -147,12 +147,6 @@ tr.hi td.num{color:var(--ember)}
 .vlines.beatgroup.on .vrow:nth-child(6){transition-delay:.30s}
 .vlines.beatgroup.on .vrow:nth-child(7){transition-delay:.36s}
 
-/* image-pending placeholder tiles, reuses .cards grid + stagger */
-.card.shot{aspect-ratio:4/5;background:var(--surface2);border:1px dashed var(--line);
-  display:flex;flex-direction:column;justify-content:space-between;padding:16px}
-.card.shot .tag{margin-bottom:0}
-.card.shot .nm{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper)}
-
 /* quote slide */
 .quote{font-family:var(--display);font-size:clamp(30px,5.4vw,66px);line-height:1.08;
   letter-spacing:-.015em;max-width:20ch;margin:0 auto;text-align:center}
@@ -408,7 +402,7 @@ const S = [
 
 /* 8 */ {sec:"What's broken", html:`<div class="wrap">
 <span class="eyebrow">Websites</span>
-<h2>A quicker fix</h2>
+<h2>Some quick fixes</h2>
 <ul class="pts two beatgroup">
 <li><span><b>Prime Kitchen:</b> the "Book a chef now" button turns white-on-white on hover and disappears</span></li>
 <li><span><b>Prime Kitchen:</b> only two plated-food photos across the whole site, boat catering included, and both are lower quality than the rest of the site. Needs more shots and more variety of dishes</span></li>
@@ -684,20 +678,6 @@ const S = [
 <div class="vrow"><span class="strip"></span><div><div class="vname">Prime Kitchen</div><div class="vline">The dinner your guests bring up for the rest of the trip.</div><div class="vctx">Private chef in villas and on yachts. Ten years.</div></div></div>
 </div>
 <p class="body beat">Read together they make the argument for you: seven venues, seven different nights, none interchangeable.</p>
-</div>`},
-
-/* 22c */ {sec:"The venues", html:`<div class="wrap">
-<span class="eyebrow">The venues, in pictures</span>
-<h2 class="wide">What each one actually feels like to be in.</h2>
-<div class="cards beatgroup">
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">Uncle Liu's</span></div>
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">Coconut Room</span></div>
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">San Si Wu</span></div>
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">Lucky Rabbit</span></div>
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">Yallah</span></div>
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">Carnivore Smash</span></div>
-<div class="card shot"><span class="tag">Image pending</span><span class="nm">Prime Kitchen</span></div>
-</div>
 </div>`},
 
 /* 23 */ {sec:"Close", html:`<div class="wrap">
