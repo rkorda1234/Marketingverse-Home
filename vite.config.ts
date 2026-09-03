@@ -20,6 +20,7 @@ export default defineConfig({
         'saaga-phase-2': 'saaga-phase-2.html',
         realtors: 'realtors.html',
         'prime-group': 'prime-group.html',
+        'prime-group-proposal': 'prime-group-proposal.html',
       },
     },
   },
