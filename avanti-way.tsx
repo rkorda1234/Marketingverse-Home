@@ -36,7 +36,7 @@ const DOMINANCE_URL = 'https://billing.the-marketingverse.com/subscribe/012b5909
 const PLANS = [
   {
     name: 'Growth',
-    price: '$340',
+    price: '$390',
     period: '/mo',
     badge: 'Agentpreneur Rate',
     features: [
@@ -315,7 +315,7 @@ const StartUpPackage: React.FC<{ onOrder: () => void }> = ({ onOrder }) => (
             <div className="relative z-10">
               <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4 block">Special Agentpreneur Offer</span>
               <div className="flex items-center justify-center gap-4 mb-6">
-                <span className="text-7xl md:text-8xl font-bold text-white">$340</span>
+                <span className="text-7xl md:text-8xl font-bold text-white">$390</span>
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-2xl text-white/30 line-through font-bold">$400</span>
                   <span className="text-[10px] uppercase tracking-widest font-bold text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded-full">Save $60</span>
