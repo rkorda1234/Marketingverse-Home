@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prime Group × Marketingverse: Before we meet</title>
+<meta name="description" content="A short pre-meeting form for Prime Group ahead of the Marketingverse visit.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Schibsted+Grotesk:wght@400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12100E;--surface:#1A1714;--surface2:#221E1A;
+  --paper:#F0EBE3;--muted:#8C8177;--line:rgba(240,235,227,.12);
+  --ember:#C8763E;--sea:#7BA396;
+  --display:'Instrument Serif',Georgia,serif;
+  --body:'Schibsted Grotesk',system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:120px}
+.wrap{max-width:720px;margin:0 auto;padding:clamp(36px,7vw,80px) clamp(20px,5vw,40px) 0}
+.rule{width:40px;height:2px;background:var(--ember);margin-bottom:28px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(36px,6.5vw,58px);
+  line-height:1.05;letter-spacing:-.015em}
+.lede{color:#CFC7BC;margin-top:18px;max-width:52ch;font-size:clamp(15px,1.8vw,18px)}
+.hint{color:var(--muted);font-size:14px;margin-top:14px;max-width:52ch}
+fieldset{border:none;margin-top:clamp(40px,6vh,60px);padding-top:28px;border-top:1px solid var(--line)}
+legend{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ember);padding:0}
+.q{margin-top:32px}
+.q > label,.qlabel{display:block;font-size:16.5px;font-weight:500;line-height:1.45;margin-bottom:6px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:12px;line-height:1.5}
+input[type=text],input[type=email],textarea,select{
+  width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  color:var(--paper);font-family:var(--body);font-size:16px;padding:13px 15px;
+  transition:border-color .2s,background .2s}
+textarea{min-height:88px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--ember);background:var(--surface2)}
+input::placeholder,textarea::placeholder{color:#5F574F}
+select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C8177' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid{display:grid;gap:8px;margin-top:6px}
+.grow{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;align-items:center}
+.grow .vname{font-size:14.5px;color:#CFC7BC;padding-right:6px}
+.ghead{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px}
+.grow input{padding:10px 12px;font-size:15px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt span{display:inline-block;padding:9px 16px;background:var(--surface);
+  border:1px solid var(--line);border-radius:99px;font-size:14.5px;color:#CFC7BC;
+  cursor:pointer;transition:all .2s;user-select:none}
+.opt input:checked + span{background:var(--ember);border-color:var(--ember);color:#12100E;font-weight:500}
+.opt input:focus-visible + span{outline:2px solid var(--paper);outline-offset:2px}
+.scale{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;margin-top:4px}
+.scale .opt span{display:block;text-align:center;border-radius:10px;padding:14px 10px;font-size:14px;line-height:1.35}
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--ember);width:0;
+  transition:width .4s cubic-bezier(.32,.72,0,1);z-index:50}
+#footer{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,var(--ink) 55%,transparent);
+  padding:20px clamp(20px,5vw,40px) 24px;z-index:40}
+.fin{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#status{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+button{background:var(--ember);color:#12100E;border:none;border-radius:99px;
+  padding:14px 32px;font-family:var(--body);font-size:15px;font-weight:600;cursor:pointer;
+  transition:transform .2s,opacity .2s}
+button:hover{opacity:.9}
+button:active{transform:scale(.97)}
+button:disabled{opacity:.45;cursor:default}
+#done{display:none;text-align:center;padding:clamp(60px,14vh,120px) 0}
+#done h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,5vw,48px);line-height:1.1}
+#done p{color:#CFC7BC;margin-top:16px}
+@media(max-width:560px){.pair,.grow,.ghead{grid-template-columns:1fr}
+  .ghead{display:none}
+  .grow{gap:6px;padding:12px;background:var(--surface);border-radius:10px}
+  .grow input{background:var(--surface2)}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div class="wrap">
+
+<div id="formwrap">
+  <div class="rule"></div>
+  <h1>Before we meet</h1>
+  <p class="lede">A few things worth knowing ahead of the visit. Most are a number or a sentence.</p>
+  <p class="hint">Nothing here needs preparation. Ballparks are fine, and anything easier to talk through in person can be left blank. Your answers save automatically as you go, so you can close this and come back.</p>
+
+  <form id="f">
+
+  <fieldset>
+    <legend>Numbers</legend>
+
+    <div class="q">
+      <span class="qlabel">1 · Covers and average check, per venue</span>
+      <p class="sub">A normal week. Ballparks are completely fine, leave blank anything you'd rather discuss.</p>
+      <div class="ghead"><span>Venue</span><span>Covers / week</span><span>Avg check</span></div>
+      <div class="grid" id="venuegrid"></div>
+    </div>
+
+    <div class="q">
+      <label for="q2">2 · Roughly what split of guests are residents vs visitors?</label>
+      <p class="sub">And does it change much between venues?</p>
+      <textarea id="q2" name="2_resident_visitor_split" placeholder="e.g. mostly residents at Lucky, mostly visitors at Liu's…"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q3">3 · How big is the swing between your best and worst month?</label>
+      <input type="text" id="q3" name="3_seasonal_swing" placeholder="e.g. March is roughly double September">
+    </div>
+
+    <div class="q">
+      <span class="qlabel">4 · Food cost and delivery commission</span>
+      <div class="pair">
+        <input type="text" name="4a_food_cost" placeholder="Food cost % (group avg)">
+        <input type="text" name="4b_bento_commission" placeholder="What Bento takes per order">
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="qlabel">5 · Prime Kitchen</span>
+      <div class="pair">
+        <input type="text" name="5a_pk_bookings" placeholder="Bookings in a typical month">
+        <input type="text" name="5b_pk_value" placeholder="Average booking value">
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>How things run</legend>
+
+    <div class="q">
+      <label for="q6">6 · Which booking systems, at which venues?</label>
+      <textarea id="q6" name="6_booking_systems" placeholder="e.g. OpenTable at Uncle Liu's, RevelUp at…"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="qlabel">7 · Do you have a customer list anywhere?</span>
+      <p class="sub">Emails, phone numbers, WhatsApp contacts.</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="7_customer_list" value="Yes, organised"><span>Yes, organised</span></label>
+        <label class="opt"><input type="radio" name="7_customer_list" value="Bits and pieces"><span>Bits and pieces</span></label>
+        <label class="opt"><input type="radio" name="7_customer_list" value="No"><span>No</span></label>
+        <label class="opt"><input type="radio" name="7_customer_list" value="Not sure"><span>Not sure</span></label>
+      </div>
+      <input type="text" name="7b_customer_list_detail" placeholder="Where does it live? (optional)" style="margin-top:10px">
+    </div>
+
+    <div class="q">
+      <span class="qlabel">8 · Is anyone asking guests for reviews right now?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="8_reviews_asking" value="Yes, systematically"><span>Yes, systematically</span></label>
+        <label class="opt"><input type="radio" name="8_reviews_asking" value="Sometimes"><span>Sometimes</span></label>
+        <label class="opt"><input type="radio" name="8_reviews_asking" value="Not really"><span>Not really</span></label>
+      </div>
+      <input type="text" name="8b_reviews_how" placeholder="If so, how? (optional)" style="margin-top:10px">
+    </div>
+
+    <div class="q">
+      <span class="qlabel">9 · Who touches marketing day to day, and who signs off?</span>
+      <div class="pair">
+        <input type="text" name="9a_marketing_daily" placeholder="Day to day">
+        <input type="text" name="9b_marketing_signoff" placeholder="Signs off on decisions">
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>What's already been tried</legend>
+
+    <div class="q">
+      <label for="q10">10 · What's the best thing you've done in the last two years that we'd never guess from the outside?</label>
+      <textarea id="q10" name="10_best_hidden_thing"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q11">11 · What's been tried that didn't work?</label>
+      <p class="sub">Saves us proposing it again.</p>
+      <textarea id="q11" name="11_didnt_work"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q12">12 · Any partnerships already running, or press coverage?</label>
+      <p class="sub">Hotels, concierges, villa companies, tour operators, local or international press.</p>
+      <textarea id="q12" name="12_partnerships_press"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q13">13 · Have you hosted an event, a takeover, a guest chef, a party night?</label>
+      <p class="sub">And how did it go?</p>
+      <textarea id="q13" name="13_events_history"></textarea>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Where you want to take this</legend>
+
+    <div class="q">
+      <label for="q14">14 · If Prime Group were well known in three years, what would people know it for?</label>
+      <textarea id="q14" name="14_known_for"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="qlabel">15 · Is the group meant to be visible to customers, or stay behind the venues?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="15_group_visibility" value="Visible - a brand in its own right"><span>Visible: a brand in its own right</span></label>
+        <label class="opt"><input type="radio" name="15_group_visibility" value="Behind the venues"><span>Behind the venues</span></label>
+        <label class="opt"><input type="radio" name="15_group_visibility" value="Haven't decided"><span>Haven't decided</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="qlabel">16 · How far would you go in changing what a night out at one of your venues feels like?</span>
+      <p class="sub">We're thinking of places like Bagatelle, Baoli or Marion in Miami, where dinner turns into something else as the night goes on.</p>
+      <div class="scale">
+        <label class="opt"><input type="radio" name="16_experience_appetite" value="Not for us"><span>Not for us</span></label>
+        <label class="opt"><input type="radio" name="16_experience_appetite" value="Maybe at one venue"><span>Maybe at one venue</span></label>
+        <label class="opt"><input type="radio" name="16_experience_appetite" value="Very interested"><span>Very interested</span></label>
+        <label class="opt"><input type="radio" name="16_experience_appetite" value="Already exploring it"><span>Already exploring it</span></label>
+      </div>
+      <textarea name="16b_experience_detail" placeholder="Any thoughts on which venue, or why not (optional)" style="margin-top:12px"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="qlabel">17 · Which venue do you most want to grow, and which one worries you?</span>
+      <div class="pair">
+        <input type="text" name="17a_grow" placeholder="Most want to grow">
+        <input type="text" name="17b_worries" placeholder="Worries you">
+      </div>
+      <input type="text" name="17c_pipeline" placeholder="Any new concepts or locations coming? (optional)" style="margin-top:10px">
+    </div>
+
+    <div class="q">
+      <label for="q18">18 · What would make this a great year for the group?</label>
+      <p class="sub">One sentence.</p>
+      <input type="text" id="q18" name="18_great_year">
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Anything in the way</legend>
+
+    <div class="q">
+      <label for="q19">19 · Licensing or landlord limits we should know about?</label>
+      <p class="sub">Entertainment, music, late hours, liquor promotions, noise at Caribbean Plaza or Camana Bay.</p>
+      <textarea id="q19" name="19_licensing_limits"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q20">20 · Do any venues have private dining space, or room to host a group event?</label>
+      <textarea id="q20" name="20_private_space"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q21">21 · Anything off the table for reasons we wouldn't know about?</label>
+      <textarea id="q21" name="21_off_the_table"></textarea>
+    </div>
+
+    <div class="q">
+      <label for="q22">Anything else worth knowing before the visit?</label>
+      <textarea id="q22" name="22_anything_else"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="qlabel">Who filled this in?</span>
+      <div class="pair">
+        <input type="text" name="00_name" placeholder="Name">
+        <input type="email" name="00_email" placeholder="Email">
+      </div>
+    </div>
+  </fieldset>
+  </form>
+</div>
+
+<div id="done">
+  <h2>Thank you.</h2>
+  <p>This is exactly what we needed. See you in Cayman.</p>
+</div>
+
+</div>
+
+<div id="footer">
+  <div class="fin">
+    <span id="status">Saved automatically</span>
+    <button type="button" id="send">Send answers</button>
+  </div>
+</div>
+
+<script>
+/* ---- CONFIG: paste your Formspree endpoint here ---- */
+const ENDPOINT = "https://formspree.io/f/xwlkgrzq";
+/* --------------------------------------------------- */
+
+const VENUES = ["Uncle Liu's","Coconut Room","San Si Wu","Lucky Rabbit","Yallah","Carnivore Smash","Prime Kitchen"];
+const grid = document.getElementById('venuegrid');
+VENUES.forEach((v,i)=>{
+  const row=document.createElement('div');
+  row.className='grow';
+  const slug=v.toLowerCase().replace(/[^a-z]/g,'');
+  row.innerHTML=`<span class="vname">${v}</span>
+    <input type="text" name="1_${slug}_covers" placeholder="Covers/wk" aria-label="${v} covers per week">
+    <input type="text" name="1_${slug}_check" placeholder="Avg check" aria-label="${v} average check">`;
+  grid.appendChild(row);
+});
+
+const form=document.getElementById('f');
+const KEY='pg_premeeting_v1';
+const status=document.getElementById('status');
+const bar=document.getElementById('bar');
+
+/* restore */
+try{
+  const saved=JSON.parse(localStorage.getItem(KEY)||'{}');
+  Object.entries(saved).forEach(([k,v])=>{
+    const els=form.querySelectorAll(`[name="${CSS.escape(k)}"]`);
+    els.forEach(el=>{
+      if(el.type==='radio'){ if(el.value===v) el.checked=true; }
+      else el.value=v;
+    });
+  });
+}catch(e){}
+
+function collect(){
+  const d={};
+  new FormData(form).forEach((v,k)=>{ if(String(v).trim()) d[k]=v; });
+  return d;
+}
+function progress(){
+  const total=form.querySelectorAll('input[type=text],input[type=email],textarea').length
+            + new Set([...form.querySelectorAll('input[type=radio]')].map(r=>r.name)).size;
+  const done=Object.keys(collect()).length;
+  bar.style.width=Math.min(100,done/total*100)+'%';
+}
+let t;
+form.addEventListener('input',()=>{
+  clearTimeout(t);
+  status.textContent='Saving…';
+  t=setTimeout(()=>{
+    localStorage.setItem(KEY,JSON.stringify(collect()));
+    status.textContent='Saved automatically';
+    progress();
+  },400);
+});
+form.addEventListener('change',()=>{
+  localStorage.setItem(KEY,JSON.stringify(collect()));
+  progress();
+});
+progress();
+
+document.getElementById('send').addEventListener('click',async()=>{
+  const btn=document.getElementById('send');
+  const data=collect();
+  if(Object.keys(data).length<3){
+    status.textContent='Add a few answers first';
+    setTimeout(()=>status.textContent='Saved automatically',2500);
+    return;
+  }
+  btn.disabled=true; btn.textContent='Sending…';
+  try{
+    const res=await fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'Prime Group: pre-meeting answers',...data})
+    });
+    if(!res.ok) throw new Error('bad response');
+    localStorage.removeItem(KEY);
+    document.getElementById('formwrap').style.display='none';
+    document.getElementById('done').style.display='block';
+    document.getElementById('footer').style.display='none';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){
+    btn.disabled=false; btn.textContent='Send answers';
+    status.textContent='Didn’t send. Answers are still saved';
+  }
+});
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
