@@ -11,6 +11,7 @@
     { "source": "/prime-group", "destination": "/prime-group.html" },
     { "source": "/prime-group-proposal", "destination": "/prime-group-proposal.html" },
     { "source": "/prime-group/prepform", "destination": "/prime-group-prepform.html" },
+    { "source": "/prime-group-story", "destination": "/prime-group-story.html" },
     { "source": "/((?!thank-you|avanti-way|saaga-phase-2|saaga|realtors|prime-group-proposal|prime-group).*)", "destination": "/index.html" }
   ]
 }

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prime Group: A New Story</title>
+<meta name="description" content="Marketingverse's proposal for Prime Group, written from the ground after four days on the island.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12100E;
+  --surface:#1A1714;
+  --surface2:#221E1A;
+  --paper:#F0EBE3;
+  --muted:#8C8177;
+  --line:rgba(240,235,227,.10);
+  --ember:#C8763E;
+  --sea:#7BA396;
+  --display:'Instrument Serif',Georgia,serif;
+  --body:'Schibsted Grotesk',system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#pbar{position:fixed;top:0;left:0;height:2px;background:var(--ember);z-index:70;width:0%;transition:width .1s linear}
+
+.wrap{width:100%;max-width:1080px;margin:0 auto}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:clamp(18px,3vh,32px);display:block;
+}
+.label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:clamp(18px,3vh,32px);display:block;
+}
+h1{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.015em;
+  font-size:clamp(38px,7.4vw,86px)}
+h2{font-family:var(--display);font-weight:400;line-height:1.06;letter-spacing:-.01em;
+  font-size:clamp(28px,4.4vw,48px);max-width:22ch}
+h2.wide{max-width:30ch}
+.sub{color:var(--muted);font-size:clamp(15px,1.7vw,20px);margin-top:18px;max-width:56ch;line-height:1.5}
+p.body{margin-top:26px;max-width:65ch;font-size:clamp(16px,1.6vw,18px);color:#CFC7BC}
+p.body strong{color:var(--paper);font-weight:500}
+p.body + p.body{margin-top:16px}
+p.note{margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;
+  color:var(--muted);max-width:60ch;line-height:1.6}
+.lead-italic{font-family:var(--body);font-style:italic;color:var(--muted);
+  font-size:clamp(15px,1.5vw,18px);max-width:62ch;margin-top:18px;line-height:1.6}
+
+.figs{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px);margin-top:clamp(30px,5vh,54px)}
+.fig .n{font-family:var(--display);font-size:clamp(38px,6.4vw,72px);line-height:.92;letter-spacing:-.02em}
+.fig .n.up{color:var(--sea)}
+.fig .n.down{color:var(--ember)}
+.fig .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:14px;max-width:22ch;line-height:1.5}
+
+ul.pts{list-style:none;margin-top:clamp(26px,4vh,44px);display:grid;gap:2px}
+ul.pts li{
+  padding:16px 20px;background:var(--surface);border-radius:14px;
+  display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start;
+  font-size:clamp(14px,1.45vw,17px);color:#CFC7BC;
+}
+ul.pts li b{color:var(--paper);font-weight:500}
+ul.pts li::before{content:"—";color:var(--ember);font-family:var(--mono);font-size:13px;line-height:1.7}
+ul.pts.nested{margin-top:16px}
+ul.pts.nested li{padding:13px 18px;font-size:clamp(13px,1.35vw,15px)}
+
+table{width:100%;border-collapse:collapse;margin-top:clamp(26px,4vh,42px);font-size:clamp(13px,1.4vw,16px)}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);text-align:left;font-weight:400;padding:0 0 14px;border-bottom:1px solid var(--line)}
+th.r,td.r{text-align:right}
+td{padding:15px 0;border-bottom:1px solid var(--line);color:#CFC7BC}
+td.k{color:var(--paper);font-weight:500}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr.hi td{color:var(--paper)}
+tr.hi td.num{color:var(--ember)}
+table + table{margin-top:clamp(40px,6vh,64px)}
+
+.callout{margin-top:clamp(30px,5vh,50px);padding:clamp(24px,3.4vw,38px);
+  background:var(--surface);border-radius:20px;border-left:2px solid var(--ember)}
+.callout .big{font-family:var(--display);font-size:clamp(26px,4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.callout p{margin-top:14px;color:#CFC7BC;max-width:58ch;font-size:clamp(14px,1.45vw,17px)}
+.callout table{margin-top:clamp(20px,3vh,32px)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;
+  margin-top:clamp(26px,4vh,44px)}
+.card{background:var(--surface);border-radius:16px;padding:22px}
+.card h3{font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);display:block;margin-bottom:12px}
+.card .tag.pos{color:var(--sea)}
+.cards.emph .card{border-left:2px solid var(--ember)}
+.cards.emph .card h3{font-family:var(--display);font-weight:400;font-size:clamp(19px,2.2vw,23px);letter-spacing:-.01em;margin-top:2px}
+
+.card.option{display:flex;flex-direction:column;padding:clamp(26px,3.4vw,38px)}
+.card.option h3{font-family:var(--display);font-weight:400;font-size:clamp(25px,3.2vw,34px);letter-spacing:-.01em;margin-top:4px}
+.card.option .dur{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.card.option .price{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ember);margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.card.option p.opt-desc{margin-top:16px;font-size:14px;color:#CFC7BC;line-height:1.65}
+.card.option p.fit{margin-top:18px;font-style:italic;color:var(--muted);font-size:13px;line-height:1.5}
+
+.finding{margin-top:clamp(38px,5.5vh,58px);max-width:66ch}
+.finding h3{font-family:var(--display);font-weight:400;font-size:clamp(21px,2.8vw,29px);
+  letter-spacing:-.01em;line-height:1.18;max-width:24ch}
+.finding p{margin-top:14px;max-width:64ch;font-size:clamp(15px,1.55vw,18px);color:#CFC7BC;line-height:1.62}
+.finding p+p{margin-top:12px}
+.finding p strong{color:var(--paper);font-weight:500}
+.finding p.punch{font-family:var(--display);font-style:italic;font-size:clamp(19px,2.4vw,25px);
+  color:var(--paper);margin-top:18px;max-width:18ch}
+
+.venue{padding:clamp(30px,4.5vh,50px) 0;border-top:1px solid var(--line)}
+.venue:first-of-type{border-top:none;padding-top:0}
+.venue h3{font-family:var(--display);font-weight:400;font-size:clamp(27px,3.6vw,40px);letter-spacing:-.01em}
+.venue .persona{font-family:var(--body);font-style:italic;font-size:clamp(13px,1.3vw,15px);
+  color:var(--muted);margin-top:8px;max-width:52ch;line-height:1.5}
+.venue .block{margin-top:20px;max-width:64ch}
+.venue .block .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);display:block;margin-bottom:8px}
+.venue .block p{font-size:clamp(14px,1.5vw,17px);color:#CFC7BC;line-height:1.62}
+.venue .block p+p{margin-top:10px}
+
+.logomark{display:block;margin-bottom:26px}
+.logomark-ring{fill:none;stroke:var(--paper);stroke-width:2.4;opacity:.85}
+.logomark-word{font-family:var(--display);font-style:italic;font-size:23px;fill:var(--paper)}
+.logomark-sub{font-family:var(--mono);font-size:7px;letter-spacing:3px;fill:var(--paper);opacity:.8}
+.rule{width:44px;height:2px;background:var(--ember);margin-bottom:34px}
+
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(28px,6vw,110px)}
+.hero .meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-top:clamp(30px,6vh,60px)}
+.hero .sub{max-width:52ch}
+
+.doc-section{padding:clamp(64px,11vh,130px) clamp(28px,6vw,110px);border-top:1px solid var(--line)}
+.doc-section.chapter{padding-top:clamp(78px,13vh,150px)}
+
+.reveal{opacity:0;transform:translateY(20px);filter:blur(3px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease)}
+.reveal.on{opacity:1;transform:none;filter:blur(0)}
+
+ul.pts.rgroup li{opacity:0;transform:translateY(14px);filter:blur(2px);
+  transition:opacity .55s var(--ease),transform .55s var(--ease),filter .55s var(--ease)}
+ul.pts.rgroup.on li{opacity:1;transform:none;filter:blur(0)}
+ul.pts.rgroup.on li:nth-child(1){transition-delay:0s}
+ul.pts.rgroup.on li:nth-child(2){transition-delay:.06s}
+ul.pts.rgroup.on li:nth-child(3){transition-delay:.12s}
+ul.pts.rgroup.on li:nth-child(4){transition-delay:.18s}
+ul.pts.rgroup.on li:nth-child(5){transition-delay:.24s}
+ul.pts.rgroup.on li:nth-child(6){transition-delay:.30s}
+ul.pts.rgroup.on li:nth-child(7){transition-delay:.36s}
+ul.pts.rgroup.on li:nth-child(8){transition-delay:.42s}
+
+table.rgroup tr:not(:first-child){opacity:0;transform:translateX(-10px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+table.rgroup.on tr:not(:first-child){opacity:1;transform:none}
+table.rgroup.on tr:nth-child(2){transition-delay:.04s}
+table.rgroup.on tr:nth-child(3){transition-delay:.10s}
+table.rgroup.on tr:nth-child(4){transition-delay:.16s}
+table.rgroup.on tr:nth-child(5){transition-delay:.22s}
+table.rgroup.on tr:nth-child(6){transition-delay:.28s}
+table.rgroup.on tr:nth-child(7){transition-delay:.34s}
+
+.figs.rgroup .fig{opacity:0;transform:translateY(18px) scale(.94);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.figs.rgroup.on .fig{opacity:1;transform:none}
+.figs.rgroup.on .fig:nth-child(1){transition-delay:0s}
+.figs.rgroup.on .fig:nth-child(2){transition-delay:.14s}
+.figs.rgroup.on .fig:nth-child(3){transition-delay:.28s}
+@keyframes figGlow{0%{text-shadow:0 0 0 rgba(240,235,227,0)}40%{text-shadow:0 0 22px rgba(240,235,227,.45)}100%{text-shadow:0 0 0 rgba(240,235,227,0)}}
+.figs.rgroup.on .fig:nth-child(1) .n{animation:figGlow 1.1s var(--ease)}
+.figs.rgroup.on .fig:nth-child(2) .n{animation:figGlow 1.1s var(--ease) .14s}
+.figs.rgroup.on .fig:nth-child(3) .n{animation:figGlow 1.1s var(--ease) .28s}
+
+.cards.rgroup .card{opacity:0;transform:translateY(16px) scale(.97);
+  transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.cards.rgroup.on .card{opacity:1;transform:none}
+.cards.rgroup.on .card:nth-child(1){transition-delay:0s}
+.cards.rgroup.on .card:nth-child(2){transition-delay:.07s}
+.cards.rgroup.on .card:nth-child(3){transition-delay:.14s}
+.cards.rgroup.on .card:nth-child(4){transition-delay:.21s}
+.cards.rgroup.on .card:nth-child(5){transition-delay:.28s}
+.cards.rgroup.on .card:nth-child(6){transition-delay:.35s}
+.cards.rgroup.on .card:nth-child(7){transition-delay:.42s}
+.cards.rgroup.on .card:nth-child(8){transition-delay:.49s}
+
+.venues.rgroup .venue{opacity:0;transform:translateY(16px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.venues.rgroup.on .venue{opacity:1;transform:none}
+.venues.rgroup.on .venue:nth-child(1){transition-delay:0s}
+.venues.rgroup.on .venue:nth-child(2){transition-delay:.05s}
+.venues.rgroup.on .venue:nth-child(3){transition-delay:.10s}
+.venues.rgroup.on .venue:nth-child(4){transition-delay:.15s}
+.venues.rgroup.on .venue:nth-child(5){transition-delay:.20s}
+.venues.rgroup.on .venue:nth-child(6){transition-delay:.25s}
+.venues.rgroup.on .venue:nth-child(7){transition-delay:.30s}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal,ul.pts.rgroup li,table.rgroup tr,.figs.rgroup .fig,.cards.rgroup .card,.venues.rgroup .venue{
+    transition:none!important;animation:none!important;filter:none!important;
+    opacity:1!important;transform:none!important;
+  }
+}
+
+.footer-line{
+  padding:clamp(40px,7vh,70px) clamp(28px,6vw,110px) clamp(60px,10vh,100px);
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div id="pbar"></div>
+
+<main class="wrap-outer">
+
+<section class="hero" id="s1">
+  <div class="wrap">
+    <svg class="logomark" width="86" height="86" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><filter id="roughRing" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+      </filter></defs>
+      <circle cx="50" cy="50" r="42" class="logomark-ring" filter="url(#roughRing)"/>
+      <text x="50" y="53" text-anchor="middle" class="logomark-word">prime</text>
+      <text x="50" y="67" text-anchor="middle" class="logomark-sub">GROUP</text>
+    </svg>
+    <div class="rule"></div>
+    <h1>A New Story for Prime Group</h1>
+    <p class="sub">Your rooms are already better than the story you are telling about them. And with a few small additions, people will remember them for years.</p>
+    <div class="meta">Prepared for Prime Group by Marketingverse. September 2026.</div>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s2">
+  <div class="wrap">
+    <span class="label">Section 02 · What we found</span>
+    <h2 class="wide reveal">Everything you need already exists. Nobody is using it.</h2>
+    <p class="body reveal">Four days on the island. I walked through every venue, ate at Lucky Rabbit, Yallah and Uncle Liu's, and spent time in the rooms your competitors are filling.</p>
+    <p class="body reveal">We talked through the brand, the audience, what you have already tried, and what has been frustrating you. Alongside that, I went through every website, every Google profile, and the numbers you shared.</p>
+    <p class="body reveal">I also drank more in four days than I usually manage in a month, which I now understand is simply how business gets done on that island.</p>
+    <p class="body reveal">Here is what stood out.</p>
+
+    <div class="finding reveal">
+      <h3>You are not starting from zero</h3>
+      <div class="figs">
+        <div class="fig"><div class="n up">1,196</div><div class="l">Google reviews across the group</div></div>
+        <div class="fig"><div class="n up">4.87</div><div class="l">weighted average rating</div></div>
+      </div>
+      <p>Four venues sitting at 4.9. In a market of 91,362 people that is real depth.</p>
+      <p class="punch">Nobody is using it.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Your business is local first</h3>
+      <p>Lucky Rabbit is 80 percent local. San Si Wu and Yallah are 95 percent. Smash is 70 percent. Uncle Liu's and Coconut Room split evenly.</p>
+      <p>Only Prime Kitchen is a visitor business, at 90 percent.</p>
+      <p>That changes where the money should go. Six of seven venues live on a resident population of 91,362, which means the job is frequency and loyalty before it is discovery.</p>
+      <p>It also explains why August only drops 50 percent when visitor arrivals fall much further. The local base is carrying you through the low season, and nothing in the marketing speaks to them directly.</p>
+      <p><strong>This is not an argument against tourists.</strong> It is an argument about the order things happen in.</p>
+      <p>The visitors worth having are the ones with money and a few nights to fill, and they do not want the place built for tourists. They want the place locals actually go. So the way to reach them is to make the rooms conspicuously full of locals, then make sure the people they ask, their villa host, their concierge, their driver, know your name.</p>
+      <p class="punch">Fill the room with locals and the right visitors follow. Chase visitors first and you usually get neither.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Your own numbers already show what works</h3>
+      <p>January to July, 2025 against 2026:</p>
+      <div class="figs">
+        <div class="fig"><div class="n up">$11.11</div><div class="l">returned per marketing dollar, the plaza</div></div>
+        <div class="fig"><div class="n up">$5.84</div><div class="l">returned per marketing dollar, Lucky Rabbit</div></div>
+      </div>
+      <p>Prime Kitchen tripled its spend and sales stayed flat.</p>
+      <p>At a 26.7 percent food cost, break even sits at roughly $1.90 for every dollar spent. So two parts of the business are running well above break even, and one is returning nothing.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Prime Kitchen has zero Google reviews</h3>
+      <p>Ten years in business. Uncle Liu's has 373 reviews. Lucky Rabbit has 341. This one has none.</p>
+      <p>The profile is also listed at Caribbean Plaza rather than as a service area business, the hours close at 5pm, and there is no way to request a quote.</p>
+      <p>A visitor deciding whether to hand a stranger the keys to their villa finds no proof of anything.</p>
+      <p><strong>And the pricing moves.</strong> The same service has been charged at $800 and at $3,000. Without a structure, the service is hard to sell, hard to refer, and impossible to market. A partner cannot recommend something when they do not know what it costs.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>The appetite is already proven</h3>
+      <p>The Jamaica burger. Chinese New Year at Liu's. Karaoke at Lucky. The Soca and Anime night. Leaning into the Filipino community at Coconut Room.</p>
+      <p>Every one of them worked. What they have in common is that something was actually happening, rather than something being announced.</p>
+      <p>Most were tied to a holiday or a date on the calendar, which makes them repeatable but not ownable. Anyone can run a Chinese New Year menu. The next step is experiences that belong to you, that nobody else on the island can copy, and that people plan their week around rather than notice once a year.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>The industry is moving the same way</h3>
+      <div class="figs">
+        <div class="fig"><div class="n up">46%</div><div class="l">rise in experiential dining bookings, year over year</div></div>
+        <div class="fig"><div class="n up">54%</div><div class="l">of diners will pay more for something they cannot get elsewhere</div></div>
+      </div>
+      <p>Restaurants overall are running 36 percent more experiences than the year before.</p>
+      <p class="punch">The market is walking toward exactly where you want to go.</p>
+      <p class="note">Source: OpenTable, 2026 trends report.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Two constraints that shape everything</h3>
+      <p>Your visitors have money and are cautious about food. They are not going to gamble a whole dinner on a cuisine they do not know.</p>
+      <p>So every table needs two things on it. <strong>The safe order</strong>, which is what gets them through the door and what they will happily pay for. And <strong>the story order</strong>, which is small, shareable, and the thing they talk about afterward.</p>
+      <p>The trick is making the second one low risk. A small plate to share, or a bite that arrives without being asked for, means nobody is betting their meal on it. They still get to say they tried something, and that is the part they repeat when someone asks where to eat.</p>
+      <p>And the liquor law runs to 2am Monday through Friday, but only to midnight on Saturday and Sunday. That makes Thursday the only night of the week you can run late, and almost nothing on the island is built around it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s3">
+  <div class="wrap">
+    <span class="label">Section 03 · Where the money goes</span>
+    <h2 class="wide reveal">You are not overspending. You are misallocating.</h2>
+    <p class="body reveal">At 3.1 percent of revenue you sit at the low end of healthy for a restaurant group. The issue is the shape, not the size.</p>
+
+    <div class="callout reveal">
+      <p class="body" style="margin-top:0"><strong>Today, $215,796 a year:</strong></p>
+      <table class="rgroup">
+        <colgroup><col style="width:50%"><col style="width:28%"><col style="width:22%"></colgroup>
+        <tr><th>Line</th><th class="r">Annual</th><th class="r">Share</th></tr>
+        <tr><td class="k">Agency fee</td><td class="r num">$135,600</td><td class="r num">63%</td></tr>
+        <tr><td class="k">Social spend</td><td class="r num">$38,376</td><td class="r num">18%</td></tr>
+        <tr><td class="k">Guerrilla</td><td class="r num">$34,440</td><td class="r num">16%</td></tr>
+        <tr><td class="k">Print</td><td class="r num">$7,380</td><td class="r num">3%</td></tr>
+      </table>
+    </div>
+
+    <p class="body reveal"><strong>Two observations.</strong> Sixty three cents of every dollar buys agency time. Eighteen cents goes out to reach anyone.</p>
+    <p class="body reveal">And guerrilla, at $34,440, is the least measurable line on the sheet. It is nearly the size of all your advertising combined, and we could not find a measurement of what it returned.</p>
+
+    <p class="body reveal"><strong>Where we free up funds:</strong> Redirect guerrilla. Fold print design into the retainer at no cost. Reduce the fee.</p>
+
+    <div class="callout reveal">
+      <div class="big">Roughly $60,000 freed, every year, without one additional dollar.</div>
+      <p>It pays for everything in the rest of this proposal.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s4">
+  <div class="wrap">
+    <span class="label">Section 04 · Quick wins</span>
+    <h2 class="wide reveal">The fastest fixes are also the most important.</h2>
+    <p class="body reveal">Before anything ambitious, there is a list of things that should already be true. These are the fastest to fix and the most important to get right, because everything else is built on top of them.</p>
+
+    <div class="finding reveal">
+      <h3>The one that matters most</h3>
+      <p><strong>Prime Kitchen's Google profile.</strong> Convert it to a service area business, correct the hours, add a quote button, and start collecting reviews. A ten year old business with no proof on the page and flat sales. This is the cheapest fix with the clearest link to revenue.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Google profiles</h3>
+      <ul class="pts">
+        <li><span>Fix the duplicate phone number shared by San Si Wu and Coconut Room.</span></li>
+        <li><span>Resolve Yallah's profile saying it takes no reservations while listing a booking provider.</span></li>
+        <li><span>Confirm Smash's hours so Google stops telling people it is unsure you are open.</span></li>
+        <li><span>Remove the vendor name appearing in San Si Wu's indexed page titles.</span></li>
+      </ul>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Websites</h3>
+      <p>A redesign, plus a reservation workflow that actually works. Beyond that:</p>
+      <ul class="pts">
+        <li><span>Clickable phone numbers and real addresses, not just map links.</span></li>
+        <li><span>Fix the Prime Kitchen button that turns white on white.</span></li>
+        <li><span>Add plated food to the catering pages.</span></li>
+        <li><span>Move offers above the fold.</span></li>
+        <li><span>Replace the reservation form that promises a reply within twelve hours.</span></li>
+      </ul>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Reviews</h3>
+      <p>Coconut Room has 96 reviews. Uncle Liu's has 373, out of the same kitchen, twenty feet away, both rated 4.9. The asking works at one and not the other. Fix that, and add "how did you hear about us" to every review request so we finally get attribution data.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Social, redirected</h3>
+      <p>Social is one of your strongest possible channels. It has just been pointed at the wrong job.</p>
+      <p>Presence and branding do not move people. Four things do.</p>
+    </div>
+    <div class="cards rgroup">
+      <div class="card"><span class="tag">Authority</span><p>Dylan and Lucas explaining why a dish is what it is, what it costs to cook on this island, and who grows and catches the food. Expertise people trust, not content people scroll past.</p></div>
+      <div class="card"><span class="tag">Emotional connection</span><p>The team, the rooms, the guests, the people behind the plate. Faces, not plates.</p></div>
+      <div class="card"><span class="tag">Real value</span><p>Content worth saving. Technique, recommendations, things people send to a friend.</p></div>
+      <div class="card"><span class="tag">Formats that travel</span><p>Video first, stronger hooks in the first two seconds, and the formats the algorithm is actively pushing right now. Dylan as a personality reaches far past the people already following you, which is the whole point.</p></div>
+    </div>
+
+    <p class="body reveal" style="margin-top:clamp(40px,6vh,60px)"><strong>Six formats Dylan and Lucas can shoot without writing anything:</strong></p>
+    <div class="cards rgroup emph">
+      <div class="card"><span class="tag">01</span><h3>Why it is on the menu</h3><p>Lucas explains a dish he created. Dylan pushes back on it. Two chefs, one plate, and the brothers do the entertaining so neither has to perform.</p></div>
+      <div class="card"><span class="tag">02</span><h3>Fire</h3><p>Live flame, a large cut, almost no talking. It is what Dylan is actually known for, it needs no script, and it happens to be the most universally appealing food for a cautious visitor.</p></div>
+      <div class="card"><span class="tag">03</span><h3>Chef reacts</h3><p>Dylan watches a viral food video or a trend and responds. Authority and entertainment together, no kitchen needed, and ten can be shot in a morning.</p></div>
+      <div class="card"><span class="tag">04</span><h3>Sixty second technique</h3><p>One skill taught properly. Knife work, wok heat, resting meat. People save these and send them on, which is what actually drives reach.</p></div>
+      <div class="card"><span class="tag">05</span><h3>What it costs to cook here</h3><p>The Cayman import reality. What arrives by boat, what does not, and what that does to a plate. Nobody is telling this story and it builds real credibility with locals.</p></div>
+      <div class="card"><span class="tag">06</span><h3>The people behind the plate</h3><p>The farmer, the fisherman, the importer, the supplier, and the team. On an island this size those people bring their own audience, and it quietly explains your prices without ever mentioning them.</p></div>
+    </div>
+    <p class="note reveal">And stop boosting on a schedule. Let posts run two days, then put money behind the ones already working.</p>
+
+    <div class="finding reveal">
+      <h3>Rooms</h3>
+      <ul class="pts">
+        <li><span><b>Yallah:</b> repair the floor, put striking Mediterranean photography on the walls. The room gives people nothing to look at.</span></li>
+        <li><span><b>Lucky Rabbit:</b> hanging cable lights over the patio.</span></li>
+        <li><span><b>Uncle Liu's:</b> replace the glass wall with a curtain, so the bar can open to the dining room or close off depending on the night.</span></li>
+      </ul>
+    </div>
+
+    <div class="callout reveal">
+      <div class="big">Say what you are.</div>
+      <p>You described Uncle Liu's as the only place you know of serving Caribbean inspired Chinese food. That line appears nowhere in the marketing. Put it on the site, the profile, the menu, the bio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s5">
+  <div class="wrap">
+    <span class="label">Section 05 · The proposal</span>
+    <h2 class="wide reveal">Stop paying for attention. Let the experience earn it instead.</h2>
+    <p class="body reveal">Everything above is repair. This is the part that changes the business.</p>
+    <p class="body reveal">The food keeps being marketed, because it is genuinely very good and it is the reason people come back. But it cannot carry the whole story on its own. What we add alongside it are experiences people want to tell each other about, and those are what the marketing concentrates on.</p>
+  </div>
+</section>
+
+<section class="doc-section" id="s5a">
+  <div class="wrap">
+    <span class="label">Section 05A · The group</span>
+    <h2 class="reveal">Four things turn seven businesses into one.</h2>
+    <p class="body reveal">Right now these read as seven unrelated businesses.</p>
+    <ul class="pts rgroup">
+      <li><span><b>Locals First.</b> In high season, your regulars get squeezed out by visitors. We give them priority instead: booking windows, held tables, walk in priority, in December when everyone else is turning them away. It costs nothing, we did not come across anyone else doing it, and it is the kind of thing people repeat.</span></li>
+      <li><span><b>The Prime Group Night.</b> One night a quarter, the whole group's menu available in one room. Szechuan, Filipino, sushi, ramen, burgers, noodles, all at one table. Most tables of six never agree on one cuisine. For one night a quarter, they do not have to. It is also the only idea that lets a customer taste the entire group in one sitting.</span></li>
+      <li><span><b>The Beach Cookout.</b> Free, no ticket, and no permit required so long as nobody is charged. DJ, BBQ, the team cooking. People eat, meet the team, and attach a feeling to the Prime name rather than to one venue. Everything else in marketing asks for something. This gives first.</span></li>
+      <li><span><b>Knowing people properly.</b> On an island where everyone knows everyone, being greeted by name is not special. What is: being anticipated, being remembered when you are not there, and having your status extend to whoever you bring. We build the system that makes that possible across all seven venues.</span></li>
+      <li><span><b>The kids box.</b> Not one venue, all of them. A properly designed box with good food and something to do, the same across the group, recognisable anywhere. Kids decide where families eat, and right now nobody on the island owns that. It is cheap, it travels between venues, and it becomes something people associate with the Prime name rather than with one room.</span></li>
+      <li><span><b>The starter that costs nothing.</b> A small bite handed over while people wait or as they sit, made from trim and offcuts the kitchen already has. Pork belly ends, fish collars, vegetable trim, day of bread. It does three things at once: every meal starts with a gift, waste goes down, and it is the risk free way to put something unfamiliar in front of a cautious guest, because nobody is betting their dinner on a bite they did not order.</span></li>
+      <li><span><b>The sticker.</b> Take a photo of the table, turn it into a WhatsApp sticker, send it to them. You get their number, they get something genuinely fun, and it ends up in group chats where your venue is the punchline rather than an advert. On an island where WhatsApp is how everything happens, that is a better list than any email signup form.</span></li>
+      <li><span><b>A standing content pillar:</b> the people behind the plate. Farmers, fishermen, importers, suppliers, and your own team. It explains why food costs what it does here, it rewards the team publicly, and on an island this size those people bring their own audience.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="doc-section" id="s5b">
+  <div class="wrap">
+    <span class="label">Section 05B · The venues</span>
+    <h2 class="reveal">Every venue gets three moments: arrival, middle, departure.</h2>
+    <p class="lead-italic reveal">Something when they arrive, something in the middle, something on the way out. Small, consistent, and cheap. A thing that happens every time becomes a signature. A thing that happens once is a stunt.</p>
+
+    <div class="venues rgroup">
+      <div class="venue">
+        <h3>Uncle Liu's</h3>
+        <p class="persona">Local professionals, 32 to 50. Willing to pay, not driven by trend, and they do not want a quiet room.</p>
+        <div class="block"><span class="lbl">The play</span><p>The room gets louder as the night goes on, deliberately rather than by accident. Then The Turn, a Thursday where dinner becomes a party at 9pm. Drums mark the moment, the curtain opens, the room shifts. Thursday because it is the only night the law lets you run to 2am. The small room works in your favour here, because a full room reads as a party long before a larger one would.</p></div>
+        <div class="block"><span class="lbl">The story</span><p>Choose your chopsticks from a tray on arrival. A dish finished at the table, broth poured or sauce lit in front of them. A handwritten proverb card with the check, in someone's actual handwriting.</p></div>
+      </div>
+
+      <div class="venue">
+        <h3>Coconut Room</h3>
+        <p class="persona">The Filipino community, families, celebrations. Affordable is not negotiable.</p>
+        <div class="block"><span class="lbl">The play</span><p>Own the community's calendar. Every birthday, every anniversary, every milestone. Tourists come because the room is full of the people whose food it is, so protect that rather than diluting it.</p></div>
+        <div class="block"><span class="lbl">The story</span><p>A welcome shot for the table. The celebration moment, done loudly, with a song and a plate. Choc Nut or White Rabbit candy with the check, which costs pennies and means something specific to half the room.</p></div>
+      </div>
+
+      <div class="venue">
+        <h3>Lucky Rabbit</h3>
+        <p class="persona">21 to 40, neighbourhood crowd, there for the atmosphere and the escape.</p>
+        <div class="block"><span class="lbl">The play</span><p>Karaoke is the only thing keeping people drinking past eleven, so build on it rather than treating it as one night. Take the best performances to a Cayman radio station weekly, which gives people a reason to sing and puts the venue in people's ears without buying ads. Then add nights that suit the room: Japanese bingo, a sexy bingo night. Formats that are loud, participatory and a little silly, which is exactly what the venue already is.</p></div>
+        <div class="block"><span class="lbl">The story</span><p>Pick your karaoke song on a slip as you sit. A traditional sake pour at the table, overflowing into the box. Your bottle kept behind the bar with your name on it for next time.</p></div>
+      </div>
+
+      <div class="venue">
+        <h3>Carnivore Smash</h3>
+        <p class="persona">Local, Jamaican, Caymanian. Value, speed, convenience.</p>
+        <div class="block"><span class="lbl">The play</span><p>The cultural burger works and should continue, but it is not enough on its own. Four additions, all proven elsewhere and all cheap.</p></div>
+        <ul class="pts nested">
+          <li><span><b>A secret menu.</b> In-N-Out built a mythology on this and it costs nothing to run. Off-menu items only regulars know about, spread by word of mouth rather than advertising.</span></li>
+          <li><span><b>A ritual with the sauce.</b> Secret Burger Kitchen serves sauce in a syringe instead of a dip cup. Guests inject it themselves, nobody double dips, and they take it home. Cheap, tactile, and endlessly filmed.</span></li>
+          <li><span><b>Own a word.</b> The crisp lacy edge of a smashed patty has a name in the burger world, meat lace. Name yours and use it every time.</span></li>
+          <li><span><b>Limited drops.</b> In-N-Out ran a four hour pop-up in Sydney, announced the day before, 300 burgers, sold out before it opened. Park the truck somewhere unexpected, announce it the night before, sell out, leave.</span></li>
+        </ul>
+        <div class="block"><span class="lbl">The story</span><p>They call your name rather than a number. The flattop positioned so people watch the smash. A bite thrown in that nobody asked for.</p></div>
+      </div>
+
+      <div class="venue">
+        <h3>San Si Wu</h3>
+        <p class="persona">Nostalgic. People who know it and have a favourite order.</p>
+        <div class="block"><span class="lbl">The play</span><p>This is where Lucas made his name. A hole in the wall, raw and a bit rough, and that was the charm. Delivery stripped all of it out and left only the food. Put the attitude back in the box: packaging that looks like the old place rather than a clean delivery brand, a voice on the label that sounds like the kitchen, and a printed invitation in the bag to something that only exists for people who order, a one night pop-up, a secret address, a night at the plaza kitchen after close. The charm was never the room. It was the feeling of being let in on something. That can be delivered.</p></div>
+        <div class="block"><span class="lbl">The story</span><p>A confirmation written by a person, not a bot. Packaging built to be opened, with a note inside. A card with their usual order printed on it, so they know you remembered.</p></div>
+      </div>
+
+      <div class="venue">
+        <h3>Yallah</h3>
+        <p class="persona">Office workers, lunch, Camana Bay. 95 percent local.</p>
+        <div class="block"><span class="lbl">The play</span><p>It needs a persona before it needs a campaign, and the numbers we have are dine in only. What it can start now is the thing that suits a daily audience: comment on today's post to claim something, or post a photo from the room and show it at the counter. It is the same people every day, so give them a small reason to engage every day.</p></div>
+        <div class="block"><span class="lbl">The story</span><p><strong>The shake</strong> is the one worth building around: the bowl gets a lid at the end of the line and the customer shakes it themselves. It takes three seconds, it actually mixes the bowl better than a spoon does, and it turns the last step from watching into doing. Two alternatives if the shake does not suit the food: a finishing flourish at the end of the line, a torch on the halloumi or a drizzle poured from height, which sends the smell back down the queue and sells to everyone waiting. Or a bowl of the month designed by a staff member, with their name and face on the board, which ties the menu to the people making it. Then a baklava bite or a mint sweet with the order.</p></div>
+      </div>
+
+      <div class="venue">
+        <h3>Prime Kitchen</h3>
+        <p class="persona">Visitors in villas and on boats. Ninety percent tourist, and the pricing currently moves between $800 and $3,000 for the same service.</p>
+        <div class="block"><span class="lbl">The play</span><p>Build the referral network. Villa companies already pay off, so extend the same commission model to Airbnb hosts, yacht charters and travel agents. Then split the offer in two, because right now it is only one thing: <strong>done for you</strong>, the chef arrives, cooks, serves, cleans, disappears, what exists today; and <strong>cook with the chef</strong>, the chef arrives and the guests cook alongside him. It is dinner and entertainment in the same booking, it fills an evening rather than an hour, and it is worth more per head. A version for kids works even better, because parents on holiday will pay for something that occupies the children and produces a memory. Price both properly and publish the prices. A villa host cannot recommend something when she does not know what it costs.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" id="s5c">
+  <div class="wrap">
+    <span class="label">Section 05C · Corporate catering</span>
+    <h2 class="wide reveal">The arm with the most room to grow.</h2>
+    <p class="body reveal">This is the one where marketing can help a salesman rather than replace him.</p>
+
+    <div class="finding reveal">
+      <h3>What you are actually selling</h3>
+      <p>An HR rep ordering lunch for forty people is not buying food. She is buying not having to think about it, and she is buying looking good to her team on Friday afternoon.</p>
+      <p>That reframes the whole pitch. Competing on price against a cheaper caterer is a losing game and you will not win it. Competing on effortlessness and on how the order makes her look is winnable, and nobody in Cayman is doing it.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>The reorder is the product</h3>
+      <p>Corporate catering is a habit business. Whoever is easiest to reorder from wins, and most catering ordering is genuinely painful. Phone calls, email chains, a menu PDF, a quote, a confirmation. So we build the opposite.</p>
+    </div>
+    <ul class="pts rgroup">
+      <li><span><b>A saved order.</b> She orders once, and every order after that is two taps. Same food, same headcount, same delivery window.</span></li>
+      <li><span><b>A standing order.</b> Friday lunch every week, adjustable until Wednesday. It stops being a decision and becomes a default.</span></li>
+      <li><span><b>One link, all seven venues.</b> Chinese on Monday, burgers on Friday, Mediterranean when someone is watching their diet. Nobody else on the island can offer that from a single order.</span></li>
+      <li><span><b>The office votes.</b> A QR code on the break room wall, or a link in an email to the team, and everyone picks what they want next week. It takes the decision off the rep entirely, it makes the whole office feel consulted, and it tells you exactly what that building likes ordering.</span></li>
+      <li><span><b>AI handles the annoying parts.</b> Dietary requirements remembered, headcount adjusted, and an invoice that has everything accounts payable needs. That email still goes out because finance requires it, but nobody has to read it, because the confirmation people actually see arrives on WhatsApp.</span></li>
+    </ul>
+
+    <div class="finding reveal">
+      <h3>A second reason to order</h3>
+      <p>Lunch is one occasion a week. There is an easier one nobody is selling: the afternoon lift. Fresh juice, fruit, something sweet, delivered mid-afternoon on a Tuesday or a Wednesday. Low cost per head, small enough that it does not need approval from anyone senior, and it lands at the exact hour an office is flagging.</p>
+      <p>It puts you in the building twice a week instead of once, it is an easy yes for a rep who wants a cheap win with her team, and it fits the argument you are already making, which is that better food makes for a better afternoon.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>Getting into the room</h3>
+      <p>They have been hard to reach because you have been reaching for them cold. Three better routes.</p>
+    </div>
+    <ul class="pts rgroup">
+      <li><span><b>Feed them first.</b> A dinner for HR managers and office managers. No pitch, just a good night out and a group of people who now know the food. Two in the first year is enough to start the conversation moving.</span></li>
+      <li><span><b>Referral from inside.</b> Your existing corporate clients know their counterparts at other firms. Cayman's corporate world is small and everyone knows everyone, which works in your favour here.</span></li>
+      <li><span><b>Show up where they already are.</b> Chamber of Commerce, HR association events, the fund administrator and law firm circuit.</span></li>
+    </ul>
+
+    <div class="finding reveal">
+      <h3>One caution on incentives</h3>
+      <p>Perks for the person placing the order need care. Cayman's corporate sector is dominated by law firms, fund administrators and insurers, all of which run serious compliance cultures. A personal benefit to a decision maker can read as a kickback, and that can cost you an account rather than win one.</p>
+      <p>The safer and stronger version is a reward that benefits the whole office. The best one you already have the capability to deliver: <strong>order regularly, and your team event is on us.</strong> A drinks reception, a team dinner, a holiday party at any of the seven venues. You already offer full buyouts, so the machinery exists.</p>
+      <p>For the rep it is the easiest internal win available, because she gets to be the person who got the team a party. For you it costs a slow Monday and food at cost rather than cash, and it puts forty people who have only eaten your delivery food inside one of your rooms. A good number of them come back on their own. Set a clear threshold so it feels earned rather than negotiated, and schedule the events on nights that need filling.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>The sales tool</h3>
+      <p>Your salesman needs something to open with. We build it: a short presentation covering the food, the presentation standard, the seven venue range, delivery reliability, and the pricing. A sample menu set by headcount and budget. A one page leave behind. And a tasting box that can be dropped at an office so the decision is made with the food in the room rather than on a screen.</p>
+      <p class="punch">We are the only caterer on the island who can feed your office something different every day of the week.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" id="s5d">
+  <div class="wrap">
+    <span class="label">Section 05D · Creators</span>
+    <h2 class="wide reveal">Stop paying for posts. Build things worth posting about.</h2>
+    <p class="body reveal">A creator invited to a normal dinner posts a plate, because a plate is all that happened. A creator invited to The Turn, or a beach cookout, posts because they had a night. One of those is an advert nobody asked for. The other is a recommendation.</p>
+    <p class="body reveal">So the experiences are the creator strategy. They just need people in the room when they happen.</p>
+
+    <div class="finding reveal">
+      <h3>Micro only</h3>
+      <p>In a market of 91,362 people, twenty thousand followers who live here or visit here is worth more than two million who never will. Reach is not the metric. Relevance is.</p>
+      <p><strong>On island</strong>, there is a small and genuinely good bench: accounts like Cayman Islands Foodie, Good Eats Cayman, Island Epicurean and Cayman Eats. Island Epicurean is the one to start with. She is Caymanian, she appears on camera, and she has judged competitions and interviewed chefs at Cookout. That is credibility rather than reach, and credibility is what converts a local booking.</p>
+      <p><strong>Off island</strong>, the target is creators in the places your visitors come from, brought in around a specific moment rather than a general invitation. Cookout week in January. A launch night. Something that is actually happening, so there is a reason to fly and a reason to post.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>The free version nobody is using</h3>
+      <div class="figs">
+        <div class="fig"><div class="n up">540</div><div class="l">posts from one Department of Tourism creator partnership</div></div>
+        <div class="fig"><div class="n up">100M+</div><div class="l">estimated reach, at no creator fees paid</div></div>
+      </div>
+      <p>Those people land here and have to eat somewhere. Being on the shortlist the department and its agency point them toward costs a relationship and one good dinner.</p>
+    </div>
+
+    <div class="finding reveal">
+      <h3>One constraint to respect</h3>
+      <p>Paid creator work in Cayman runs into work permit requirements. The structures that avoid the problem are comped visits with genuine organic posting, contracting through a creator's own company, and paying for content licensing rather than for services performed on the island. Worth a quick legal check before any programme starts.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" id="s5e">
+  <div class="wrap">
+    <span class="label">Section 05E · What it takes</span>
+    <h2 class="reveal">Two additions to the team.</h2>
+    <div class="cards rgroup">
+      <div class="card"><span class="tag pos">Strategist</span><h3>A marketing and brand strategist</h3><p>Someone who owns the vision, connects the seven venues into one story, and makes sure every decision serves it. That is me.</p></div>
+      <div class="card"><span class="tag pos">On the ground</span><h3>A production coordinator</h3><p>Someone in Cayman who executes. Runs the nights, chases suppliers and partners, shoots the weekly content, handles setup and teardown.</p></div>
+    </div>
+    <p class="body reveal">This is the gap that has held you back. The event that worked best was run by an outside coordinator who was not yours. You do not lack demand. You lack someone to produce.</p>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s6">
+  <div class="wrap">
+    <span class="label">Section 06 · How it rolls out</span>
+    <h2 class="wide reveal">Four phases, roughly nine months.</h2>
+    <ul class="pts rgroup">
+      <li><span><b>Phase 1. Fix and hire.</b> Months 1 and 2. Quick wins shipped: profiles corrected, websites fixed, social redirected, rooms improved. At the same time, we recruit the production coordinator.</span></li>
+      <li><span><b>Phase 2. Build.</b> Months 3 and 4. Design the experiences before announcing them. Produce the content library. Prepare the launches. Nothing goes public until it is ready, because a weak first night is harder to recover from than a late one.</span></li>
+      <li><span><b>Phase 3. Launch and learn.</b> Months 5 to 8. Roll out the experiences one at a time and market them properly. Every one is tested cheaply before it is built permanently.</span></li>
+      <li><span><b>Phase 4. Double down.</b> Month 9 onward. Analyse what worked. Scale it. Adjust what nearly worked. Cut what did not. By this point the decisions are made on data rather than instinct, because for the first time you will have the data.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s7">
+  <div class="wrap">
+    <span class="label">Section 07 · Two ways to work together</span>
+    <h2 class="wide reveal">Two ways to work together.</h2>
+    <div class="cards rgroup">
+      <div class="card option">
+        <span class="tag">Option 1</span>
+        <h3>Advisor</h3>
+        <div class="dur">Four months</div>
+        <p class="opt-desc">I build the strategy, the brand platform, and the playbook. I run the quick wins, including the website redesign and the reservation workflow. I help you hire the production coordinator. Your team executes from there.</p>
+        <div class="price">Pricing to confirm</div>
+        <p class="fit">Best if you want the thinking and intend to build the capability in house.</p>
+      </div>
+      <div class="card option">
+        <span class="tag">Option 2</span>
+        <h3>Director</h3>
+        <div class="dur">Nine months</div>
+        <p class="opt-desc">I own the strategy and direct the execution. Your existing team keeps producing, under my direction and to my brief. That is deliberate: they design well and they know your brands. What has been missing is not craft, it is a single idea behind the work, and one person accountable for whether it moves the numbers. I set the vision, direct the output, own the metrics, and report monthly.</p>
+        <div class="price">Pricing to confirm</div>
+        <p class="fit">Best if you want one person accountable for results without changing every supplier at once.</p>
+      </div>
+    </div>
+    <p class="note reveal">Whether the Director arrangement continues, changes shape, or ends after nine months is your decision. My job is to make sure the work is right either way.</p>
+
+    <div class="callout reveal">
+      <div class="big">What comes after.</div>
+      <p>If this works, there is a natural next step where Marketingverse takes on more of the execution directly. That is a conversation for month nine, not month one. Neither of us should commit to it before there is evidence, and you should not have to dismantle a working team to find out.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section chapter" id="s8">
+  <div class="wrap">
+    <span class="label">Section 08 · Closing</span>
+    <h2 class="wide reveal">The hardest part is behind you.</h2>
+    <p class="body reveal">You told me you could not put the problem into words.</p>
+    <p class="body reveal">Here is what I think it is. The food is excellent and the rooms are good. What is thin is everything around them. The moments people remember afterward, and the story that gets told when someone asks where to eat.</p>
+    <p class="body reveal">Both need building. Not one or the other.</p>
+    <p class="body reveal">The food is done. The ratings are done. The hardest part is behind you.</p>
+    <p class="body reveal">That does not mean it stops improving. A few small additions to the room and to the meal, the kind people remember years later, and the experience catches up to how good the cooking already is.</p>
+    <p class="body reveal">What is left is making people feel it before they arrive, and remember it after they leave.</p>
+  </div>
+</section>
+
+<div class="footer-line">Marketingverse · hello@the-marketingverse.com · 310.736.0723</div>
+
+</main>
+
+<script>
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+document.querySelectorAll('ul.pts.rgroup, table.rgroup, .figs.rgroup, .cards.rgroup, .venues.rgroup').forEach(el=>{
+  el.classList.add('reveal-group');
+});
+
+if(reduceMotion){
+  document.querySelectorAll('.reveal, .reveal-group').forEach(el=>el.classList.add('on'));
+} else {
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('on');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal, .reveal-group').forEach(el=>io.observe(el));
+}
+
+const pbar = document.getElementById('pbar');
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  pbar.style.width = (max > 0 ? (scrolled / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
