@@ -221,11 +221,81 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
   font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted);
 }
+
+/* contents picker */
+.toc-toggle{
+  position:fixed;top:14px;right:16px;z-index:80;
+  background:var(--surface);color:var(--paper);border:1px solid rgba(240,235,227,.16);
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:9px 16px;border-radius:20px;cursor:pointer;
+}
+.toc-toggle:hover{border-color:rgba(240,235,227,.32)}
+.toc-panel{
+  position:fixed;top:56px;right:16px;z-index:80;max-height:min(70vh,560px);overflow-y:auto;
+  background:var(--surface2);border:1px solid rgba(240,235,227,.16);border-radius:14px;
+  padding:10px;display:flex;flex-direction:column;gap:1px;width:min(300px,calc(100vw - 32px));
+  box-shadow:0 24px 60px rgba(0,0,0,.45);
+}
+.toc-link{
+  font-family:var(--body);font-size:13.5px;color:#CFC7BC;text-decoration:none;
+  padding:9px 12px;border-radius:8px;line-height:1.4;display:block;
+}
+.toc-link:hover{background:var(--surface);color:var(--paper)}
+.toc-link.lvl1{padding-left:24px;font-size:12.5px;color:var(--muted)}
+.toc-link.lvl2{padding-left:36px;font-size:12px;color:var(--muted)}
+.toc-panel[hidden]{display:none}
+
+/* reaction / feedback */
+.feedback{margin-top:clamp(34px,5vh,52px);padding-top:22px;border-top:1px dashed rgba(240,235,227,.16)}
+.fb-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+.fb-btns{display:flex;flex-wrap:wrap;gap:8px}
+.fb-btn{
+  font-family:var(--body);font-size:13px;color:#CFC7BC;background:var(--surface);
+  border:1px solid rgba(240,235,227,.14);border-radius:20px;padding:8px 16px;cursor:pointer;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.fb-btn:hover{border-color:rgba(240,235,227,.32)}
+.fb-btn.active[data-val="like"]{background:rgba(123,163,150,.16);border-color:var(--sea);color:var(--sea)}
+.fb-btn.active[data-val="unsure"]{background:rgba(200,118,62,.14);border-color:var(--ember);color:var(--ember)}
+.fb-btn.active[data-val="dislike"]{background:rgba(240,235,227,.08);border-color:rgba(240,235,227,.4);color:var(--paper)}
+
+.feedback-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
+  background:var(--surface2);border-top:1px solid rgba(240,235,227,.16);
+  padding:12px 16px;
+}
+.fbBar-inner{
+  max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;
+}
+.fbBar-count{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+#fbName{
+  flex:1;min-width:140px;background:var(--surface);border:1px solid rgba(240,235,227,.16);border-radius:8px;
+  padding:9px 12px;color:var(--paper);font-family:var(--body);font-size:13px;
+}
+#fbName::placeholder{color:var(--muted)}
+#fbSend{
+  font-family:var(--body);font-size:13px;font-weight:600;color:var(--ink);background:var(--ember);
+  border:none;border-radius:8px;padding:9px 18px;cursor:pointer;white-space:nowrap;
+}
+#fbSend:hover{opacity:.88}
+.fbBar-status{font-family:var(--mono);font-size:11px;color:var(--sea);white-space:nowrap}
+
+@media(max-width:560px){
+  .toc-toggle{padding:8px 13px;font-size:10px}
+  .fbBar-inner{gap:8px}
+  #fbName{min-width:100%;order:3}
+  .fbBar-count{order:1}
+  #fbSend{order:2}
+  .fbBar-status{order:4}
+}
 </style>
 </head>
 <body>
 
 <div id="pbar"></div>
+
+<button type="button" id="tocToggle" class="toc-toggle" aria-expanded="false" aria-controls="tocPanel">Contents</button>
+<nav id="tocPanel" class="toc-panel" hidden aria-label="Table of contents"></nav>
 
 <main class="wrap-outer">
 
@@ -323,6 +393,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <p>That is the difference between a menu with an interesting dish on it and a menu that sends someone home with something to say.</p>
       <p>And the liquor law runs to 2am Monday through Friday, but only to midnight on Saturday and Sunday. The late window is a weekday window. That is backwards from how most people assume a week works, and almost nothing on the island is built around it.</p>
     </div>
+    <div class="feedback" data-id="s2" data-label="What we found"></div>
   </div>
 </section>
 
@@ -363,6 +434,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
     </table>
     <p class="body reveal">The same money. What it buys is a strategy, someone on the ground to execute it, and an activation budget you can actually read.</p>
     <p class="body reveal">This assumes your current agency moves to a narrower brief. They keep design, promo creative, print and the photoshoots. Strategy and the weekly content chasing move elsewhere. That conversation is yours to have, and the numbers above show what it needs to land at.</p>
+    <div class="feedback" data-id="s3" data-label="Where the money goes"></div>
   </div>
 </section>
 
@@ -440,6 +512,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <div class="big">Say what you are.</div>
       <p>You described Uncle Liu's as the only place you know of serving Caribbean inspired Chinese food. That line appears nowhere in the marketing. Put it on the site, the profile, the menu, the bio.</p>
     </div>
+    <div class="feedback" data-id="s4" data-label="Quick wins"></div>
   </div>
 </section>
 
@@ -449,6 +522,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
     <h2 class="wide reveal">Stop paying for attention. Let the experience earn it instead.</h2>
     <p class="body reveal">Everything above is repair. This is the part that changes the business.</p>
     <p class="body reveal">The food keeps being marketed, because it is genuinely very good and it is the reason people come back. But it cannot carry the whole story on its own. What we add alongside it are experiences people want to tell each other about, and those are what the marketing concentrates on.</p>
+    <div class="feedback" data-id="s5" data-label="The proposal, overall"></div>
   </div>
 </section>
 
@@ -482,6 +556,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <p><strong>One question for you.</strong> Does the guest choose the table, or does the restaurant? Guest chooses is more generous and more social, and on an island this size they often know the other table. Restaurant chooses removes the targeting risk entirely and keeps the surprise. Both work. It depends how much you want to control the room, and it is worth deciding before launch rather than after.</p>
       <p><strong>Start it at Uncle Liu's, one night a week.</strong> If the room takes to it, extend. Your servers will know within three weeks, long before any guest says anything.</p>
     </div>
+    <div class="feedback" data-id="s5a" data-label="The group"></div>
   </div>
 </section>
 
@@ -492,7 +567,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
     <p class="lead-italic reveal">Something when they arrive, something in the middle, something on the way out. Small, consistent, and cheap. A thing that happens every time becomes a signature. A thing that happens once is a stunt.</p>
 
     <div class="venues rgroup">
-      <div class="venue">
+      <div class="venue" id="v-liu">
         <h3>Uncle Liu's</h3>
         <p class="persona">Local professionals, 32 to 50. Willing to pay, not driven by trend, and they do not want a quiet room.</p>
         <div class="block"><span class="lbl">The play</span>
@@ -502,9 +577,10 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
         <p>Start at number one. Carve at the table. Hand over the card. Publish the milestones, because duck number 1,000 is a story and duck number 5,000 is another one. People will compare their numbers, which is exactly the point.</p>
         <p>Nothing on the island does this, and it is the single most influencer-legible idea in this document. "I got duck 47" is a post that writes itself.</p></div>
         <div class="block"><span class="lbl">The story</span><p>Choose your chopsticks from a tray on arrival. A dish finished at the table, broth poured or sauce lit in front of them. A handwritten proverb card with the check, in someone's actual handwriting.</p></div>
+        <div class="feedback" data-id="v-liu" data-label="Uncle Liu's"></div>
       </div>
 
-      <div class="venue">
+      <div class="venue" id="v-coconut">
         <h3>Coconut Room</h3>
         <p class="persona">The Filipino community, families, celebrations. Affordable is not negotiable.</p>
         <div class="block"><span class="lbl">The play</span>
@@ -515,9 +591,10 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
         <p>For cautious American guests, open with a short demonstration and offer gloves, and start the meal with a warm calamansi water pour for washing hands, which doubles as the arrival ritual.</p>
         <p>It also sells directly as a Prime Kitchen catering package, where a long table and a banana leaf travel better than plated courses.</p></div>
         <div class="block"><span class="lbl">The story</span><p>A welcome shot for the table. A celebration moment that is warm rather than loud, judged by the table rather than performed at them. And Choc Nut or White Rabbit candy with the check, which costs pennies. For the Filipino guests it is childhood. For everyone else it is something they have never seen before and will ask about. The same small thing does two different jobs at the same table.</p></div>
+        <div class="feedback" data-id="v-coconut" data-label="Coconut Room"></div>
       </div>
 
-      <div class="venue">
+      <div class="venue" id="v-lucky">
         <h3>Lucky Rabbit</h3>
         <p class="persona">21 to 40, neighbourhood crowd, there for the atmosphere and the escape.</p>
         <div class="block"><span class="lbl">The play</span>
@@ -526,9 +603,10 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
         <div class="block"><span class="lbl">The story</span>
         <p>A QR code at the entrance so people pick their karaoke song on the way to the table, in the app they already use, instead of waiting until they have worked up to it. A traditional sake pour at the table, overflowing into the box. Your bottle kept behind the bar with your name on it for next time.</p>
         <p><strong>And the sticker.</strong> Take a photo of the table, turn it into a WhatsApp sticker, send it over. You get their number, they get something genuinely fun, and it lands in group chats where the venue is the joke rather than an advert. This suits Lucky and no other venue, because Lucky is the room people already send photos from.</p></div>
+        <div class="feedback" data-id="v-lucky" data-label="Lucky Rabbit"></div>
       </div>
 
-      <div class="venue">
+      <div class="venue" id="v-smash">
         <h3>Carnivore Smash</h3>
         <p class="persona">Local, Jamaican, Caymanian. Value, speed, convenience.</p>
         <div class="block"><span class="lbl">The play</span><p>The cultural burger works and should continue, but it is not enough on its own. Four additions, all proven elsewhere and all cheap.</p></div>
@@ -541,9 +619,10 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
           <li><span><b>The side that becomes the thing.</b> Something unexpected in every bag that people start ordering for its own sake. A pickle with an odd seasoning, or whatever the kitchen lands on. Brands get built on the side dish more often than the main. Worth letting Lucas decide what it should be, then never changing it.</span></li>
         </ul>
         <div class="block"><span class="lbl">The story</span><p>They call your name rather than a number. The flattop positioned so people watch the smash. A bite thrown in that nobody asked for.</p></div>
+        <div class="feedback" data-id="v-smash" data-label="Carnivore Smash"></div>
       </div>
 
-      <div class="venue">
+      <div class="venue" id="v-sansi">
         <h3>San Si Wu</h3>
         <p class="persona">Nostalgic. People who know it and have a favourite order.</p>
         <div class="block"><span class="lbl">The play</span><p>This is where Lucas made his name. A hole in the wall, raw and a bit rough, and that was the charm. Delivery stripped all of it out and left only the food. Put the attitude back in the box: packaging that looks like the old place rather than a clean delivery brand, a voice on the label that sounds like the kitchen, and a printed invitation in the bag to something that only exists for people who order, a one night pop-up, a secret address, a night at the plaza kitchen after close. The charm was never the room. It was the feeling of being let in on something. That can be delivered.</p></div>
@@ -553,9 +632,10 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
         <p>The origin story printed inside the lid. How it started, who cooked, what it looked like.</p>
         <p>And copy written in the old voice, not a brand voice. Blunt, funny, a bit rude. The thing people liked about the original was never the room. It was the feeling of being let in on something, and that can be printed.</p>
         <p><strong>Once a quarter, bring it back for one night.</strong> The kitchen after close, the original menu, limited seats, announced only to people who have ordered. That is the part worth the effort, and it happens four times a year rather than every night.</p></div>
+        <div class="feedback" data-id="v-sansi" data-label="San Si Wu"></div>
       </div>
 
-      <div class="venue">
+      <div class="venue" id="v-yallah">
         <h3>Yallah</h3>
         <p class="persona">Office workers, lunch, Camana Bay. 95 percent local.</p>
         <div class="block"><span class="lbl">The play</span><p>It needs a persona before it needs a campaign, and the numbers we have are dine in only. What it can start now is the thing that suits a daily audience: comment on today's post to claim something, or post a photo from the room and show it at the counter. It is the same people every day, so give them a small reason to engage every day.</p></div>
@@ -565,12 +645,14 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
         <p>Give it a method so it is the same every time. Lid on, both hands, flip once, three shakes. Staff demonstrate it the first time somebody says yes, and after that people do it without being asked. It takes three seconds, it mixes better than a spoon, and it turns the last step from watching into doing.</p>
         <p>A finishing flourish covers the bowls that should not be shaken. A torch on the halloumi or a drizzle poured from height, which sends the smell back down the queue and sells to everyone still waiting.</p>
         <p>Then a baklava bite or a mint sweet with the order.</p></div>
+        <div class="feedback" data-id="v-yallah" data-label="Yallah"></div>
       </div>
 
-      <div class="venue">
+      <div class="venue" id="v-prime">
         <h3>Prime Kitchen</h3>
         <p class="persona">Visitors in villas and on boats. Ninety percent tourist, and the pricing currently moves between $800 and $3,000 for the same service.</p>
         <div class="block"><span class="lbl">The play</span><p>Build the referral network. Villa companies already pay off, so extend the same commission model to Airbnb hosts, yacht charters and travel agents. Then split the offer in two, because right now it is only one thing: <strong>done for you</strong>, the chef arrives, cooks, serves, cleans, disappears, what exists today; and <strong>cook with the chef</strong>, the chef arrives and the guests cook alongside him. It is dinner and entertainment in the same booking, it fills an evening rather than an hour, and it is worth more per head. A version for kids works even better, because parents on holiday will pay for something that occupies the children and produces a memory. Price both properly and publish the prices. A villa host cannot recommend something when she does not know what it costs.</p></div>
+        <div class="feedback" data-id="v-prime" data-label="Prime Kitchen"></div>
       </div>
     </div>
   </div>
@@ -629,6 +711,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <p>Your salesman needs something to open with. We build it: a short presentation covering the food, the presentation standard, the seven venue range, delivery reliability, and the pricing. A sample menu set by headcount and budget. A one page leave behind. And a tasting box that can be dropped at an office so the decision is made with the food in the room rather than on a screen.</p>
       <p class="punch">We are the only caterer on the island who can feed your office something different every day of the week.</p>
     </div>
+    <div class="feedback" data-id="s5c" data-label="Corporate catering"></div>
   </div>
 </section>
 
@@ -659,6 +742,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <h3>One constraint to respect</h3>
       <p>Paid creator work in Cayman runs into work permit requirements. The structures that avoid the problem are comped visits with genuine organic posting, contracting through a creator's own company, and paying for content licensing rather than for services performed on the island. Worth a quick legal check before any programme starts.</p>
     </div>
+    <div class="feedback" data-id="s5d" data-label="Creators"></div>
   </div>
 </section>
 
@@ -671,6 +755,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <div class="card"><span class="tag pos">On the ground</span><h3>A production coordinator</h3><p>Someone in Cayman who executes. Runs the nights, chases suppliers and partners, shoots the weekly content, handles setup and teardown.</p></div>
     </div>
     <p class="body reveal">This is the gap that has held you back. The event that worked best was run by an outside coordinator who was not yours. You do not lack demand. You lack someone to produce.</p>
+    <div class="feedback" data-id="s5e" data-label="What it takes"></div>
   </div>
 </section>
 
@@ -691,6 +776,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
     <div class="callout reveal">
       <div class="big">One screen, seven venues, every month.</div>
     </div>
+    <div class="feedback" data-id="s6" data-label="Knowing what worked"></div>
   </div>
 </section>
 
@@ -704,6 +790,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <li><span><b>Phase 3. Launch and learn.</b> Months 5 to 8. Roll out the experiences one at a time and market them properly. Every one is tested cheaply before it is built permanently.</span></li>
       <li><span><b>Phase 4. Double down.</b> Month 9 onward. Analyse what worked. Scale it. Adjust what nearly worked. Cut what did not. By this point the decisions are made on data rather than instinct, because for the first time you will have the data.</span></li>
     </ul>
+    <div class="feedback" data-id="s7" data-label="How it rolls out"></div>
   </div>
 </section>
 
@@ -767,6 +854,7 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
       <div class="big">What comes after.</div>
       <p>If this works, there is a natural next step where Marketingverse takes on more of the execution directly. That is a conversation for month nine, not month one. Neither of us should commit to it before there is evidence.</p>
     </div>
+    <div class="feedback" data-id="s8" data-label="Two ways to work together"></div>
   </div>
 </section>
 
@@ -780,10 +868,20 @@ table.rgroup.on tr:nth-child(7){transition-delay:.34s}
     <p class="body reveal">The food is done. The ratings are done. The hardest part is behind you.</p>
     <p class="body reveal">That does not mean it stops improving. A few small additions to the room and to the meal, the kind people remember years later, and the experience catches up to how good the cooking already is.</p>
     <p class="body reveal">What is left is making people feel it before they arrive, and remember it after they leave.</p>
+    <div class="feedback" data-id="s9" data-label="Closing"></div>
   </div>
 </section>
 
 <div class="footer-line">Marketingverse · hello@the-marketingverse.com · 310.736.0723</div>
+
+<div class="feedback-bar" id="fbBar" hidden>
+  <div class="fbBar-inner">
+    <span class="fbBar-count" id="fbCount">0 sections rated</span>
+    <input type="text" id="fbName" placeholder="Your name (optional)" maxlength="60">
+    <button type="button" id="fbSend">Send feedback to Marketingverse</button>
+    <span class="fbBar-status" id="fbStatus"></span>
+  </div>
+</div>
 
 </main>
 
@@ -817,6 +915,169 @@ function updateProgress(){
 }
 document.addEventListener('scroll', updateProgress, {passive:true});
 updateProgress();
+
+/* ============================================================
+   Contents picker. Built from the sections and venues already
+   in the page, so it can't drift out of sync with the content.
+   ============================================================ */
+(function(){
+  const toggle = document.getElementById('tocToggle');
+  const panel = document.getElementById('tocPanel');
+  if(!toggle || !panel) return;
+
+  const items = [];
+  document.querySelectorAll('main.wrap-outer > section[id]').forEach(sec => {
+    if(sec.id === 's1') return;
+    const labelEl = sec.querySelector('.label');
+    const title = labelEl ? labelEl.textContent.replace(/^Section\s*\d+[A-Z]?\s*·\s*/,'').trim() : sec.id;
+    const level = /^s5[a-e]$/.test(sec.id) ? 1 : 0;
+    items.push({id: sec.id, title, level});
+    if(sec.id === 's5b'){
+      sec.querySelectorAll('.venue[id]').forEach(v => {
+        const h3 = v.querySelector('h3');
+        items.push({id: v.id, title: h3 ? h3.textContent.trim() : v.id, level: 2});
+      });
+    }
+  });
+
+  panel.innerHTML = items.map(it =>
+    `<a href="#${it.id}" class="toc-link lvl${it.level}">${it.title}</a>`
+  ).join('');
+
+  function closePanel(){
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded','false');
+  }
+  function openPanel(){
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded','true');
+  }
+  toggle.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
+  panel.addEventListener('click', (e) => { if(e.target.matches('.toc-link')) closePanel(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && !panel.hidden) closePanel(); });
+  document.addEventListener('click', (e) => {
+    if(!panel.hidden && !panel.contains(e.target) && e.target !== toggle) closePanel();
+  });
+})();
+
+/* ============================================================
+   Reaction buttons. Three states per section/venue: like, not
+   sure, don't like. Kept in localStorage so a reader's picks
+   survive a reload, and relayed to Marketingverse over the same
+   Formspree endpoint the pre-meeting form uses, so no new setup
+   is needed to see what came back.
+   ============================================================ */
+(function(){
+  const FEEDBACK_ENDPOINT = 'https://formspree.io/f/xwlkgrzq';
+  const STORAGE_KEY = 'prime_story_reactions_v1';
+  const markers = document.querySelectorAll('.feedback[data-id]');
+  if(!markers.length) return;
+
+  let reactions = {};
+  try { reactions = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { reactions = {}; }
+
+  function saveLocal(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(reactions)); } catch(e) {}
+  }
+
+  const fbBar = document.getElementById('fbBar');
+  const fbCount = document.getElementById('fbCount');
+  const fbName = document.getElementById('fbName');
+  const fbSend = document.getElementById('fbSend');
+  const fbStatus = document.getElementById('fbStatus');
+
+  function reactionLabel(val){
+    return val === 'like' ? 'Like it' : val === 'unsure' ? 'Not sure' : 'Not for us';
+  }
+
+  function updateBar(){
+    const count = Object.keys(reactions).length;
+    if(count > 0 && fbBar.hidden) fbBar.hidden = false;
+    if(fbCount) fbCount.textContent = count + (count === 1 ? ' section rated' : ' sections rated');
+  }
+
+  let dirty = false;
+  let autoSendTimer = null;
+  function scheduleAutoSend(){
+    dirty = true;
+    clearTimeout(autoSendTimer);
+    autoSendTimer = setTimeout(() => { if(dirty) sendFeedback(false); }, 8000);
+  }
+
+  function buildPayload(){
+    const name = ((fbName && fbName.value) || 'Anonymous').trim() || 'Anonymous';
+    const lines = Object.entries(reactions).map(([id, val]) => {
+      const marker = document.querySelector('.feedback[data-id="' + id + '"]');
+      const label = marker ? marker.dataset.label : id;
+      return label + ': ' + reactionLabel(val);
+    }).join('\n');
+    return {
+      _subject: 'Prime Group: proposal feedback from ' + name,
+      name,
+      page: 'prime-group-story',
+      reactions: lines,
+    };
+  }
+
+  async function sendFeedback(showStatus){
+    if(!Object.keys(reactions).length) return;
+    try {
+      await fetch(FEEDBACK_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify(buildPayload()),
+      });
+      dirty = false;
+      if(showStatus && fbStatus){
+        fbStatus.textContent = 'Sent.';
+        setTimeout(() => { fbStatus.textContent = ''; }, 4000);
+      }
+    } catch(e){
+      if(showStatus && fbStatus) fbStatus.textContent = "Didn't send, saved on this device.";
+    }
+  }
+
+  if(fbSend) fbSend.addEventListener('click', () => sendFeedback(true));
+
+  window.addEventListener('pagehide', () => {
+    if(!dirty || !Object.keys(reactions).length || !navigator.sendBeacon) return;
+    try {
+      const blob = new Blob([JSON.stringify(buildPayload())], {type:'application/json'});
+      navigator.sendBeacon(FEEDBACK_ENDPOINT, blob);
+    } catch(e) {}
+  });
+
+  markers.forEach(marker => {
+    const id = marker.dataset.id;
+    marker.innerHTML =
+      '<span class="fb-label">What do you think of this part?</span>' +
+      '<div class="fb-btns">' +
+        '<button type="button" class="fb-btn" data-val="like">Like it</button>' +
+        '<button type="button" class="fb-btn" data-val="unsure">Not sure</button>' +
+        '<button type="button" class="fb-btn" data-val="dislike">Not for us</button>' +
+      '</div>';
+    const btns = marker.querySelectorAll('.fb-btn');
+    function refresh(){
+      const v = reactions[id];
+      btns.forEach(b => b.classList.toggle('active', b.dataset.val === v));
+    }
+    btns.forEach(b => b.addEventListener('click', () => {
+      const val = b.dataset.val;
+      if(reactions[id] === val){
+        delete reactions[id];
+      } else {
+        reactions[id] = val;
+      }
+      saveLocal();
+      refresh();
+      updateBar();
+      scheduleAutoSend();
+    }));
+    refresh();
+  });
+
+  updateBar();
+})();
 </script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
