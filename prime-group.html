@@ -161,10 +161,7 @@ tr.hi td.num{color:var(--ember)}
 .rule{width:44px;height:2px;background:var(--ember);margin-bottom:34px}
 
 /* logo mark, recolored to paper/white to sit on the dark cover */
-.logomark{display:block;margin-bottom:26px}
-.logomark-ring{fill:none;stroke:var(--paper);stroke-width:2.4;opacity:.85}
-.logomark-word{font-family:var(--display);font-style:italic;font-size:23px;fill:var(--paper)}
-.logomark-sub{font-family:var(--mono);font-size:7px;letter-spacing:3px;fill:var(--paper);opacity:.8}
+.logomark{display:block;margin-bottom:26px;filter:brightness(0) invert(1);opacity:.92}
 
 /* ============================================================
    Click-to-reveal beats. Slide-to-slide moves are a quick cut
@@ -320,15 +317,7 @@ table.beatgroup.on tr:nth-child(8){transition-delay:.40s}
 const S = [
 
 /* 1 */ {sec:"", html:`<div class="wrap cover">
-<svg class="logomark" width="86" height="86" viewBox="0 0 100 100" aria-hidden="true">
-<defs><filter id="roughRing" x="-30%" y="-30%" width="160%" height="160%">
-<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
-<feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
-</filter></defs>
-<circle cx="50" cy="50" r="42" class="logomark-ring" filter="url(#roughRing)"/>
-<text x="50" y="53" text-anchor="middle" class="logomark-word">prime</text>
-<text x="50" y="67" text-anchor="middle" class="logomark-sub">GROUP</text>
-</svg>
+<img class="logomark" src="/prime-group-logo.webp" width="86" height="86" alt="Prime Group" aria-hidden="true">
 <div class="rule"></div>
 <h1>Prime&nbsp;Group</h1>
 <p class="sub">An outside look at the marketing: what's working, what's broken, and a different angle worth trying.</p>
