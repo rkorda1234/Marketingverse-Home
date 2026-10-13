@@ -93,6 +93,15 @@ td.k{color:var(--paper);font-weight:600;font-size:clamp(15px,1.35vw,17px)}
 td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
 tr.hi td{color:var(--paper)}
 tr.hi td.num{color:var(--ember)}
+table.beatgroup tr:not(:first-child){opacity:0;transform:translateX(-10px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+table.beatgroup.on tr:not(:first-child){opacity:1;transform:none}
+table.beatgroup.on tr:nth-child(2){transition-delay:.04s}
+table.beatgroup.on tr:nth-child(3){transition-delay:.10s}
+table.beatgroup.on tr:nth-child(4){transition-delay:.16s}
+table.beatgroup.on tr:nth-child(5){transition-delay:.22s}
+table.beatgroup.on tr:nth-child(6){transition-delay:.28s}
+table.beatgroup.on tr:nth-child(7){transition-delay:.34s}
 .up{color:var(--sea)}
 
 /* callout */
@@ -339,10 +348,9 @@ const S = [
 
 /* 2 */ {sec:"Overview", html:`<div class="wrap">
 <span class="eyebrow">On one page</span>
-<h2 class="wide">Content is not a reason to come.</h2>
-<p class="body beat"><strong>The problem.</strong> The marketing has been producing content. Content is not a reason to come.</p>
-<p class="body beat"><strong>The proof.</strong> Celebrations returns $26 per dollar. Happy Hour $16. The 10% card $13. Those are not even in the marketing budget. They are food you gave away, and they beat everything the budget bought, because each one gives somebody a reason to show up on a specific day.</p>
-<p class="body beat"><strong>What we would do.</strong> Fix what is broken. Give every venue a story a guest can tell. Rebuild social and ads so those stories reach people. Push catering, your biggest unworked opportunity.</p>
+<p class="body beat"><strong>The problem.</strong> The marketing has been producing content, but it has mostly been promos: offers and announcements that do not start a conversation or build a relationship with anyone watching.</p>
+<p class="body beat"><strong>What's worked.</strong> Everything that has really moved for you was something happening. The Jamaica burger. Chinese New Year. Karaoke, which is the only thing keeping people drinking past eleven. The Soca night. Your promotions work too, and they should stay. A discount will fill a Tuesday. It just will not make anyone talk about you.</p>
+<p class="body beat"><strong>What we would do.</strong> Fix what is broken. Give every venue a story the guest can tell. Rebuild social and ads so those stories reach people. Push catering, your biggest unworked opportunity.</p>
 <table class="beatgroup">
 <tr><th>Monthly</th><th class="r">Today</th><th class="r">Proposed</th></tr>
 <tr class="hi"><td class="k">Marketing spend</td><td class="r num">$17,983</td><td class="r num up">$16,115</td></tr>
@@ -517,6 +525,7 @@ const S = [
 <h2 class="wide">Something was happening, not something announced.</h2>
 <p class="body beat">Everything that has worked for you was something happening, not something announced. The Jamaica burger. Chinese New Year. Karaoke. The Soca night. Your strongest offers returned $26, $16 and $13. The weakest were the ones handed to people already sitting down.</p>
 <p class="body beat"><strong>And none of it is one big idea.</strong> It is a lot of small ones stacked: a better experience in the room, moments people describe to someone else, and content that shows the people behind it. Each one on its own is minor. Together they are the difference between a restaurant people like and a group people talk about.</p>
+<p class="body beat"><strong>It is not just theory.</strong> La Tour d'Argent has run on one signature move, numbering the duck, since 1890. The pattern that gets a table talking is not unique to you, and it is not new.</p>
 </div>`},
 
 /* 16 */ {sec:"Why & how", html:`<div class="wrap">
@@ -577,7 +586,7 @@ const S = [
 /* 20 */ {sec:"Close", html:`<div class="wrap">
 <span class="eyebrow">In short</span>
 <h2 class="wide">A group people talk about, not just a restaurant people like.</h2>
-<p class="body beat">Fix what is broken. Give every venue a story a guest can tell. A real catering push. A rebuilt engine so any of it reaches people.</p>
+<p class="body beat">Fix what is broken. Give every venue a story the guest can tell. A real catering push. A rebuilt engine so any of it reaches people.</p>
 <p class="body beat">One person accountable. One producer on the ground. One report a month you do not have to ask for.</p>
 <div class="callout beat"><div class="big">$22,416 a year less than you spend today.</div></div>
 <p class="body beat note">Marketingverse &middot; hello@the-marketingverse.com &middot; 310.736.0723</p>
