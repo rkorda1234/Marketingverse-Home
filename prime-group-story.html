@@ -87,6 +87,7 @@ ul.pts.two{grid-template-columns:1fr 1fr}
 
 /* table, real breathing room */
 table{width:100%;border-collapse:collapse;margin-top:clamp(20px,3.6vh,36px);font-size:clamp(14px,1.3vw,16px)}
+table.tight{margin-top:8px}
 th{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);text-align:left;font-weight:400;padding:0 14px 13px 0;border-bottom:1px solid var(--line)}
 th.r,td.r{text-align:right}
@@ -95,20 +96,14 @@ td.k{color:var(--paper);font-weight:600;font-size:clamp(15px,1.35vw,17px)}
 td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
 tr.hi td{color:var(--paper)}
 tr.hi td.num{color:var(--ember)}
-table.beatgroup tr:not(:first-child){opacity:0;transform:translateX(-10px);
-  transition:opacity .5s var(--ease),transform .5s var(--ease)}
-table.beatgroup.on tr:not(:first-child){opacity:1;transform:none}
-table.beatgroup.on tr:nth-child(2){transition-delay:.04s}
-table.beatgroup.on tr:nth-child(3){transition-delay:.10s}
-table.beatgroup.on tr:nth-child(4){transition-delay:.16s}
-table.beatgroup.on tr:nth-child(5){transition-delay:.22s}
-table.beatgroup.on tr:nth-child(6){transition-delay:.28s}
-table.beatgroup.on tr:nth-child(7){transition-delay:.34s}
+table.beatgroup{opacity:0;transition:opacity .4s var(--ease)}
+table.beatgroup.on{opacity:1}
 .up{color:var(--sea)}
 
 /* callout */
 .callout{margin-top:clamp(22px,3.8vh,38px);padding:clamp(22px,3vw,32px);
   background:var(--surface);border-radius:20px;border-left:2px solid var(--ember)}
+.callout.tight{margin-top:4px;padding:clamp(10px,1.4vw,14px)}
 .callout .big{font-family:var(--display);font-size:clamp(28px,4.2vw,48px);line-height:1.08;letter-spacing:-.01em}
 .callout p{margin-top:12px;color:#CFC7BC;max-width:58ch;font-size:clamp(15px,1.4vw,17px);line-height:1.5}
 
@@ -171,11 +166,11 @@ table.beatgroup.on tr:nth-child(7){transition-delay:.34s}
 @media(max-width:760px){.vtable .vtrow{grid-template-columns:1fr}}
 
 /* arrive / during / leave table */
-.jtable{display:grid;gap:2px;margin-top:clamp(18px,3.2vh,30px)}
+.jtable{display:grid;gap:2px;margin-top:clamp(12px,2.2vh,22px)}
 .jtable .jhead{display:grid;grid-template-columns:minmax(110px,140px) 1fr 1fr 1fr;gap:14px;
-  padding:0 20px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  padding:0 20px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .jtable .jrow{display:grid;grid-template-columns:minmax(110px,140px) 1fr 1fr 1fr;gap:14px;align-items:start;
-  padding:13px 20px;background:var(--surface);border-radius:12px}
+  padding:10px 20px;background:var(--surface);border-radius:12px}
 .jtable .jname{font-family:var(--display);font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--paper)}
 .jtable .jcell{font-size:clamp(12px,1.05vw,13.5px);color:#CFC7BC;line-height:1.4}
 .jtable.beatgroup .jrow{opacity:0;transform:translateX(-10px);
@@ -205,8 +200,7 @@ table.beatgroup.on tr:nth-child(7){transition-delay:.34s}
 .cover h1{max-width:16ch}
 .cover .meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--muted);margin-top:clamp(26px,5vh,52px)}
-.cover .footnote{font-family:var(--display);font-style:italic;font-size:14px;color:var(--muted);
-  margin-top:14px}
+.cover .footnote{font-style:italic;margin-top:4px}
 .rule{width:44px;height:2px;background:var(--ember);margin-bottom:30px}
 .logomark{display:block;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.92}
 
@@ -347,20 +341,21 @@ const S = [
 <div class="rule"></div>
 <h1>A New Story for Prime Group</h1>
 <p class="sub">Your food already brings people back. What is missing is being the name they bring up.</p>
+<p class="sub footnote">This proposal is better enjoyed with a beer in hand.</p>
 <div class="meta">Marketingverse &middot; October 2026</div>
-<p class="footnote">This proposal is better enjoyed with a beer in hand.</p>
 </div>`},
 
 /* 2 */ {sec:"Overview", html:`<div class="wrap">
 <span class="eyebrow">On one page</span>
+<h2 class="wide">Content is not a reason to come.</h2>
 <p class="body beat"><strong>The problem.</strong> The marketing has been producing content, but it has mostly been promos: offers and announcements that do not start a conversation or build a relationship with anyone watching.</p>
 <p class="body beat"><strong>What's worked.</strong> Everything that has really moved for you was something happening. The Jamaica burger. Chinese New Year. Karaoke, which is the only thing keeping people drinking past eleven. The Soca night. Your promotions work too, and they should stay. A discount will fill a Tuesday. It just will not make anyone talk about you.</p>
 <p class="body beat"><strong>What we would do.</strong> Fix what is broken. Give every venue a story the guest can tell. Rebuild social and ads so those stories reach people. Push catering, your biggest unworked opportunity.</p>
-<table class="beatgroup">
+<table class="beatgroup tight">
 <tr><th>Monthly</th><th class="r">Today</th><th class="r">Proposed</th></tr>
-<tr class="hi"><td class="k">Marketing spend</td><td class="r num">$17,983</td><td class="r num up">$16,115</td></tr>
+<tr class="hi"><td class="k">Marketing spend</td><td class="r num">$17,983</td><td class="r num up">$16,215</td></tr>
 </table>
-<div class="callout beat"><div class="big">$22,416 a year less.</div></div>
+<div class="callout beat tight"><div class="big">$21,216 a year less.</div></div>
 </div>`},
 
 /* 3 */ {sec:"What I saw", html:`<div class="wrap">
@@ -381,7 +376,7 @@ const S = [
 </div></div>
 <div class="vtrow"><div class="vtname">Carnivore Smash</div><div class="vtbody">
 <div class="vtline"><b>Liked:</b> the cultural burger is the best marketing idea in the group, and it came from you.</div>
-<div class="vtline bad"><b>Fix:</b> 26 reviews at 4.5. Two bad nights move that number.</div>
+<div class="vtline bad"><b>Fix:</b> Ambience. 26 reviews at 4.5. Two bad nights move that number.</div>
 </div></div>
 </div>
 </div>`},
@@ -429,7 +424,7 @@ const S = [
 
 /* 6 */ {sec:"The new approach", html:`<div class="wrap">
 <span class="eyebrow">The new approach</span>
-<h2 class="wide">People remember how a place made them feel, not what a post said about it.</h2>
+<h2 class="wide">People remember how a place made them feel, not what a post said about&nbsp;it.</h2>
 <p class="body beat"><strong>Three parts.</strong> Small changes that make the experience memorable. Things that happen beyond the four walls. And a different approach to social, so all of it actually reaches people.</p>
 <p class="body beat">So we build emotional connection, a better experience, moments worth describing, and then campaigns that showcase exactly those things.</p>
 </div>`},
@@ -513,9 +508,10 @@ const S = [
 <span class="eyebrow">Social</span>
 <h2 class="wide">People connect with people.</h2>
 <p class="body beat">That is the whole shift. Less food on white plates, more of the operation and the people running it.</p>
-<p class="body beat"><strong>Dylan and Lucas, both of them.</strong> They are brothers, they are both chefs, and they are both known. The two of them together is more watchable than either alone, and two brothers who both cook is a thing people remember about a group.</p>
-<p class="body beat"><strong>Dylan showing the industry.</strong> The suppliers, the fishermen, the cooks, the servers, the delivery drivers. How the food actually gets here and how the whole thing works. Nobody on the island is telling that story, and the people in it bring their own audience. This becomes one of three content pillars, a running series rather than a one-off.</p>
+<p class="body beat"><strong>Dylan and Lucas, both of them.</strong> Brothers, both chefs, both known. Together they are more watchable than either alone, and two brothers who both cook is a thing people remember about a group.</p>
+<p class="body beat"><strong>Dylan showing the industry.</strong> The suppliers, the fishermen, the cooks, the servers, the delivery drivers. How the food actually gets here and how the whole thing works. Nobody on the island is telling that story, and the people in it bring their own audience. One of three content pillars, a running series rather than a one-off.</p>
 <p class="body beat"><strong>His time is lighter than it sounds.</strong> One morning a quarter produces ten to twelve proper pieces, plus short phone clips through the week, no script. We send the ideas so he never has to think of one.</p>
+<p class="body beat"><strong>Two shoots a year.</strong> Same shoots you already do, shot by the people who own the strategy, so the library matches what goes out weekly.</p>
 </div>`},
 
 /* 14 */ {sec:"The new approach", html:`<div class="wrap">
@@ -554,23 +550,22 @@ const S = [
 <li><span><b>A production coordinator, on the island.</b> Four venue visits a week on a shot list. Runs the experience nights, chases suppliers, handles setup. I hire, pay and manage them, inside my fee, not a line on your invoice.</span></li>
 <li><span><b>A photographer for the production days.</b> I hire them, and I am happy to use whoever you have been working with if they are good.</span></li>
 <li><span><b>Your team.</b> Short videos filmed on their phones, following a simple brief we give them. The floor asking for reviews. Dylan and Lucas on camera. And a direct line back to us: what guests are saying, what is working, what is not.</span></li>
-<li><span><b>Two production shoots per venue per year,</b> same as today, but shot by the people who own the strategy, so the library matches the weekly content.</span></li>
 </ul>
 </div>`},
 
 /* 18 */ {sec:"The money & the goal", html:`<div class="wrap">
 <span class="eyebrow">The money</span>
 <h2 class="wide">Less money, pointed at fewer things that get counted.</h2>
-<table class="beatgroup">
+<table class="beatgroup tight">
 <tr><th>Line</th><th class="r">Today</th><th class="r">Proposed</th></tr>
-<tr><td class="k">Agency fee</td><td class="r num">$11,300</td><td class="r num">$10,200</td></tr>
+<tr><td class="k">Agency fee</td><td class="r num">$11,300</td><td class="r num">$10,300</td></tr>
 <tr><td class="k">Advertising</td><td class="r num">$3,198</td><td class="r num">$3,000</td></tr>
 <tr><td class="k">Guerrilla and experiences</td><td class="r num">$2,870</td><td class="r num">$2,300</td></tr>
 <tr><td class="k">Print production</td><td class="r num">$615</td><td class="r num">$615</td></tr>
-<tr class="hi"><td class="k">Monthly</td><td class="r num">$17,983</td><td class="r num up">$16,115</td></tr>
+<tr class="hi"><td class="k">Monthly</td><td class="r num">$17,983</td><td class="r num up">$16,215</td></tr>
 </table>
-<p class="body beat"><strong>$1,868 a month. $22,416 a year.</strong></p>
-<p class="body beat note">On the guerrilla line: today that is $34,440 a year on a scavenger hunt, beach giveaways, sidewalk stencils, dollar bills around town and coconut water stands. Some of it may have worked. Nobody can say, because none of it was tracked. The money is not cut, it is pointed at fewer things that get counted. Your promotions stay as they are: a discount will fill a Tuesday, it just buys a visit, not a relationship.</p>
+<p class="body beat"><strong>$1,768 a month. $21,216 a year.</strong></p>
+<p class="body beat note">On the guerrilla line: today that is $34,440 a year on a scavenger hunt, beach giveaways, sidewalk stencils, dollar bills around town and coconut water stands. Some of it may have worked. Nobody can say, because none of it was tracked. Your promotions stay as they are: a discount will fill a Tuesday, it just buys a visit, not a relationship.</p>
 </div>`},
 
 /* 19 */ {sec:"The money & the goal", html:`<div class="wrap">
@@ -594,7 +589,7 @@ const S = [
 <h2 class="wide">A group people talk about, not just a restaurant people like.</h2>
 <p class="body beat">Fix what is broken. Give every venue a story the guest can tell. A real catering push. A rebuilt engine so any of it reaches people.</p>
 <p class="body beat">One person accountable. One producer on the ground. One report a month you do not have to ask for.</p>
-<div class="callout beat"><div class="big">$22,416 a year less than you spend today.</div></div>
+<div class="callout beat"><div class="big">$21,216 a year less than you spend today.</div></div>
 <p class="body beat note">Marketingverse &middot; hello@the-marketingverse.com &middot; 310.736.0723</p>
 <h2 class="wide beat">Biiiird!</h2>
 </div>`}
