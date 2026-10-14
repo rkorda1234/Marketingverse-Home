@@ -70,6 +70,8 @@ p.body.note strong{color:var(--muted)}
 .fig .n.down{color:var(--ember)}
 .fig .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);margin-top:12px;max-width:24ch;line-height:1.5}
+.fig .t{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px}
 
 /* list, bold is the argument */
 ul.pts{list-style:none;margin-top:clamp(20px,3.6vh,36px);display:grid;gap:2px}
@@ -203,6 +205,8 @@ table.beatgroup.on tr:nth-child(7){transition-delay:.34s}
 .cover h1{max-width:16ch}
 .cover .meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--muted);margin-top:clamp(26px,5vh,52px)}
+.cover .footnote{font-family:var(--display);font-style:italic;font-size:14px;color:var(--muted);
+  margin-top:14px}
 .rule{width:44px;height:2px;background:var(--ember);margin-bottom:30px}
 .logomark{display:block;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.92}
 
@@ -344,6 +348,7 @@ const S = [
 <h1>A New Story for Prime Group</h1>
 <p class="sub">Your food already brings people back. What is missing is being the name they bring up.</p>
 <div class="meta">Marketingverse &middot; October 2026</div>
+<p class="footnote">This proposal is better enjoyed with a beer in hand.</p>
 </div>`},
 
 /* 2 */ {sec:"Overview", html:`<div class="wrap">
@@ -363,8 +368,8 @@ const S = [
 <h2 class="wide">What worked, and what needs fixing.</h2>
 <div class="vtable beatgroup">
 <div class="vtrow"><div class="vtname">Uncle Liu's</div><div class="vtbody">
-<div class="vtline"><b>Liked:</b> the room, the food, and a claim nobody is making. The only place you know of serving Caribbean inspired Chinese.</div>
-<div class="vtline bad"><b>Fix:</b> say it. The line appears nowhere. The glass wall should be a curtain.</div>
+<div class="vtline"><b>Liked:</b> the room, the food, and a claim nobody is making. The only place you know of serving Caribbean inspired Chinese, yet familiar.</div>
+<div class="vtline bad"><b>Fix:</b> say it. The line appears nowhere. The glass wall can be a curtain. An underutilized experience.</div>
 </div></div>
 <div class="vtrow"><div class="vtname">Coconut Room</div><div class="vtbody">
 <div class="vtline"><b>Liked:</b> the community in the room is the product. People come because it is full of the people whose food it is.</div>
@@ -386,12 +391,12 @@ const S = [
 <h2 class="wide">What worked, and what needs fixing, continued.</h2>
 <div class="vtable beatgroup">
 <div class="vtrow"><div class="vtname">San Si Wu</div><div class="vtbody">
-<div class="vtline"><b>Liked:</b> people still remember it, which is rarer than it sounds.</div>
+<div class="vtline"><b>Liked:</b> the story. San Si Wu is where the group began, and that is worth telling.</div>
 <div class="vtline bad"><b>Fix:</b> the profile says dine-in, lists Wi-Fi, and shows a vendor's name in the page titles.</div>
 </div></div>
 <div class="vtrow"><div class="vtname">Yallah</div><div class="vtbody">
-<div class="vtline"><b>Liked:</b> good concept, good look, a clear lunch crowd from the gyms and offices around it.</div>
-<div class="vtline bad"><b>Fix:</b> bare walls. Closed Sundays in a weekend district. Nothing that makes the bowl memorable.</div>
+<div class="vtline"><b>Liked:</b> good concept, good look. The convenience, the food, the friendliness.</div>
+<div class="vtline bad"><b>Fix:</b> it lacks a Middle Eastern connection and feel.</div>
 </div></div>
 <div class="vtrow"><div class="vtname">Prime Kitchen</div><div class="vtbody">
 <div class="vtline"><b>Liked:</b> ten years, the highest value booking in the group, a chef in the room before visitors have chosen where else to eat all week.</div>
@@ -417,14 +422,14 @@ const S = [
 <li><span><b>Prime Kitchen's Google profile.</b> Rebuilt as a service area business, with correct hours, a quote button and reviews switched on. Highest value business you own, currently showing no proof of anything.</span></li>
 <li><span><b>Four profile errors across the group.</b> San Si Wu and Coconut Room publish the same phone number. Yallah says it takes no reservations while listing a booking provider. Smash's hours are unconfirmed, so Google tells people it is unsure you are open. A vendor's name appears in San Si Wu's page titles.</span></li>
 <li><span><b>Website conversion fixes, around $3,500.</b> Clickable phone numbers. Real addresses. The Prime Kitchen button that turns white on white. Plated food on the catering pages. Offers above the fold. The reservation form that promises a reply within twelve hours.</span></li>
-<li><span><b>Reviews.</b> The request moves to after the visit instead of at the table, and every one carries "how did you hear about us."</span></li>
-<li><span><b>A price structure for Prime Kitchen.</b> Nobody can refer a service when they do not know what it costs.</span></li>
+<li><span><b>Reviews.</b> The request system should be revised and optimized if possible.</span></li>
+<li><span><b>A price structure for Prime Kitchen.</b> Not public pricing, your positioning should stay discreet, but a consistent number your team and referral partners can quote, instead of $800 one week and $3,000 the next.</span></li>
 </ul>
 </div>`},
 
 /* 6 */ {sec:"The new approach", html:`<div class="wrap">
 <span class="eyebrow">The new approach</span>
-<h2 class="wide">People remember how a place made them feel, not what it posted.</h2>
+<h2 class="wide">People remember how a place made them feel, not what a post said about it.</h2>
 <p class="body beat"><strong>Three parts.</strong> Small changes that make the experience memorable. Things that happen beyond the four walls. And a different approach to social, so all of it actually reaches people.</p>
 <p class="body beat">So we build emotional connection, a better experience, moments worth describing, and then campaigns that showcase exactly those things.</p>
 </div>`},
@@ -449,10 +454,10 @@ const S = [
 <div class="jrow"><div class="jname">Uncle Liu's</div><div class="jcell" data-k="Arrive">Choose your chopsticks from a tray</div><div class="jcell" data-k="During">A dish finished at the table</div><div class="jcell" data-k="Leave">Your duck number, on a card</div></div>
 <div class="jrow"><div class="jname">Coconut Room</div><div class="jcell" data-k="Arrive">A welcome shot for the table</div><div class="jcell" data-k="During">Kamayan, eaten with hands</div><div class="jcell" data-k="Leave">Filipino candy with the check. Childhood for half the room, new to everyone else</div></div>
 <div class="jrow"><div class="jname">Lucky Rabbit</div><div class="jcell" data-k="Arrive">Scan to pick your karaoke song as you sit</div><div class="jcell" data-k="During">Hands Night, once a month. Sushi eaten the way it started in Japan, no cutlery</div><div class="jcell" data-k="Leave">A photo of your table, turned into a WhatsApp sticker and sent to you. Plus your bottle kept with your name on it</div></div>
-<div class="jrow"><div class="jname">Carnivore Smash</div><div class="jcell" data-k="Arrive">They call your name, not a number</div><div class="jcell" data-k="During">The sauce arrives in a syringe and you put it where you want it</div><div class="jcell" data-k="Leave">A side nobody else does, that people start ordering on its own</div></div>
-<div class="jrow"><div class="jname">San Si Wu</div><div class="jcell" data-k="Arrive">Packaging with the original place printed on it, in the original voice</div><div class="jcell" data-k="During">The food, unchanged</div><div class="jcell" data-k="Leave">A secret invitation in the bag. One night, limited seats, and the only way to hear about it is to have ordered</div></div>
+<div class="jrow"><div class="jname">Carnivore Smash</div><div class="jcell" data-k="Arrive">They give you a nickname, and call you by it</div><div class="jcell" data-k="During">The sauce arrives in a syringe and you put it where you want it</div><div class="jcell" data-k="Leave">A side nobody else does, that people start ordering on its own</div></div>
+<div class="jrow"><div class="jname">San Si Wu</div><div class="jcell" data-k="Arrive">A memorable way to greet you</div><div class="jcell" data-k="During">A surprise taste of a new sauce</div><div class="jcell" data-k="Leave">A secret invitation in the bag. One night, limited seats, and the only way to hear about it is to have ordered</div></div>
 <div class="jrow"><div class="jname">Yallah</div><div class="jcell" data-k="Arrive">A taste of the day's special while you queue</div><div class="jcell" data-k="During">The shake. Lid on, flip once, three shakes, you do it yourself</div><div class="jcell" data-k="Leave">Something for four o'clock, because the gym and office crowd gets hungry again</div></div>
-<div class="jrow"><div class="jname">Prime Kitchen</div><div class="jcell" data-k="Arrive">The menu arrives as a conversation, not a quote</div><div class="jcell" data-k="During">You cook alongside the chef</div><div class="jcell" data-k="Leave">Photos from the night, sent the next morning</div></div>
+<div class="jrow"><div class="jname">Prime Kitchen</div><div class="jcell" data-k="Arrive">You help shape the menu with the chef, not pick from a sheet</div><div class="jcell" data-k="During">You cook alongside the chef</div><div class="jcell" data-k="Leave">Photos from the night, sent the next morning</div></div>
 </div>
 </div>`},
 
@@ -469,7 +474,8 @@ const S = [
 <ul class="pts beatgroup">
 <li><span><b>Locals First.</b> In December your regulars cannot get a table because visitors took them. Yours is 80 to 95 percent local, so we do the opposite: priority booking, held tables, walk-in priority, in the month everyone else turns them away. It costs nothing and nobody is doing it.</span></li>
 <li><span><b>The Beach Cookout.</b> Free, no ticket, DJ, BBQ, the team cooking, filmed properly. Everything else in marketing asks people for something. This gives first. Three or four a year.</span></li>
-<li><span><b>Collaborations with other chefs on the island.</b> A guest chef from one of the bigger restaurants cooks a night with Dylan and Lucas, and it goes both ways over time. It costs a night, no build, no lease, no new concept. The partner brings their own audience, and in an industry this small, the relationships are worth as much as the covers.</span></li>
+<li><span><b>Collaborations with other chefs on the island.</b> A guest chef from one of the bigger restaurants cooks a night with Dylan and Lucas (if he is up for it ;), and it goes both ways over time. It costs a night, no build, no lease, no new concept. The partner brings their own audience, and in an industry this small, the relationships are worth as much as the covers.</span></li>
+<li><span><b>Finish the dish.</b> Pick a table, often tourists, to plate or serve their own course table-side. It costs nothing, it is quirky, and it is the kind of moment people actually bring up later.</span></li>
 </ul>
 </div>`},
 
@@ -489,7 +495,7 @@ const S = [
 <h2 class="wide">One signature move, per venue, continued.</h2>
 <div class="vlines beatgroup">
 <div class="vrow"><span class="strip"></span><div><div class="vname">San Si Wu</div><div class="vline">The secret night.</div><div class="vctx">Quarterly, limited seats, and the only people who hear about it are the ones who ordered. The old room is gone, but the room was never the point. Being in the know was.</div></div></div>
-<div class="vrow"><span class="strip"></span><div><div class="vname">Yallah</div><div class="vline">Photos on the walls, snack at four.</div><div class="vctx">The room gives people nothing to look at, and the gym and office crowd that comes at lunch has a second hunger at four.</div></div></div>
+<div class="vrow"><span class="strip"></span><div><div class="vname">Yallah</div><div class="vline">Photos on the walls, snack at four.</div><div class="vctx">The room gives people nothing to look at, and the gym and office crowd that comes at lunch has a second hunger at four. A small free snack at four, off the same ingredients as the bowl, answers both.</div></div></div>
 <div class="vrow"><span class="strip"></span><div><div class="vname">Prime Kitchen</div><div class="vline">The referral network.</div><div class="vctx">Villa companies already pay off, so extend the same deal to Airbnb hosts, yacht charters and travel agents. Ninety percent of these customers are visitors, and visitors ask whoever handed them the keys.</div></div></div>
 </div>
 </div>`},
@@ -508,7 +514,7 @@ const S = [
 <h2 class="wide">People connect with people.</h2>
 <p class="body beat">That is the whole shift. Less food on white plates, more of the operation and the people running it.</p>
 <p class="body beat"><strong>Dylan and Lucas, both of them.</strong> They are brothers, they are both chefs, and they are both known. The two of them together is more watchable than either alone, and two brothers who both cook is a thing people remember about a group.</p>
-<p class="body beat"><strong>Dylan showing the industry.</strong> The suppliers, the fishermen, the cooks, the servers, the delivery drivers. How the food actually gets here and how the whole thing works. Nobody on the island is telling that story, and the people in it bring their own audience.</p>
+<p class="body beat"><strong>Dylan showing the industry.</strong> The suppliers, the fishermen, the cooks, the servers, the delivery drivers. How the food actually gets here and how the whole thing works. Nobody on the island is telling that story, and the people in it bring their own audience. This becomes one of three content pillars, a running series rather than a one-off.</p>
 <p class="body beat"><strong>His time is lighter than it sounds.</strong> One morning a quarter produces ten to twelve proper pieces, plus short phone clips through the week, no script. We send the ideas so he never has to think of one.</p>
 </div>`},
 
@@ -534,7 +540,7 @@ const S = [
 <ul class="pts beatgroup">
 <li><span><b>Visits.</b> Covers by venue by week against last year.</span></li>
 <li><span><b>Recurrence.</b> Repeat visits within 120 days, where the systems already hold guest records: Uncle Liu's and Coconut Room through OpenTable and EatApp, plus delivery. Lucky Rabbit, Yallah and Smash cannot be measured this way today. We build that over time through the review request.</span></li>
-<li><span><b>Sales.</b> By venue, seasonally indexed, so a September dip is not read as failure.</span></li>
+<li><span><b>Sales.</b> By venue, seasonally indexed, so the data is accurate.</span></li>
 <li><span><b>Profitability.</b> Contribution after activation cost, so a busy night that cost too much to fill does not read as a win.</span></li>
 </ul>
 <p class="body beat note">Ads and search carry a click ID. Experiences get their own booking code. A cookout cannot be clicked, so the freebie carries a condition: post a photo and tag us, or scan to claim. And a control group on promotions: we hold half the list back and compare who came, so we know what an offer actually caused, not just that it ran.</p>
@@ -547,7 +553,7 @@ const S = [
 <li><span><b>Me.</b> Strategy, social direction, ad accounts, experiences, catering programme, monthly report. I run the production shoots. On the island quarterly, first visit a full week.</span></li>
 <li><span><b>A production coordinator, on the island.</b> Four venue visits a week on a shot list. Runs the experience nights, chases suppliers, handles setup. I hire, pay and manage them, inside my fee, not a line on your invoice.</span></li>
 <li><span><b>A photographer for the production days.</b> I hire them, and I am happy to use whoever you have been working with if they are good.</span></li>
-<li><span><b>Your team.</b> Phone footage to a brief. The floor asking for reviews. Dylan and Lucas on camera.</span></li>
+<li><span><b>Your team.</b> Short videos filmed on their phones, following a simple brief we give them. The floor asking for reviews. Dylan and Lucas on camera. And a direct line back to us: what guests are saying, what is working, what is not.</span></li>
 <li><span><b>Two production shoots per venue per year,</b> same as today, but shot by the people who own the strategy, so the library matches the weekly content.</span></li>
 </ul>
 </div>`},
@@ -569,17 +575,17 @@ const S = [
 
 /* 19 */ {sec:"The money & the goal", html:`<div class="wrap">
 <span class="eyebrow">The goal</span>
-<h2 class="wide">We baseline first, then judge it at day 120.</h2>
+<h2 class="wide">Baseline first, then judge at day&nbsp;120.</h2>
 <p class="body beat"><strong>Two things, measured differently.</strong> What we can count directly: new nights with their own booking codes, catering invoices, Prime Kitchen bookings through a referral network that does not exist yet. These are the floor, not the ceiling. And growth, which is where the rest shows up: the cookouts, the relationships with other chefs, the small moments in the room. None of those carry a click. They show in covers and in whether people come back.</p>
 <div class="figs beatgroup">
-<div class="fig"><div class="n up">3.4%</div><div class="l">growth the entire marketing budget needs to break even</div></div>
+<div class="fig"><div class="t">by the way</div><div class="n up">3.4%</div><div class="l">growth the entire marketing budget needs to break even</div></div>
 </div>
 </div>`},
 
 /* 19b */ {sec:"The money & the goal", html:`<div class="wrap">
 <span class="eyebrow">The goal, continued</span>
 <h2 class="wide">How we judge it.</h2>
-<p class="body beat"><strong>So we baseline first.</strong> We pull the last twelve months of covers by venue out of your system in week one. Every month after that we compare against the same month a year earlier, so season is taken out of it.</p>
+<p class="body beat"><strong>The mechanics.</strong> We pull the last twelve months of covers by venue out of your system in week one. Every month after that we compare against the same month a year earlier, so season is taken out of it.</p>
 <p class="body beat"><strong>The commitment is 120 days, then month to month.</strong> The first month is largely setup. Judging it at 90 would mean judging 60 days of actual work. At day 120 we sit down with the numbers and you decide.</p>
 </div>`},
 
@@ -590,6 +596,7 @@ const S = [
 <p class="body beat">One person accountable. One producer on the ground. One report a month you do not have to ask for.</p>
 <div class="callout beat"><div class="big">$22,416 a year less than you spend today.</div></div>
 <p class="body beat note">Marketingverse &middot; hello@the-marketingverse.com &middot; 310.736.0723</p>
+<h2 class="wide beat">Biiiird!</h2>
 </div>`}
 
 ];
