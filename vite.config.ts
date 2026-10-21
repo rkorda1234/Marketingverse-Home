@@ -23,6 +23,7 @@ export default defineConfig({
         'prime-group-proposal': 'prime-group-proposal.html',
         'prime-group-prepform': 'prime-group-prepform.html',
         'prime-group-story': 'prime-group-story.html',
+        'miami-display-proposal': 'miami-display-proposal.html',
       },
     },
   },

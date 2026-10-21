@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miami Display: More Gondola Sales Across Florida</title>
+<meta name="description" content="Marketingverse's proposal for Miami Display: what we found, what we'd do, and what it costs.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12100E;
+  --surface:#1A1714;
+  --surface2:#221E1A;
+  --paper:#F0EBE3;
+  --muted:#8C8177;
+  --line:rgba(240,235,227,.10);
+  --ember:#C8763E;
+  --sea:#7BA396;
+  --display:'Instrument Serif',Georgia,serif;
+  --body:'Schibsted Grotesk',system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#deck{position:relative;height:100dvh;width:100%}
+.slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(26px,5.6vw,100px);padding-bottom:clamp(68px,10vh,104px);
+  opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .32s var(--ease),transform .32s var(--ease),visibility .32s;
+  overflow-y:auto;
+}
+.slide.on{opacity:1;visibility:visible;transform:none}
+.wrap{width:100%;max-width:1120px;margin:0 auto}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:clamp(14px,2.6vh,26px);display:block;
+}
+h1{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.015em;
+  font-size:clamp(36px,7vw,80px)}
+h2{font-family:var(--display);font-weight:400;line-height:1.08;letter-spacing:-.01em;
+  font-size:clamp(28px,4.4vw,50px);max-width:20ch}
+h2.wide{max-width:27ch}
+.sub{color:var(--muted);font-size:clamp(16px,1.7vw,20px);margin-top:14px;max-width:54ch;line-height:1.5}
+
+p.body{margin-top:22px;max-width:62ch;font-size:clamp(18px,1.6vw,21px);color:#CFC7BC;line-height:1.55}
+p.body strong{color:var(--paper);font-weight:600}
+p.body + p.body{margin-top:14px}
+p.body.note{color:var(--muted);font-size:clamp(14px,1.3vw,15px);max-width:60ch}
+p.body.note strong{color:var(--muted)}
+
+.figs{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px);margin-top:clamp(24px,4.4vh,44px)}
+.fig .n{font-family:var(--display);font-size:clamp(44px,7.6vw,92px);line-height:.92;letter-spacing:-.02em}
+.fig .n.up{color:var(--sea)}
+.fig .n.down{color:var(--ember)}
+.fig .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px;max-width:24ch;line-height:1.5}
+.fig .t{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px}
+
+ul.pts{list-style:none;margin-top:clamp(20px,3.6vh,36px);display:grid;gap:2px}
+ul.pts li{
+  padding:15px 19px;background:var(--surface);border-radius:14px;
+  display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;
+  font-size:clamp(15px,1.4vw,17px);color:#CFC7BC;line-height:1.5;
+}
+ul.pts li b{color:var(--ember);font-weight:600}
+ul.pts li::before{content:"—";color:var(--ember);font-family:var(--mono);font-size:13px;line-height:1.6}
+ul.pts.two{grid-template-columns:1fr 1fr}
+@media(max-width:860px){ul.pts.two{grid-template-columns:1fr}}
+
+table{width:100%;border-collapse:collapse;margin-top:clamp(20px,3.6vh,36px);font-size:clamp(14px,1.3vw,16px)}
+table.tight{margin-top:8px}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-align:left;font-weight:400;padding:0 14px 13px 0;border-bottom:1px solid var(--line)}
+th.r,td.r{text-align:right}
+td{padding:16px 14px 16px 0;border-bottom:1px solid var(--line);color:#CFC7BC;line-height:1.5;vertical-align:top}
+td.k{color:var(--paper);font-weight:600;font-size:clamp(15px,1.35vw,17px)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr.hi td{color:var(--paper)}
+tr.hi td.num{color:var(--ember)}
+table.beatgroup{opacity:0;transition:opacity .4s var(--ease)}
+table.beatgroup.on{opacity:1}
+.up{color:var(--sea)}
+
+.callout{margin-top:clamp(22px,3.8vh,38px);padding:clamp(22px,3vw,32px);
+  background:var(--surface);border-radius:20px;border-left:2px solid var(--ember)}
+.callout.tight{margin-top:4px;padding:clamp(10px,1.4vw,14px)}
+.callout .big{font-family:var(--display);font-size:clamp(28px,4.2vw,48px);line-height:1.08;letter-spacing:-.01em}
+.callout p{margin-top:12px;color:#CFC7BC;max-width:58ch;font-size:clamp(15px,1.4vw,17px);line-height:1.5}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;
+  margin-top:clamp(20px,3.6vh,36px)}
+.card{background:var(--surface);border-radius:16px;padding:20px}
+.card h3{font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:7px}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.5}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);display:block;margin-bottom:10px}
+
+/* chrome */
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--ember);z-index:70;
+  transition:width .5s var(--ease);width:0}
+#chrome{position:fixed;bottom:0;left:0;right:0;z-index:65;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(14px,2.2vw,28px) clamp(18px,5vw,50px);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  background:linear-gradient(to top,var(--ink) 45%,transparent)}
+#sect{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#nav{display:flex;align-items:center;gap:8px}
+.nb{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .4s var(--ease),transform .4s var(--ease);font-size:15px;line-height:1}
+.nb:hover{background:rgba(240,235,227,.07)}
+.nb:active{transform:scale(.94)}
+.nb:disabled{opacity:.25;cursor:default}
+.nb:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+#count{font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+#hint{position:fixed;bottom:clamp(66px,10.5vh,98px);left:50%;transform:translateX(-50%);
+  z-index:64;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);opacity:.6;transition:opacity .5s}
+#hint.hide{opacity:0}
+
+#menuOverlay{position:fixed;inset:0;z-index:80;background:rgba(18,16,14,.74);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;
+  transition:opacity .3s var(--ease),visibility .3s}
+#menuOverlay.open{opacity:1;visibility:visible}
+#menuPanel{width:min(560px,92vw);max-height:78vh;background:var(--surface);border-radius:20px;
+  border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;
+  transform:translateY(12px) scale(.98);transition:transform .3s var(--ease)}
+#menuOverlay.open #menuPanel{transform:none}
+#menuHead{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;
+  border-bottom:1px solid var(--line);flex-shrink:0}
+#menuTitle{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+#menuList{overflow-y:auto;padding:8px 8px 16px}
+.menu-sec{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);padding:16px 14px 6px}
+.menu-item{display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;background:none;border:none;
+  color:var(--paper);font-family:var(--body);font-size:14px;padding:10px 14px;border-radius:10px;cursor:pointer}
+.menu-item:hover{background:rgba(240,235,227,.06)}
+.menu-item .mi-num{font-family:var(--mono);font-size:11px;color:var(--muted);min-width:20px;flex-shrink:0}
+.menu-item.current{color:var(--ember)}
+.menu-item.current .mi-num{color:var(--ember)}
+
+/* cover */
+.cover h1{max-width:16ch}
+.cover .meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-top:clamp(26px,5vh,52px)}
+.rule{width:44px;height:2px;background:var(--ember);margin-bottom:30px}
+.logomark{display:block;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.92}
+
+/* beats */
+.beat{opacity:0;transform:translateY(20px);filter:blur(3px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),filter .6s var(--ease)}
+.beat.on{opacity:1;transform:none;filter:blur(0)}
+
+ul.pts.beatgroup li{opacity:0;transform:translateY(14px);filter:blur(2px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease),filter .5s var(--ease)}
+ul.pts.beatgroup.on li{opacity:1;transform:none;filter:blur(0)}
+ul.pts.beatgroup.on li:nth-child(1){transition-delay:0s}
+ul.pts.beatgroup.on li:nth-child(2){transition-delay:.06s}
+ul.pts.beatgroup.on li:nth-child(3){transition-delay:.12s}
+ul.pts.beatgroup.on li:nth-child(4){transition-delay:.18s}
+ul.pts.beatgroup.on li:nth-child(5){transition-delay:.24s}
+ul.pts.beatgroup.on li:nth-child(6){transition-delay:.30s}
+
+table.beatgroup tr:not(:first-child){opacity:0;transform:translateX(-10px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+table.beatgroup.on tr:not(:first-child){opacity:1;transform:none}
+table.beatgroup.on tr:nth-child(2){transition-delay:.04s}
+table.beatgroup.on tr:nth-child(3){transition-delay:.10s}
+table.beatgroup.on tr:nth-child(4){transition-delay:.16s}
+table.beatgroup.on tr:nth-child(5){transition-delay:.22s}
+table.beatgroup.on tr:nth-child(6){transition-delay:.28s}
+
+.figs.beatgroup .fig{opacity:0;transform:translateY(18px) scale(.94);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.figs.beatgroup.on .fig{opacity:1;transform:none}
+.figs.beatgroup.on .fig:nth-child(1){transition-delay:0s}
+.figs.beatgroup.on .fig:nth-child(2){transition-delay:.14s}
+.figs.beatgroup.on .fig:nth-child(3){transition-delay:.28s}
+@keyframes figGlow{0%{text-shadow:0 0 0 rgba(240,235,227,0)}40%{text-shadow:0 0 22px rgba(240,235,227,.45)}100%{text-shadow:0 0 0 rgba(240,235,227,0)}}
+.figs.beatgroup.on .fig:nth-child(1) .n{animation:figGlow 1s var(--ease)}
+
+.cards.beatgroup .card{opacity:0;transform:translateY(16px) scale(.97);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.cards.beatgroup.on .card{opacity:1;transform:none}
+.cards.beatgroup.on .card:nth-child(1){transition-delay:0s}
+.cards.beatgroup.on .card:nth-child(2){transition-delay:.07s}
+.cards.beatgroup.on .card:nth-child(3){transition-delay:.14s}
+.cards.beatgroup.on .card:nth-child(4){transition-delay:.21s}
+
+/* big stats row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;
+  margin-top:clamp(20px,3.6vh,36px)}
+.stat{background:var(--surface);border-radius:16px;padding:clamp(18px,2.5vw,28px)}
+.stat .sn{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:.92;letter-spacing:-.02em;color:var(--ember)}
+.stat .sl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:14px;line-height:1.5;max-width:22ch}
+
+.stats.beatgroup .stat{opacity:0;transform:translateY(16px) scale(.97);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.stats.beatgroup.on .stat{opacity:1;transform:none}
+.stats.beatgroup.on .stat:nth-child(1){transition-delay:0s}
+.stats.beatgroup.on .stat:nth-child(2){transition-delay:.08s}
+.stats.beatgroup.on .stat:nth-child(3){transition-delay:.16s}
+.stats.beatgroup.on .stat:nth-child(4){transition-delay:.24s}
+
+/* three-column layout */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  margin-top:clamp(20px,3.6vh,36px)}
+.col3{background:var(--surface);border-radius:16px;padding:clamp(18px,2.2vw,26px)}
+.col3 .ctag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:12px;display:block}
+.col3 h3{font-size:clamp(14px,1.4vw,16px);font-weight:600;color:var(--paper);margin-bottom:10px}
+.col3 ul{list-style:none;display:grid;gap:6px}
+.col3 ul li{font-size:clamp(13px,1.2vw,14.5px);color:#CFC7BC;line-height:1.4;
+  padding-left:14px;position:relative}
+.col3 ul li::before{content:"·";position:absolute;left:0;color:var(--ember)}
+@media(max-width:760px){.cols3{grid-template-columns:1fr}}
+
+.cols3.beatgroup .col3{opacity:0;transform:translateY(14px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.cols3.beatgroup.on .col3{opacity:1;transform:none}
+.cols3.beatgroup.on .col3:nth-child(1){transition-delay:0s}
+.cols3.beatgroup.on .col3:nth-child(2){transition-delay:.08s}
+.cols3.beatgroup.on .col3:nth-child(3){transition-delay:.16s}
+
+/* steps horizontal */
+.steps{display:flex;gap:0;margin-top:clamp(20px,3.6vh,36px);position:relative}
+.steps::before{content:"";position:absolute;top:22px;left:22px;right:22px;height:1px;
+  background:var(--line);z-index:0}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:0 clamp(6px,1vw,16px);position:relative;z-index:1}
+.step-num{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;color:var(--ember);flex-shrink:0;margin-bottom:14px}
+.step.hi .step-num{background:var(--ember);color:var(--ink);border-color:var(--ember)}
+.step p{font-size:clamp(12px,1.15vw,14px);color:#CFC7BC;line-height:1.4}
+@media(max-width:640px){
+  .steps{flex-direction:column;gap:2px}
+  .steps::before{display:none}
+  .step{flex-direction:row;text-align:left;align-items:flex-start;gap:14px;
+    background:var(--surface);border-radius:14px;padding:14px 16px}
+  .step-num{margin-bottom:0;flex-shrink:0}
+}
+
+/* tiles grid */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  margin-top:clamp(18px,3vh,30px)}
+.tile{background:var(--surface);border-radius:14px;padding:clamp(14px,2vw,22px)}
+.tile .tl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:8px;display:block}
+.tile p{font-size:clamp(12.5px,1.15vw,14px);color:#CFC7BC;line-height:1.4}
+@media(max-width:640px){.tiles{grid-template-columns:repeat(2,1fr)}}
+
+.tiles.beatgroup .tile{opacity:0;transform:translateY(14px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.tiles.beatgroup.on .tile{opacity:1;transform:none}
+.tiles.beatgroup.on .tile:nth-child(1){transition-delay:0s}
+.tiles.beatgroup.on .tile:nth-child(2){transition-delay:.07s}
+.tiles.beatgroup.on .tile:nth-child(3){transition-delay:.14s}
+.tiles.beatgroup.on .tile:nth-child(4){transition-delay:.21s}
+.tiles.beatgroup.on .tile:nth-child(5){transition-delay:.28s}
+.tiles.beatgroup.on .tile:nth-child(6){transition-delay:.35s}
+
+/* competitor notes */
+.comps{display:grid;gap:2px;margin-top:clamp(18px,3vh,30px)}
+.comp{background:var(--surface);border-radius:12px;padding:14px 18px;
+  display:flex;align-items:baseline;gap:14px;font-size:clamp(13px,1.2vw,15px)}
+.comp .cn{font-family:var(--display);font-style:italic;color:var(--paper);font-size:clamp(14px,1.4vw,17px);
+  min-width:140px;flex-shrink:0}
+.comp .cd{color:var(--muted);line-height:1.4}
+@media(max-width:620px){.comp{flex-direction:column;gap:4px}}
+
+/* planner mock visual */
+.planner-mock{display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  margin-top:clamp(18px,3.2vh,32px);border-radius:16px;overflow:hidden}
+.pm-left{background:var(--surface2);padding:clamp(16px,2.2vw,28px)}
+.pm-right{background:var(--surface);padding:clamp(16px,2.2vw,28px)}
+.pm-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;display:block}
+.pm-floor{width:100%;aspect-ratio:4/3;border:1px solid var(--line);border-radius:10px;
+  position:relative;overflow:hidden;background:rgba(240,235,227,.03)}
+.pm-row{margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.pm-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.pm-row-name{font-size:clamp(12px,1.1vw,13.5px);color:var(--paper)}
+.pm-row-val{font-family:var(--mono);font-size:11px;color:var(--ember);float:right}
+.pm-total{margin-top:12px;padding-top:12px;border-top:1px solid rgba(200,118,62,.3);
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pm-total strong{color:var(--paper);font-size:13px}
+.example-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);border:1px solid var(--line);
+  border-radius:6px;padding:3px 8px;margin-bottom:14px}
+@media(max-width:640px){.planner-mock{grid-template-columns:1fr}}
+
+/* path toggle (slide 11) */
+.toggle-row{display:flex;gap:2px;margin-bottom:clamp(16px,2.6vh,26px)}
+.tog{padding:10px 28px;border-radius:30px;border:1px solid var(--line);background:transparent;
+  color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.tog.active{background:var(--ember);color:var(--ink);border-color:var(--ember)}
+.compare-table{width:100%;border-collapse:collapse;font-size:clamp(13px,1.2vw,15px)}
+.compare-table th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);font-weight:400;padding:0 16px 12px 0;border-bottom:1px solid var(--line);text-align:left}
+.compare-table th.c{text-align:center;min-width:100px}
+.compare-table td{padding:13px 16px 13px 0;border-bottom:1px solid var(--line);color:#CFC7BC;vertical-align:middle}
+.compare-table td.cv{text-align:center;font-family:var(--mono);font-size:13px}
+.compare-table td.cv.yes{color:var(--sea)}
+.compare-table td.cv.no{color:var(--muted)}
+.compare-table th.c.hl,.compare-table td.cv.hl{background:rgba(200,118,62,.07);border-radius:0}
+.compare-table tr.price-row td{color:var(--paper);font-weight:600;border-bottom:none}
+.price-summary{margin-top:clamp(16px,2.6vh,24px);padding:clamp(16px,2.2vw,24px);
+  background:var(--surface);border-radius:16px;border-left:2px solid var(--ember);
+  display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.price-summary .ps-path{font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted)}
+.price-summary .ps-price{font-family:var(--display);font-size:clamp(28px,4vw,46px);
+  line-height:1;color:var(--paper);letter-spacing:-.01em}
+.price-summary .ps-mo{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
+
+/* calculator (slide 13) */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);
+  margin-top:clamp(16px,2.6vh,28px)}
+.calc-inputs{display:grid;gap:clamp(10px,1.6vh,16px)}
+.ci-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px;display:block}
+.ci-val{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);color:var(--paper);
+  letter-spacing:-.01em;margin-bottom:6px}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:3px;
+  background:var(--line);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;
+  border-radius:50%;background:var(--ember);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;
+  border-radius:50%;background:var(--ember);cursor:pointer}
+.calc-toggle{display:flex;gap:2px;margin-top:4px}
+.calc-results{display:grid;gap:2px;align-content:start}
+.cr-item{background:var(--surface);border-radius:14px;padding:clamp(14px,2vw,22px)}
+.cr-item .cr-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px}
+.cr-item .cr-val{font-family:var(--display);font-size:clamp(24px,3.4vw,40px);letter-spacing:-.01em;color:var(--paper)}
+.cr-item .cr-val.pos{color:var(--sea)}
+.cr-item .cr-val.neutral{color:#CFC7BC}
+.cr-item.breakeven{background:rgba(200,118,62,.08);border:1px solid rgba(200,118,62,.2)}
+.cr-item.breakeven .cr-val{color:var(--ember)}
+@media(max-width:680px){.calc-grid{grid-template-columns:1fr}}
+
+/* timeline columns */
+.tl-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  margin-top:clamp(18px,3.2vh,32px)}
+.tl-col{background:var(--surface);border-radius:16px;padding:clamp(16px,2.2vw,24px)}
+.tl-col .tl-period{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:10px;display:block}
+.tl-col h3{font-size:clamp(13.5px,1.3vw,15.5px);font-weight:600;color:var(--paper);margin-bottom:10px}
+.tl-col ul{list-style:none;display:grid;gap:6px}
+.tl-col ul li{font-size:clamp(12.5px,1.15vw,14px);color:#CFC7BC;line-height:1.4;
+  padding-left:14px;position:relative}
+.tl-col ul li::before{content:"·";position:absolute;left:0;color:var(--ember)}
+@media(max-width:680px){.tl-cols{grid-template-columns:1fr}}
+
+.tl-cols.beatgroup .tl-col{opacity:0;transform:translateY(14px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.tl-cols.beatgroup.on .tl-col{opacity:1;transform:none}
+.tl-cols.beatgroup.on .tl-col:nth-child(1){transition-delay:0s}
+.tl-cols.beatgroup.on .tl-col:nth-child(2){transition-delay:.09s}
+.tl-cols.beatgroup.on .tl-col:nth-child(3){transition-delay:.18s}
+
+/* next steps numbered */
+.next-steps{display:grid;gap:2px;margin-top:clamp(18px,3.2vh,32px)}
+.ns{background:var(--surface);border-radius:14px;padding:16px 20px;
+  display:grid;grid-template-columns:36px 1fr;gap:16px;align-items:center}
+.ns-n{font-family:var(--display);font-size:clamp(22px,2.8vw,30px);color:var(--ember);line-height:1}
+.ns p{font-size:clamp(14px,1.35vw,16px);color:#CFC7BC;line-height:1.4}
+.ns p strong{color:var(--paper)}
+
+.ns.beatgroup{opacity:0;transform:translateY(14px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.ns.beatgroup.on{opacity:1;transform:none}
+
+@media(max-width:700px){
+  .figs{gap:24px}
+  #sect{display:none}
+  table{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .beat,.beat.on,ul.pts.beatgroup li,table.beatgroup tr,.figs.beatgroup .fig,.cards.beatgroup .card,
+  .stats.beatgroup .stat,.cols3.beatgroup .col3,.tiles.beatgroup .tile,.tl-cols.beatgroup .tl-col,
+  .ns.beatgroup{opacity:1!important;transform:none!important;filter:none!important}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="deck"></div>
+<div id="hint">&larr; &rarr; to move</div>
+<div id="chrome">
+  <span id="sect"></span>
+  <div id="nav">
+    <button class="nb" id="menuBtn" aria-label="All slides" aria-haspopup="true" aria-expanded="false">&equiv;</button>
+    <button class="nb" id="prev" aria-label="Previous">&larr;</button>
+    <button class="nb" id="next" aria-label="Next">&rarr;</button>
+    <span id="count"></span>
+  </div>
+</div>
+<div id="menuOverlay" aria-hidden="true">
+  <div id="menuPanel" role="dialog" aria-label="Contents">
+    <div id="menuHead">
+      <span id="menuTitle">Contents</span>
+      <button class="nb" id="menuClose" aria-label="Close">&times;</button>
+    </div>
+    <div id="menuList"></div>
+  </div>
+</div>
+
+<script>
+const S = [
+
+/* 1 — Cover */
+{sec:"", html:`<div class="wrap cover">
+<div class="rule"></div>
+<span class="eyebrow">Growth Proposal &middot; October 2026</span>
+<h1>More gondola sales across Florida</h1>
+<p class="sub">Prepared for Miami Display &amp; UnoShelf by Marketingverse</p>
+<div class="meta">Marketingverse &middot; October 2026</div>
+</div>`},
+
+/* 2 — What you already have */
+{sec:"What you have", html:`<div class="wrap">
+<h2>You already have what buyers want</h2>
+<div class="cards beatgroup">
+<div class="card"><span class="tag">Importer pricing</span><h3>Direct from your own supply</h3></div>
+<div class="card"><span class="tag">Miami showroom</span><h3>Buyers see and touch before they buy</h3></div>
+<div class="card"><span class="tag">Free Florida delivery</span><h3>Anywhere in the state</h3></div>
+<div class="card"><span class="tag">40 years of store planning</span><h3>Layouts built for profit</h3></div>
+</div>
+<p class="body beat" style="font-family:var(--display);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--paper);margin-top:clamp(24px,4vh,40px);max-width:52ch;line-height:1.3">Today, none of it shows up in your ads or on your websites.</p>
+</div>`},
+
+/* 3 — What's holding sales back */
+{sec:"What's holding back", html:`<div class="wrap">
+<h2>What&rsquo;s holding sales back</h2>
+<div class="stats beatgroup">
+<div class="stat"><div class="sn">2</div><div class="sl">websites selling the same products at the same prices</div></div>
+<div class="stat"><div class="sn">3</div><div class="sl">different phone numbers across your sites</div></div>
+<div class="stat"><div class="sn">$700</div><div class="sl">a month in ads with no sale you can trace back to them</div></div>
+<div class="stat"><div class="sn">$0.52</div><div class="sl">hooks featured as best sellers where gondolas should be</div></div>
+</div>
+<p class="body beat">The product is strong. The sites and ads don&rsquo;t tell buyers why to choose you.</p>
+</div>`},
+
+/* 4 — The market */
+{sec:"The market", html:`<div class="wrap">
+<span class="eyebrow">The Market</span>
+<div class="figs beatgroup">
+<div class="fig">
+  <div class="n">590,000</div>
+  <div class="l">new businesses formed in Florida in 2025. #1 in the nation every year since 2019.</div>
+</div>
+</div>
+<p class="body beat">Every convenience store, pharmacy, liquor store and bodega among them needs shelving.</p>
+<p class="body note beat">SelectFlorida / FloridaCommerce, January 2026</p>
+</div>`},
+
+/* 5 — Your edge */
+{sec:"Your edge", html:`<div class="wrap">
+<h2>Your edge</h2>
+<p class="body beat" style="font-family:var(--display);font-style:italic;font-size:clamp(18px,2.2vw,26px);color:var(--paper);max-width:50ch;line-height:1.3;margin-top:clamp(16px,2.8vh,28px)">Displayarama offers free store layouts. You can too, plus importer prices, a Miami showroom and free delivery anywhere in Florida.</p>
+<div class="comps beat">
+<div class="comp"><span class="cn">Displayarama</span><span class="cd">Pompano Beach &middot; free layouts &middot; 100+ Google reviews</span></div>
+<div class="comp"><span class="cn">Sarraff</span><span class="cd">Miami &middot; Lozier dealer &middot; basic site, no store-plan offer</span></div>
+<div class="comp"><span class="cn">Online sellers</span><span class="cd">No showroom &middot; freight charges &middot; no one to guide the buyer</span></div>
+</div>
+</div>`},
+
+/* 6 — The offer */
+{sec:"The offer", html:`<div class="wrap">
+<span class="eyebrow">The Offer</span>
+<h2>See it. Plan it. Delivered free.</h2>
+<p class="sub">The Free Profit Store Plan</p>
+<div class="steps beat">
+<div class="step"><div class="step-num">1</div><p>Owner sends a floor plan and what they&rsquo;ll sell</p></div>
+<div class="step"><div class="step-num">2</div><p>Gets a layout, fixture list and delivered price in 48 hours</p></div>
+<div class="step"><div class="step-num">3</div><p>Reviews it in your showroom and orders</p></div>
+</div>
+</div>`},
+
+/* 7 — Lead engine */
+{sec:"Lead engine", html:`<div class="wrap">
+<h2>Reach owners the week they pull a permit</h2>
+<div class="cols3 beatgroup">
+<div class="col3">
+  <span class="ctag">Public records</span>
+  <ul>
+    <li>Commercial build-out permits</li>
+    <li>New companies on Sunbiz</li>
+    <li>Alcohol, tobacco and pharmacy licenses</li>
+  </ul>
+</div>
+<div class="col3">
+  <span class="ctag">Referral partners</span>
+  <ul>
+    <li>Contractors and architects</li>
+    <li>Commercial real estate brokers</li>
+    <li>Cooler, POS and sign installers</li>
+  </ul>
+</div>
+<div class="col3">
+  <span class="ctag">Worked every week</span>
+  <ul>
+    <li>Postcard to the new store</li>
+    <li>Phone follow-up, English and Spanish</li>
+    <li>Every lead in one sales pipeline</li>
+  </ul>
+</div>
+</div>
+<p class="body beat">Your competitors wait for a search. You&rsquo;ll be first in line.</p>
+</div>`},
+
+/* 8 — Path 1 */
+{sec:"Path 1", html:`<div class="wrap">
+<span class="eyebrow">Path 1</span>
+<h2>Optimize and Win</h2>
+<p class="sub">$4,500 one-time &middot; $1,500/month</p>
+<div class="tiles beatgroup">
+<div class="tile"><span class="tl">Tracking</span><p>Every call, form and sale traced to its source</p></div>
+<div class="tile"><span class="tl">Google Ads rebuilt</span><p>Gondola buyers and store planners, English and Spanish</p></div>
+<div class="tile"><span class="tl">New website</span><p>One Miami Display site with UnoShelf inside</p></div>
+<div class="tile"><span class="tl">Photo &amp; video day</span><p>Your showroom and stores you&rsquo;ve built</p></div>
+<div class="tile"><span class="tl">SEO and GEO</span><p>Found on Google and in AI answers like ChatGPT</p></div>
+<div class="tile"><span class="tl">Lead engine</span><p>Weekly permit and license leads in Miami-Dade</p></div>
+</div>
+<p class="body note beat">Ads live in 30 days &middot; new website in 6&ndash;8 weeks &middot; recommended ad spend $1,500&ndash;$2,500/month</p>
+</div>`},
+
+/* 9 — Path 2 */
+{sec:"Path 2", html:`<div class="wrap">
+<span class="eyebrow">Path 2</span>
+<h2>Rebuild and AI Store Planner</h2>
+<p class="sub">$10,000 one-time &middot; $1,500/month in year one</p>
+<p class="body beat">Everything in Path 1, plus a planner that turns a floor plan into a priced store in minutes:</p>
+<div class="steps beat">
+<div class="step"><div class="step-num">1</div><p>Store type and size</p></div>
+<div class="step"><div class="step-num">2</div><p>Upload the floor plan</p></div>
+<div class="step"><div class="step-num">3</div><p>What the store will sell</p></div>
+<div class="step hi"><div class="step-num">4</div><p>Layout, render and priced quote</p></div>
+<div class="step"><div class="step-num">5</div><p>Book the showroom</p></div>
+</div>
+<p class="body beat">Plus 10 industry pages: convenience, pharmacy, liquor, beauty supply and more.</p>
+<p class="body note beat">Planner live in 10&ndash;12 weeks &middot; every planner lead arrives with plans, budget and opening date</p>
+</div>`},
+
+/* 10 — The planner, in practice */
+{sec:"The planner", html:`<div class="wrap">
+<h2 class="wide">A priced store, before the first call</h2>
+<div class="planner-mock beat">
+  <div class="pm-left">
+    <span class="example-badge">Example</span>
+    <span class="pm-label">Floor plan</span>
+    <div class="pm-floor">
+      <svg width="100%" height="100%" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="280" height="200" rx="4" stroke="rgba(240,235,227,.15)" stroke-width="1.5"/>
+        <rect x="24" y="28" width="60" height="12" rx="2" fill="rgba(200,118,62,.55)"/>
+        <rect x="90" y="28" width="60" height="12" rx="2" fill="rgba(200,118,62,.55)"/>
+        <rect x="156" y="28" width="60" height="12" rx="2" fill="rgba(200,118,62,.55)"/>
+        <rect x="24" y="46" width="60" height="12" rx="2" fill="rgba(200,118,62,.35)"/>
+        <rect x="90" y="46" width="60" height="12" rx="2" fill="rgba(200,118,62,.35)"/>
+        <rect x="156" y="46" width="60" height="12" rx="2" fill="rgba(200,118,62,.35)"/>
+        <rect x="24" y="80" width="60" height="12" rx="2" fill="rgba(200,118,62,.55)"/>
+        <rect x="90" y="80" width="60" height="12" rx="2" fill="rgba(200,118,62,.55)"/>
+        <rect x="156" y="80" width="60" height="12" rx="2" fill="rgba(200,118,62,.55)"/>
+        <rect x="24" y="98" width="60" height="12" rx="2" fill="rgba(200,118,62,.35)"/>
+        <rect x="90" y="98" width="60" height="12" rx="2" fill="rgba(200,118,62,.35)"/>
+        <rect x="156" y="98" width="60" height="12" rx="2" fill="rgba(200,118,62,.35)"/>
+        <rect x="230" y="28" width="46" height="82" rx="3" fill="rgba(123,163,150,.25)" stroke="rgba(123,163,150,.4)" stroke-width="1"/>
+        <rect x="24" y="140" width="252" height="14" rx="3" fill="rgba(200,118,62,.18)" stroke="rgba(200,118,62,.3)" stroke-width="1"/>
+        <text x="150" y="150" text-anchor="middle" fill="rgba(200,118,62,.7)" font-size="8" font-family="monospace">WALL UNITS</text>
+        <text x="124" y="38" text-anchor="middle" fill="rgba(240,235,227,.3)" font-size="7" font-family="monospace">GONDOLA RUNS</text>
+        <rect x="24" y="170" width="50" height="30" rx="3" fill="rgba(240,235,227,.04)" stroke="rgba(240,235,227,.1)" stroke-width="1"/>
+        <text x="49" y="188" text-anchor="middle" fill="rgba(240,235,227,.3)" font-size="7" font-family="monospace">ENTRY</text>
+      </svg>
+    </div>
+  </div>
+  <div class="pm-right">
+    <span class="example-badge">Example</span>
+    <span class="pm-label">Priced quote</span>
+    <div class="pm-row"><span class="pm-row-name">Double-side gondola 16&rsquo;L &times; 3</span><span class="pm-row-val">$4,200</span></div>
+    <div class="pm-row"><span class="pm-row-name">Wall unit 48&rdquo; &times; 6</span><span class="pm-row-val">$1,100</span></div>
+    <div class="pm-row"><span class="pm-row-name">Endcaps &times; 4</span><span class="pm-row-val">$880</span></div>
+    <div class="pm-row"><span class="pm-row-name">Checkout lane fixture</span><span class="pm-row-val">$620</span></div>
+    <div class="pm-total">Delivered price, free Florida delivery<br><strong>$6,800</strong></div>
+  </div>
+</div>
+<p class="body beat" style="margin-top:clamp(14px,2vh,22px);font-size:clamp(14px,1.35vw,16px)">Built from your catalog and your prices. Your team confirms every final quote.</p>
+</div>`},
+
+/* 11 — Path 1 vs 2 (interactive) */
+{sec:"Compare paths", interactive:true, html:`<div class="wrap">
+<h2>Path 1 vs. Path 2</h2>
+<div style="margin-top:clamp(16px,2.8vh,28px)">
+  <div class="toggle-row">
+    <button class="tog active" id="tog1" onclick="setPlan(1)">Path 1</button>
+    <button class="tog" id="tog2" onclick="setPlan(2)">Path 2</button>
+  </div>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="width:60%"></th>
+        <th class="c" id="th1">Path 1</th>
+        <th class="c" id="th2">Path 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Tracking, Google Ads and landing pages</td><td class="cv yes" id="r1c1">&#10003;</td><td class="cv yes" id="r1c2">&#10003;</td></tr>
+      <tr><td>New website and photo day</td><td class="cv yes" id="r2c1">&#10003;</td><td class="cv yes" id="r2c2">&#10003;</td></tr>
+      <tr><td>SEO and GEO every month</td><td class="cv yes" id="r3c1">&#10003;</td><td class="cv yes" id="r3c2">&#10003;</td></tr>
+      <tr><td>Permit and license lead engine</td><td class="cv yes" id="r4c1">&#10003;</td><td class="cv yes" id="r4c2">&#10003;</td></tr>
+      <tr><td>AI Store Planner</td><td class="cv no" id="r5c1">&mdash;</td><td class="cv yes" id="r5c2">&#10003;</td></tr>
+      <tr><td>10 industry pages</td><td class="cv no" id="r6c1">&mdash;</td><td class="cv yes" id="r6c2">&#10003;</td></tr>
+      <tr class="price-row"><td>One-time</td><td class="cv num" id="r7c1">$4,500</td><td class="cv num" id="r7c2">$10,000</td></tr>
+      <tr class="price-row"><td>Monthly</td><td class="cv num" id="r8c1">$1,500</td><td class="cv num" id="r8c2">$1,500 yr 1</td></tr>
+    </tbody>
+  </table>
+  <div class="price-summary">
+    <div>
+      <div class="ps-path" id="ps-label">Path 1 selected</div>
+      <div class="ps-price" id="ps-onetime">$4,500</div>
+      <div class="ps-mo" id="ps-mo">one-time + $1,500/month</div>
+    </div>
+  </div>
+</div>
+</div>`},
+
+/* 12 — Investment year one */
+{sec:"Investment", html:`<div class="wrap">
+<h2>Investment, year one</h2>
+<table class="beatgroup">
+<thead><tr><th></th><th class="r">Today</th><th class="r">Path 1</th><th class="r">Path 2</th></tr></thead>
+<tbody>
+<tr><td class="k">One-time</td><td class="r num">&mdash;</td><td class="r num">$4,500</td><td class="r num">$10,000</td></tr>
+<tr><td class="k">Monthly management</td><td class="r num">$1,200</td><td class="r num">$1,500</td><td class="r num">$1,500</td></tr>
+<tr><td class="k">Ad spend, paid to Google</td><td class="r num">~$700/mo</td><td class="r num">$2,000/mo</td><td class="r num">$2,000/mo</td></tr>
+<tr class="hi"><td class="k">Year-one total</td><td class="r num">~$22,800</td><td class="r num">$46,500</td><td class="r num">$52,000</td></tr>
+</tbody>
+</table>
+<p class="body beat">Start with Path 1 and upgrade within 90 days: your $4,500 is credited, so Path 2 adds $5,500.</p>
+<p class="body note beat">Postcards and data tools for the lead engine billed at cost &middot; recommended ad spend $1,500&ndash;$2,500/month</p>
+</div>`},
+
+/* 13 — The return (interactive calculator) */
+{sec:"The return", interactive:true, html:`<div class="wrap">
+<span class="eyebrow">The Return</span>
+<h2 class="wide">About one store order a month pays for either path.</h2>
+<div class="calc-grid">
+  <div class="calc-inputs">
+    <div>
+      <span class="ci-label">Average store order</span>
+      <div class="ci-val" id="cv-order">$10,000</div>
+      <input type="range" id="sl-order" min="3000" max="50000" step="500" value="10000" oninput="recalc()">
+    </div>
+    <div>
+      <span class="ci-label">Gross margin</span>
+      <div class="ci-val" id="cv-margin">50%</div>
+      <input type="range" id="sl-margin" min="40" max="70" step="1" value="50" oninput="recalc()">
+    </div>
+    <div>
+      <span class="ci-label">New store orders per month</span>
+      <div class="ci-val" id="cv-orders">2</div>
+      <input type="range" id="sl-orders" min="0" max="10" step="1" value="2" oninput="recalc()">
+    </div>
+    <div>
+      <span class="ci-label">Monthly ad spend</span>
+      <div class="ci-val" id="cv-adspend">$2,000</div>
+      <input type="range" id="sl-adspend" min="1500" max="2500" step="100" value="2000" oninput="recalc()">
+    </div>
+    <div>
+      <span class="ci-label">Path</span>
+      <div class="calc-toggle">
+        <button class="tog active" id="ctog1" onclick="setCalcPath(1)">Path 1</button>
+        <button class="tog" id="ctog2" onclick="setCalcPath(2)">Path 2</button>
+      </div>
+    </div>
+  </div>
+  <div class="calc-results">
+    <div class="cr-item"><div class="cr-label">Year-one cost</div><div class="cr-val" id="cr-cost">$46,500</div></div>
+    <div class="cr-item"><div class="cr-label">Year-one gross profit</div><div class="cr-val" id="cr-gp">$120,000</div></div>
+    <div class="cr-item"><div class="cr-label">Net</div><div class="cr-val pos" id="cr-net">$73,500</div></div>
+    <div class="cr-item breakeven"><div class="cr-label">Break-even</div><div class="cr-val" id="cr-be">10 store orders a year</div></div>
+  </div>
+</div>
+<p class="body note beat" style="margin-top:clamp(12px,1.8vh,18px)">Expected from month 4: Path 1, 2&ndash;4 new store orders a month &middot; Path 2, 4&ndash;7.</p>
+<p class="body note beat">Planning ranges, not a guarantee. We confirm with your real numbers in week 1.</p>
+</div>`},
+
+/* 14 — First 90 days */
+{sec:"First 90 days", html:`<div class="wrap">
+<h2>The first 90 days</h2>
+<div class="tl-cols beatgroup">
+<div class="tl-col">
+  <span class="tl-period">Days 1&ndash;30 &middot; Fix and launch</span>
+  <ul>
+    <li>Tracking and calls live</li>
+    <li>Ads rebuilt, English and Spanish</li>
+    <li>Photo and video day</li>
+  </ul>
+</div>
+<div class="tl-col">
+  <span class="tl-period">Days 31&ndash;60 &middot; Optimize and add leads</span>
+  <ul>
+    <li>Cut wasted ad spend</li>
+    <li>New website live</li>
+    <li>First permit mailers out</li>
+  </ul>
+</div>
+<div class="tl-col">
+  <span class="tl-period">Days 61&ndash;90 &middot; Scale what works</span>
+  <ul>
+    <li>More budget to winning ads</li>
+    <li>Partner referral program</li>
+    <li>Path 2: planner launches</li>
+  </ul>
+</div>
+</div>
+<p class="body beat">Day 90 review: leads, showroom visits and sales, side by side with what we spent.</p>
+</div>`},
+
+/* 15 — Next steps */
+{sec:"Next steps", html:`<div class="wrap">
+<h2>Next steps</h2>
+<div class="next-steps">
+<div class="ns beat"><div class="ns-n">1</div><p><strong>Choose a path</strong></p></div>
+<div class="ns beat"><div class="ns-n">2</div><p><strong>Share access</strong> to ads, websites and Google profile</p></div>
+<div class="ns beat"><div class="ns-n">3</div><p><strong>Send average order</strong> and monthly gondola sales</p></div>
+<div class="ns beat"><div class="ns-n">4</div><p><strong>Book the kickoff</strong> and photo day</p></div>
+</div>
+<p class="body beat" style="margin-top:clamp(20px,3.6vh,36px)">Ricky &middot; Marketingverse &middot; 310.736.0723 &middot; rkorda@the-marketingverse.com</p>
+<p class="body note beat">Proposal valid until November 20, 2026</p>
+</div>`}
+
+];
+
+/* ---- path toggle (slide 11) ---- */
+let planSel = 1;
+function setPlan(n){
+  planSel = n;
+  document.getElementById('tog1').classList.toggle('active', n===1);
+  document.getElementById('tog2').classList.toggle('active', n===2);
+  const cols = [1,2];
+  cols.forEach(c=>{
+    const hl = c===n;
+    document.getElementById('th'+c).classList.toggle('hl', hl);
+    for(let r=1;r<=8;r++){
+      const el = document.getElementById('r'+r+'c'+c);
+      if(el) el.classList.toggle('hl', hl);
+    }
+  });
+  document.getElementById('ps-label').textContent = 'Path '+n+' selected';
+  document.getElementById('ps-onetime').textContent = n===1 ? '$4,500' : '$10,000';
+  document.getElementById('ps-mo').textContent = n===1 ? 'one-time + $1,500/month' : 'one-time + $1,500/month in year one';
+}
+
+/* ---- calculator (slide 13) ---- */
+let calcPath = 1;
+function setCalcPath(n){
+  calcPath = n;
+  document.getElementById('ctog1').classList.toggle('active', n===1);
+  document.getElementById('ctog2').classList.toggle('active', n===2);
+  recalc();
+}
+function fmt(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+function recalc(){
+  const order = +document.getElementById('sl-order').value;
+  const margin = +document.getElementById('sl-margin').value / 100;
+  const orders = +document.getElementById('sl-orders').value;
+  const adspend = +document.getElementById('sl-adspend').value;
+  document.getElementById('cv-order').textContent = fmt(order);
+  document.getElementById('cv-margin').textContent = Math.round(margin*100)+'%';
+  document.getElementById('cv-orders').textContent = orders;
+  document.getElementById('cv-adspend').textContent = fmt(adspend);
+  const onetime = calcPath===1 ? 4500 : 10000;
+  const yearCost = onetime + (1500*12) + (adspend*12);
+  const yearGP = orders * 12 * order * margin;
+  const net = yearGP - yearCost;
+  const beOrders = Math.ceil(yearCost / (order * margin));
+  document.getElementById('cr-cost').textContent = fmt(yearCost);
+  document.getElementById('cr-gp').textContent = fmt(yearGP);
+  const netEl = document.getElementById('cr-net');
+  netEl.textContent = (net >= 0 ? '+' : '') + fmt(net);
+  netEl.className = 'cr-val ' + (net > 0 ? 'pos' : 'neutral');
+  document.getElementById('cr-be').textContent = beOrders+' store orders a year';
+}
+
+/* ---- deck engine ---- */
+const deck=document.getElementById('deck');
+S.forEach((s,i)=>{
+  const d=document.createElement('section');
+  d.className='slide';
+  d.innerHTML=s.html;
+  d.setAttribute('aria-hidden','true');
+  deck.appendChild(d);
+});
+const slides=[...document.querySelectorAll('.slide')];
+const bar=document.getElementById('bar'),sect=document.getElementById('sect'),
+      count=document.getElementById('count'),prev=document.getElementById('prev'),
+      next=document.getElementById('next'),hint=document.getElementById('hint');
+
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const beatCache = new Map();
+function beatsOf(idx){
+  if(!beatCache.has(idx)) beatCache.set(idx, [...slides[idx].querySelectorAll('.beat, .beatgroup')]);
+  return beatCache.get(idx);
+}
+
+let curI=0, b=1;
+
+function updateChrome(){
+  const total=beatsOf(curI).length;
+  const frac=total? b/total : 1;
+  bar.style.width=(((curI+frac)/S.length)*100)+'%';
+  sect.textContent=S[curI].sec||'';
+  count.textContent=String(curI+1).padStart(2,'0')+' / '+S.length;
+  prev.disabled = curI===0 && b<=1;
+  next.disabled = curI===S.length-1 && b>=total;
+  history.replaceState(null,'','#'+(curI+1));
+}
+function revealAll(idx){ beatsOf(idx).forEach(el=>{ el.classList.add('on'); }); }
+function hideAll(idx){ beatsOf(idx).forEach(el=>{ el.classList.remove('on'); }); }
+
+function enter(idx, beatCount, cut){
+  const old=slides[curI];
+  const show=()=>{
+    curI=idx; b=beatCount;
+    const cur=slides[curI];
+    if(beatCount>=beatsOf(curI).length) revealAll(curI); else hideAll(curI);
+    if(beatCount>0 && beatCount<beatsOf(curI).length){
+      beatsOf(curI).slice(0,beatCount).forEach(el=>{ el.classList.add('on'); });
+    }
+    cur.classList.add('on');
+    cur.setAttribute('aria-hidden','false');
+    cur.scrollTop=0;
+    updateChrome();
+    /* init interactive slides */
+    if(S[curI].interactive){
+      if(curI===10) setPlan(planSel);
+      if(curI===12) recalc();
+    }
+  };
+  if(cut){ old.classList.remove('on'); old.setAttribute('aria-hidden','true'); show(); return; }
+  old.classList.remove('on'); old.setAttribute('aria-hidden','true');
+  setTimeout(show, reduceMotion?0:220);
+}
+
+function go(n){
+  n=Math.max(0,Math.min(S.length-1,n));
+  enter(n, beatsOf(n).length, true);
+}
+
+function nextClick(){
+  hint.classList.add('hide');
+  const beats=beatsOf(curI);
+  if(b<beats.length){
+    const el=beats[b];
+    el.classList.add('on');
+    el.scrollIntoView({behavior: reduceMotion?'auto':'smooth', block:'nearest'});
+    b++;
+    updateChrome();
+    return;
+  }
+  if(curI<S.length-1) enter(curI+1, 1, false);
+}
+function prevClick(){
+  hint.classList.add('hide');
+  if(b>1){
+    b--;
+    const el=beatsOf(curI)[b];
+    el.classList.remove('on');
+    updateChrome();
+    return;
+  }
+  if(curI>0) enter(curI-1, beatsOf(curI-1).length, false);
+}
+
+next.onclick=nextClick;
+prev.onclick=prevClick;
+
+const menuBtn=document.getElementById('menuBtn'), menuOverlay=document.getElementById('menuOverlay'),
+      menuClose=document.getElementById('menuClose'), menuList=document.getElementById('menuList');
+(function buildMenu(){
+  let lastSec=null;
+  S.forEach((s,idx)=>{
+    if((s.sec||'')!==lastSec){
+      lastSec=s.sec||'';
+      if(lastSec){
+        const h=document.createElement('div');
+        h.className='menu-sec';
+        h.textContent=lastSec;
+        menuList.appendChild(h);
+      }
+    }
+    const label=(slides[idx].querySelector('h1,h2')||{}).textContent||'';
+    const item=document.createElement('button');
+    item.className='menu-item';
+    item.dataset.idx=idx;
+    const num=document.createElement('span');
+    num.className='mi-num';
+    num.textContent=String(idx+1).padStart(2,'0');
+    const txt=document.createElement('span');
+    txt.textContent=label;
+    item.appendChild(num);
+    item.appendChild(txt);
+    item.onclick=()=>{ go(idx); closeMenu(); };
+    menuList.appendChild(item);
+  });
+})();
+function openMenu(){
+  [...menuList.querySelectorAll('.menu-item')].forEach(el=>el.classList.toggle('current', Number(el.dataset.idx)===curI));
+  menuOverlay.classList.add('open');
+  menuOverlay.setAttribute('aria-hidden','false');
+  menuBtn.setAttribute('aria-expanded','true');
+}
+function closeMenu(){
+  menuOverlay.classList.remove('open');
+  menuOverlay.setAttribute('aria-hidden','true');
+  menuBtn.setAttribute('aria-expanded','false');
+}
+menuBtn.onclick=openMenu;
+menuClose.onclick=closeMenu;
+menuOverlay.addEventListener('click',e=>{ if(e.target===menuOverlay) closeMenu(); });
+
+document.addEventListener('keydown',e=>{
+  if(menuOverlay.classList.contains('open')){
+    if(e.key==='Escape'){ e.preventDefault(); closeMenu(); }
+    return;
+  }
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();nextClick()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevClick()}
+  if(e.key==='Home')go(0);
+  if(e.key==='End')go(S.length-1);
+});
+let x0=null,y0=null;
+deck.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+deck.addEventListener('touchend',e=>{
+  if(x0===null)return;
+  const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)) (dx<0?nextClick():prevClick());
+  x0=null;
+});
+const start=parseInt((location.hash||'#1').slice(1),10);
+const startIdx=isNaN(start)?0:start-1;
+enter(Math.max(0,Math.min(S.length-1,startIdx)), startIdx>0 ? beatsOf(startIdx).length : Math.min(1,beatsOf(0).length), true);
+setTimeout(()=>hint.classList.add('hide'),5000);
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
