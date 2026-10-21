@@ -1629,8 +1629,8 @@ const Footer: React.FC<{ onOpenAdmin: () => void; onNavigate: (v: string) => voi
           </div>
           <p className="text-neutral-500 text-sm leading-relaxed">AI-native growth studio helping brokers, agents, and brands dominate their market.</p>
           <div className="flex gap-4 text-neutral-500 mt-1">
-            <a href="https://www.facebook.com/themarketingverse" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Facebook size={18} /></a>
-            <a href="https://www.instagram.com/the.marketingverse" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Instagram size={18} /></a>
+            <a href="https://www.facebook.com/themarketingverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-white transition-colors"><Facebook size={18} /></a>
+            <a href="https://www.instagram.com/the.marketingverse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-white transition-colors"><Instagram size={18} /></a>
           </div>
         </div>
         {/* Nav links */}
@@ -3823,16 +3823,17 @@ const ContactView: React.FC = () => (
           </div>
           <div className="flex gap-3">
             {[
-              { icon: <Instagram size={20} />, href: 'https://www.instagram.com/the.marketingverse' },
-              { icon: <Facebook size={20} />, href: 'https://www.facebook.com/themarketingverse' },
-              { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/company/marketingverse' },
-              { icon: <Youtube size={20} />, href: 'https://www.youtube.com/@marketingverse' },
-            ].map(({ icon, href }, i) => (
+              { icon: <Instagram size={20} />, href: 'https://www.instagram.com/the.marketingverse', label: 'Instagram' },
+              { icon: <Facebook size={20} />, href: 'https://www.facebook.com/themarketingverse', label: 'Facebook' },
+              { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/company/marketingverse', label: 'LinkedIn' },
+              { icon: <Youtube size={20} />, href: 'https://www.youtube.com/@marketingverse', label: 'YouTube' },
+            ].map(({ icon, href, label }, i) => (
               <a
                 key={i}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={label}
                 className="w-12 h-12 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-500 hover:bg-neutral-900 hover:text-white transition-all duration-300"
               >
                 {icon}
