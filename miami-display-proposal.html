@@ -17,8 +17,10 @@
   --paper:#F0EBE3;
   --muted:#8C8177;
   --line:rgba(240,235,227,.10);
-  --ember:#6366f1;
-  --sea:#8b5cf6;
+  --ember:#0284c7;
+  --sea:#059669;
+  --rose:#e11d48;
+  --violet:#7c3aed;
   --display:'Instrument Serif',Georgia,serif;
   --body:'Inter',system-ui,sans-serif;
   --mono:'DM Mono',ui-monospace,monospace;
@@ -65,7 +67,7 @@ p.body.note strong{color:var(--muted)}
 .figs{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px);margin-top:clamp(24px,4.4vh,44px)}
 .fig .n{font-family:var(--display);font-size:clamp(44px,7.6vw,92px);line-height:.92;letter-spacing:-.02em}
 .fig .n.up{color:var(--sea)}
-.fig .n.down{color:var(--ember)}
+.fig .n.down{color:var(--rose)}
 .fig .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);margin-top:12px;max-width:24ch;line-height:1.5}
 .fig .t{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
@@ -111,7 +113,7 @@ table.beatgroup.on{opacity:1}
   color:var(--ember);display:block;margin-bottom:10px}
 
 /* chrome */
-#bar{position:fixed;top:0;left:0;height:2px;background:var(--ember);z-index:70;
+#bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,#0284c7,#7c3aed,#e11d48,#059669);z-index:70;
   transition:width .5s var(--ease);width:0}
 #chrome{position:fixed;bottom:0;left:0;right:0;z-index:65;
   display:flex;align-items:center;justify-content:space-between;
@@ -308,7 +310,7 @@ table.beatgroup.on tr:nth-child(6){transition-delay:.28s}
 .pm-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .pm-row-name{font-size:clamp(12px,1.1vw,13.5px);color:var(--paper)}
 .pm-row-val{font-family:var(--mono);font-size:11px;color:var(--ember);float:right}
-.pm-total{margin-top:12px;padding-top:12px;border-top:1px solid rgba(99,102,241,.3);
+.pm-total{margin-top:12px;padding-top:12px;border-top:1px solid rgba(2,132,199,.3);
   font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .pm-total strong{color:var(--paper);font-size:13px}
 .example-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.16em;
@@ -330,7 +332,7 @@ table.beatgroup.on tr:nth-child(6){transition-delay:.28s}
 .compare-table td.cv{text-align:center;font-family:var(--mono);font-size:13px}
 .compare-table td.cv.yes{color:var(--sea)}
 .compare-table td.cv.no{color:var(--muted)}
-.compare-table th.c.hl,.compare-table td.cv.hl{background:rgba(99,102,241,.07);border-radius:0}
+.compare-table th.c.hl,.compare-table td.cv.hl{background:rgba(5,150,105,.07);border-radius:0}
 .compare-table tr.price-row td{color:var(--paper);font-weight:600;border-bottom:none}
 .price-summary{margin-top:clamp(16px,2.6vh,24px);padding:clamp(16px,2.2vw,24px);
   background:var(--surface);border-radius:16px;border-left:2px solid var(--ember);
@@ -363,8 +365,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;
 .cr-item .cr-val{font-family:var(--display);font-size:clamp(24px,3.4vw,40px);letter-spacing:-.01em;color:var(--paper)}
 .cr-item .cr-val.pos{color:var(--sea)}
 .cr-item .cr-val.neutral{color:#CFC7BC}
-.cr-item.breakeven{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2)}
-.cr-item.breakeven .cr-val{color:var(--ember)}
+.cr-item.breakeven{background:rgba(225,29,72,.08);border:1px solid rgba(225,29,72,.2)}
+.cr-item.breakeven .cr-val{color:var(--rose)}
 @media(max-width:680px){.calc-grid{grid-template-columns:1fr}}
 
 /* timeline columns */
@@ -731,20 +733,20 @@ const S = [
     <div class="pm-floor">
       <svg width="100%" height="100%" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="10" y="10" width="280" height="200" rx="4" stroke="rgba(240,235,227,.15)" stroke-width="1.5"/>
-        <rect x="24" y="28" width="60" height="12" rx="2" fill="rgba(99,102,241,.55)"/>
-        <rect x="90" y="28" width="60" height="12" rx="2" fill="rgba(99,102,241,.55)"/>
-        <rect x="156" y="28" width="60" height="12" rx="2" fill="rgba(99,102,241,.55)"/>
-        <rect x="24" y="46" width="60" height="12" rx="2" fill="rgba(99,102,241,.35)"/>
-        <rect x="90" y="46" width="60" height="12" rx="2" fill="rgba(99,102,241,.35)"/>
-        <rect x="156" y="46" width="60" height="12" rx="2" fill="rgba(99,102,241,.35)"/>
-        <rect x="24" y="80" width="60" height="12" rx="2" fill="rgba(99,102,241,.55)"/>
-        <rect x="90" y="80" width="60" height="12" rx="2" fill="rgba(99,102,241,.55)"/>
-        <rect x="156" y="80" width="60" height="12" rx="2" fill="rgba(99,102,241,.55)"/>
-        <rect x="24" y="98" width="60" height="12" rx="2" fill="rgba(99,102,241,.35)"/>
-        <rect x="90" y="98" width="60" height="12" rx="2" fill="rgba(99,102,241,.35)"/>
-        <rect x="156" y="98" width="60" height="12" rx="2" fill="rgba(99,102,241,.35)"/>
+        <rect x="24" y="28" width="60" height="12" rx="2" fill="rgba(2,132,199,.55)"/>
+        <rect x="90" y="28" width="60" height="12" rx="2" fill="rgba(2,132,199,.55)"/>
+        <rect x="156" y="28" width="60" height="12" rx="2" fill="rgba(2,132,199,.55)"/>
+        <rect x="24" y="46" width="60" height="12" rx="2" fill="rgba(2,132,199,.35)"/>
+        <rect x="90" y="46" width="60" height="12" rx="2" fill="rgba(2,132,199,.35)"/>
+        <rect x="156" y="46" width="60" height="12" rx="2" fill="rgba(2,132,199,.35)"/>
+        <rect x="24" y="80" width="60" height="12" rx="2" fill="rgba(2,132,199,.55)"/>
+        <rect x="90" y="80" width="60" height="12" rx="2" fill="rgba(2,132,199,.55)"/>
+        <rect x="156" y="80" width="60" height="12" rx="2" fill="rgba(2,132,199,.55)"/>
+        <rect x="24" y="98" width="60" height="12" rx="2" fill="rgba(2,132,199,.35)"/>
+        <rect x="90" y="98" width="60" height="12" rx="2" fill="rgba(2,132,199,.35)"/>
+        <rect x="156" y="98" width="60" height="12" rx="2" fill="rgba(2,132,199,.35)"/>
         <rect x="230" y="28" width="46" height="82" rx="3" fill="rgba(123,163,150,.25)" stroke="rgba(123,163,150,.4)" stroke-width="1"/>
-        <rect x="24" y="140" width="252" height="14" rx="3" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+        <rect x="24" y="140" width="252" height="14" rx="3" fill="rgba(2,132,199,.18)" stroke="rgba(2,132,199,.3)" stroke-width="1"/>
         <rect x="24" y="170" width="50" height="30" rx="3" fill="rgba(240,235,227,.04)" stroke="rgba(240,235,227,.1)" stroke-width="1"/>
         <text x="49" y="188" text-anchor="middle" fill="rgba(240,235,227,.3)" font-size="7" font-family="monospace">ENTRY</text>
       </svg>
