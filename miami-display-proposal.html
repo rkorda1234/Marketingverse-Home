@@ -418,6 +418,34 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;
   #sect{display:none}
   table{font-size:13px}
 }
+/* accordion — prologue slide */
+.accord{margin-top:clamp(20px,3.2vh,32px);border-top:1px solid var(--line)}
+.accord-item{border-bottom:1px solid var(--line)}
+.accord-btn{width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(13px,1.8vh,18px) 0;
+  font-family:var(--body);font-size:clamp(15px,1.4vw,17px);font-weight:600;
+  color:var(--paper);gap:12px;line-height:1.3}
+.accord-btn:focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:4px}
+.accord-icon{flex-shrink:0;width:20px;height:20px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--muted);transition:transform .25s var(--ease)}
+.accord-item.open .accord-icon{transform:rotate(45deg)}
+.accord-body{display:none;padding-bottom:clamp(16px,2.4vh,24px)}
+.accord-item.open .accord-body{display:block}
+.accord-body p{font-size:clamp(14px,1.3vw,16px);color:#CFC7BC;line-height:1.6;margin:0 0 12px;max-width:72ch}
+.accord-body p:last-child{margin-bottom:0}
+.accord-body table{margin-top:0;font-size:clamp(13px,1.2vw,14.5px)}
+.accord-body th{font-size:9px}
+.accord-body ul{margin:8px 0 12px;padding-left:0;list-style:none;display:grid;gap:5px}
+.accord-body ul li{padding-left:16px;position:relative;font-size:clamp(13px,1.2vw,15px);color:#CFC7BC;line-height:1.55}
+.accord-body ul li::before{content:"–";position:absolute;left:0;color:var(--ember)}
+.accord-body strong{color:var(--paper)}
+.accord-body h4{font-size:clamp(14px,1.35vw,16px);font-weight:700;color:var(--paper);
+  margin:18px 0 8px;letter-spacing:-.01em}
+.accord-body blockquote{margin:12px 0;padding:14px 18px;background:var(--surface2);
+  border-radius:12px;border-left:2px solid var(--ember);
+  font-size:clamp(14px,1.3vw,16px);color:var(--paper);font-style:italic;line-height:1.5}
+
 @media(prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
   .beat,.beat.on,ul.pts.beatgroup li,table.beatgroup tr,.figs.beatgroup .fig,.cards.beatgroup .card,
@@ -462,7 +490,76 @@ const S = [
 <div class="meta">Marketingverse &middot; October 2026</div>
 </div>`},
 
-/* 2 — Where you are today */
+/* 2 — Our reasoning first */
+{sec:"Our reasoning first", html:`<div class="wrap">
+<span class="eyebrow">PROLOGUE</span>
+<h2>Our reasoning first</h2>
+<p class="body beat">You already have what store owners want: importer gondola prices, a Miami showroom, free delivery anywhere in Florida, and decades of experience planning stores. Today none of that shows up in your ads or on your websites, so buyers comparing suppliers online can&rsquo;t tell why you&rsquo;re the better choice.</p>
+<p class="body beat">We propose three things: make those advantages the offer, track every lead through to a sale, and reach store owners the week they pull a permit, before they start searching.</p>
+<p class="body beat">The proposal that follows lays out two ways to start. We recommend beginning with Path&nbsp;1.</p>
+<div class="accord beat" id="prologue-accord">
+  <div class="accord-item" id="acc-1">
+    <button class="accord-btn" onclick="toggleAcc('acc-1')" aria-expanded="false">
+      What we found
+      <span class="accord-icon">＋</span>
+    </button>
+    <div class="accord-body">
+      <p>We reviewed miamidisplay.us, unoshelf.com and your current Google Ads setup. The product and prices are strong; the way they&rsquo;re presented online is what&rsquo;s costing you sales.</p>
+      <table>
+        <thead><tr><th>What we saw</th><th>Why it costs you sales</th></tr></thead>
+        <tbody>
+          <tr><td>Two websites list the same products at the same prices</td><td>Google splits your ranking between them, and buyers aren&rsquo;t sure which company is real</td></tr>
+          <tr><td>Three different phone numbers across the sites</td><td>Calls can&rsquo;t be traced to ads, and inconsistent listings weaken local search</td></tr>
+          <tr><td>No mention of free Florida delivery, importer pricing, the showroom or store planning</td><td>The reasons to choose you are missing exactly where buyers decide</td></tr>
+          <tr><td>Miami Display&rsquo;s homepage features $0.52 hooks as best sellers</td><td>Gondola shoppers land next to accessories instead of a gondola offer</td></tr>
+          <tr><td>About $700/month in ads, with no sale traced back to them</td><td>Too little budget to compete, and no way to know what&rsquo;s working</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="accord-item" id="acc-2">
+    <button class="accord-btn" onclick="toggleAcc('acc-2')" aria-expanded="false">
+      The market and your edge
+      <span class="accord-icon">＋</span>
+    </button>
+    <div class="accord-body">
+      <p>Demand isn&rsquo;t the problem. Florida formed nearly 590,000 new businesses in 2025 and has ranked #1 in the nation every year since 2019. Every convenience store, pharmacy, liquor store and bodega among them needs shelving, and gondolas are the largest category in retail shelving.</p>
+      <p>Your buyers spend $5,000&ndash;$50,000 once, compare several suppliers, and worry about choosing the wrong layout. Trust, guidance and a fast quote matter more to them than the lowest sticker price.</p>
+      <table>
+        <thead><tr><th>Competitor</th><th>Their strength</th><th>Where you win</th></tr></thead>
+        <tbody>
+          <tr><td>Displayarama, Pompano Beach</td><td>Free store layouts, gondola configurator, 100+ Google reviews</td><td>Importer gondola pricing and a Miami showroom</td></tr>
+          <tr><td>Sarraff, Miami</td><td>Lozier dealer, deep parts catalog</td><td>Store planning, plus a stronger online offer</td></tr>
+          <tr><td>Online sellers</td><td>Easy price comparison</td><td>A showroom to see the product, free delivery, and a person to guide the buyer</td></tr>
+        </tbody>
+      </table>
+      <p>Displayarama already promises 40+ years and free layouts, so experience alone won&rsquo;t win. What wins is the combination only you can offer: <strong>importer prices, a Miami showroom, free delivery anywhere in Florida, and a store planned for profit.</strong></p>
+    </div>
+  </div>
+  <div class="accord-item" id="acc-3">
+    <button class="accord-btn" onclick="toggleAcc('acc-3')" aria-expanded="false">
+      The plan
+      <span class="accord-icon">＋</span>
+    </button>
+    <div class="accord-body">
+      <h4>One offer, everywhere</h4>
+      <blockquote>&ldquo;See it in our Miami showroom. We plan your store. Delivered free anywhere in Florida, at importer prices.&rdquo;</blockquote>
+      <p>Every ad and page leads to a <strong>Free Profit Store Plan</strong>: the owner sends a floor plan and what they&rsquo;ll sell, and gets a layout, fixture list and delivered price within 48 hours, then reviews it in your showroom. It matches Displayarama&rsquo;s free layout and adds what they can&rsquo;t: your price, your showroom and free delivery.</p>
+      <p>We&rsquo;ll also bring everything onto one website. UnoShelf becomes the gondola section of Miami Display, and unoshelf.com redirects there page by page so its current Google rankings carry over.</p>
+      <h4>Reach owners before they search</h4>
+      <p>Google Ads only reach people who are already searching. We&rsquo;ll make sure you win those searches, and then go further by finding owners weeks earlier, using public records published online:</p>
+      <ul>
+        <li><strong>Building permits</strong> for commercial build-outs in Miami-Dade (later Broward and Palm Beach)</li>
+        <li><strong>New companies</strong> registered on Sunbiz with names like &ldquo;market,&rdquo; &ldquo;pharmacy&rdquo; or &ldquo;liquor&rdquo;</li>
+        <li><strong>New licenses</strong> for alcohol, tobacco and pharmacies</li>
+      </ul>
+      <p>New store owners get a postcard at the store address and a follow-up call in English or Spanish. We&rsquo;ll also build referrals with the contractors, architects, commercial real estate brokers and equipment installers who meet store owners first. Every lead, from ads, permits or partners, lands in one sales pipeline you can see.</p>
+    </div>
+  </div>
+</div>
+</div>`},
+
+/* 3 — Where you are today */
 {sec:"Where you are today", html:`<div class="wrap">
 <span class="eyebrow">Where You Are Today</span>
 <h2>A strong business that buyers can&rsquo;t see online</h2>
@@ -473,7 +570,7 @@ const S = [
 </ul>
 </div>`},
 
-/* 3 — The opportunity */
+/* 4 — The opportunity */
 {sec:"The opportunity", html:`<div class="wrap" style="background:none">
 <span class="eyebrow">The Opportunity</span>
 <h2 class="wide">Every new store in Florida needs shelving. Most owners don&rsquo;t know where to start.</h2>
@@ -481,7 +578,7 @@ const S = [
 <p class="body beat">You&rsquo;re the only supplier who can promise all three, at importer prices.</p>
 </div>`},
 
-/* 4 — Why this plan wins */
+/* 5 — Why this plan wins */
 {sec:"Why this plan wins", html:`<div class="wrap">
 <h2>Why this plan wins</h2>
 <div class="win-cols beatgroup">
@@ -500,7 +597,7 @@ const S = [
 </div>
 </div>`},
 
-/* 5 — What you already have */
+/* 6 — What you already have */
 {sec:"What you have", html:`<div class="wrap">
 <h2>You already have what buyers want</h2>
 <div class="cards beatgroup">
@@ -512,7 +609,7 @@ const S = [
 <p class="body beat" style="font-family:var(--display);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--paper);margin-top:clamp(24px,4vh,40px);max-width:52ch;line-height:1.3">Today, none of it shows up in your ads or on your websites.</p>
 </div>`},
 
-/* 6 — What's holding sales back */
+/* 7 — What's holding sales back */
 {sec:"What’s holding back", html:`<div class="wrap">
 <h2>What&rsquo;s holding sales back</h2>
 <div class="stats beatgroup">
@@ -524,7 +621,7 @@ const S = [
 <p class="body beat">The product is strong. The sites and ads don&rsquo;t tell buyers why to choose you.</p>
 </div>`},
 
-/* 7 — The market */
+/* 8 — The market */
 {sec:"The market", html:`<div class="wrap">
 <span class="eyebrow">The Market</span>
 <div class="figs beatgroup">
@@ -537,7 +634,7 @@ const S = [
 <p class="body note beat">SelectFlorida / FloridaCommerce, January 2026</p>
 </div>`},
 
-/* 8 — Your edge */
+/* 9 — Your edge */
 {sec:"Your edge", html:`<div class="wrap">
 <h2>Your edge</h2>
 <p class="body beat" style="font-family:var(--display);font-style:italic;font-size:clamp(18px,2.2vw,26px);color:var(--paper);max-width:50ch;line-height:1.3;margin-top:clamp(16px,2.8vh,28px)">Displayarama offers free store layouts. You can too, plus store design, importer prices, a Miami showroom and free delivery anywhere in Florida.</p>
@@ -548,7 +645,7 @@ const S = [
 </div>
 </div>`},
 
-/* 9 — The offer */
+/* 10 — The offer */
 {sec:"The offer", html:`<div class="wrap">
 <span class="eyebrow">The Offer</span>
 <h2>See it. Plan it. Delivered free.</h2>
@@ -560,7 +657,7 @@ const S = [
 </div>
 </div>`},
 
-/* 10 — Lead engine */
+/* 11 — Lead engine */
 {sec:"Lead engine", html:`<div class="wrap">
 <h2 class="wide">Reach owners the week they pull a permit &mdash; or anytime before others even know they exist</h2>
 <div class="cols3 beatgroup">
@@ -592,7 +689,7 @@ const S = [
 <p class="body beat">Your competitors wait for a search. You&rsquo;ll be first in line.</p>
 </div>`},
 
-/* 11 — Path 1 */
+/* 12 — Path 1 */
 {sec:"Path 1", html:`<div class="wrap">
 <span class="eyebrow">Path 1</span>
 <h2>Optimize and Win</h2>
@@ -608,7 +705,7 @@ const S = [
 <p class="body note beat">Ads live in 30 days &middot; new website live in 3&ndash;6 weeks &middot; recommended ad spend $1,500&ndash;$2,000/month</p>
 </div>`},
 
-/* 12 — Path 2 */
+/* 13 — Path 2 */
 {sec:"Path 2", html:`<div class="wrap">
 <span class="eyebrow">Path 2</span>
 <h2>Rebuild and AI Store Planner</h2>
@@ -625,7 +722,7 @@ const S = [
 <p class="body note beat">Planner live in 10&ndash;12 weeks &middot; every planner lead arrives with plans, budget and opening date</p>
 </div>`},
 
-/* 13 — The planner, in practice */
+/* 14 — The planner, in practice */
 {sec:"The planner", html:`<div class="wrap">
 <h2 class="wide">A priced store, before the first call</h2>
 <div class="planner-mock beat">
@@ -672,7 +769,7 @@ const S = [
 <p class="body beat" style="margin-top:clamp(14px,2vh,22px);font-size:clamp(14px,1.35vw,16px)">Built from your catalog and your prices. Your team confirms every final quote.</p>
 </div>`},
 
-/* 14 — Path 1 vs 2 (interactive) */
+/* 15 — Path 1 vs 2 (interactive) */
 {sec:"Compare paths", interactive:true, html:`<div class="wrap">
 <h2>Path 1 vs. Path 2</h2>
 <div style="margin-top:clamp(16px,2.8vh,28px)">
@@ -709,7 +806,7 @@ const S = [
 </div>
 </div>`},
 
-/* 15 — Investment year one */
+/* 16 — Investment year one */
 {sec:"Investment", html:`<div class="wrap">
 <h2>Investment, year one</h2>
 <table class="beatgroup">
@@ -725,7 +822,7 @@ const S = [
 <p class="body note beat">Postcards and data tools for the lead engine billed at cost &middot; we recommend $2,000/month in ad spend to reach target volume</p>
 </div>`},
 
-/* 16 — The return (interactive calculator) */
+/* 17 — The return (interactive calculator) */
 {sec:"The return", interactive:true, html:`<div class="wrap">
 <span class="eyebrow">The Return</span>
 <h2 class="wide">About one store order a month pays for either path.</h2>
@@ -769,7 +866,7 @@ const S = [
 <p class="body note beat" style="margin-top:clamp(12px,1.8vh,18px)">Expected from month 4: Path 1, 2&ndash;4 new store orders a month &middot; Path 2, 4&ndash;7.</p>
 </div>`},
 
-/* 17 — First 90 days */
+/* 18 — First 90 days */
 {sec:"First 90 days", html:`<div class="wrap">
 <h2>The first 90 days</h2>
 <div class="tl-cols beatgroup">
@@ -801,7 +898,7 @@ const S = [
 <p class="body beat">Day 90 review: leads, showroom visits and sales, side by side with what we spent.</p>
 </div>`},
 
-/* 18 — Next steps */
+/* 19 — Next steps */
 {sec:"Next steps", html:`<div class="wrap">
 <h2>Next steps</h2>
 <div class="next-steps">
@@ -820,6 +917,20 @@ const S = [
 </div>`}
 
 ];
+
+/* ---- prologue accordion ---- */
+function toggleAcc(id){
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accord-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.accord-btn').setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    item.querySelector('.accord-btn').setAttribute('aria-expanded','true');
+  }
+}
 
 /* ---- path toggle (slide 14, index 13) ---- */
 let planSel = 1;
@@ -927,8 +1038,8 @@ function enter(idx, beatCount, cut){
     updateChrome();
     /* init interactive slides */
     if(S[curI].interactive){
-      if(curI===13) setPlan(planSel);
-      if(curI===15) recalc();
+      if(curI===14) setPlan(planSel);
+      if(curI===16) recalc();
     }
   };
   if(cut){ old.classList.remove('on'); old.setAttribute('aria-hidden','true'); show(); return; }
