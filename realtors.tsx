@@ -35,6 +35,45 @@ const ReviewsWidget: React.FC = () => {
   );
 };
 
+// ── Video Card (click-to-play with Drive thumbnail) ──────────────────────────
+const VideoCard: React.FC<{ id: string; label: string }> = ({ id, label }) => {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div
+      className="relative rounded-2xl overflow-hidden shadow-lg bg-neutral-900 cursor-pointer group"
+      style={{ aspectRatio: '16/9' }}
+      onClick={() => setPlaying(true)}
+    >
+      {playing ? (
+        <iframe
+          src={`https://drive.google.com/file/d/${id}/preview`}
+          allow="autoplay; fullscreen"
+          allowFullScreen
+          style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+          title={label}
+        />
+      ) : (
+        <>
+          <img
+            src={`https://drive.google.com/thumbnail?id=${id}&sz=w800`}
+            alt={label}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+              <svg className="w-7 h-7 text-black ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div className="absolute bottom-3 left-3">
+            <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">{label}</span>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
 // ── Reveal on scroll ──────────────────────────────────────────────────────────
 const RevealOnScroll: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -574,8 +613,8 @@ function RealtorsPage() {
               </div>
               <div className="col-span-1 md:col-span-1 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
                 <img
-                  src="https://drive.google.com/thumbnail?id=1hCPJxNnIMIeC23KKgU_i7pk_exXVYzM-&sz=w800"
-                  alt="Interior detail"
+                  src="https://drive.google.com/thumbnail?id=1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R&sz=w800"
+                  alt="Twilight exterior"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -622,15 +661,7 @@ function RealtorsPage() {
                 { id: '1a1vk80dHh-4ObbpCVT8ZZsNavIB8w-C9', label: 'Listing Showcase' },
                 { id: '1SGDyhjgCW3sHsnlA7AJJBinI4m_n2DLA', label: 'Property Highlight' },
               ].map(({ id, label }) => (
-                <div key={id} className="rounded-2xl overflow-hidden shadow-lg bg-neutral-900" style={{ aspectRatio: '16/9' }}>
-                  <iframe
-                    src={`https://drive.google.com/file/d/${id}/preview`}
-                    allow="autoplay; fullscreen"
-                    allowFullScreen
-                    style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-                    title={label}
-                  />
-                </div>
+                <VideoCard key={id} id={id} label={label} />
               ))}
             </div>
           </RevealOnScroll>
