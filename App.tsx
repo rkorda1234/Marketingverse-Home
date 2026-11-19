@@ -3195,6 +3195,37 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             </div>
           </RevealOnScroll>
 
+          {/* Package card */}
+          <RevealOnScroll>
+            <div className="max-w-sm mx-auto mb-14">
+              <div className="relative flex flex-col border-2 border-black rounded-3xl overflow-hidden shadow-2xl">
+                <div className="bg-black px-8 pt-8 pb-6">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">Headshot Session</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-5xl font-black tracking-tight text-white">$185</span>
+                  </div>
+                  <p className="text-sm text-neutral-400">One session · all photos delivered</p>
+                </div>
+                <div className="bg-white px-8 py-6 flex flex-col gap-4">
+                  <ul className="space-y-3">
+                    {['35-minute professional session', '2 changes of wardrobe', 'Delivery of all edited photos', 'Studio & outdoor options'].map(f => (
+                      <li key={f} className="flex items-center gap-3 text-sm text-neutral-700">
+                        <svg className="w-4 h-4 text-black flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="/realtors"
+                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all mt-2"
+                  >
+                    Book Your Session
+                  </a>
+                </div>
+              </div>
+            </div>
+          </RevealOnScroll>
+
           {/* Photo gallery — 8 real headshot samples */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-16 max-w-5xl mx-auto">
             {[
