@@ -222,23 +222,46 @@ function RealtorsPage() {
       </section>
 
       {/* ── Tab Switcher ── */}
-      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b border-neutral-100 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex gap-1 py-3 overflow-x-auto scrollbar-hide">
+      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b-2 border-neutral-100 shadow-md">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="flex overflow-x-auto scrollbar-hide">
             {([
-              { id: 'social', label: 'Social Media' },
-              { id: 'photography', label: 'Listing Photography' },
-              { id: 'headshots', label: 'Headshots' },
+              {
+                id: 'social',
+                label: 'Social Media',
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                ),
+                activeClass: 'border-b-4 border-indigo-500 text-indigo-600 bg-indigo-50/60',
+                inactiveClass: 'text-neutral-500 hover:text-indigo-500 hover:bg-indigo-50/40 border-b-4 border-transparent',
+              },
+              {
+                id: 'photography',
+                label: 'Listing Photography',
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                ),
+                activeClass: 'border-b-4 border-amber-500 text-amber-600 bg-amber-50/60',
+                inactiveClass: 'text-neutral-500 hover:text-amber-500 hover:bg-amber-50/40 border-b-4 border-transparent',
+              },
+              {
+                id: 'headshots',
+                label: 'Headshots',
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                ),
+                activeClass: 'border-b-4 border-rose-500 text-rose-600 bg-rose-50/60',
+                inactiveClass: 'text-neutral-500 hover:text-rose-500 hover:bg-rose-50/40 border-b-4 border-transparent',
+              },
             ] as const).map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-shrink-0 px-5 py-2 rounded-xl text-sm font-bold transition-all ${
-                  activeTab === tab.id
-                    ? 'bg-black text-white shadow-sm'
-                    : 'text-neutral-500 hover:text-black hover:bg-neutral-100'
+                className={`flex-1 flex items-center justify-center gap-2 py-4 px-4 text-sm md:text-base font-bold transition-all whitespace-nowrap ${
+                  activeTab === tab.id ? tab.activeClass : tab.inactiveClass
                 }`}
               >
+                {tab.icon}
                 {tab.label}
               </button>
             ))}
