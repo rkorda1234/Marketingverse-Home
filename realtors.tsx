@@ -301,6 +301,139 @@ function RealtorsPage() {
         </div>
       </section>
 
+      {/* ── Listing Photography & Videography ── */}
+      <section className="py-16 md:py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <RevealOnScroll>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 text-center">Listing Media</p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-4">
+              Photography &amp; <span className="font-serif font-normal italic">Videography</span>
+            </h2>
+            <p className="text-neutral-500 text-base md:text-lg text-center max-w-xl mx-auto mb-12 md:mb-16">
+              Professional listing media that makes buyers stop scrolling. HDR photos, aerials, floor plans, and cinematic walkthroughs — all in one shoot.
+            </p>
+          </RevealOnScroll>
+
+          {/* Package Cards */}
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
+
+            {/* Sunrise */}
+            <RevealOnScroll delay={0}>
+              <div className="relative flex flex-col border border-neutral-200 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 px-7 pt-8 pb-6 border-b border-neutral-100">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-600 mb-2">Sunrise Package</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-4xl font-black tracking-tight text-neutral-900">$225</span>
+                  </div>
+                  <p className="text-xs text-neutral-500">Up to 2,400 sq ft</p>
+                </div>
+                <div className="bg-white px-7 py-6 flex-1 flex flex-col">
+                  <ul className="space-y-3 flex-1 mb-8">
+                    {['25 HDR Professional Photos', '3 Aerial Photos', 'B&W Basic Floor Plan'].map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
+                        <svg className="w-4 h-4 mt-0.5 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://shop.mylisting.pro/PlaceOrder?package=1001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
+                  >
+                    Book This Package
+                  </a>
+                </div>
+              </div>
+            </RevealOnScroll>
+
+            {/* Noon — most popular */}
+            <RevealOnScroll delay={80}>
+              <div className="relative flex flex-col border-2 border-black rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div className="absolute top-4 right-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>
+                <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 px-7 pt-8 pb-6 border-b border-neutral-700">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">Noon Package</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-4xl font-black tracking-tight text-white">$415</span>
+                  </div>
+                  <p className="text-xs text-neutral-500">All property sizes</p>
+                </div>
+                <div className="bg-white px-7 py-6 flex-1 flex flex-col">
+                  <ul className="space-y-3 flex-1 mb-8">
+                    {['25 HDR Professional Photos', '3 Aerial Photos', 'Floor Plan Plus', '3D Tour (Small)'].map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
+                        <svg className="w-4 h-4 mt-0.5 text-black flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://shop.mylisting.pro/PlaceOrder?package=1002"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
+                  >
+                    Book This Package
+                  </a>
+                </div>
+              </div>
+            </RevealOnScroll>
+
+            {/* Twilight */}
+            <RevealOnScroll delay={160}>
+              <div className="relative flex flex-col border border-neutral-200 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="bg-gradient-to-br from-indigo-50 to-violet-50 px-7 pt-8 pb-6 border-b border-neutral-100">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-violet-600 mb-2">Twilight Package</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-4xl font-black tracking-tight text-neutral-900">$450</span>
+                  </div>
+                  <p className="text-xs text-neutral-500">All property sizes</p>
+                </div>
+                <div className="bg-white px-7 py-6 flex-1 flex flex-col">
+                  <ul className="space-y-3 flex-1 mb-8">
+                    {['25 High Resolution Photos', '3 Aerial Photos', 'Floor Plan Plus', 'Pro Cinematic Video'].map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
+                        <svg className="w-4 h-4 mt-0.5 text-violet-500 flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://shop.mylisting.pro/PlaceOrder?package=1003"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
+                  >
+                    Book This Package
+                  </a>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </div>
+
+          {/* Media showcase — placeholder for user's photos/videos */}
+          <RevealOnScroll>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 text-center">Our Work</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 rounded-3xl overflow-hidden">
+              {[
+                'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
+                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+                'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+                'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+              ].map((src, i) => (
+                <div key={i} className={`relative overflow-hidden rounded-2xl ${i === 0 ? 'col-span-2 md:col-span-1 row-span-2' : ''}`} style={{ aspectRatio: i === 0 ? '1/1.3' : '4/3' }}>
+                  <img src={src} alt={`Listing media ${i + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-xs text-neutral-400 mt-4">← Replace these with your own listing photos once provided</p>
+          </RevealOnScroll>
+        </div>
+      </section>
+
       {/* ── Google Reviews ── */}
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
