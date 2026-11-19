@@ -3081,9 +3081,100 @@ const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBook
   </div>
 );
 
-const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateGrowth, onBookConsultation }) => (
+const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateGrowth, onBookConsultation }) => {
+  const [agentTab, setAgentTab] = React.useState<'social' | 'photography'>('social');
+  return (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
+
+      {/* ── Agent Tab Switcher ── */}
+      <RevealOnScroll>
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex bg-neutral-100 p-1.5 rounded-2xl gap-1">
+            <button
+              onClick={() => setAgentTab('social')}
+              className={`flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold transition-all ${agentTab === 'social' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              Social Media
+            </button>
+            <button
+              onClick={() => setAgentTab('photography')}
+              className={`flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold transition-all ${agentTab === 'photography' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              Listing Photography
+            </button>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* ── Photography Tab ── */}
+      {agentTab === 'photography' && (
+        <div className="animate-fade-in">
+          <RevealOnScroll>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Listing Media</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                Photography &amp; <span className="font-serif font-normal italic">Videography</span>
+              </h2>
+              <p className="text-neutral-500 text-lg max-w-xl mx-auto">
+                Professional listing media that makes buyers stop scrolling. HDR photos, aerials, floor plans, and cinematic walkthroughs — all in one shoot.
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16 max-w-5xl mx-auto">
+            {[
+              { name: 'Sunrise', price: '$225', note: 'Up to 2,400 sq ft', accentClass: 'text-amber-600', checkClass: 'text-amber-500', borderClass: 'border-neutral-200', bgClass: 'from-amber-50 to-orange-50', pkg: '1001',
+                features: ['25 HDR Professional Photos', '3 Aerial Photos', 'B&W Basic Floor Plan'] },
+              { name: 'Noon', price: '$415', note: 'All property sizes', accentClass: 'text-neutral-400', checkClass: 'text-black', borderClass: 'border-black border-2', bgClass: 'from-neutral-900 to-neutral-800', pkg: '1002', featured: true,
+                features: ['25 HDR Professional Photos', '3 Aerial Photos', 'Floor Plan Plus', '3D Tour (Small)'] },
+              { name: 'Twilight', price: '$450', note: 'All property sizes', accentClass: 'text-violet-600', checkClass: 'text-violet-500', borderClass: 'border-neutral-200', bgClass: 'from-indigo-50 to-violet-50', pkg: '1003',
+                features: ['25 High Resolution Photos', '3 Aerial Photos', 'Floor Plan Plus', 'Pro Cinematic Video'] },
+            ].map((p, i) => (
+              <RevealOnScroll key={p.name} delay={i * 80}>
+                <div className={`relative flex flex-col border rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${p.borderClass}`}>
+                  {p.featured && <div className="absolute top-4 right-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>}
+                  <div className={`bg-gradient-to-br ${p.bgClass} px-7 pt-8 pb-6 border-b border-neutral-100`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-[0.25em] mb-2 ${p.accentClass}`}>{p.name} Package</p>
+                    <div className="flex items-end gap-1 mb-1">
+                      <span className={`text-4xl font-black tracking-tight ${p.featured ? 'text-white' : 'text-neutral-900'}`}>{p.price}</span>
+                    </div>
+                    <p className="text-xs text-neutral-500">{p.note}</p>
+                  </div>
+                  <div className={`${p.featured ? 'bg-neutral-900' : 'bg-white'} px-7 py-6 flex-1 flex flex-col`}>
+                    <ul className="space-y-3 flex-1 mb-8">
+                      {p.features.map(f => (
+                        <li key={f} className={`flex items-start gap-3 text-sm ${p.featured ? 'text-neutral-300' : 'text-neutral-700'}`}>
+                          <svg className={`w-4 h-4 mt-0.5 flex-shrink-0 ${p.checkClass}`} fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={`https://shop.mylisting.pro/PlaceOrder?package=${p.pkg}`} target="_blank" rel="noopener noreferrer"
+                      className={`block text-center font-semibold text-sm py-3.5 rounded-2xl transition-all ${p.featured ? 'bg-white text-black hover:bg-neutral-100' : 'bg-black text-white hover:bg-neutral-800'}`}>
+                      Book This Package
+                    </a>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+
+          <RevealOnScroll>
+            <div className="text-center">
+              <p className="text-neutral-500 mb-6">Want to see the full listing media page with our work portfolio?</p>
+              <a href="/realtors" className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 py-4 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl">
+                View Full Real Estate Page <ArrowRight size={18} />
+              </a>
+            </div>
+          </RevealOnScroll>
+        </div>
+      )}
+
+      {/* ── Social Media Tab ── */}
+      {agentTab === 'social' && <>
       {/* New Intro Section */}
       <RevealOnScroll>
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
@@ -3397,9 +3488,11 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           </div>
         </div>
       </RevealOnScroll>
+      </>}
     </div>
   </div>
-);
+  );
+};
 
 const AI_WORKFLOW_SAVINGS = [
   { time: '8–12 hrs/week saved', roi: '20–40% more pipeline' },

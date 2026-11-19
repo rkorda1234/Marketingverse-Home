@@ -301,6 +301,89 @@ function RealtorsPage() {
         </div>
       </section>
 
+      {/* ── Social Media Plans ── */}
+      <section className="py-16 md:py-24 px-6 bg-neutral-950 text-white">
+        <div className="max-w-5xl mx-auto">
+          <RevealOnScroll>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500 mb-4 text-center">Social Media Plans</p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-4">
+              Your Content.<br />
+              <span className="font-serif font-normal italic">Our Strategy.</span>
+            </h2>
+            <p className="text-neutral-400 text-base md:text-lg text-center max-w-xl mx-auto mb-12 md:mb-16">
+              Monthly memberships that handle everything — brand creation, content shoots, editing, posting, and community management.
+            </p>
+          </RevealOnScroll>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
+            {/* Growth */}
+            <RevealOnScroll delay={0}>
+              <div className="relative flex flex-col border-2 border-indigo-500 rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                <div className="absolute top-4 right-4 bg-indigo-500 text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>
+                <div className="bg-neutral-900 px-7 pt-8 pb-6 border-b border-neutral-800">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-indigo-400 mb-2">Growth</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-4xl font-black tracking-tight text-white">$550</span>
+                    <span className="text-neutral-500 text-sm mb-1">/mo</span>
+                  </div>
+                  <p className="text-xs text-neutral-500">Aggressive growth for agents ready to scale</p>
+                </div>
+                <div className="bg-neutral-900 px-7 py-6 flex-1 flex flex-col">
+                  <ul className="space-y-3 flex-1 mb-8">
+                    {['1-on-1 Coaching', 'Brand Creation', 'Monthly Content Shoot', '8 Video Posts', 'Community Management', '2 IG Boosts'].map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-neutral-300">
+                        <svg className="w-4 h-4 mt-0.5 text-indigo-400 flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://billing.the-marketingverse.com/subscribe/012b590903e576e21bb2f16ffd298a88a7726ba08b65d6ccad482bf477cf719e/SocialMediaGrowth"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center bg-indigo-500 hover:bg-indigo-600 text-white font-semibold text-sm py-3.5 rounded-2xl transition-all"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </RevealOnScroll>
+
+            {/* Dominance */}
+            <RevealOnScroll delay={80}>
+              <div className="relative flex flex-col border border-neutral-700 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="bg-neutral-900 px-7 pt-8 pb-6 border-b border-neutral-800">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-violet-400 mb-2">Dominance</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-4xl font-black tracking-tight text-white">$750</span>
+                    <span className="text-neutral-500 text-sm mb-1">/mo</span>
+                  </div>
+                  <p className="text-xs text-neutral-500">Full-scale production for market leaders</p>
+                </div>
+                <div className="bg-neutral-900 px-7 py-6 flex-1 flex flex-col">
+                  <ul className="space-y-3 flex-1 mb-8">
+                    {['Everything in Growth', 'Extra Video Content Shoot', 'Email Marketing', 'TikTok & GMB', '4 IG Boosts'].map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-neutral-300">
+                        <svg className="w-4 h-4 mt-0.5 text-violet-400 flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="https://billing.the-marketingverse.com/subscribe/012b590903e576e21bb2f16ffd298a88a7726ba08b65d6ccad482bf477cf719e/SocualMediaDominance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center bg-white text-black font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-100 transition-all"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
+      </section>
+
       {/* ── Listing Photography & Videography ── */}
       <section className="py-16 md:py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
