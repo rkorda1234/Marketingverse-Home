@@ -470,7 +470,7 @@ function RealtorsPage() {
               <div className="relative flex flex-col border border-neutral-200 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="relative overflow-hidden" style={{ height: 180 }}>
                   <img
-                    src="https://drive.google.com/thumbnail?id=1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y&sz=w800"
+                    src="https://drive.google.com/thumbnail?id=1T9LtrZBNGuO9VinpE974c93QHomdoOec&sz=w800"
                     alt="Sunrise listing interior"
                     className="w-full h-full object-cover"
                   />
@@ -510,7 +510,7 @@ function RealtorsPage() {
                 <div className="absolute top-4 right-4 z-10 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>
                 <div className="relative overflow-hidden" style={{ height: 180 }}>
                   <img
-                    src="https://drive.google.com/thumbnail?id=1IGjM4lHxBbxfri4DEZx98r6sIM2byiCc&sz=w800"
+                    src="https://drive.google.com/thumbnail?id=1IJ39COxE96f9a9fuLqNbEAvLnqF1tzII&sz=w800"
                     alt="Noon listing HDR interior"
                     className="w-full h-full object-cover"
                   />
@@ -549,7 +549,7 @@ function RealtorsPage() {
               <div className="relative flex flex-col border border-neutral-200 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="relative overflow-hidden" style={{ height: 180 }}>
                   <img
-                    src="https://drive.google.com/thumbnail?id=1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R&sz=w800"
+                    src="https://drive.google.com/thumbnail?id=1rGPM5ye01q__8JYcfDEzhiS1uNgRKZfi&sz=w800"
                     alt="Twilight aerial drone shot"
                     className="w-full h-full object-cover"
                   />
