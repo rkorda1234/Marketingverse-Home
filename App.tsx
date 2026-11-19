@@ -3082,7 +3082,7 @@ const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBook
 );
 
 const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateGrowth, onBookConsultation }) => {
-  const [agentTab, setAgentTab] = React.useState<'social' | 'photography'>('social');
+  const [agentTab, setAgentTab] = React.useState<'social' | 'photography' | 'headshots'>('social');
   return (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -3104,6 +3104,13 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
               Listing Photography
+            </button>
+            <button
+              onClick={() => setAgentTab('headshots')}
+              className={`flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold transition-all ${agentTab === 'headshots' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              Headshots
             </button>
           </div>
         </div>
@@ -3167,6 +3174,59 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
               <p className="text-neutral-500 mb-6">Want to see the full listing media page with our work portfolio?</p>
               <a href="/realtors" className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 py-4 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl">
                 View Full Real Estate Page <ArrowRight size={18} />
+              </a>
+            </div>
+          </RevealOnScroll>
+        </div>
+      )}
+
+      {/* ── Headshots Tab ── */}
+      {agentTab === 'headshots' && (
+        <div className="animate-fade-in">
+          <RevealOnScroll>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Personal Branding</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                Headshots That <span className="font-serif font-normal italic">Close Deals</span>
+              </h2>
+              <p className="text-neutral-500 text-lg max-w-xl mx-auto">
+                Your first impression is online. We shoot professional headshots that reflect your brand, build instant trust, and make you look like the go-to agent in your market.
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          {/* Photo gallery — 8 real headshot samples */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-16 max-w-5xl mx-auto">
+            {[
+              '1X-knZV-nrXcd1je5WoX5Y8YDRghLtzEP',
+              '1MSrtaukT099U0oiiamD9do6vGTkf_qb8',
+              '1wHmTzucCH677706tLQ80ybxE6Ta5yQ0j',
+              '1ik_ekfGFnFhzDdsMKhyn8niyoUZX0YZ6',
+              '1vEWWbZ9pkwOfI0LuNxNLKnsxqbH15f0x',
+              '1UxUW6PSzWhrADo50AgxICTHDkvN07wNB',
+              '1RvSzzlaRp5TrXBW3WWQcLs57sc3v-6R6',
+              '1IXafeeW71y94ixnDSDCBveaGszqBYKMx',
+            ].map((id, i) => (
+              <RevealOnScroll key={id} delay={i * 50}>
+                <div className="relative overflow-hidden rounded-2xl bg-neutral-100 group" style={{ aspectRatio: '3/4' }}>
+                  <img
+                    src={`https://drive.google.com/thumbnail?id=${id}&sz=w600`}
+                    alt={`Headshot sample ${i + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+
+          <RevealOnScroll>
+            <div className="text-center">
+              <p className="text-neutral-500 mb-6">Ready to elevate your brand image?</p>
+              <a
+                href="/realtors"
+                className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 py-4 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl"
+              >
+                Book a Headshot Session <ArrowRight size={18} />
               </a>
             </div>
           </RevealOnScroll>
