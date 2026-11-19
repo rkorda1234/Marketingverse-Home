@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Loader2, Mic, MessageSquare } from 'lucide-react';
+import { Send, Bot, User, Loader2, Mic, MessageSquare, WifiOff } from 'lucide-react';
 import { sendMessageToGemini } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { VoiceBot } from './VoiceBot';
+
+const MAINTENANCE_MODE = true;
 
 interface AIBotProps {
   context?: string;
@@ -72,16 +74,70 @@ export const AIBot: React.FC<AIBotProps> = ({ context, initialMessage }) => {
     }
   };
 
+  if (MAINTENANCE_MODE) {
+    return (
+      <div className="w-full max-w-2xl mx-auto flex flex-col h-[650px] transition-all duration-500">
+        <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-[2rem] shadow-xl overflow-hidden flex flex-col animate-fade-in">
+          <div className="bg-black text-white p-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-white/10 rounded-full">
+                <Bot size={24} />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">VerseBot Assistant</h3>
+                <p className="text-xs text-neutral-400">Temporarily Unavailable</p>
+              </div>
+            </div>
+            <div className="flex gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-neutral-500" />
+              <div className="w-1.5 h-1.5 rounded-full bg-neutral-500" />
+              <div className="w-1.5 h-1.5 rounded-full bg-neutral-500" />
+            </div>
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center p-10 text-center bg-white gap-6">
+            <div className="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center border border-neutral-200">
+              <WifiOff size={28} className="text-neutral-400" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-neutral-800 mb-2">AI Assistant Offline</p>
+              <p className="text-neutral-500 text-sm max-w-xs leading-relaxed mb-1">Our AI features are temporarily unavailable. We'll be back shortly.</p>
+              <p className="text-neutral-400 text-xs mt-3">ES: Nuestro asistente de IA está temporalmente fuera de servicio. Volvemos pronto.</p>
+            </div>
+            <a
+              href="mailto:hello@the-marketingverse.com"
+              className="px-6 py-3 bg-black text-white rounded-xl text-sm font-bold hover:bg-neutral-800 transition-all"
+            >
+              Contact Us Directly
+            </a>
+          </div>
+          <div className="p-6 bg-neutral-50 border-t border-neutral-200">
+            <div className="flex gap-3 opacity-40 pointer-events-none">
+              <input
+                type="text"
+                disabled
+                placeholder="AI assistant is currently offline..."
+                className="flex-1 p-4 rounded-2xl border border-neutral-300 bg-white shadow-inner text-sm cursor-not-allowed"
+              />
+              <button disabled className="p-4 bg-neutral-300 text-white rounded-2xl cursor-not-allowed shadow-lg">
+                <Send size={24} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col h-[650px] transition-all duration-500">
       <div className="flex bg-neutral-100 p-1 rounded-2xl mb-4 w-fit mx-auto shadow-sm">
-        <button 
+        <button
           onClick={() => setMode('text')}
           className={`flex items-center gap-2 px-6 py-2 rounded-xl text-sm font-bold transition-all ${mode === 'text' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
         >
           <MessageSquare size={16} /> {context ? 'Article Chat' : 'Text Agent'}
         </button>
-        <button 
+        <button
           onClick={() => setMode('voice')}
           className={`flex items-center gap-2 px-6 py-2 rounded-xl text-sm font-bold transition-all ${mode === 'voice' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
         >
