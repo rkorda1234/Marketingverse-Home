@@ -526,23 +526,12 @@ function RealtorsPage() {
               See the <span className="font-serif italic font-normal">difference</span>
             </h3>
 
-            {/* Hero video */}
-            <div className="rounded-3xl overflow-hidden shadow-2xl mb-4" style={{ aspectRatio: '16/9' }}>
-              <iframe
-                src="https://drive.google.com/file/d/1lLotCIeWwfLxAFnZ4NKQ2XvQcXNV_4eY/preview"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-                title="Listing Walkthrough"
-              />
-            </div>
-
-            {/* Photo + video grid */}
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+            {/* Photo grid */}
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-3 mb-16">
               {/* Row 1: drone aerial (large) + 2 interiors */}
               <div className="col-span-2 md:col-span-3 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
                 <img
-                  src="https://drive.google.com/thumbnail?id=1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R&sz=w1200"
+                  src="https://drive.google.com/thumbnail?id=1eAA9WIKkYpj_ugp8Uhyt38uPeLz3b8zs&sz=w1200"
                   alt="Aerial drone shot"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
@@ -565,7 +554,7 @@ function RealtorsPage() {
                 />
               </div>
 
-              {/* Row 2: 2 interiors + cinematic video tile */}
+              {/* Row 2: 3 more listing photos */}
               <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
                 <img
                   src="https://drive.google.com/thumbnail?id=1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y&sz=w800"
@@ -575,23 +564,48 @@ function RealtorsPage() {
               </div>
               <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
                 <img
-                  src="https://drive.google.com/thumbnail?id=1zLM8p5BrKOg2-5fNk8rfVtxZNy-wTitD&sz=w800"
+                  src="https://drive.google.com/thumbnail?id=1DTSMBxW7jCJH0GoAUIa5VmfEXwqNr3G6&sz=w800"
                   alt="Interior room"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="col-span-2 md:col-span-2 relative overflow-hidden rounded-2xl bg-neutral-900" style={{ aspectRatio: '4/3' }}>
-                <iframe
-                  src="https://drive.google.com/file/d/1SGDyhjgCW3sHsnlA7AJJBinI4m_n2DLA/preview"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-                  title="Cinematic walkthrough"
+              <div className="col-span-2 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src="https://drive.google.com/thumbnail?id=1SLkRLG21OoWGrbml3QWROZEfc_gOeou7&sz=w800"
+                  alt="Aerial property view"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute bottom-3 left-3 pointer-events-none">
-                  <span className="text-[9px] font-bold uppercase tracking-widest bg-white/90 text-black px-2.5 py-1 rounded-full">Cinematic</span>
+                <div className="absolute bottom-3 left-3">
+                  <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">Drone</span>
                 </div>
               </div>
+            </div>
+          </RevealOnScroll>
+
+          {/* Video Library */}
+          <RevealOnScroll>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-3 text-center">Video Library</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-10">
+              Cinematic <span className="font-serif italic font-normal">property tours</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { id: '1pZvWto7bMJtFSeKPdAwXNfP4Tn6eXYa1', label: 'Property Walkthrough' },
+                { id: '1-Zcca9S9T7mD5YaHAu8rJQjuC9mqtX25', label: 'Cinematic Tour' },
+                { id: '1a1vk80dHh-4ObbpCVT8ZZsNavIB8w-C9', label: 'Listing Showcase' },
+                { id: '1SGDyhjgCW3sHsnlA7AJJBinI4m_n2DLA', label: 'Property Highlight' },
+              ].map(({ id, label }) => (
+                <div key={id} className="rounded-2xl overflow-hidden shadow-lg bg-neutral-900" style={{ aspectRatio: '16/9' }}>
+                  <iframe
+                    src={`https://drive.google.com/file/d/${id}/preview`}
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                    style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+                    title={label}
+                  />
+                </div>
+              ))}
             </div>
           </RevealOnScroll>
         </div>
