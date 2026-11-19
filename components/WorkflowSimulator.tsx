@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Play, Sparkles, Loader2, CheckCircle2, Terminal, RefreshCw, Zap, Image as ImageIcon } from 'lucide-react';
+import { Play, Sparkles, Loader2, CheckCircle2, Terminal, RefreshCw, Zap, Image as ImageIcon, WifiOff } from 'lucide-react';
+
+const MAINTENANCE_MODE = true;
 import { RevealOnScroll } from './RevealOnScroll';
 
 interface DemoWorkflow {
@@ -90,6 +92,44 @@ export const WorkflowSimulator: React.FC = () => {
     setImageUrl(null);
     setLogs([]);
   };
+
+  if (MAINTENANCE_MODE) {
+    return (
+      <section className="py-24 bg-white">
+        <RevealOnScroll>
+          <div className="text-center mb-16">
+            <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3 block">Live Testing Ground</span>
+            <h2 className="text-4xl font-bold mb-4">AI <span className="font-serif italic font-normal">Smart Lab</span></h2>
+            <p className="text-neutral-600 max-w-2xl mx-auto">
+              Test our AI and creative logic in real-time. Select a module and see how Marketingverse intelligence handles your vision.
+            </p>
+          </div>
+        </RevealOnScroll>
+        <div className="max-w-2xl mx-auto px-4">
+          <RevealOnScroll>
+            <div className="bg-neutral-50 border border-neutral-200 rounded-[2rem] p-12 text-center shadow-sm">
+              <div className="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center border border-neutral-200 mx-auto mb-6">
+                <WifiOff size={28} className="text-neutral-400" />
+              </div>
+              <p className="text-lg font-bold text-neutral-800 mb-2">AI Smart Lab Offline</p>
+              <p className="text-neutral-500 text-sm max-w-sm mx-auto leading-relaxed mb-1">
+                Our AI simulation features are temporarily unavailable. We'll be back online shortly.
+              </p>
+              <p className="text-neutral-400 text-xs mt-3">
+                ES: Nuestras funciones de simulación de IA no están disponibles temporalmente. Volvemos pronto.
+              </p>
+              <a
+                href="mailto:hello@the-marketingverse.com"
+                className="inline-block mt-8 px-6 py-3 bg-black text-white rounded-xl text-sm font-bold hover:bg-neutral-800 transition-all"
+              >
+                Contact Us Directly
+              </a>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-24 bg-white">

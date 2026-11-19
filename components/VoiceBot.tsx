@@ -1,6 +1,8 @@
 /// <reference types="vite/client" />
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Mic, Volume2, Loader2, Phone, PhoneOff } from 'lucide-react';
+import { Mic, Volume2, Loader2, Phone, PhoneOff, WifiOff } from 'lucide-react';
+
+const MAINTENANCE_MODE = true;
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
 // --- Helper Functions ---
@@ -205,6 +207,29 @@ export const VoiceBot: React.FC = () => {
   useEffect(() => {
     return () => stopSession();
   }, [stopSession]);
+
+  if (MAINTENANCE_MODE) {
+    return (
+      <div className="flex flex-col items-center justify-center p-8 bg-neutral-900 text-white rounded-[2.5rem] shadow-2xl border border-neutral-800 h-[600px] relative overflow-hidden">
+        <div className="flex flex-col items-center text-center gap-6">
+          <div className="w-32 h-32 rounded-full flex items-center justify-center border-4 bg-neutral-800 text-neutral-500 border-neutral-700">
+            <WifiOff size={48} />
+          </div>
+          <h3 className="text-2xl font-bold">VerseBot Live Offline</h3>
+          <p className="text-neutral-400 max-w-xs leading-relaxed">
+            Voice AI is temporarily unavailable. We'll be back online shortly.
+          </p>
+          <p className="text-neutral-600 text-sm">ES: La voz IA no está disponible temporalmente.</p>
+          <button
+            disabled
+            className="px-10 py-5 rounded-2xl font-bold text-lg bg-neutral-700 text-neutral-500 cursor-not-allowed flex items-center gap-3"
+          >
+            <Mic size={24} /> Unavailable
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center justify-center p-8 bg-neutral-900 text-white rounded-[2.5rem] shadow-2xl border border-neutral-800 h-[600px] relative overflow-hidden">
