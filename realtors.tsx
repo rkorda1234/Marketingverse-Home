@@ -129,6 +129,7 @@ const SUCCESS_CASES = [
 function RealtorsPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState<'social' | 'photography' | 'headshots'>('social');
 
   useEffect(() => {
     captureAdAttribution();
@@ -181,8 +182,33 @@ function RealtorsPage() {
         </RevealOnScroll>
       </section>
 
+      {/* ── Tab Switcher ── */}
+      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b border-neutral-100 shadow-sm">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex gap-1 py-3 overflow-x-auto scrollbar-hide">
+            {([
+              { id: 'social', label: 'Social Media' },
+              { id: 'photography', label: 'Listing Photography' },
+              { id: 'headshots', label: 'Headshots' },
+            ] as const).map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex-shrink-0 px-5 py-2 rounded-xl text-sm font-bold transition-all ${
+                  activeTab === tab.id
+                    ? 'bg-black text-white shadow-sm'
+                    : 'text-neutral-500 hover:text-black hover:bg-neutral-100'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* ── Why Social ── */}
-      <section className="py-16 md:py-24 px-6 bg-neutral-950 text-white">
+      {activeTab === 'social' && <section className="py-16 md:py-24 px-6 bg-neutral-950 text-white">
         <div className="max-w-6xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500 mb-6 text-center">Why Social?</p>
@@ -224,10 +250,10 @@ function RealtorsPage() {
             </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ── Real Accounts. Real Results. ── */}
-      <section className="py-16 md:py-24 px-6">
+      {activeTab === 'social' && <section className="py-16 md:py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <RevealOnScroll>
             <div className="text-center mb-10 md:mb-14">
@@ -261,10 +287,10 @@ function RealtorsPage() {
             </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ── Client Wins ── */}
-      <section className="py-16 md:py-24 px-6 bg-neutral-50">
+      {activeTab === 'social' && <section className="py-16 md:py-24 px-6 bg-neutral-50">
         <div className="max-w-7xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 text-center">Proven Results</p>
@@ -299,10 +325,10 @@ function RealtorsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ── Social Media Plans ── */}
-      <section className="py-16 md:py-24 px-6 bg-neutral-950 text-white">
+      {activeTab === 'social' && <section className="py-16 md:py-24 px-6 bg-neutral-950 text-white">
         <div className="max-w-5xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500 mb-4 text-center">Social Media Plans</p>
@@ -382,10 +408,10 @@ function RealtorsPage() {
             </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ── Listing Photography & Videography ── */}
-      <section className="py-16 md:py-24 px-6 bg-white">
+      {activeTab === 'photography' && <section className="py-16 md:py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 text-center">Listing Media</p>
@@ -609,7 +635,85 @@ function RealtorsPage() {
             </div>
           </RevealOnScroll>
         </div>
-      </section>
+      </section>}
+
+      {/* ── Headshots ── */}
+      {activeTab === 'headshots' && <section className="py-16 md:py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <RevealOnScroll>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Personal Branding</p>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+                Headshots That <span className="font-serif font-normal italic">Close Deals</span>
+              </h2>
+              <p className="text-neutral-500 text-base md:text-lg max-w-xl mx-auto">
+                Your first impression is online. We shoot professional headshots that reflect your brand, build instant trust, and make you look like the go-to agent in your market.
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          {/* Pricing card */}
+          <RevealOnScroll>
+            <div className="max-w-sm mx-auto mb-14">
+              <div className="relative flex flex-col border-2 border-black rounded-3xl overflow-hidden shadow-2xl">
+                <div className="bg-black px-8 pt-8 pb-6">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">Headshot Session</p>
+                  <div className="flex items-end gap-1 mb-1">
+                    <span className="text-5xl font-black tracking-tight text-white">$185</span>
+                  </div>
+                  <p className="text-sm text-neutral-400">One session · all photos delivered</p>
+                </div>
+                <div className="bg-white px-8 py-6 flex flex-col gap-4">
+                  <ul className="space-y-3">
+                    {['35-minute session', '2 wardrobe changes', 'All edited photos delivered', 'Professional lighting setup'].map(f => (
+                      <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
+                        <svg className="w-4 h-4 mt-0.5 text-black flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={openBooking}
+                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
+                  >
+                    Book a Session
+                  </button>
+                </div>
+              </div>
+            </div>
+          </RevealOnScroll>
+
+          {/* Photo gallery — 8 real headshot samples */}
+          <RevealOnScroll>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-3 text-center">Our Work</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-10">
+              Sample <span className="font-serif italic font-normal">sessions</span>
+            </h3>
+          </RevealOnScroll>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-16 max-w-5xl mx-auto">
+            {[
+              '1X-knZV-nrXcd1je5WoX5Y8YDRghLtzEP',
+              '1MSrtaukT099U0oiiamD9do6vGTkf_qb8',
+              '1wHmTzucCH677706tLQ80ybxE6Ta5yQ0j',
+              '1ik_ekfGFnFhzDdsMKhyn8niyoUZX0YZ6',
+              '1vEWWbZ9pkwOfI0LuNxNLKnsxqbH15f0x',
+              '1UxUW6PSzWhrADo50AgxICTHDkvN07wNB',
+              '1RvSzzlaRp5TrXBW3WWQcLs57sc3v-6R6',
+              '1IXafeeW71y94ixnDSDCBveaGszqBYKMx',
+            ].map((id, i) => (
+              <RevealOnScroll key={id} delay={i * 50}>
+                <div className="relative overflow-hidden rounded-2xl bg-neutral-100 group" style={{ aspectRatio: '3/4' }}>
+                  <img
+                    src={`https://drive.google.com/thumbnail?id=${id}&sz=w600`}
+                    alt={`Headshot sample ${i + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>}
 
       {/* ── Google Reviews ── */}
       <section className="py-16 px-6">
