@@ -403,12 +403,20 @@ function RealtorsPage() {
             {/* Sunrise */}
             <RevealOnScroll delay={0}>
               <div className="relative flex flex-col border border-neutral-200 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="bg-gradient-to-br from-amber-50 to-orange-50 px-7 pt-8 pb-6 border-b border-neutral-100">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-600 mb-2">Sunrise Package</p>
-                  <div className="flex items-end gap-1 mb-1">
-                    <span className="text-4xl font-black tracking-tight text-neutral-900">$225</span>
+                <div className="relative overflow-hidden" style={{ height: 180 }}>
+                  <img
+                    src="https://drive.google.com/thumbnail?id=1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y&sz=w800"
+                    alt="Sunrise listing interior"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 px-6 pb-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-300 mb-1">Sunrise Package</p>
+                    <div className="flex items-end gap-1">
+                      <span className="text-3xl font-black tracking-tight text-white">$225</span>
+                    </div>
+                    <p className="text-xs text-neutral-300">Up to 2,400 sq ft</p>
                   </div>
-                  <p className="text-xs text-neutral-500">Up to 2,400 sq ft</p>
                 </div>
                 <div className="bg-white px-7 py-6 flex-1 flex flex-col">
                   <ul className="space-y-3 flex-1 mb-8">
@@ -434,13 +442,21 @@ function RealtorsPage() {
             {/* Noon — most popular */}
             <RevealOnScroll delay={80}>
               <div className="relative flex flex-col border-2 border-black rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div className="absolute top-4 right-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>
-                <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 px-7 pt-8 pb-6 border-b border-neutral-700">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">Noon Package</p>
-                  <div className="flex items-end gap-1 mb-1">
-                    <span className="text-4xl font-black tracking-tight text-white">$415</span>
+                <div className="absolute top-4 right-4 z-10 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>
+                <div className="relative overflow-hidden" style={{ height: 180 }}>
+                  <img
+                    src="https://drive.google.com/thumbnail?id=1IGjM4lHxBbxfri4DEZx98r6sIM2byiCc&sz=w800"
+                    alt="Noon listing HDR interior"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 px-6 pb-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-300 mb-1">Noon Package</p>
+                    <div className="flex items-end gap-1">
+                      <span className="text-3xl font-black tracking-tight text-white">$415</span>
+                    </div>
+                    <p className="text-xs text-neutral-400">All property sizes</p>
                   </div>
-                  <p className="text-xs text-neutral-500">All property sizes</p>
                 </div>
                 <div className="bg-white px-7 py-6 flex-1 flex flex-col">
                   <ul className="space-y-3 flex-1 mb-8">
@@ -466,12 +482,20 @@ function RealtorsPage() {
             {/* Twilight */}
             <RevealOnScroll delay={160}>
               <div className="relative flex flex-col border border-neutral-200 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="bg-gradient-to-br from-indigo-50 to-violet-50 px-7 pt-8 pb-6 border-b border-neutral-100">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-violet-600 mb-2">Twilight Package</p>
-                  <div className="flex items-end gap-1 mb-1">
-                    <span className="text-4xl font-black tracking-tight text-neutral-900">$450</span>
+                <div className="relative overflow-hidden" style={{ height: 180 }}>
+                  <img
+                    src="https://drive.google.com/thumbnail?id=1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R&sz=w800"
+                    alt="Twilight aerial drone shot"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/80 via-indigo-900/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 px-6 pb-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-violet-300 mb-1">Twilight Package</p>
+                    <div className="flex items-end gap-1">
+                      <span className="text-3xl font-black tracking-tight text-white">$450</span>
+                    </div>
+                    <p className="text-xs text-neutral-300">All property sizes</p>
                   </div>
-                  <p className="text-xs text-neutral-500">All property sizes</p>
                 </div>
                 <div className="bg-white px-7 py-6 flex-1 flex flex-col">
                   <ul className="space-y-3 flex-1 mb-8">
@@ -495,24 +519,80 @@ function RealtorsPage() {
             </RevealOnScroll>
           </div>
 
-          {/* Media showcase — placeholder for user's photos/videos */}
+          {/* Media showcase — real listing photos & video */}
           <RevealOnScroll>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6 text-center">Our Work</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 rounded-3xl overflow-hidden">
-              {[
-                'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
-                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
-                'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-                'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
-              ].map((src, i) => (
-                <div key={i} className={`relative overflow-hidden rounded-2xl ${i === 0 ? 'col-span-2 md:col-span-1 row-span-2' : ''}`} style={{ aspectRatio: i === 0 ? '1/1.3' : '4/3' }}>
-                  <img src={src} alt={`Listing media ${i + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-                </div>
-              ))}
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-3 text-center">Our Work</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-10">
+              See the <span className="font-serif italic font-normal">difference</span>
+            </h3>
+
+            {/* Hero video */}
+            <div className="rounded-3xl overflow-hidden shadow-2xl mb-4" style={{ aspectRatio: '16/9' }}>
+              <iframe
+                src="https://drive.google.com/file/d/1lLotCIeWwfLxAFnZ4NKQ2XvQcXNV_4eY/preview"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+                title="Listing Walkthrough"
+              />
             </div>
-            <p className="text-center text-xs text-neutral-400 mt-4">← Replace these with your own listing photos once provided</p>
+
+            {/* Photo + video grid */}
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+              {/* Row 1: drone aerial (large) + 2 interiors */}
+              <div className="col-span-2 md:col-span-3 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src="https://drive.google.com/thumbnail?id=1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R&sz=w1200"
+                  alt="Aerial drone shot"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute bottom-3 left-3">
+                  <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">Aerial</span>
+                </div>
+              </div>
+              <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src="https://drive.google.com/thumbnail?id=1IGjM4lHxBbxfri4DEZx98r6sIM2byiCc&sz=w800"
+                  alt="HDR interior"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="col-span-1 md:col-span-1 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src="https://drive.google.com/thumbnail?id=1hCPJxNnIMIeC23KKgU_i7pk_exXVYzM-&sz=w800"
+                  alt="Interior detail"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+
+              {/* Row 2: 2 interiors + cinematic video tile */}
+              <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src="https://drive.google.com/thumbnail?id=1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y&sz=w800"
+                  alt="Living space"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src="https://drive.google.com/thumbnail?id=1zLM8p5BrKOg2-5fNk8rfVtxZNy-wTitD&sz=w800"
+                  alt="Interior room"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="col-span-2 md:col-span-2 relative overflow-hidden rounded-2xl bg-neutral-900" style={{ aspectRatio: '4/3' }}>
+                <iframe
+                  src="https://drive.google.com/file/d/1SGDyhjgCW3sHsnlA7AJJBinI4m_n2DLA/preview"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+                  title="Cinematic walkthrough"
+                />
+                <div className="absolute bottom-3 left-3 pointer-events-none">
+                  <span className="text-[9px] font-bold uppercase tracking-widest bg-white/90 text-black px-2.5 py-1 rounded-full">Cinematic</span>
+                </div>
+              </div>
+            </div>
           </RevealOnScroll>
         </div>
       </section>
