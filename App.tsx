@@ -3083,13 +3083,20 @@ const SocialBrandsView: React.FC<{ onBookConsultation: () => void }> = ({ onBook
 
 const VideoCard: React.FC<{ id: string; label: string }> = ({ id, label }) => {
   const [playing, setPlaying] = React.useState(false);
+  const [thumb, setThumb] = React.useState<string | null>(null);
+  React.useEffect(() => {
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}&width=800`)
+      .then(r => r.json())
+      .then(d => { if (d.thumbnail_url) setThumb(d.thumbnail_url.replace(/_\d+x\d+/, '_1280')); })
+      .catch(() => {});
+  }, [id]);
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-lg bg-neutral-900 cursor-pointer group" style={{ aspectRatio: '16/9' }} onClick={() => setPlaying(true)}>
       {playing ? (
-        <iframe src={`https://drive.google.com/file/d/${id}/preview`} allow="autoplay; fullscreen" allowFullScreen style={{ width: '100%', height: '100%', border: 'none', display: 'block' }} title={label} />
+        <iframe src={`https://player.vimeo.com/video/${id}?autoplay=1`} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen style={{ width: '100%', height: '100%', border: 'none', display: 'block' }} title={label} />
       ) : (
         <>
-          <img src={`https://drive.google.com/thumbnail?id=${id}&sz=w800`} alt={label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          {thumb && <img src={thumb} alt={label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />}
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
@@ -3300,10 +3307,10 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
               {[
-                { id: '1pZvWto7bMJtFSeKPdAwXNfP4Tn6eXYa1', label: 'Property Walkthrough' },
-                { id: '1-Zcca9S9T7mD5YaHAu8rJQjuC9mqtX25', label: 'Cinematic Tour' },
-                { id: '1a1vk80dHh-4ObbpCVT8ZZsNavIB8w-C9', label: 'Listing Showcase' },
-                { id: '1SGDyhjgCW3sHsnlA7AJJBinI4m_n2DLA', label: 'Property Highlight' },
+                { id: '1248791465', label: 'Property Walkthrough' },
+                { id: '1248791476', label: 'Cinematic Tour' },
+                { id: '1248791446', label: 'Listing Showcase' },
+                { id: '1248791530', label: 'Behind the Scenes' },
               ].map(({ id, label }) => (
                 <VideoCard key={id} id={id} label={label} />
               ))}
