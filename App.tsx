@@ -4151,7 +4151,6 @@ const ContactView: React.FC = () => (
               { icon: <Instagram size={20} />, href: 'https://www.instagram.com/the.marketingverse', label: 'Instagram' },
               { icon: <Facebook size={20} />, href: 'https://www.facebook.com/themarketingverse', label: 'Facebook' },
               { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/company/marketingverse', label: 'LinkedIn' },
-              { icon: <Youtube size={20} />, href: 'https://www.youtube.com/@marketingverse', label: 'YouTube' },
             ].map(({ icon, href, label }, i) => (
               <a
                 key={i}
