@@ -3087,34 +3087,79 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
 
-      {/* ── Agent Tab Switcher ── */}
+      {/* ── Service Picker ── */}
       <RevealOnScroll>
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex bg-neutral-100 p-1.5 rounded-2xl gap-1">
-            <button
-              onClick={() => setAgentTab('social')}
-              className={`flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold transition-all ${agentTab === 'social' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-              Social Media
-            </button>
-            <button
-              onClick={() => setAgentTab('photography')}
-              className={`flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold transition-all ${agentTab === 'photography' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-              Listing Photography
-            </button>
-            <button
-              onClick={() => setAgentTab('headshots')}
-              className={`flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold transition-all ${agentTab === 'headshots' ? 'bg-black text-white shadow-md' : 'text-neutral-500 hover:text-black'}`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-              Headshots
-            </button>
-          </div>
+        <div className="text-center mb-10">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">For Real Estate Agents</p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            What can we help <span className="font-serif font-normal italic">you with today?</span>
+          </h2>
         </div>
       </RevealOnScroll>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-6" id="agent-tab-content">
+        {([
+          {
+            id: 'social' as const,
+            label: 'Social Media',
+            desc: 'Build a presence that earns trust before the call. Strategy, content shoots & full management.',
+            icon: <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>,
+            activeGrad: 'from-indigo-600 to-indigo-500',
+            inactiveBg: 'bg-white hover:bg-indigo-50 border-neutral-200 hover:border-indigo-100',
+            iconBg: 'bg-indigo-50 text-indigo-600',
+            ctaColor: 'text-indigo-600',
+          },
+          {
+            id: 'photography' as const,
+            label: 'Listing Photography',
+            desc: 'HDR photos, aerials, 3D tours & cinematic walkthroughs that make buyers stop scrolling.',
+            icon: <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+            activeGrad: 'from-amber-500 to-amber-400',
+            inactiveBg: 'bg-white hover:bg-amber-50 border-neutral-200 hover:border-amber-100',
+            iconBg: 'bg-amber-50 text-amber-600',
+            ctaColor: 'text-amber-600',
+          },
+          {
+            id: 'headshots' as const,
+            label: 'Headshots',
+            desc: 'Professional headshots that reflect your brand and make you look like the go-to agent.',
+            icon: <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>,
+            activeGrad: 'from-rose-600 to-rose-500',
+            inactiveBg: 'bg-white hover:bg-rose-50 border-neutral-200 hover:border-rose-100',
+            iconBg: 'bg-rose-50 text-rose-600',
+            ctaColor: 'text-rose-600',
+          },
+        ] as const).map((svc, i) => (
+          <RevealOnScroll key={svc.id} delay={i * 80}>
+            <button
+              onClick={() => {
+                setAgentTab(svc.id);
+                document.getElementById('agent-tab-content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className={`w-full text-left rounded-3xl border-2 p-7 transition-all duration-300 group ${
+                agentTab === svc.id
+                  ? `bg-gradient-to-br ${svc.activeGrad} border-transparent shadow-2xl scale-[1.02] text-white`
+                  : `${svc.inactiveBg} hover:shadow-xl`
+              }`}
+            >
+              <div className={`w-13 h-13 w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-colors ${
+                agentTab === svc.id ? 'bg-white/20 text-white' : svc.iconBg
+              }`}>
+                {svc.icon}
+              </div>
+              <h3 className={`text-lg font-bold mb-2 ${agentTab === svc.id ? 'text-white' : 'text-neutral-900'}`}>
+                {svc.label}
+              </h3>
+              <p className={`text-sm leading-relaxed mb-5 ${agentTab === svc.id ? 'text-white/80' : 'text-neutral-500'}`}>
+                {svc.desc}
+              </p>
+              <div className={`inline-flex items-center gap-1.5 text-sm font-bold ${agentTab === svc.id ? 'text-white' : svc.ctaColor}`}>
+                {agentTab === svc.id ? 'Viewing now' : 'Explore'}
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </div>
+            </button>
+          </RevealOnScroll>
+        ))}
+      </div>
 
       {/* ── Photography Tab ── */}
       {agentTab === 'photography' && (
