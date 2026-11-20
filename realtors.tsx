@@ -582,7 +582,7 @@ function RealtorsPage() {
                     <div className="flex items-end gap-1">
                       <span className="text-3xl font-black tracking-tight text-white">$415</span>
                     </div>
-                    <p className="text-xs text-neutral-400">All property sizes</p>
+                    <p className="text-xs text-neutral-400">Up to 2,400 sq ft</p>
                   </div>
                 </div>
                 <div className="bg-white px-7 py-6 flex-1 flex flex-col">
@@ -621,7 +621,7 @@ function RealtorsPage() {
                     <div className="flex items-end gap-1">
                       <span className="text-3xl font-black tracking-tight text-white">$450</span>
                     </div>
-                    <p className="text-xs text-neutral-300">All property sizes</p>
+                    <p className="text-xs text-neutral-300">Up to 2,400 sq ft</p>
                   </div>
                 </div>
                 <div className="bg-white px-7 py-6 flex-1 flex flex-col">
@@ -645,6 +645,13 @@ function RealtorsPage() {
               </div>
             </RevealOnScroll>
           </div>
+
+          {/* Overage note */}
+          <RevealOnScroll>
+            <p className="text-center text-sm text-neutral-500 mb-16 -mt-10">
+              Properties over 2,400 sq ft: <span className="text-neutral-700 font-medium">+$50 per additional 1,000 sq ft</span> (Sunrise) · <span className="text-neutral-700 font-medium">+$80 per additional 1,000 sq ft</span> (Noon &amp; Twilight)
+            </p>
+          </RevealOnScroll>
 
           {/* Media showcase — real listing photos & video */}
           <RevealOnScroll>

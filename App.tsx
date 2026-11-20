@@ -3201,9 +3201,9 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             {[
               { name: 'Sunrise', price: '$225', note: 'Up to 2,400 sq ft', coverId: '1T9LtrZBNGuO9VinpE974c93QHomdoOec', accentClass: 'text-amber-300', checkClass: 'text-amber-500', borderClass: 'border-neutral-200', pkg: '1001',
                 features: ['25 HDR Professional Photos', '3 Aerial Photos', 'B&W Basic Floor Plan'] },
-              { name: 'Noon', price: '$415', note: 'All property sizes', coverId: '1IJ39COxE96f9a9fuLqNbEAvLnqF1tzII', accentClass: 'text-neutral-300', checkClass: 'text-black', borderClass: 'border-black border-2', pkg: '1002', featured: true,
+              { name: 'Noon', price: '$415', note: 'Up to 2,400 sq ft', coverId: '1IJ39COxE96f9a9fuLqNbEAvLnqF1tzII', accentClass: 'text-neutral-300', checkClass: 'text-black', borderClass: 'border-black border-2', pkg: '1002', featured: true,
                 features: ['25 HDR Professional Photos', '3 Aerial Photos', 'Floor Plan Plus', '3D Tour (Small)'] },
-              { name: 'Twilight', price: '$450', note: 'All property sizes', coverId: '1rGPM5ye01q__8JYcfDEzhiS1uNgRKZfi', accentClass: 'text-violet-300', checkClass: 'text-violet-500', borderClass: 'border-neutral-200', pkg: '1003',
+              { name: 'Twilight', price: '$450', note: 'Up to 2,400 sq ft', coverId: '1rGPM5ye01q__8JYcfDEzhiS1uNgRKZfi', accentClass: 'text-violet-300', checkClass: 'text-violet-500', borderClass: 'border-neutral-200', pkg: '1003',
                 features: ['25 High Resolution Photos', '3 Aerial Photos', 'Floor Plan Plus', 'Pro Cinematic Video'] },
             ].map((p, i) => (
               <RevealOnScroll key={p.name} delay={i * 80}>
@@ -3236,6 +3236,13 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
               </RevealOnScroll>
             ))}
           </div>
+
+          {/* Overage note */}
+          <RevealOnScroll>
+            <p className="text-center text-sm text-neutral-500 mb-16 -mt-10">
+              Properties over 2,400 sq ft: <span className="text-neutral-700 font-medium">+$50 per additional 1,000 sq ft</span> (Sunrise) · <span className="text-neutral-700 font-medium">+$80 per additional 1,000 sq ft</span> (Noon &amp; Twilight)
+            </p>
+          </RevealOnScroll>
 
           {/* Photo gallery */}
           <RevealOnScroll>
