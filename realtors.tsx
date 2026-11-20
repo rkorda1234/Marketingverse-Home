@@ -653,59 +653,33 @@ function RealtorsPage() {
               See the <span className="font-serif italic font-normal">difference</span>
             </h3>
 
-            {/* Photo grid */}
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-3 mb-16">
-              {/* Row 1: drone aerial (large) + 2 interiors */}
-              <div className="col-span-2 md:col-span-3 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
-                <img
-                  src="https://drive.google.com/thumbnail?id=1eAA9WIKkYpj_ugp8Uhyt38uPeLz3b8zs&sz=w1200"
-                  alt="Aerial drone shot"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute bottom-3 left-3">
-                  <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">Aerial</span>
+            {/* Photo grid — masonry columns */}
+            <div className="columns-2 md:columns-3 gap-3 mb-16 [column-gap:0.75rem]">
+              {[
+                { id: '1eAA9WIKkYpj_ugp8Uhyt38uPeLz3b8zs', label: 'Aerial', sz: 'w1200' },
+                { id: '1IGjM4lHxBbxfri4DEZx98r6sIM2byiCc', label: 'HDR Interior', sz: 'w800' },
+                { id: '1pNghgOHL8VjB2K06ixkDBEFlJ1EKDI6k', label: 'HDR Living', sz: 'w800' },
+                { id: '1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y', label: 'Bedroom', sz: 'w800' },
+                { id: '1K3rez-02C1NqIDwa8H2kcQK7Ql4_sEpe', label: 'Interior', sz: 'w800' },
+                { id: '1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R', label: 'Twilight', sz: 'w800' },
+                { id: '1DTSMBxW7jCJH0GoAUIa5VmfEXwqNr3G6', label: 'Living Room', sz: 'w800' },
+                { id: '1lgatZBGFFXc_rlbO2LExqJ6W_jGivvaq', label: 'Kitchen', sz: 'w800' },
+                { id: '1YVLGAGxS2DWIcqnRFnqW5_YghAsZSXiR', label: 'HDR Exterior', sz: 'w800' },
+                { id: '1BVS-He5FoUUzVCk7kqUKMFkKt31s-x1_', label: 'Detail', sz: 'w800' },
+                { id: '1-DiMbkMyqkRxDb-fNiA-WQQM9zp7iW1O', label: 'Bathroom', sz: 'w800' },
+                { id: '1SLkRLG21OoWGrbml3QWROZEfc_gOeou7', label: 'Drone', sz: 'w800' },
+              ].map(({ id, label, sz }) => (
+                <div key={id} className="relative overflow-hidden rounded-2xl mb-3 break-inside-avoid group">
+                  <img
+                    src={`https://drive.google.com/thumbnail?id=${id}&sz=${sz}`}
+                    alt={label}
+                    className="w-full h-auto block group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2 py-1 rounded-full backdrop-blur-sm">{label}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
-                <img
-                  src="https://drive.google.com/thumbnail?id=1IGjM4lHxBbxfri4DEZx98r6sIM2byiCc&sz=w800"
-                  alt="HDR interior"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-1 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
-                <img
-                  src="https://drive.google.com/thumbnail?id=1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R&sz=w800"
-                  alt="Twilight exterior"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              {/* Row 2: 3 more listing photos */}
-              <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
-                <img
-                  src="https://drive.google.com/thumbnail?id=1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y&sz=w800"
-                  alt="Living space"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
-                <img
-                  src="https://drive.google.com/thumbnail?id=1DTSMBxW7jCJH0GoAUIa5VmfEXwqNr3G6&sz=w800"
-                  alt="Interior room"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="col-span-2 md:col-span-2 relative overflow-hidden rounded-2xl" style={{ aspectRatio: '4/3' }}>
-                <img
-                  src="https://drive.google.com/thumbnail?id=1SLkRLG21OoWGrbml3QWROZEfc_gOeou7&sz=w800"
-                  alt="Aerial property view"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute bottom-3 left-3">
-                  <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">Drone</span>
-                </div>
-              </div>
+              ))}
             </div>
           </RevealOnScroll>
 
