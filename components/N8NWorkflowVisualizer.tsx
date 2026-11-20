@@ -158,7 +158,7 @@ export const N8NWorkflowVisualizer: React.FC = () => {
         <RevealOnScroll>
           <div className="text-center mb-16">
             <span className="px-4 py-1.5 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full mb-4 inline-block">Complex Automations</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Built with N8N Efficiency</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Built in your own Claude Environment</h2>
             <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
               We design intricate "Lego-like" workflows that bridge your favorite apps with custom AI logic.
             </p>
