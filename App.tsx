@@ -3103,7 +3103,7 @@ const VideoCard: React.FC<{ id: string; label: string }> = ({ id, label }) => {
 };
 
 const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBookConsultation: () => void }> = ({ onInitiateGrowth, onBookConsultation }) => {
-  const [agentTab, setAgentTab] = React.useState<'social' | 'photography' | 'headshots'>('social');
+  const [agentTab, setAgentTab] = React.useState<'social' | 'photography' | 'headshots' | null>(null);
   return (
   <div className="animate-fade-in py-20 relative z-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -3117,7 +3117,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           </h2>
         </div>
       </RevealOnScroll>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-6" id="agent-tab-content">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-6">
         {([
           {
             id: 'social' as const,
@@ -3181,6 +3181,7 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
           </RevealOnScroll>
         ))}
       </div>
+      <div id="agent-tab-content" />
 
       {/* ── Photography Tab ── */}
       {agentTab === 'photography' && (
