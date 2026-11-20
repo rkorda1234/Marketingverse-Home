@@ -649,12 +649,15 @@ function RealtorsPage() {
           {/* Overage note */}
           <RevealOnScroll>
             <p className="text-center text-sm text-neutral-500 mb-16 -mt-10">
-              Properties over 2,400 sq ft: <span className="text-neutral-700 font-medium">+$50 per additional 1,000 sq ft</span> (Sunrise) · <span className="text-neutral-700 font-medium">+$80 per additional 1,000 sq ft</span> (Noon &amp; Twilight)
+              Properties over 2,400 sq ft: <span className="text-neutral-700 font-medium">+$50 per additional 1,000 sq ft</span> (Sunrise) · <span className="text-neutral-700 font-medium">+$80 per additional 1,000 sq ft</span> (Noon &amp; Twilight) · each extra 1,000 sq ft adds 15 photos to your delivery
             </p>
           </RevealOnScroll>
 
           {/* Pay at Close */}
           <RevealOnScroll>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-5">
+              Don't pay until your <span className="font-serif italic font-normal">listing sells</span>
+            </h3>
             <div className="max-w-2xl mx-auto mb-16 rounded-3xl border border-neutral-200 bg-neutral-50 px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
               <div className="w-11 h-11 flex-shrink-0 rounded-2xl bg-black flex items-center justify-center">
                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
