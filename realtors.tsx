@@ -669,16 +669,13 @@ function RealtorsPage() {
                 { id: '1-DiMbkMyqkRxDb-fNiA-WQQM9zp7iW1O', label: 'Bathroom', sz: 'w800' },
                 { id: '1SLkRLG21OoWGrbml3QWROZEfc_gOeou7', label: 'Drone', sz: 'w800' },
               ].map(({ id, label, sz }) => (
-                <div key={id} className="relative overflow-hidden rounded-2xl mb-3 break-inside-avoid group">
+                <div key={id} className="overflow-hidden rounded-2xl mb-3 break-inside-avoid">
                   <img
                     src={`https://drive.google.com/thumbnail?id=${id}&sz=${sz}`}
                     alt={label}
-                    className="w-full h-auto block group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-auto block hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-[9px] font-bold uppercase tracking-widest bg-black/60 text-white px-2 py-1 rounded-full backdrop-blur-sm">{label}</span>
                   </div>
-                </div>
               ))}
             </div>
           </RevealOnScroll>
