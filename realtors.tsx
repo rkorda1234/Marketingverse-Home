@@ -202,70 +202,109 @@ function RealtorsPage() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="pt-32 md:pt-40 pb-20 md:pb-28 px-6 text-center max-w-4xl mx-auto">
+      <section className="pt-32 md:pt-40 pb-10 md:pb-14 px-6 text-center max-w-3xl mx-auto">
         <RevealOnScroll>
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">Social Media for Real Estate Agents</p>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6 md:mb-8">
-            The social presence<br />that earns trust<br />
-            <span className="font-serif font-normal italic">before the call.</span>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-5">For Real Estate Agents</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] mb-5">
+            What can we help<br />
+            <span className="font-serif font-normal italic">you with today?</span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-500 max-w-xl mx-auto leading-relaxed mb-10 md:mb-12">
-            When a buyer or seller finds you online, they're deciding in seconds whether they feel a connection. We make sure that answer is yes.
+          <p className="text-base md:text-lg text-neutral-500 max-w-lg mx-auto leading-relaxed">
+            Pick a service below and we'll show you exactly what we do — and how we can grow your business.
           </p>
-          <button
-            onClick={openBooking}
-            className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 md:px-10 py-4 md:py-5 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 text-base md:text-lg shadow-xl shadow-black/10"
-          >
-            Book a call to learn the secret
-          </button>
         </RevealOnScroll>
       </section>
 
-      {/* ── Tab Switcher ── */}
-      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b-2 border-neutral-100 shadow-md">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="flex overflow-x-auto scrollbar-hide">
-            {([
-              {
-                id: 'social',
-                label: 'Social Media',
-                icon: (
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
-                ),
-                activeClass: 'border-b-4 border-indigo-500 text-indigo-600 bg-indigo-50/60',
-                inactiveClass: 'text-neutral-500 hover:text-indigo-500 hover:bg-indigo-50/40 border-b-4 border-transparent',
-              },
-              {
-                id: 'photography',
-                label: 'Listing Photography',
-                icon: (
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                ),
-                activeClass: 'border-b-4 border-amber-500 text-amber-600 bg-amber-50/60',
-                inactiveClass: 'text-neutral-500 hover:text-amber-500 hover:bg-amber-50/40 border-b-4 border-transparent',
-              },
-              {
-                id: 'headshots',
-                label: 'Headshots',
-                icon: (
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                ),
-                activeClass: 'border-b-4 border-rose-500 text-rose-600 bg-rose-50/60',
-                inactiveClass: 'text-neutral-500 hover:text-rose-500 hover:bg-rose-50/40 border-b-4 border-transparent',
-              },
-            ] as const).map(tab => (
+      {/* ── Service Picker ── */}
+      <section id="service-picker" className="pb-16 md:pb-20 px-4 md:px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          {([
+            {
+              id: 'social' as const,
+              label: 'Social Media',
+              desc: 'Build a presence that earns trust before the call. Strategy, content shoots & full management.',
+              color: 'indigo',
+              icon: (
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+              ),
+              activeGrad: 'from-indigo-600 to-indigo-500',
+              inactiveBg: 'bg-white hover:bg-indigo-50 border-indigo-100',
+              inactiveText: 'text-indigo-600',
+            },
+            {
+              id: 'photography' as const,
+              label: 'Listing Photography',
+              desc: 'HDR photos, aerials, 3D tours & cinematic walkthroughs that make buyers stop scrolling.',
+              color: 'amber',
+              icon: (
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              ),
+              activeGrad: 'from-amber-500 to-amber-400',
+              inactiveBg: 'bg-white hover:bg-amber-50 border-amber-100',
+              inactiveText: 'text-amber-600',
+            },
+            {
+              id: 'headshots' as const,
+              label: 'Headshots',
+              desc: 'Professional headshots that reflect your brand and make you look like the go-to agent.',
+              color: 'rose',
+              icon: (
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              ),
+              activeGrad: 'from-rose-600 to-rose-500',
+              inactiveBg: 'bg-white hover:bg-rose-50 border-rose-100',
+              inactiveText: 'text-rose-600',
+            },
+          ]).map((svc, i) => (
+            <RevealOnScroll key={svc.id} delay={i * 80}>
               <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 px-4 text-sm md:text-base font-bold transition-all whitespace-nowrap ${
-                  activeTab === tab.id ? tab.activeClass : tab.inactiveClass
+                onClick={() => {
+                  setActiveTab(svc.id);
+                  document.getElementById('tab-content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className={`w-full text-left rounded-3xl border-2 p-7 transition-all duration-300 group ${
+                  activeTab === svc.id
+                    ? `bg-gradient-to-br ${svc.activeGrad} border-transparent shadow-2xl scale-[1.02] text-white`
+                    : `${svc.inactiveBg} border-neutral-200 hover:border-transparent hover:shadow-xl`
                 }`}
               >
-                {tab.icon}
-                {tab.label}
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-colors ${
+                  activeTab === svc.id ? 'bg-white/20' : `bg-${svc.color}-50 ${svc.inactiveText}`
+                }`}>
+                  {svc.icon}
+                </div>
+                <h3 className={`text-xl font-bold mb-2 ${activeTab === svc.id ? 'text-white' : 'text-neutral-900'}`}>
+                  {svc.label}
+                </h3>
+                <p className={`text-sm leading-relaxed mb-5 ${activeTab === svc.id ? 'text-white/80' : 'text-neutral-500'}`}>
+                  {svc.desc}
+                </p>
+                <div className={`inline-flex items-center gap-1.5 text-sm font-bold ${activeTab === svc.id ? 'text-white' : svc.inactiveText}`}>
+                  {activeTab === svc.id ? 'Viewing now' : 'Explore'}
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </div>
               </button>
-            ))}
-          </div>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Slim sticky nav (shows once inside content) ── */}
+      <div id="tab-content" className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b border-neutral-100 shadow-sm">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 flex overflow-x-auto scrollbar-hide">
+          {([
+            { id: 'social' as const, label: 'Social Media', activeClass: 'border-b-[3px] border-indigo-500 text-indigo-600', inactiveClass: 'text-neutral-400 hover:text-neutral-700 border-b-[3px] border-transparent' },
+            { id: 'photography' as const, label: 'Listing Photography', activeClass: 'border-b-[3px] border-amber-500 text-amber-600', inactiveClass: 'text-neutral-400 hover:text-neutral-700 border-b-[3px] border-transparent' },
+            { id: 'headshots' as const, label: 'Headshots', activeClass: 'border-b-[3px] border-rose-500 text-rose-600', inactiveClass: 'text-neutral-400 hover:text-neutral-700 border-b-[3px] border-transparent' },
+          ]).map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-shrink-0 px-5 py-3.5 text-sm font-bold transition-all whitespace-nowrap ${activeTab === tab.id ? tab.activeClass : tab.inactiveClass}`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
