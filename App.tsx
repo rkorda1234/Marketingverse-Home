@@ -3305,15 +3305,19 @@ const SocialMediaView: React.FC<{ onInitiateGrowth: (plan: Plan) => void; onBook
             <h3 className="text-2xl md:text-3xl font-bold text-center mb-10">
               Cinematic <span className="font-serif italic font-normal">property tours</span>
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               {[
                 { id: '1248791465', label: 'Property Walkthrough' },
                 { id: '1248791476', label: 'Cinematic Tour' },
                 { id: '1248791446', label: 'Listing Showcase' },
-                { id: '1248791530', label: 'Behind the Scenes' },
+                { id: '1248791433', label: 'Property Tour' },
+                { id: '1248791432', label: 'Property Highlight' },
               ].map(({ id, label }) => (
                 <VideoCard key={id} id={id} label={label} />
               ))}
+            </div>
+            <div className="max-w-[calc(50%-0.75rem)] mx-auto mb-16">
+              <VideoCard id="1248791530" label="Behind the Scenes" />
             </div>
           </RevealOnScroll>
 
