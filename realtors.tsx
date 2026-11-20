@@ -653,6 +653,22 @@ function RealtorsPage() {
             </p>
           </RevealOnScroll>
 
+          {/* Pay at Close */}
+          <RevealOnScroll>
+            <div className="max-w-2xl mx-auto mb-16 rounded-3xl border border-neutral-200 bg-neutral-50 px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <div className="w-11 h-11 flex-shrink-0 rounded-2xl bg-black flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+              </div>
+              <div className="flex-1">
+                <p className="font-bold text-neutral-900 mb-0.5">Pay at Close</p>
+                <p className="text-sm text-neutral-500">Defer your package cost until your listing sells. Rates start at 0% APR — no impact to your credit.</p>
+              </div>
+              <a href="https://www.gotitus.com/estimate/golden-light-studio" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 text-sm font-semibold bg-black text-white px-5 py-2.5 rounded-xl hover:bg-neutral-800 transition-all whitespace-nowrap">
+                Check eligibility
+              </a>
+            </div>
+          </RevealOnScroll>
+
           {/* Media showcase — real listing photos & video */}
           <RevealOnScroll>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-3 text-center">Our Work</p>
