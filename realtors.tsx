@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
+import { ArrowRight } from 'lucide-react';
 import './index.css';
 import { captureAdAttribution, getGHLFormSrc } from './utils/adAttribution';
 
@@ -552,8 +553,8 @@ function RealtorsPage() {
                     <p className="text-xs text-neutral-300">Up to 2,400 sq ft</p>
                   </div>
                 </div>
-                <div className="bg-white px-7 py-6 flex-1 flex flex-col">
-                  <ul className="space-y-3 flex-1 mb-8">
+                <div className="bg-white px-7 py-6 flex-1">
+                  <ul className="space-y-3">
                     {['25 HDR Professional Photos', '3 Aerial Photos', 'B&W Basic Floor Plan'].map(f => (
                       <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
                         <svg className="w-4 h-4 mt-0.5 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -561,14 +562,6 @@ function RealtorsPage() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href="https://shop.mylisting.pro/PlaceOrder?package=1001"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
-                  >
-                    Book This Package
-                  </a>
                 </div>
               </div>
             </RevealOnScroll>
@@ -592,8 +585,8 @@ function RealtorsPage() {
                     <p className="text-xs text-neutral-400">Up to 2,400 sq ft</p>
                   </div>
                 </div>
-                <div className="bg-white px-7 py-6 flex-1 flex flex-col">
-                  <ul className="space-y-3 flex-1 mb-8">
+                <div className="bg-white px-7 py-6 flex-1">
+                  <ul className="space-y-3">
                     {['25 HDR Professional Photos', '3 Aerial Photos', 'Floor Plan Plus', '3D Tour (Small)'].map(f => (
                       <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
                         <svg className="w-4 h-4 mt-0.5 text-black flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -601,14 +594,6 @@ function RealtorsPage() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href="https://shop.mylisting.pro/PlaceOrder?package=1002"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
-                  >
-                    Book This Package
-                  </a>
                 </div>
               </div>
             </RevealOnScroll>
@@ -631,8 +616,8 @@ function RealtorsPage() {
                     <p className="text-xs text-neutral-300">Up to 2,400 sq ft</p>
                   </div>
                 </div>
-                <div className="bg-white px-7 py-6 flex-1 flex flex-col">
-                  <ul className="space-y-3 flex-1 mb-8">
+                <div className="bg-white px-7 py-6 flex-1">
+                  <ul className="space-y-3">
                     {['25 High Resolution Photos', '3 Aerial Photos', 'Floor Plan Plus', 'Pro Cinematic Video'].map(f => (
                       <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
                         <svg className="w-4 h-4 mt-0.5 text-violet-500 flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -640,22 +625,23 @@ function RealtorsPage() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href="https://shop.mylisting.pro/PlaceOrder?package=1003"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all"
-                  >
-                    Book This Package
-                  </a>
                 </div>
               </div>
             </RevealOnScroll>
           </div>
 
+          <RevealOnScroll>
+            <div className="text-center mb-10">
+              <a href="https://shop.mylisting.pro/Marketingverse" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 py-4 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl">
+                Select Your Package <ArrowRight size={18} />
+              </a>
+            </div>
+          </RevealOnScroll>
+
           {/* Overage note */}
           <RevealOnScroll>
-            <p className="text-center text-sm text-neutral-500 mb-16 -mt-10">
+            <p className="text-center text-sm text-neutral-500 mb-16">
               Properties over 2,400 sq ft: <span className="text-neutral-700 font-medium">+$50 per additional 1,000 sq ft</span> (Sunrise) · <span className="text-neutral-700 font-medium">+$80 per additional 1,000 sq ft</span> (Noon &amp; Twilight) · each extra 1,000 sq ft adds 15 photos to your delivery
             </p>
           </RevealOnScroll>
