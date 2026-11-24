@@ -159,7 +159,7 @@ const Nav: React.FC<{ onBook: () => void }> = ({ onBook }) => (
         <button onClick={() => scrollToSection('top')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Home</button>
         <button onClick={() => scrollToSection('startup')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Start-Up Package</button>
         <button onClick={() => scrollToSection('social')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Social</button>
-        <button onClick={() => scrollToSection('photography')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Photography</button>
+        <button onClick={() => scrollToSection('photography')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Listing Photography</button>
         <button onClick={() => scrollToSection('headshots')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Headshots</button>
         <button onClick={() => scrollToSection('ai')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">AI Integrations</button>
       </div>
