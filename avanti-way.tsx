@@ -866,6 +866,242 @@ const PLATFORM_DOT: Record<string, string> = {
   Facebook:  'bg-gradient-to-r from-blue-600 to-blue-400',
 };
 
+// ── Video Card (click-to-play with Vimeo thumbnail) ───────────────────────
+const VideoCard: React.FC<{ id: string; label: string }> = ({ id, label }) => {
+  const [playing, setPlaying] = React.useState(false);
+  const [thumb, setThumb] = React.useState<string | null>(null);
+  React.useEffect(() => {
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}&width=800`)
+      .then(r => r.json())
+      .then(d => { if (d.thumbnail_url) setThumb(d.thumbnail_url.replace(/_\d+x\d+/, '_1280')); })
+      .catch(() => {});
+  }, [id]);
+  return (
+    <div className="relative rounded-2xl overflow-hidden shadow-lg bg-neutral-900 cursor-pointer group" style={{ aspectRatio: '16/9' }} onClick={() => setPlaying(true)}>
+      {playing ? (
+        <iframe src={`https://player.vimeo.com/video/${id}?autoplay=1`} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen style={{ width: '100%', height: '100%', border: 'none', display: 'block' }} title={label} />
+      ) : (
+        <>
+          {thumb && <img src={thumb} alt={label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />}
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+              <svg className="w-7 h-7 text-black ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+// ── Listing Photography Section ───────────────────────────────────────────
+const ListingPhotography: React.FC = () => (
+  <section className="py-24 bg-white">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <div className="text-center mb-14">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Listing Media</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            Photography &amp; <span className="font-serif font-normal italic">Videography</span>
+          </h2>
+          <p className="text-neutral-500 text-lg max-w-xl mx-auto">
+            Professional listing media that makes buyers stop scrolling. HDR photos, aerials, floor plans, and cinematic walkthroughs — all in one shoot.
+          </p>
+        </div>
+      </RevealOnScroll>
+
+      <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16 max-w-5xl mx-auto">
+        {[
+          { name: 'Sunrise', price: '$225', note: 'Up to 2,400 sq ft', coverId: '1T9LtrZBNGuO9VinpE974c93QHomdoOec', accentClass: 'text-amber-300', checkClass: 'text-amber-500', borderClass: 'border-neutral-200', pkg: '1001',
+            features: ['25 HDR Professional Photos', '3 Aerial Photos', 'B&W Basic Floor Plan'] },
+          { name: 'Noon', price: '$415', note: 'Up to 2,400 sq ft', coverId: '1IJ39COxE96f9a9fuLqNbEAvLnqF1tzII', accentClass: 'text-neutral-300', checkClass: 'text-black', borderClass: 'border-black border-2', pkg: '1002', featured: true,
+            features: ['25 HDR Professional Photos', '3 Aerial Photos', 'Floor Plan Plus', '3D Tour (Small)'] },
+          { name: 'Twilight', price: '$450', note: 'Up to 2,400 sq ft', coverId: '1rGPM5ye01q__8JYcfDEzhiS1uNgRKZfi', accentClass: 'text-violet-300', checkClass: 'text-violet-500', borderClass: 'border-neutral-200', pkg: '1003',
+            features: ['25 High Resolution Photos', '3 Aerial Photos', 'Floor Plan Plus', 'Pro Cinematic Video'] },
+        ].map((p, i) => (
+          <RevealOnScroll key={p.name} delay={i * 80}>
+            <div className={`relative flex flex-col border rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${p.borderClass}`}>
+              {p.featured && <div className="absolute top-4 right-4 z-10 bg-black text-white text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Most Popular</div>}
+              <div className="relative overflow-hidden" style={{ height: 180 }}>
+                <img src={`https://drive.google.com/thumbnail?id=${p.coverId}&sz=w800`} alt={`${p.name} package`} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 px-6 pb-5">
+                  <p className={`text-[10px] font-bold uppercase tracking-[0.25em] mb-1 ${p.accentClass}`}>{p.name} Package</p>
+                  <span className="text-3xl font-black tracking-tight text-white">{p.price}</span>
+                  <p className="text-xs text-neutral-300">{p.note}</p>
+                </div>
+              </div>
+              <div className="bg-white px-7 py-6 flex-1 flex flex-col">
+                <ul className="space-y-3 flex-1 mb-8">
+                  {p.features.map(f => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-neutral-700">
+                      <svg className={`w-4 h-4 mt-0.5 flex-shrink-0 ${p.checkClass}`} fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a href={`https://shop.mylisting.pro/PlaceOrder?package=${p.pkg}`} target="_blank" rel="noopener noreferrer"
+                  className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all">
+                  Book This Package
+                </a>
+              </div>
+            </div>
+          </RevealOnScroll>
+        ))}
+      </div>
+
+      <RevealOnScroll>
+        <p className="text-center text-sm text-neutral-500 mb-16 -mt-10">
+          Properties over 2,400 sq ft: <span className="text-neutral-700 font-medium">+$50 per additional 1,000 sq ft</span> (Sunrise) · <span className="text-neutral-700 font-medium">+$80 per additional 1,000 sq ft</span> (Noon &amp; Twilight) · each extra 1,000 sq ft adds 15 photos to your delivery
+        </p>
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-5">
+          Don't pay until your <span className="font-serif italic font-normal">listing sells</span>
+        </h3>
+        <div className="max-w-2xl mx-auto mb-16 rounded-3xl border border-neutral-200 bg-neutral-50 px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="w-11 h-11 flex-shrink-0 rounded-2xl bg-black flex items-center justify-center">
+            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+          </div>
+          <div className="flex-1">
+            <p className="font-bold text-neutral-900 mb-0.5">Pay at Close</p>
+            <p className="text-sm text-neutral-500">Defer your package cost until your listing sells. Rates start at 0% APR — no impact to your credit.</p>
+          </div>
+          <a href="https://www.gotitus.com/estimate/golden-light-studio" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 text-sm font-semibold bg-black text-white px-5 py-2.5 rounded-xl hover:bg-neutral-800 transition-all whitespace-nowrap">
+            Check eligibility
+          </a>
+        </div>
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-3 text-center">Our Work</p>
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-10">
+          See the <span className="font-serif italic font-normal">difference</span>
+        </h3>
+        <div className="columns-2 md:columns-3 gap-3 mb-16 [column-gap:0.75rem]">
+          {[
+            { id: '1eAA9WIKkYpj_ugp8Uhyt38uPeLz3b8zs', sz: 'w1200' },
+            { id: '1IGjM4lHxBbxfri4DEZx98r6sIM2byiCc', sz: 'w800' },
+            { id: '1pNghgOHL8VjB2K06ixkDBEFlJ1EKDI6k', sz: 'w800' },
+            { id: '1vkP4kJykb8MqiT6b8QnRp5ckFoLicQ7Y', sz: 'w800' },
+            { id: '1K3rez-02C1NqIDwa8H2kcQK7Ql4_sEpe', sz: 'w800' },
+            { id: '1kD7NwgNWRXMtudHSeTHOB3B6358_dW4R', sz: 'w800' },
+            { id: '1DTSMBxW7jCJH0GoAUIa5VmfEXwqNr3G6', sz: 'w800' },
+            { id: '1lgatZBGFFXc_rlbO2LExqJ6W_jGivvaq', sz: 'w800' },
+            { id: '1YVLGAGxS2DWIcqnRFnqW5_YghAsZSXiR', sz: 'w800' },
+            { id: '1BVS-He5FoUUzVCk7kqUKMFkKt31s-x1_', sz: 'w800' },
+            { id: '1-DiMbkMyqkRxDb-fNiA-WQQM9zp7iW1O', sz: 'w800' },
+            { id: '1SLkRLG21OoWGrbml3QWROZEfc_gOeou7', sz: 'w800' },
+          ].map(({ id, sz }) => (
+            <div key={id} className="overflow-hidden rounded-2xl mb-3 break-inside-avoid">
+              <img src={`https://drive.google.com/thumbnail?id=${id}&sz=${sz}`} alt="Listing photo" className="w-full h-auto block hover:scale-105 transition-transform duration-700" />
+            </div>
+          ))}
+        </div>
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-3 text-center">Video Library</p>
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-10">
+          Cinematic <span className="font-serif italic font-normal">property tours</span>
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {[
+            { id: '1248791465', label: 'Property Walkthrough' },
+            { id: '1248791476', label: 'Cinematic Tour' },
+            { id: '1248791446', label: 'Listing Showcase' },
+            { id: '1248791433', label: 'Property Tour' },
+            { id: '1248791432', label: 'Property Highlight' },
+            { id: '1248791530', label: 'Behind the Scenes' },
+          ].map(({ id, label }) => (
+            <VideoCard key={id} id={id} label={label} />
+          ))}
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+);
+
+// ── Headshots Section ─────────────────────────────────────────────────────
+const HeadshotsSection: React.FC = () => (
+  <section className="py-24 bg-neutral-50">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <div className="text-center mb-14">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4">Personal Branding</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            Headshots That <span className="font-serif font-normal italic">Close Deals</span>
+          </h2>
+          <p className="text-neutral-500 text-lg max-w-xl mx-auto">
+            Your first impression is online. We shoot professional headshots that reflect your brand, build instant trust, and make you look like the go-to agent in your market.
+          </p>
+        </div>
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <div className="max-w-sm mx-auto mb-14">
+          <div className="relative flex flex-col border-2 border-black rounded-3xl overflow-hidden shadow-2xl">
+            <div className="bg-black px-8 pt-8 pb-6">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">Headshot Session</p>
+              <div className="flex items-end gap-1 mb-1">
+                <span className="text-5xl font-black tracking-tight text-white">$185</span>
+              </div>
+              <p className="text-sm text-neutral-400">One session · all photos delivered</p>
+            </div>
+            <div className="bg-white px-8 py-6 flex flex-col gap-4">
+              <ul className="space-y-3">
+                {['35-minute professional session', '2 changes of wardrobe', 'Delivery of all edited photos', 'Studio & outdoor options'].map(f => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-neutral-700">
+                    <svg className="w-4 h-4 text-black flex-shrink-0" fill="none" viewBox="0 0 16 16"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/realtors" className="block text-center bg-black text-white font-semibold text-sm py-3.5 rounded-2xl hover:bg-neutral-800 transition-all mt-2">
+                Book Your Session
+              </a>
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-16 max-w-5xl mx-auto">
+        {[
+          '1X-knZV-nrXcd1je5WoX5Y8YDRghLtzEP',
+          '1MSrtaukT099U0oiiamD9do6vGTkf_qb8',
+          '1wHmTzucCH677706tLQ80ybxE6Ta5yQ0j',
+          '1ik_ekfGFnFhzDdsMKhyn8niyoUZX0YZ6',
+          '1vEWWbZ9pkwOfI0LuNxNLKnsxqbH15f0x',
+          '1UxUW6PSzWhrADo50AgxICTHDkvN07wNB',
+          '1RvSzzlaRp5TrXBW3WWQcLs57sc3v-6R6',
+          '1IXafeeW71y94ixnDSDCBveaGszqBYKMx',
+        ].map((id, i) => (
+          <RevealOnScroll key={id} delay={i * 50}>
+            <div className="relative overflow-hidden rounded-2xl bg-neutral-100 group" style={{ aspectRatio: '3/4' }}>
+              <img
+                src={`https://drive.google.com/thumbnail?id=${id}&sz=w600`}
+                alt={`Headshot sample ${i + 1}`}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </RevealOnScroll>
+        ))}
+      </div>
+
+      <RevealOnScroll>
+        <div className="text-center">
+          <p className="text-neutral-500 mb-6">Ready to elevate your brand image?</p>
+          <a href="/realtors" className="inline-flex items-center gap-2 bg-black text-white font-semibold px-8 py-4 rounded-full hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl">
+            Book a Headshot Session <ArrowRight size={18} />
+          </a>
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+);
+
 const ClientWins: React.FC = () => (
   <section className="py-24 bg-neutral-50">
     <div className="max-w-7xl mx-auto px-4">
@@ -958,6 +1194,8 @@ const App: React.FC = () => {
         <Pricing        onBook={() => setBookingOpen(true)} />
         <AISection      onBook={() => setBookingOpen(true)} />
         <AskVerseBot />
+        <ListingPhotography />
+        <HeadshotsSection />
         <ClientWins />
         <CTA            onBook={() => setBookingOpen(true)} />
       </main>
