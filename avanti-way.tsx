@@ -159,6 +159,8 @@ const Nav: React.FC<{ onBook: () => void }> = ({ onBook }) => (
         <button onClick={() => scrollToSection('top')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Home</button>
         <button onClick={() => scrollToSection('startup')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Start-Up Package</button>
         <button onClick={() => scrollToSection('social')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Social</button>
+        <button onClick={() => scrollToSection('photography')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Photography</button>
+        <button onClick={() => scrollToSection('headshots')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">Headshots</button>
         <button onClick={() => scrollToSection('ai')} className="text-sm font-semibold text-neutral-500 hover:text-black transition-colors">AI Integrations</button>
       </div>
       <button onClick={onBook} data-cursor="magic" className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-800 transition-colors flex items-center gap-2">
@@ -897,7 +899,7 @@ const VideoCard: React.FC<{ id: string; label: string }> = ({ id, label }) => {
 
 // ── Listing Photography Section ───────────────────────────────────────────
 const ListingPhotography: React.FC = () => (
-  <section className="py-24 bg-white">
+  <section id="photography" className="py-24 bg-white">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <div className="text-center mb-14">
@@ -1026,7 +1028,7 @@ const ListingPhotography: React.FC = () => (
 
 // ── Headshots Section ─────────────────────────────────────────────────────
 const HeadshotsSection: React.FC = () => (
-  <section className="py-24 bg-neutral-50">
+  <section id="headshots" className="py-24 bg-neutral-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <div className="text-center mb-14">
